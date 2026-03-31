@@ -12,7 +12,7 @@ import net.therealvoin.notjustspoiled.util.NJSUtils;
 import java.util.List;
 
 public class FoodSpoilageManager {
-    private static final Component DEBUG1 = Component.literal("Предмет обновлен.\nlastUpdateTime: %d\nfoodLifetime: %f\ngameTime: %d");
+    private static final Component DEBUG1 = Component.literal("Item updated.\nlastUpdateTime: %d\nfoodLifetime: %f\ngameTime: %d");
     private static final Component DEBUG2 = Component.literal("environment: %s");
 
     public static void changeEnvironmentAndUpdate(ItemStack itemStack, FoodEnvironment newFoodEnvironment, Level level) {
@@ -21,10 +21,12 @@ public class FoodSpoilageManager {
                 updateFoodLifetime(foodSpoilage, level);
                 foodSpoilage.setEnvironment(newFoodEnvironment);
 
-                List<ServerPlayer> players = level.getServer().getPlayerList().getPlayers();
-                if (!players.isEmpty()) {
-                    players.get(0).sendSystemMessage(Component.literal(String.format(DEBUG2.getString(), foodSpoilage.getEnvironment().name())));
-                }
+
+                // Debug
+//                List<ServerPlayer> players = level.getServer().getPlayerList().getPlayers();
+//                if (!players.isEmpty()) {
+//                    players.get(0).sendSystemMessage(Component.literal(String.format(DEBUG2.getString(), foodSpoilage.getEnvironment().name())));
+//                }
             }
         });
     }
@@ -47,10 +49,12 @@ public class FoodSpoilageManager {
 
         foodSpoilage.addFoodLifetime((gameTime - foodSpoilage.getLastUpdateTime()) * foodSpoilage.getEnvironment().getFoodSpoilageMultiplier());
         foodSpoilage.setLastUpdateTime(gameTime);
-        List<ServerPlayer> players = level.getServer().getPlayerList().getPlayers();
-        if (!players.isEmpty()) {
-            players.get(0).sendSystemMessage(Component.literal(String.format(DEBUG1.getString(), foodSpoilage.getLastUpdateTime(), foodSpoilage.getFoodLifetime(), gameTime)));
-        }
+
+        // Debug
+//        List<ServerPlayer> players = level.getServer().getPlayerList().getPlayers();
+//        if (!players.isEmpty()) {
+//            players.get(0).sendSystemMessage(Component.literal(String.format(DEBUG1.getString(), foodSpoilage.getLastUpdateTime(), foodSpoilage.getFoodLifetime(), gameTime)));
+//        }
     }
 
     public static FoodStatus getFoodStatus(ItemStack itemStack, Level level) {
