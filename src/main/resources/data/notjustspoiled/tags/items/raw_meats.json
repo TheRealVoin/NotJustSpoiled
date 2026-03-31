@@ -1,0 +1,53 @@
+{
+  "values": [
+    "minecraft:beef",
+    "minecraft:chicken",
+    "minecraft:mutton",
+    "minecraft:porkchop",
+    "minecraft:rabbit",
+    {
+      "id": "alexsmobs:kangaroo_meat",
+      "required": false
+    },
+    {
+      "id": "alexsmobs:moose_ribs",
+      "required": false
+    },
+    {
+      "id": "eanimod:rawchicken_darkbig",
+      "required": false
+    },
+    {
+      "id": "eanimod:rawchicken_darksmall",
+      "required": false
+    },
+    {
+      "id": "eanimod:rawchicken_dark",
+      "required": false
+    },
+    {
+      "id": "eanimod:rawchicken_palesmall",
+      "required": false
+    },
+    {
+      "id": "eanimod:rawchicken_pale",
+      "required": false
+    },
+    {
+      "id": "eanimod:rawrabbit_small",
+      "required": false
+    },
+    {
+      "id": "simplefarming:raw_bacon",
+      "required": false
+    },
+    {
+      "id": "simplefarming:raw_chicken_wings",
+      "required": false
+    },
+    {
+      "id": "simplefarming:raw_sausage",
+      "required": false
+    }
+  ]
+}

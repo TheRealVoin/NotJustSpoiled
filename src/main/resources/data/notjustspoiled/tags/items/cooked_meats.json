@@ -1,0 +1,53 @@
+{
+  "values": [
+    "minecraft:cooked_beef",
+    "minecraft:cooked_chicken",
+    "minecraft:cooked_mutton",
+    "minecraft:cooked_porkchop",
+    "minecraft:cooked_rabbit",
+    {
+      "id": "alexsmobs:cooked_kangaroo_meat",
+      "required": false
+    },
+    {
+      "id": "alexsmobs:cooked_moose_ribs",
+      "required": false
+    },
+    {
+      "id": "eanimod:cookedchicken_darkbig",
+      "required": false
+    },
+    {
+      "id": "eanimod:cookedchicken_darksmall",
+      "required": false
+    },
+    {
+      "id": "eanimod:cookedchicken_dark",
+      "required": false
+    },
+    {
+      "id": "eanimod:cookedchicken_palesmall",
+      "required": false
+    },
+    {
+      "id": "eanimod:cookedchicken_pale",
+      "required": false
+    },
+    {
+      "id": "eanimod:cookedrabbit_small",
+      "required": false
+    },
+    {
+      "id": "simplefarming:cooked_bacon",
+      "required": false
+    },
+    {
+      "id": "simplefarming:cooked_chicken_wings",
+      "required": false
+    },
+    {
+      "id": "simplefarming:cooked_sausage",
+      "required": false
+    }
+  ]
+}

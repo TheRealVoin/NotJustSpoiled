@@ -1,0 +1,27 @@
+{
+  "values": [
+    "minecraft:mushroom_stew",
+    "minecraft:rabbit_stew",
+    "minecraft:suspicious_stew",
+    {
+      "id": "simplefarming:candy",
+      "required": false
+    },
+    {
+      "id": "simplefarming:candy_cane",
+      "required": false
+    },
+    {
+      "id": "simplefarming:chocolate",
+      "required": false
+    },
+    {
+      "id": "simplefarming:jam",
+      "required": false
+    },
+    {
+      "id": "simplefarming:marshmallow",
+      "required": false
+    }
+  ]
+}

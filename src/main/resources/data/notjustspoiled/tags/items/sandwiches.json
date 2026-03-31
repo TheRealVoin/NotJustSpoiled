@@ -1,0 +1,52 @@
+{
+  "values": [
+    {
+      "id": "alexsmobs:kangaroo_burger",
+      "required": false
+    },
+    {
+      "id": "simplefarming:blt",
+      "required": false
+    },
+    {
+      "id": "simplefarming:cheeseburger",
+      "required": false
+    },
+    {
+      "id": "simplefarming:egg_sandwich",
+      "required": false
+    },
+    {
+      "id": "simplefarming:fish_sandwich",
+      "required": false
+    },
+    {
+      "id": "simplefarming:hamburger",
+      "required": false
+    },
+    {
+      "id": "simplefarming:hotdog",
+      "required": false
+    },
+    {
+      "id": "simplefarming:italian_beef",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pbj",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pulled_pork_sandwich",
+      "required": false
+    },
+    {
+      "id": "simplefarming:sandwich",
+      "required": false
+    },
+    {
+      "id": "simplefarming:veggie_burger",
+      "required": false
+    }
+  ]
+}

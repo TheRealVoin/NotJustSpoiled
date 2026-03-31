@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "simplefarming:oatmeal",
+      "required": false
+    },
+    {
+      "id": "simplefarming:rice_bowl",
+      "required": false
+    },
+    {
+      "id": "simplefarming:sorghum_porridge",
+      "required": false
+    }
+  ]
+}

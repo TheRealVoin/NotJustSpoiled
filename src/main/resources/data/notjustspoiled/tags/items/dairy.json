@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "id": "simplefarming:cheese_slice",
+      "required": false
+    },
+    {
+      "id": "simplefarming:cheese_wheel",
+      "required": false
+    },
+    {
+      "id": "simplefarming:ice_cream_sundae",
+      "required": false
+    },
+    {
+      "id": "simplefarming:tofu",
+      "required": false
+    }
+  ]
+}

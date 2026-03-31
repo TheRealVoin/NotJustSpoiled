@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "simplefarming:pickle",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pickled_beetroot",
+      "required": false
+    }
+  ]
+}

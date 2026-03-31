@@ -1,0 +1,117 @@
+{
+  "values": [
+    "minecraft:beetroot",
+    "minecraft:carrot",
+    "minecraft:kelp",
+    "minecraft:potato",
+    "minecraft:pumpkin",
+    {
+      "id": "simplefarming:broccoli",
+      "required": false
+    },
+    {
+      "id": "simplefarming:cantaloupe",
+      "required": false
+    },
+    {
+      "id": "simplefarming:cantaloupe_block",
+      "required": false
+    },
+    {
+      "id": "simplefarming:cassava",
+      "required": false
+    },
+    {
+      "id": "simplefarming:chicory_root",
+      "required": false
+    },
+    {
+      "id": "simplefarming:cucumber",
+      "required": false
+    },
+    {
+      "id": "simplefarming:eggplant",
+      "required": false
+    },
+    {
+      "id": "simplefarming:ginger",
+      "required": false
+    },
+    {
+      "id": "simplefarming:habanero",
+      "required": false
+    },
+    {
+      "id": "simplefarming:honeydew",
+      "required": false
+    },
+    {
+      "id": "simplefarming:honeydew_block",
+      "required": false
+    },
+    {
+      "id": "simplefarming:lettuce",
+      "required": false
+    },
+    {
+      "id": "simplefarming:marshmallow_root",
+      "required": false
+    },
+    {
+      "id": "simplefarming:onion",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pea_pod",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pepper",
+      "required": false
+    },
+    {
+      "id": "simplefarming:radish",
+      "required": false
+    },
+    {
+      "id": "simplefarming:soybean",
+      "required": false
+    },
+    {
+      "id": "simplefarming:spinach",
+      "required": false
+    },
+    {
+      "id": "simplefarming:squash",
+      "required": false
+    },
+    {
+      "id": "simplefarming:squash_block",
+      "required": false
+    },
+    {
+      "id": "simplefarming:sweet_potato",
+      "required": false
+    },
+    {
+      "id": "simplefarming:tomato",
+      "required": false
+    },
+    {
+      "id": "simplefarming:turnip",
+      "required": false
+    },
+    {
+      "id": "simplefarming:vegetable_medley",
+      "required": false
+    },
+    {
+      "id": "simplefarming:yam",
+      "required": false
+    },
+    {
+      "id": "simplefarming:zucchini",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "notjustspoiled:set_fresh_status",
+  "conditions": [
+    {
+      "condition": "minecraft:any_of",
+      "terms": [
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/spawn_bonus_chest"
+        }
+      ]
+    }
+  ]
+}

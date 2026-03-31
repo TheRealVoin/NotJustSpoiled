@@ -1,0 +1,13 @@
+{
+  "values": [
+    "minecraft:baked_potato",
+    {
+      "id": "simplefarming:baked_sweet_potato",
+      "required": false
+    },
+    {
+      "id": "simplefarming:baked_yam",
+      "required": false
+    }
+  ]
+}

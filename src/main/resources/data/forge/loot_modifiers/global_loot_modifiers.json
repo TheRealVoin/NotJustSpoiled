@@ -1,0 +1,8 @@
+{
+	"replace": false,
+	"entries": [
+		"notjustspoiled:set_fresh_status",
+		"notjustspoiled:set_spoiled_status",
+		"notjustspoiled:set_random_status"
+	]
+}

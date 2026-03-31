@@ -1,0 +1,30 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.therealvoin.notjustspoiled.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "mixins.notjustspoiled.refmap.json",
+  "client": [
+    "forge.ForgeHooksClientMixin"
+  ],
+  "mixins": [
+    "minecraft.SetItemMixin",
+    "minecraft.block.AbstractFurnaceBlockEntityMixin",
+    "minecraft.block.CampfireBlockEntityMixin",
+    "minecraft.block.CampfireBlockMixin",
+    "minecraft.container.AbstractContainerMenuMixin",
+    "minecraft.container.InventoryMixin",
+    "minecraft.container.SimpleContainerMixin",
+    "minecraft.entity.AbstractHorseMixin",
+    "minecraft.entity.ItemEntityMixin",
+    "minecraft.entity.ItemFrameMixin",
+    "minecraft.food.FoodDataMixin",
+    "minecraft.item.BlockItemMixin",
+    "minecraft.item.FireChargeItemMixin",
+    "minecraft.item.FlintAndSteelItemMixin",
+    "mods.SetItemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

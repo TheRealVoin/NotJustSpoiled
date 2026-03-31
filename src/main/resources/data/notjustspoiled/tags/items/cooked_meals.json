@@ -1,0 +1,112 @@
+{
+  "values": [
+    {
+      "id": "alexsmobs:shrimp_fried_rice",
+      "required": false
+    },
+    {
+      "id": "simplefarming:beef_and_broccoli",
+      "required": false
+    },
+    {
+      "id": "simplefarming:beef_curry",
+      "required": false
+    },
+    {
+      "id": "simplefarming:chicken_curry",
+      "required": false
+    },
+    {
+      "id": "simplefarming:chicken_parmesan",
+      "required": false
+    },
+    {
+      "id": "simplefarming:chicory_gratin",
+      "required": false
+    },
+    {
+      "id": "simplefarming:eggplant_parmesan",
+      "required": false
+    },
+    {
+      "id": "simplefarming:fish_and_chips",
+      "required": false
+    },
+    {
+      "id": "simplefarming:fried_rice",
+      "required": false
+    },
+    {
+      "id": "simplefarming:lasagna",
+      "required": false
+    },
+    {
+      "id": "simplefarming:mac_and_cheese",
+      "required": false
+    },
+    {
+      "id": "simplefarming:mutton_curry",
+      "required": false
+    },
+    {
+      "id": "simplefarming:mushroom_barley",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pad_thai",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pasta",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pizza",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pork_curry",
+      "required": false
+    },
+    {
+      "id": "simplefarming:potato_knish",
+      "required": false
+    },
+    {
+      "id": "simplefarming:spaghetti",
+      "required": false
+    },
+    {
+      "id": "simplefarming:spinach_mushroom_quiche",
+      "required": false
+    },
+    {
+      "id": "simplefarming:spinach_quinoa_quiche",
+      "required": false
+    },
+    {
+      "id": "simplefarming:squash_casserole",
+      "required": false
+    },
+    {
+      "id": "simplefarming:stuffed_corn_zucchini",
+      "required": false
+    },
+    {
+      "id": "simplefarming:sushi",
+      "required": false
+    },
+    {
+      "id": "simplefarming:tofu_scramble",
+      "required": false
+    },
+    {
+      "id": "simplefarming:turnip_beetroot_gratin",
+      "required": false
+    },
+    {
+      "id": "simplefarming:vegetable_curry",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "values": [
+    "minecraft:milk_bucket",
+    {
+      "id": "eanimod:fivesixths_milk_bucket",
+      "required": false
+    },
+    {
+      "id": "eanimod:half_milk_bottle",
+      "required": false
+    },
+    {
+      "id": "eanimod:half_milk_bucket",
+      "required": false
+    },
+    {
+      "id": "eanimod:milk_bottle",
+      "required": false
+    },
+    {
+      "id": "eanimod:onesixth_milk_bucket",
+      "required": false
+    },
+    {
+      "id": "eanimod:onethird_milk_bucket",
+      "required": false
+    },
+    {
+      "id": "eanimod:twothirds_milk_bucket",
+      "required": false
+    }
+  ]
+}

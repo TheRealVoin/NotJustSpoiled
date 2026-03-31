@@ -1,0 +1,28 @@
+{
+  "values": [
+    {
+      "id": "simplefarming:caesar_salad",
+      "required": false
+    },
+    {
+      "id": "simplefarming:corn_salad",
+      "required": false
+    },
+    {
+      "id": "simplefarming:fruit_salad",
+      "required": false
+    },
+    {
+      "id": "simplefarming:olive_tomato_salad",
+      "required": false
+    },
+    {
+      "id": "simplefarming:quinoa_salad",
+      "required": false
+    },
+    {
+      "id": "simplefarming:salad",
+      "required": false
+    }
+  ]
+}

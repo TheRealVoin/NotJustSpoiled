@@ -1,0 +1,30 @@
+{
+  "values": [
+    "minecraft:chorus_fruit",
+    "minecraft:enchanted_golden_apple",
+    "minecraft:golden_apple",
+    "minecraft:golden_carrot",
+    "minecraft:honey_bottle",
+    "minecraft:sugar",
+    {
+      "id": "alexsmobs:rainbow_jelly",
+      "required": false
+    },
+    {
+      "id": "simplefarming:curry_powder",
+      "required": false
+    },
+    {
+      "id": "simplefarming:golden_habanero",
+      "required": false
+    },
+    {
+      "id": "simplefarming:sprinkles",
+      "required": false
+    },
+    {
+      "id": "simplefarming:vinegar",
+      "required": false
+    }
+  ]
+}

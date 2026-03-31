@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "alexsmobs:boiled_emu_egg",
+      "required": false
+    },
+    {
+      "id": "simplefarming:cooked_egg",
+      "required": false
+    }
+  ]
+}

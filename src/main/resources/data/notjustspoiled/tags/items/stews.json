@@ -1,0 +1,19 @@
+{
+  "values": [
+    "minecraft:mushroom_stew",
+    "minecraft:rabbit_stew",
+    "minecraft:suspicious_stew",
+    {
+      "id": "alexsmobs:mosquito_repellent_stew",
+      "required": false
+    },
+    {
+      "id": "eanimod:rabbitstew_weak",
+      "required": false
+    },
+    {
+      "id": "simplefarming:chili",
+      "required": false
+    }
+  ]
+}
