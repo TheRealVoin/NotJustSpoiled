@@ -1,5 +1,6 @@
 package net.therealvoin.notjustspoiled.mixin.minecraft;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 import net.minecraft.world.entity.player.Inventory;
@@ -12,6 +13,8 @@ import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.therealvoin.notjustspoiled.core.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.core.foodspoilage.FoodSpoilageManager;
+import net.therealvoin.notjustspoiled.core.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
+import net.therealvoin.notjustspoiled.util.NJSUtils;
 import net.therealvoin.notjustspoiled.util.SimpleContainerAccessor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -50,6 +53,14 @@ public abstract class SetItemMixin {
             return;
         }
 
+        ServerLevel serverLevel = (ServerLevel) level;
+
         FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, foodEnvironment, level);
+
+        itemStack.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
+            if (foodSpoilage.getFoodLifetime() == 0 && foodSpoilage.getEnvironment() != FoodEnvironment.INVENTORY) {
+                NJSUtils.sendWarningMessage(serverLevel);
+            }
+        });
     }
 }
