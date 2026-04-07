@@ -4,13 +4,13 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.therealvoin.notjustspoiled.core.config.NJSConfig;
+import net.therealvoin.notjustspoiled.core.config.NJSServerConfig;
 
 public enum FoodStatus {
-    FRESH("fresh", ChatFormatting.GREEN, NJSConfig.CHANCE_TO_APPEAR_FRESH_FOOD_IN_STORAGE),
-    STALE("stale", ChatFormatting.YELLOW, NJSConfig.CHANCE_TO_APPEAR_STALE_FOOD_IN_STORAGE),
-    HALF_SPOILED("half-spoiled", ChatFormatting.GOLD, NJSConfig.CHANCE_TO_APPEAR_HALF_SPOILED_FOOD_IN_STORAGE),
-    SPOILED("spoiled", ChatFormatting.RED, NJSConfig.CHANCE_TO_APPEAR_SPOILED_FOOD_IN_STORAGE);
+    FRESH("fresh", ChatFormatting.GREEN, NJSServerConfig.CHANCE_TO_APPEAR_FRESH_FOOD_IN_STORAGE),
+    STALE("stale", ChatFormatting.YELLOW, NJSServerConfig.CHANCE_TO_APPEAR_STALE_FOOD_IN_STORAGE),
+    HALF_SPOILED("half-spoiled", ChatFormatting.GOLD, NJSServerConfig.CHANCE_TO_APPEAR_HALF_SPOILED_FOOD_IN_STORAGE),
+    SPOILED("spoiled", ChatFormatting.RED, NJSServerConfig.CHANCE_TO_APPEAR_SPOILED_FOOD_IN_STORAGE);
 
     private final String translationKey;
     private final ChatFormatting color;
