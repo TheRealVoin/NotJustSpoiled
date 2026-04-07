@@ -17,13 +17,14 @@ public class FoodSpoilageProvider implements IFoodSpoilage, ICapabilitySerializa
 
     private long lastUpdateTime = 0;
     private double foodLifetime = 0;
-    private FoodEnvironment foodEnvironment = FoodEnvironment.INVENTORY;
+    private FoodEnvironment foodEnvironment = FoodEnvironment.NONE;
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> capability, @Nullable Direction direction) {
         if (capability == FOOD_SPOILAGE) {
             return optional.cast();
         }
+
         return LazyOptional.empty();
     }
 
