@@ -28,6 +28,7 @@ public class BlockFoodSpoilageProvider implements IBlockFoodSpoilage, ICapabilit
         if (capability == BLOCK_FOOD_SPOILAGE) {
             return optional.cast();
         }
+
         return LazyOptional.empty();
     }
 
