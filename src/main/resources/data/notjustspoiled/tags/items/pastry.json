@@ -4,6 +4,46 @@
     "minecraft:cookie",
     "minecraft:pumpkin_pie",
     {
+      "id": "farmersdelight:apple_pie",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:apple_pie_slice",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:cake_slice",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:chocolate_pie",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:chocolate_pie_slice",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:honey_cookie",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:pie_crust",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:sweet_berry_cheesecake",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:sweet_berry_cheesecake_slice",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:sweet_berry_cookie",
+      "required": false
+    },
+    {
       "id": "simplefarming:apple_pie",
       "required": false
     },

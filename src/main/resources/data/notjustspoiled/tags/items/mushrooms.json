@@ -5,6 +5,14 @@
     {
       "id": "alexsmobs:gongylidia",
       "required": false
+    },
+    {
+      "id": "farmersdelight:brown_mushroom_colony",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:red_mushroom_colony",
+      "required": false
     }
   ]
 }

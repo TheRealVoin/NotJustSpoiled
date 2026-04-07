@@ -7,6 +7,22 @@
       "required": false
     },
     {
+      "id": "farmersdelight:rice",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:rice_bag",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:rice_bale",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:rice_panicle",
+      "required": false
+    },
+    {
       "id": "simplefarming:barley",
       "required": false
     },

@@ -22,6 +22,14 @@
     {
       "id": "alexsmobs:raw_catfish",
       "required": false
+    },
+    {
+      "id": "farmersdelight:cod_slice",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:salmon_slice",
+      "required": false
     }
   ]
 }

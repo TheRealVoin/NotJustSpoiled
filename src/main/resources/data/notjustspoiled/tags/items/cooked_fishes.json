@@ -11,6 +11,14 @@
       "required": false
     },
     {
+      "id": "farmersdelight:cooked_cod_slice",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:cooked_salmon_slice",
+      "required": false
+    },
+    {
       "id": "simplefarming:fish_fillet",
       "required": false
     }

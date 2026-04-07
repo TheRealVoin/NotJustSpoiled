@@ -12,6 +12,18 @@
       "required": false
     },
     {
+      "id": "farmersdelight:baked_cod_stew",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:beef_stew",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:fish_stew",
+      "required": false
+    },
+    {
       "id": "simplefarming:chili",
       "required": false
     }

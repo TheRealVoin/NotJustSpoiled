@@ -5,6 +5,10 @@
       "required": false
     },
     {
+      "id": "farmersdelight:fried_egg",
+      "required": false
+    },
+    {
       "id": "simplefarming:cooked_egg",
       "required": false
     }

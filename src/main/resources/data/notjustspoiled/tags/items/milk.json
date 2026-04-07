@@ -28,6 +28,10 @@
     {
       "id": "eanimod:twothirds_milk_bucket",
       "required": false
+    },
+    {
+      "id": "farmersdelight:milk_bottle",
+      "required": false
     }
   ]
 }

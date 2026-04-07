@@ -5,6 +5,22 @@
       "required": false
     },
     {
+      "id": "farmersdelight:bacon_sandwich",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:chicken_sandwich",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:egg_sandwich",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:hamburger",
+      "required": false
+    },
+    {
       "id": "simplefarming:blt",
       "required": false
     },

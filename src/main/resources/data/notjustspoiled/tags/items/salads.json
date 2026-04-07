@@ -1,6 +1,18 @@
 {
   "values": [
     {
+      "id": "farmersdelight:fruit_salad",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:mixed_salad",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:nether_salad",
+      "required": false
+    },
+    {
       "id": "simplefarming:caesar_salad",
       "required": false
     },
