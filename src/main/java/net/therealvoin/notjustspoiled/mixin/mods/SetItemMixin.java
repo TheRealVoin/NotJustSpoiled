@@ -10,8 +10,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import vectorwing.farmersdelight.common.block.entity.BasketBlockEntity;
 
-@Mixin(value = {FermenterBlockEntity.class}, remap = false)
+@Mixin(value = {FermenterBlockEntity.class, BasketBlockEntity.class}, remap = false)
 public abstract class SetItemMixin {
     @Inject(method = "setItem", at = @At("HEAD"))
     private void changeFoodEnvironmentWhenPlacedInContainer(int index, ItemStack itemStack, CallbackInfo ci) {
@@ -20,6 +21,9 @@ public abstract class SetItemMixin {
         FoodEnvironment foodEnvironment = null;
 
         if (object instanceof FermenterBlockEntity blockEntity) {
+            level = blockEntity.getLevel();
+            foodEnvironment = FoodEnvironment.STORAGE;
+        } else if (object instanceof BasketBlockEntity blockEntity) {
             level = blockEntity.getLevel();
             foodEnvironment = FoodEnvironment.STORAGE;
         }
