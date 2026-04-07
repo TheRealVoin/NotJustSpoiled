@@ -1,8 +1,5 @@
 {
   "config.notjustspoiled.category.food_spoilage_time": "Час псування їжі",
-  "config.notjustspoiled.category.food_spoilage_multiplier": "Модифікатор часу псування",
-  "config.notjustspoiled.category.chance_to_appear_in_storage": "Шанси появи в сховищах",
-  "config.notjustspoiled.category.crafting_mode": "Режим крафту їжі",
   "config.notjustspoiled.raw_fish_spoilage_time": "Час псування сирої риби",
   "config.notjustspoiled.raw_meat_spoilage_time": "Час псування сирого м'яса",
   "config.notjustspoiled.raw_vegetable_spoilage_time": "Час псування сирих овочів",
@@ -30,10 +27,48 @@
   "config.notjustspoiled.pickled_food_spoilage_time": "Час псування консервації",
   "config.notjustspoiled.cooked_meal_spoilage_time": "Час псування приготованої їжі",
 
+  "config.notjustspoiled.category.food_spoilage_multiplier": "Множник часу псування",
+  "config.notjustspoiled.food_spoilage_in_inventory_multiplier": "Food Spoilage In Inventory Multiplier",
+  "config.notjustspoiled.food_spoilage_in_inventory_multiplier.tooltip": "A modifier that affects the speed of food spoilage in inventory.",
+  "config.notjustspoiled.food_spoilage_in_storage_multiplier": "Food Spoilage In Storage Multiplier",
+  "config.notjustspoiled.food_spoilage_in_storage_multiplier.tooltip": "A modifier that affects the speed of food spoilage in storage.",
+  "config.notjustspoiled.food_spoilage_on_ground_multiplier": "Food Spoilage On Ground Multiplier",
+  "config.notjustspoiled.food_spoilage_on_ground_multiplier.tooltip": "A modifier that affects the speed of food spoilage on ground.",
+  "config.notjustspoiled.food_spoilage_while_cooking_multiplier": "Food Spoilage While Cooking Multiplier",
+  "config.notjustspoiled.food_spoilage_while_cooking_multiplier.tooltip": "A modifier that affects the speed of food spoilage while cooking.",
+
+  "config.notjustspoiled.category.chance_to_appear_in_storage": "Шанси появи в сховищі",
+  "config.notjustspoiled.chance_to_appear_fresh_food_in_storage": "Шанс появи свіжої їжі в сховищі",
+  "config.notjustspoiled.chance_to_appear_fresh_food_in_storage.tooltip": "Chance of fresh food to appear in storage.\n\nПримітка: сума всіх 4 значень повинна дорівнювати 1.0.",
+  "config.notjustspoiled.chance_to_appear_stale_food_in_storage": "Шанс появи несвіжої їжі в сховищі",
+  "config.notjustspoiled.chance_to_appear_stale_food_in_storage.tooltip": "Chance of stale food to appear in storage.\n\nПримітка: сума всіх 4 значень повинна дорівнювати 1.0.",
+  "config.notjustspoiled.chance_to_appear_half_spoiled_food_in_storage": "Шанс появи напівзіпсованої їжі в сховищі",
+  "config.notjustspoiled.chance_to_appear_half_spoiled_food_in_storage.tooltip": "Chance of half-spoiled food to appear in storage.\n\nПримітка: сума всіх 4 значень повинна дорівнювати 1.0.",
+  "config.notjustspoiled.chance_to_appear_spoiled_food_in_storage": "Шанс появи зіпсованої їжі в сховищі",
+  "config.notjustspoiled.chance_to_appear_spoiled_food_in_storage.tooltip": "Chance of spoiled food to appear in storage.\n\nПримітка: сума всіх 4 значень повинна дорівнювати 1.0.",
+
+  "config.notjustspoiled.category.food_crafting_mode": "Режим крафту їжі",
+  "config.notjustspoiled.food_crafting_mode": "Режим крафту їжі",
+  "config.notjustspoiled.food_crafting_mode.tooltip": "Правильно визначає час псування створеної їжі.\n\nAVERAGE: час псування визначається як середнє арифметичне часу псування всіх інгредієнтів.\nSAME_STATUS: їжу можна створити лише коли всі інгредієнти мають однаковий статус.\nWORST_STATUS: час псування визначається за найгіршим інгредієнтом, ігноруючи інші.",
+
+  "config.notjustspoiled.category.debug": "Налагодження",
+  "config.notjustspoiled.debug.show_debug_message": "Показати налагоджувальне повідомлення",
+  "config.notjustspoiled.debug.show_debug_message.tooltip": "Надсилає у чат налагоджувальне повідомлення, коли їжа оновлюється.",
+  "config.notjustspoiled.debug.show_food_category": "Показати категорію їжі",
+  "config.notjustspoiled.debug.show_food_category.tooltip": "Показує категорію їжі у підказці. Якщо їжа не має категорії, то буде відображено \"null\".",
+  "config.notjustspoiled.debug.show_additional_info": "Показати додаткову інформацію",
+  "config.notjustspoiled.debug.show_additional_info.tooltip": "Показує додаткову інформацію про їжу у підказці (\"lastUpdateTime\", \"foodLifeTime\" і \"environment\").",
+
+  "message.notjustspoiled.debug.food_updated": "Їжу оновлено.",
+  "message.notjustspoiled.warning_message": "Упс! Здається, що %s потребує додаткової сумісності з одним із ваших модів, який додає нові або змінює уже існуючі таблиці луту в скринях (наприклад, мод на генерацію світу/нові структури). Будь ласка, повідомте про це на %s",
+  "message.notjustspoiled.warning_message.mod_name": "Not Just Spoiled",
+  "message.notjustspoiled.warning_message.issues_page": "сторінці проблем модифікації",
+
   "tooltip.notjustspoiled.status": "Статус",
   "tooltip.notjustspoiled.status.fresh": "свіжий",
   "tooltip.notjustspoiled.status.stale": "несвіжий",
   "tooltip.notjustspoiled.status.half-spoiled": "напівзіпсований",
   "tooltip.notjustspoiled.status.spoiled": "зіпсований",
-  "tooltip.notjustspoiled.never_spoils": "не псується"
+  "tooltip.notjustspoiled.never_spoils": "не псується",
+  "tooltip.notjustspoiled.debug.category": "Категорія"
 }

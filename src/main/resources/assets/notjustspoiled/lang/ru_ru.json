@@ -1,8 +1,5 @@
 {
   "config.notjustspoiled.category.food_spoilage_time": "Время порчи еды",
-  "config.notjustspoiled.category.food_spoilage_multiplier": "Модификатор времени порчи",
-  "config.notjustspoiled.category.chance_to_appear_in_storage": "Шансы появления в хранилищах",
-  "config.notjustspoiled.category.crafting_mode": "Режим крафта еды",
   "config.notjustspoiled.raw_fish_spoilage_time": "Время порчи сырой рыбы",
   "config.notjustspoiled.raw_meat_spoilage_time": "Время порчи сырого мяса",
   "config.notjustspoiled.raw_vegetable_spoilage_time": "Время порчи сырых овощей",
@@ -30,10 +27,48 @@
   "config.notjustspoiled.pickled_food_spoilage_time": "Время порчи консервации",
   "config.notjustspoiled.cooked_meal_spoilage_time": "Время порчи приготовленной еды",
 
+  "config.notjustspoiled.category.food_spoilage_multiplier": "Множитель времени порчи",
+  "config.notjustspoiled.food_spoilage_in_inventory_multiplier": "Множитель порчи в инвентаре",
+  "config.notjustspoiled.food_spoilage_in_inventory_multiplier.tooltip": "Множитель, влияющий на скорость порчи еды в инвентаре.",
+  "config.notjustspoiled.food_spoilage_in_storage_multiplier": "Множитель порчи в хранилище",
+  "config.notjustspoiled.food_spoilage_in_storage_multiplier.tooltip": "Множитель, влияющий на скорость порчи еды в хранилище.",
+  "config.notjustspoiled.food_spoilage_on_ground_multiplier": "Множитель порчи на земле",
+  "config.notjustspoiled.food_spoilage_on_ground_multiplier.tooltip": "Множитель, влияющий на скорость порчи еды на земле.",
+  "config.notjustspoiled.food_spoilage_while_cooking_multiplier": "Множитель порчи во время готовки",
+  "config.notjustspoiled.food_spoilage_while_cooking_multiplier.tooltip": "Множитель, влияющий на скорость порчи еды во время готовки.",
+
+  "config.notjustspoiled.category.chance_to_appear_in_storage": "Шансы появления в хранилищах",
+  "config.notjustspoiled.chance_to_appear_fresh_food_in_storage": "Шанс появления свежей еды",
+  "config.notjustspoiled.chance_to_appear_fresh_food_in_storage.tooltip": "Шанс появления свежей еды в хранилище.\n\nПримечание: все 4 значения в сумме должны давать 1.0.",
+  "config.notjustspoiled.chance_to_appear_stale_food_in_storage": "Шанс появления несвежей еды",
+  "config.notjustspoiled.chance_to_appear_stale_food_in_storage.tooltip": "Шанс появления несвежей еды в хранилище.\n\nПримечание: все 4 значения в сумме должны давать 1.0.",
+  "config.notjustspoiled.chance_to_appear_half_spoiled_food_in_storage": "Шанс появления полуиспорченной еды",
+  "config.notjustspoiled.chance_to_appear_half_spoiled_food_in_storage.tooltip": "Шанс появления полуиспорченной еды в хранилище.\n\nПримечание: все 4 значения в сумме должны давать 1.0.",
+  "config.notjustspoiled.chance_to_appear_spoiled_food_in_storage": "Шанс появления испорченной еды",
+  "config.notjustspoiled.chance_to_appear_spoiled_food_in_storage.tooltip": "Шанс появления испорченной еды в хранилище.\n\nПримечание: все 4 значения в сумме должны давать 1.0.",
+
+  "config.notjustspoiled.category.food_crafting_mode": "Режим крафта еды",
+  "config.notjustspoiled.food_crafting_mode": "Режим крафта еды",
+  "config.notjustspoiled.food_crafting_mode.tooltip": "Корректно считает время порчи созданной еды.\n\nAVERAGE: время порчи определяется как среднее арифметическое времени порчи всех ингредиентов.\nSAME_STATUS: еду можно создать только когда все ингредиенты имеют одинаковый статус.\nWORST_STATUS: время порчи определяется по наихудшему ингредиенту, игнорируя остальные.",
+
+  "config.notjustspoiled.category.debug": "Отладка",
+  "config.notjustspoiled.debug.show_debug_message": "Показать отладочное сообщение",
+  "config.notjustspoiled.debug.show_debug_message.tooltip": "Отправляет в чат отладочное сообщение, когда еда обновлется.",
+  "config.notjustspoiled.debug.show_food_category": "Показать категорию еды",
+  "config.notjustspoiled.debug.show_food_category.tooltip": "Показывает категорию еды в всплывающей подсказке. Если еда не имеет категории, то будет отображаться \"null\".",
+  "config.notjustspoiled.debug.show_additional_info": "Показать доп. информацию",
+  "config.notjustspoiled.debug.show_additional_info.tooltip": "Показывает дополнительную информацию о еде в всплывающей подсказке (\"lastUpdateTime\", \"foodLifeTime\" и \"environment\").",
+
+  "message.notjustspoiled.debug.food_updated": "Еда обновлена.",
+  "message.notjustspoiled.warning_message": "Упс! Кажется, что %s требует дополнительной совместимости с одним из ваших модов, который добавляет новые или изменяет уже существующие таблицы лутов в сундуках (например, мод на генерацию мира/новые структуры). Пожайлуста, сообщите об этом на %s.",
+  "message.notjustspoiled.warning_message.mod_name": "Not Just Spoiled",
+  "message.notjustspoiled.warning_message.issues_page": "странице ошибок мода",
+
   "tooltip.notjustspoiled.status": "Статус",
   "tooltip.notjustspoiled.status.fresh": "свежий",
   "tooltip.notjustspoiled.status.stale": "несвежий",
   "tooltip.notjustspoiled.status.half-spoiled": "полуиспорченный",
   "tooltip.notjustspoiled.status.spoiled": "испорченный",
-  "tooltip.notjustspoiled.never_spoils": "не портится"
+  "tooltip.notjustspoiled.never_spoils": "не портится",
+  "tooltip.notjustspoiled.debug.category": "Категория"
 }
