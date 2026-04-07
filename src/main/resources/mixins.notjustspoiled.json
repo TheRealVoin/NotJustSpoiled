@@ -13,6 +13,7 @@
     "minecraft.block.CampfireBlockEntityMixin",
     "minecraft.block.CampfireBlockMixin",
     "minecraft.container.AbstractContainerMenuMixin",
+    "minecraft.container.CraftingMenuMixin",
     "minecraft.container.InventoryMixin",
     "minecraft.container.SimpleContainerMixin",
     "minecraft.entity.AbstractHorseMixin",
@@ -22,6 +23,7 @@
     "minecraft.item.BlockItemMixin",
     "minecraft.item.FireChargeItemMixin",
     "minecraft.item.FlintAndSteelItemMixin",
+    "mods.farmersdelight.CuttingBoardBlockEntityMixin",
     "mods.SetItemMixin"
   ],
   "injectors": {
