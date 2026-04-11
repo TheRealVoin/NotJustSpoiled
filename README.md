@@ -34,3 +34,5 @@ The only supported version is 1.20.1.
 It will be ported only after the mod is fully released, all core mechanics are implemented, and the bugs have been fixed.
 ### Older versions:
 There is no plans to backport it to older minecraft versions.
+
+Available on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/not-just-spoiled) and [Modrinth](https://modrinth.com/mod/not-just-spoiled)
