@@ -23,6 +23,7 @@ Compatibility with other mods can be easily added via JSON files, but some mods 
 - [YUNG's Better Desert Temples](https://www.curseforge.com/minecraft/mc-mods/yungs-better-desert-temples)
 - [YUNG's Better Dungeons](https://www.curseforge.com/minecraft/mc-mods/yungs-better-dungeons)
 - [YUNG's Better Strongholds](https://www.curseforge.com/minecraft/mc-mods/yungs-better-strongholds)
+- [YUNG's Better Witch Huts](https://www.curseforge.com/minecraft/mc-mods/yungs-better-witch-huts)
 - [YUNG's Extras](https://www.curseforge.com/minecraft/mc-mods/yungs-extras)
 
 If your mod isn't in this list, you can report it [here](https://github.com/TheRealVoin/NotJustSpoiled/issues).
