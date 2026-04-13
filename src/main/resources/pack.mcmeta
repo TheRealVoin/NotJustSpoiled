@@ -1,8 +1,9 @@
 {
   "pack": {
+    "pack_format": 15,
     "description": {
-      "text": "${mod_id} resources"
-    },
-    "pack_format": 15
+      "translate": "data.notjustspoiled.description",
+      "fallback": "${mod_name} resources"
+    }
   }
 }
