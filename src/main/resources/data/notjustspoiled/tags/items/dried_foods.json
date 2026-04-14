@@ -2,15 +2,7 @@
   "values": [
     "minecraft:dried_kelp",
     {
-      "id": "simplefarming:cumin_seeds",
-      "required": false
-    },
-    {
       "id": "simplefarming:popcorn",
-      "required": false
-    },
-    {
-      "id": "simplefarming:quinoa_seeds",
       "required": false
     },
     {

@@ -35,11 +35,19 @@
       "required": false
     },
     {
+      "id": "simplefarming:cumin_seeds",
+      "required": false
+    },
+    {
       "id": "simplefarming:oat",
       "required": false
     },
     {
       "id": "simplefarming:oat_hay_block",
+      "required": false
+    },
+    {
+      "id": "simplefarming:quinoa_seeds",
       "required": false
     },
     {
