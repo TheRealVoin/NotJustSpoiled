@@ -70,8 +70,6 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     implementation fg.deobf("curse.maven:appleskin-248787:4770828")
-    implementation fg.deobf("curse.maven:alexs-mobs-426558:5698791")
-    implementation fg.deobf("curse.maven:citadel-331936:7476570")
     implementation fg.deobf("curse.maven:simple-farming-327554:4711850")
     implementation fg.deobf("curse.maven:jei-238222:7391695")
     implementation fg.deobf("curse.maven:configured-457570:5180900")
@@ -80,11 +78,13 @@ dependencies {
 
 tasks.named('processResources', ProcessResources).configure {
     var replaceProperties = [
+            mod_loader: mod_loader,
             minecraft_version: minecraft_version,
             minecraft_version_range: minecraft_version_range,
             forge_version: forge_version,
             forge_version_range: forge_version_range,
             loader_version_range: loader_version_range,
+
             mod_id: mod_id,
             mod_name: mod_name,
             mod_license: mod_license,
@@ -98,7 +98,7 @@ tasks.named('processResources', ProcessResources).configure {
     ]
     inputs.properties replaceProperties
 
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', 'datapack/pack.mcmeta']) {
         expand replaceProperties + [project: project]
     }
 }
