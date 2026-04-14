@@ -1,0 +1,554 @@
+{
+  "type": "notjustspoiled:set_fresh_or_stale_status",
+  "conditions": [
+    {
+      "condition": "minecraft:any_of",
+      "terms": [
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_armorer"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_butcher"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_cartographer"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_desert_house"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_fisher"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_fletcher"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_jungle_house"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_mason"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_plains_house"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_savanna_house"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_shepherd"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_snowy_house"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_swamp_house"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_taiga_house"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_tannery"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_temple"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_toolsmith"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/village/village_weaponsmith"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/bastion_bridge"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/bastion_hoglin_stable"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/bastion_other"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/bastion_treasure"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/illager_mansion/ancient_city_raid_chest"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/illager_mansion/evoker_chest"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/illager_mansion/generic"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/illager_mansion/kitchen"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/illager_mansion/library_chest"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/illager_mansion/map_chest"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/illager_mansion/pillager_chest"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/illager_mansion/ravager_chest"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/illager_mansion/secret_room"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/illager_mansion/smithing_room"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/illager_mansion/vindicator_chest"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/illager_mansion/witch_chest"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/illager_mansion/wool"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/pillager_outpost"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/woodland_mansion"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterwitchhuts:chests/hut_0"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/hamlet/hamlet"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/hamlet/hamlet_tresure"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/piglin_outstation/outstation_generic"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/piglin_outstation/outstation_tower"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/piglin_outstation/outstation_treasure"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/tavern_quest/ancient_city"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/tavern_quest/badlands_miner_outpost"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/tavern_quest/conduit_ruin"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/tavern_quest/creeping_crypt"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/tavern_quest/desert_ruin"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/tavern_quest/illager_hideout"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/tavern_quest/illager_manor"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/tavern_quest/jungle_ruin"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/tavern_quest/ruin_town"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/tavern_quest/stray_fort"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/tavern_quest/undead_crypt"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/tavern_quest/witch_villa"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/witch_villa/bedroom"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/witch_villa/dirty_clothes"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/witch_villa/gardening"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/witch_villa/general_storage"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/witch_villa/kitchen"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/witch_villa/lab"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/witch_villa/library"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/witch_villa/music_room"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/witch_villa/potion_brewing"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/witch_villa/pumpkin_room"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/witch_villa/slime_room"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/badland_miner_outpost"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/badland_miner_outpost_forge"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/badland_miner_outpost_towers"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/illager_camp"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/illager_hideout_brewing"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/illager_hideout_fishing"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/illager_hideout_heart_loot"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/illager_hideout_lesser_tresure"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/illager_hideout_library"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/illager_hideout_meat"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/illager_hideout_random"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/illager_hideout_raw_ores"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/illager_hideout_trash"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/illager_hideout_tresure"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/illager_hideout_utility"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/illager_hideout_vegitarian"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/illager_hideout_weaponry"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/mangrove_witchhud"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/mining_supply"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/pillager_outpost_kitchen"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/pillager_outpost_treasure"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/tavern_quest"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "ribbits:chests/fisherman_main"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "ribbits:chests/fisherman_storage"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "ribbits:chests/gardener"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "ribbits:chests/merchant"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "ribbits:chests/nitwit"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "ribbits:chests/sorcerer"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:desert_outpost"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:lodge_drinkables"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:mage/barracks"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:mage/extras"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:mage/treasure"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/desert/smith/expert"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/desert/smith/novice"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/desert/archer"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/desert/attic"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/desert/butcher"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/desert/cartographer"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/desert/fisherman"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/desert/food"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/desert/generic"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/desert/generic_low"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/desert/junk"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/desert/library"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/desert/mason"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/desert/smith"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/desert/treasure"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/smith/expert"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/smith/novice"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/archer"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/attic"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/butcher"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/cartographer"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/fisherman"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/food"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/generic"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/generic_low"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/junk"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/library"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/mason"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/smith"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/tavern_downstairs"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/tavern_upstairs"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/fortified/treasure"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/treasure/diamond"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/treasure/emerald"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:village/treasure/golem"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:witch_hut"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "toughasnails:chests/village/village_climatologist"
+        }
+      ]
+    }
+  ]
+}
