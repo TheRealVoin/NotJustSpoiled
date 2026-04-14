@@ -6,6 +6,10 @@
       "terms": [
         {
           "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:archaeology/desert_pyramid"
+        },
+        {
+          "condition": "forge:loot_table_id",
           "loot_table_id": "minecraft:archaeology/desert_well"
         },
         {
@@ -19,6 +23,18 @@
         {
           "condition": "forge:loot_table_id",
           "loot_table_id": "minecraft:archaeology/trail_ruins_common"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:archaeology/trail_ruins_rare"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:archaelogy/jungle_ruins"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:archaelogy/ruins"
         },
         {
           "condition": "forge:loot_table_id",
@@ -54,7 +70,35 @@
         },
         {
           "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/jungle_temple_dispenser"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/nether_bridge"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/nether_fortress/fort_inside"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/nether_fortress/fort_inside_generic"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/ruined_portal"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/shipwreck_map"
+        },
+        {
+          "condition": "forge:loot_table_id",
           "loot_table_id": "minecraft:chests/shipwreck_supply"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/shipwreck_treasure"
         },
         {
           "condition": "forge:loot_table_id",
@@ -67,6 +111,10 @@
         {
           "condition": "forge:loot_table_id",
           "loot_table_id": "minecraft:chests/stronghold_crossing"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:chests/stronghold_library"
         },
         {
           "condition": "forge:loot_table_id",
@@ -86,7 +134,55 @@
         },
         {
           "condition": "forge:loot_table_id",
+          "loot_table_id": "betterdeserttemples:chests/library"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterdeserttemples:chests/pharaoh_hidden"
+        },
+        {
+          "condition": "forge:loot_table_id",
           "loot_table_id": "betterdeserttemples:chests/pot"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterdeserttemples:chests/statue"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterdeserttemples:chests/storage"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterdeserttemples:chests/tomb"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterdeserttemples:chests/tomb_pharaoh"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterdeserttemples:chests/wardrobe"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterdungeons:skeleton_dungeon/chests/common"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterdungeons:skeleton_dungeon/chests/middle"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterdungeons:small_dungeon/chests/loot_piles"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterdungeons:small_nether_dungeon/chests/common"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterdungeons:spider_dungeon/chests/egg_room"
         },
         {
           "condition": "forge:loot_table_id",
@@ -98,11 +194,387 @@
         },
         {
           "condition": "forge:loot_table_id",
+          "loot_table_id": "betterdungeons:zombie_dungeon/chests/tombstone"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterfortresses:chests/beacon"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterfortresses:chests/extra"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterfortresses:chests/hall"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterfortresses:chests/keep"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterfortresses:chests/obsidian"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterfortresses:chests/puzzle"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterfortresses:chests/quarters"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterfortresses:chests/storage"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterfortresses:chests/worship"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterjungletemples:archaeology/emerald"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterjungletemples:chests/campsite"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterjungletemples:chests/treasure"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betteroceanmonuments:chests/upper_side_chamber"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterstrongholds:chests/armoury"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterstrongholds:chests/cmd_yung"
+        },
+        {
+          "condition": "forge:loot_table_id",
           "loot_table_id": "betterstrongholds:chests/common"
         },
         {
           "condition": "forge:loot_table_id",
+          "loot_table_id": "betterstrongholds:chests/crypt"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterstrongholds:chests/grand_library"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterstrongholds:chests/library_md"
+        },
+        {
+          "condition": "forge:loot_table_id",
           "loot_table_id": "betterstrongholds:chests/mess"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterstrongholds:chests/prison_lg"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterstrongholds:chests/trap"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "betterstrongholds:chests/treasure"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "deeperdarker:chests/ancient_temple_apex"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "deeperdarker:chests/ancient_temple_basement"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "deeperdarker:chests/ancient_temple_fountain"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "deeperdarker:chests/ancient_temple_secret"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "deeperdarker:chests/ancient_temple_storage"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "deeperdarker:chests/crystallized_amber"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/leviathan/common"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/leviathan/rare"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/reanimated_ruins/common"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/reanimated_ruins/desert"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/reanimated_ruins/desert_map"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/reanimated_ruins/frozen"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/reanimated_ruins/frozen_map"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/reanimated_ruins/mossy"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/reanimated_ruins/mossy_map"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/snowy_temple/common"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/snowy_temple/rare"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/soul_prison/common"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/soul_prison/golden_armor"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/soul_prison/rare"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/tower/barrel"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/tower/common"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/tower/vex"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/tower/vex_map"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/warped_garden/common"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:chests/warped_garden/rare"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:leviathan_archaeology_common"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "dungeons_plus:leviathan_archaeology_rare"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:archaelogy/conduit_ruin"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:archaelogy/crypt"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:archaelogy/desert_ruin_inside_temple"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:archaelogy/desert_ruin_ruins"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/conduit_ruin/conduit_ruin_big"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/conduit_ruin/conduit_ruin_main"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/conduit_ruin/conduit_ruin_small"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/creeping_crypt/crypt_grave"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/creeping_crypt/crypt_hallway"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/desert_ruins/desert_ruin_grave"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/desert_ruins/desert_ruin_house"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/desert_ruins/desert_ruin_lesser_treasure"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/desert_ruins/desert_ruin_main_temple"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/jungle_ruins/jungle_ruins_main_temple"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/nether_port/nether_port_chest"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/nether_port/nether_port_supplies"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/nether_skeleton_tower/skeleton_tower_camp"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/nether_skeleton_tower/skeleton_tower_chest"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/nether_skeleton_tower/skeleton_tower_supply"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/dungeon_1"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/dungeon_2"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/dungeon_3"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/dungeon_4"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/dungeon_5"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/dungeon_6"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/dungeon_7"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/food_supply"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/ruin_loot_master"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/stray_fort_archer"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/stray_fort_loot_generic"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/stray_fort_tresure"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/undead_crypts_grave"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "nova_structures:chests/water_supply"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:igloo"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:ruin/glacial/junk"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:ruin/glacial/main_cs"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:spire/common"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:spire/junk"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:spire/rare"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:spire/treasure"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:underground/chest"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "terralith:underground/giant_bee_hive"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "yungscavebiomes:archaeology/sand_snapper_loot"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "yungsextras:desert/extra_archeology"
         },
         {
           "condition": "forge:loot_table_id",
