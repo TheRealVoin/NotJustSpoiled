@@ -20,13 +20,13 @@ public class SetFreshStatus extends LootModifier {
         super(conditionsIn);
     }
 
-
     @Override
     protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
         for (ItemStack itemStack : generatedLoot) {
             itemStack.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
                 foodSpoilage.setEnvironment(FoodEnvironment.STORAGE);
-                foodSpoilage.setFoodLifetime(0);
+                // 1 instead of 0 to prevent the warning message from appearing
+                foodSpoilage.setFoodLifetime(1);
                 foodSpoilage.setLastUpdateTime(context.getLevel().getGameTime());
             });
         }
