@@ -1,4 +1,4 @@
-modLoader = "javafml"
+modLoader = "${mod_loader}"
 loaderVersion = "${loader_version_range}"
 license = "${mod_license}"
 issueTrackerURL = "${mod_issues_url}"
