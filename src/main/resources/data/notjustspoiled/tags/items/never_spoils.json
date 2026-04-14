@@ -25,6 +25,14 @@
     {
       "id": "simplefarming:vinegar",
       "required": false
+    },
+    {
+      "id": "toughasnails:charc_os",
+      "required": false
+    },
+    {
+      "id": "toughasnails:ice_cream",
+      "required": false
     }
   ]
 }
