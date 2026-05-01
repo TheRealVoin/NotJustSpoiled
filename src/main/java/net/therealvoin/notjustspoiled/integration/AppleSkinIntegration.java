@@ -17,7 +17,7 @@ public class AppleSkinIntegration {
 
     @SubscribeEvent
     public static void onFoodValues(FoodValuesEvent event) {
-        FoodStatus foodStatus = FoodSpoilageManager.getFoodStatusForTooltip(event.itemStack, event.player.level());
+        FoodStatus foodStatus = FoodSpoilageManager.getFoodStatus(event.itemStack, event.player.level());
         if (foodStatus == null) {
             return;
         }
