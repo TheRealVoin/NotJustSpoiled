@@ -32,16 +32,21 @@ public class NJSServerConfig {
     public static final ForgeConfigSpec.IntValue DAIRY_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue PICKLED_FOOD_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue COOKED_MEAL_SPOILAGE_TIME;
+    public static final ForgeConfigSpec.IntValue RAW_DOUGH_SPOILAGE_TIME;
+    public static final ForgeConfigSpec.IntValue FOOD_DRESSING_SPOILAGE_TIME;
 
     public static final ForgeConfigSpec.DoubleValue FOOD_SPOILAGE_IN_INVENTORY_MULTIPLIER;
     public static final ForgeConfigSpec.DoubleValue FOOD_SPOILAGE_IN_STORAGE_MULTIPLIER;
     public static final ForgeConfigSpec.DoubleValue FOOD_SPOILAGE_ON_GROUND_MULTIPLIER;
     public static final ForgeConfigSpec.DoubleValue FOOD_SPOILAGE_WHILE_COOKING_MULTIPLIER;
 
-    public static final ForgeConfigSpec.DoubleValue CHANCE_TO_APPEAR_FRESH_FOOD_IN_STORAGE;
-    public static final ForgeConfigSpec.DoubleValue CHANCE_TO_APPEAR_STALE_FOOD_IN_STORAGE;
-    public static final ForgeConfigSpec.DoubleValue CHANCE_TO_APPEAR_HALF_SPOILED_FOOD_IN_STORAGE;
-    public static final ForgeConfigSpec.DoubleValue CHANCE_TO_APPEAR_SPOILED_FOOD_IN_STORAGE;
+    public static final ForgeConfigSpec.DoubleValue FRESH_OR_STALE$CHANCE_TO_APPEAR_FRESH_FOOD_IN_STORAGE;
+    public static final ForgeConfigSpec.DoubleValue FRESH_OR_STALE$CHANCE_TO_APPEAR_STALE_FOOD_IN_STORAGE;
+
+    public static final ForgeConfigSpec.DoubleValue RANDOM$CHANCE_TO_APPEAR_FRESH_FOOD_IN_STORAGE;
+    public static final ForgeConfigSpec.DoubleValue RANDOM$CHANCE_TO_APPEAR_STALE_FOOD_IN_STORAGE;
+    public static final ForgeConfigSpec.DoubleValue RANDOM$CHANCE_TO_APPEAR_HALF_SPOILED_FOOD_IN_STORAGE;
+    public static final ForgeConfigSpec.DoubleValue RANDOM$CHANCE_TO_APPEAR_SPOILED_FOOD_IN_STORAGE;
 
     public static final ForgeConfigSpec.EnumValue<FoodCraftingMode> FOOD_CRAFTING_MODE;
 
@@ -183,6 +188,16 @@ public class NJSServerConfig {
                 .translation("config.notjustspoiled.cooked_meal_spoilage_time")
                 .worldRestart()
                 .defineInRange("cookedMealSpoilageTime", 120000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
+
+        RAW_DOUGH_SPOILAGE_TIME = BUILDER
+                .translation("config.notjustspoiled.raw_dough_spoilage_time")
+                .worldRestart()
+                .defineInRange("rawDoughSpoilageTime", 12000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
+
+        FOOD_DRESSING_SPOILAGE_TIME = BUILDER
+                .translation("config.notjustspoiled.food_dressing_spoilage_time")
+                .worldRestart()
+                .defineInRange("foodDressingSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
         BUILDER.pop();
 
 
@@ -213,32 +228,53 @@ public class NJSServerConfig {
         BUILDER.pop();
 
         BUILDER.translation("config.notjustspoiled.category.chance_to_appear_in_storage").push("Chance to appear in storage");
-        CHANCE_TO_APPEAR_FRESH_FOOD_IN_STORAGE = BUILDER
+        BUILDER.translation("config.notjustspoiled.category.chance_to_appear_fresh_or_stale_food_in_storage").push("Fresh or stale food");
+        FRESH_OR_STALE$CHANCE_TO_APPEAR_FRESH_FOOD_IN_STORAGE = BUILDER
+                .comment("s")
+                .translation("s")
+                .worldRestart()
+                .defineInRange("s", 0.5, 0.0, 1.0);
+
+        FRESH_OR_STALE$CHANCE_TO_APPEAR_STALE_FOOD_IN_STORAGE = BUILDER
+                .comment("ss")
+                .translation("ss")
+                .worldRestart()
+                .defineInRange("ss", 0.5, 0.0, 1.0);
+        BUILDER.pop();
+
+        BUILDER.translation("config.notjustspoiled.category.chance_to_appear_random_food_in_storage").push("Random food");
+        RANDOM$CHANCE_TO_APPEAR_FRESH_FOOD_IN_STORAGE = BUILDER
                 .comment("Chance of fresh food to appear in storage (Note: all 4 values must add up to 1.0)")
                 .translation("config.notjustspoiled.chance_to_appear_fresh_food_in_storage")
                 .worldRestart()
                 .defineInRange("chanceToAppearFreshFoodInStorage", 0.1, 0, 1.0);
-        CHANCE_TO_APPEAR_STALE_FOOD_IN_STORAGE = BUILDER
+        RANDOM$CHANCE_TO_APPEAR_STALE_FOOD_IN_STORAGE = BUILDER
                 .comment("Chance of stale food to appear in storage (Note: all 4 values must add up to 1.0)")
                 .translation("config.notjustspoiled.chance_to_appear_stale_food_in_storage")
                 .worldRestart()
                 .defineInRange("chanceToAppearStaleFoodInStorage", 0.2, 0, 1.0);
-        CHANCE_TO_APPEAR_HALF_SPOILED_FOOD_IN_STORAGE = BUILDER
+        RANDOM$CHANCE_TO_APPEAR_HALF_SPOILED_FOOD_IN_STORAGE = BUILDER
                 .comment("Chance of half-spoiled food to appear in storage (Note: all 4 values must add up to 1.0)")
                 .translation("config.notjustspoiled.chance_to_appear_half_spoiled_food_in_storage")
                 .worldRestart()
                 .defineInRange("chanceToAppearHalfSpoiledFoodInStorage", 0.3, 0, 1.0);
-        CHANCE_TO_APPEAR_SPOILED_FOOD_IN_STORAGE = BUILDER
+        RANDOM$CHANCE_TO_APPEAR_SPOILED_FOOD_IN_STORAGE = BUILDER
                 .comment("Chance of spoiled food to appear in storage (Note: all 4 values must add up to 1.0)")
                 .translation("config.notjustspoiled.chance_to_appear_spoiled_food_in_storage")
                 .worldRestart()
                 .defineInRange("chanceToAppearSpoiledFoodInStorage", 0.4, 0, 1.0);
         BUILDER.pop();
 
+        BUILDER.pop();
+
         BUILDER.translation("config.notjustspoiled.category.food_crafting_mode").push("Crafting Mode");
         FOOD_CRAFTING_MODE = BUILDER
-                .comment("Correctly calculates the spoilage time of a crafted food")
+                .comment("Correctly calculates the spoilage time of a crafted food",
+                        "AVERAGE: the spoilage time is defined as an arithmetic mean of the spoilage time of all ingredients",
+                        "SAME_STATUS: the food can be crafted only when all ingredients have the same status",
+                        "WORST_STATUS: the spoilage time is determined by the worst ingredient, ignoring others")
                 .translation("config.notjustspoiled.food_crafting_mode")
+                .worldRestart()
                 .defineEnum("craftingMode", FoodCraftingMode.WORST_STATUS);
         BUILDER.pop();
 
@@ -246,6 +282,7 @@ public class NJSServerConfig {
         SHOW_DEBUG_MESSAGE = BUILDER
                 .comment("Sends to the chat a debug message when food is updated")
                 .translation("config.notjustspoiled.debug.show_debug_message")
+                .worldRestart()
                 .define("showDebugMessage", false);
         BUILDER.pop();
 
