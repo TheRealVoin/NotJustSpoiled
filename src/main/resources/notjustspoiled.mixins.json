@@ -1,9 +1,9 @@
 {
   "required": true,
-  "minVersion": "0.8",
+  "minVersion": "0.8.5",
   "package": "net.therealvoin.notjustspoiled.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "mixins.notjustspoiled.refmap.json",
+  "refmap": "notjustspoiled.mixins.refmap.json",
   "client": [
     "forge.ForgeHooksClientMixin"
   ],
@@ -23,8 +23,12 @@
     "minecraft.item.BlockItemMixin",
     "minecraft.item.FireChargeItemMixin",
     "minecraft.item.FlintAndSteelItemMixin",
+    "mods.SetItemMixin",
     "mods.farmersdelight.CuttingBoardBlockEntityMixin",
-    "mods.SetItemMixin"
+    "mods.farmersdelight.SkilletBlockEntityMixin",
+    "mods.farmersdelight.SkilletItemMixin",
+    "mods.farmersdelight.StoveBlockEntityMixin",
+    "mods.farmersdelight.StoveBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1
