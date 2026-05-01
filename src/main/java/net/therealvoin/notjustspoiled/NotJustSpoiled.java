@@ -8,6 +8,7 @@ import net.therealvoin.notjustspoiled.core.config.NJSClientConfig;
 import net.therealvoin.notjustspoiled.core.config.NJSServerConfig;
 import net.therealvoin.notjustspoiled.init.NJSGlobalLootModifiers;
 import net.therealvoin.notjustspoiled.integration.AppleSkinIntegration;
+import net.therealvoin.notjustspoiled.network.NJSPacketHandler;
 
 @Mod(NotJustSpoiled.MOD_ID)
 public class NotJustSpoiled {
@@ -18,6 +19,7 @@ public class NotJustSpoiled {
         NJSGlobalLootModifiers.GLOBAL_LOOT_MODIFIERS_DEFERRED_REGISTER.register(modEventBus);
         context.registerConfig(ModConfig.Type.CLIENT, NJSClientConfig.CLIENT_CONFIG);
         context.registerConfig(ModConfig.Type.SERVER, NJSServerConfig.SERVER_CONFIG);
+        NJSPacketHandler.register();
 
         AppleSkinIntegration.init();
     }
