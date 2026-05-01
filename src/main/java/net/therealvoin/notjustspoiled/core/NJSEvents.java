@@ -4,22 +4,30 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.PathPackResources;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.ItemStackedOnOtherEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.therealvoin.notjustspoiled.NotJustSpoiled;
-import net.therealvoin.notjustspoiled.core.config.CraftingMode;
-import net.therealvoin.notjustspoiled.core.config.NJSConfig;
+import net.therealvoin.notjustspoiled.core.config.FoodCraftingMode;
+import net.therealvoin.notjustspoiled.core.config.NJSClientConfig;
+import net.therealvoin.notjustspoiled.core.config.NJSServerConfig;
 import net.therealvoin.notjustspoiled.core.foodspoilage.FoodCategory;
 import net.therealvoin.notjustspoiled.core.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.core.foodspoilage.FoodSpoilageManager;
@@ -28,9 +36,8 @@ import net.therealvoin.notjustspoiled.core.foodspoilage.capability.blockfoodspoi
 import net.therealvoin.notjustspoiled.core.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
 import net.therealvoin.notjustspoiled.core.foodspoilage.capability.foodspoilage.IFoodSpoilage;
 import net.therealvoin.notjustspoiled.util.NJSUtils;
-import squeek.appleskin.api.event.FoodValuesEvent;
-import squeek.appleskin.api.food.FoodValues;
 
+import java.nio.file.Path;
 import java.util.List;
 
 public class NJSEvents {
@@ -38,6 +45,7 @@ public class NJSEvents {
     public static class Client {
         private static final Component STATUS = Component.translatable("tooltip.notjustspoiled.status").append(": ").withStyle(ChatFormatting.GRAY);
         private static final Component NEVER_SPOILS = Component.translatable("tooltip.notjustspoiled.never_spoils").withStyle(ChatFormatting.AQUA);
+        private static final Component CATEGORY = Component.translatable("tooltip.notjustspoiled.debug.category").append(": ").withStyle(ChatFormatting.GRAY);
 
         @SubscribeEvent
         public static void addFoodStatusToTooltip(ItemTooltipEvent event) {
@@ -52,25 +60,32 @@ public class NJSEvents {
                 return;
             }
 
-            // For debug
-            // tooltip.add(Component.literal("Тег: " + (FoodCategory.getFoodCategory(tooltipItem) != null)));
+            if (NJSClientConfig.SHOW_CATEGORY_IN_TOOLTIP.get()) {
+                FoodCategory foodCategory = FoodCategory.getFoodCategory(tooltipItem);
+                Component category = Component.literal(String.valueOf(foodCategory)).withStyle(ChatFormatting.LIGHT_PURPLE);
+                if (foodCategory == null) {
+                    category = category.copy().withStyle(ChatFormatting.GOLD);
+                }
+                tooltip.add(CATEGORY.copy().append(category));
+            }
 
             if (event.getEntity() == null) {
                 return;
             }
 
-            FoodStatus currentFoodStatus = FoodSpoilageManager.getFoodStatusForTooltip(tooltipItem, event.getEntity().level());
+            FoodStatus currentFoodStatus = FoodSpoilageManager.getFoodStatus(tooltipItem, event.getEntity().level());
             if (currentFoodStatus == null) {
                 return;
             }
 
             tooltip.add(STATUS.copy().append(currentFoodStatus.getTranslation()));
 
-            // For debug
-//            IFoodSpoilage foodSpoilage = NJSUtils.getCapability(tooltipItem);
-//            tooltip.add(Component.literal("lastUpdateTime: ").append(String.valueOf(foodSpoilage.getLastUpdateTime())));
-//            tooltip.add(Component.literal("foodLifetime: ").append(String.valueOf(foodSpoilage.getFoodLifetime())));
-//            tooltip.add(Component.literal("environment: ").append(foodSpoilage.getEnvironment().name()));
+            if (NJSClientConfig.SHOW_ADDITIONAL_INFO.get()) {
+                IFoodSpoilage foodSpoilage = NJSUtils.getCapability(tooltipItem);
+                tooltip.add(Component.literal("lastUpdateTime: ").append(String.valueOf(foodSpoilage.getLastUpdateTime())));
+                tooltip.add(Component.literal("foodLifetime: ").append(String.valueOf(foodSpoilage.getFoodLifetime())));
+                tooltip.add(Component.literal("environment: ").append(foodSpoilage.getEnvironment().name()));
+            }
         }
     }
 
@@ -98,7 +113,7 @@ public class NJSEvents {
 
                     NJSUtils.copyCapability(itemStack, itemEntityStack, serverLevel);
                     if (itemEntity.level().getBlockState(blockPos).getBlock() == Blocks.AIR) {
-                        blockFoodSpoilage.removeItemStackPos(blockPos);
+                        blockFoodSpoilage.removeItemStackPos(blockPos, itemStack);
                     }
                 });
 
@@ -139,7 +154,9 @@ public class NJSEvents {
 
             double totalSpoilagePercent = 0;
             int count = 0;
-            if (NJSConfig.CRAFTING_MODE.get() == CraftingMode.AVERAGE) {
+
+            FoodCraftingMode craftingMode = NJSServerConfig.FOOD_CRAFTING_MODE.get();
+            if (craftingMode == FoodCraftingMode.AVERAGE || craftingMode == FoodCraftingMode.SAME_STATUS) {
                 for (int i = 0; i < event.getInventory().getContainerSize(); i++) {
                     ItemStack itemStack = event.getInventory().getItem(i);
                     FoodCategory itemStackCategory = FoodCategory.getFoodCategory(itemStack);
@@ -168,7 +185,7 @@ public class NJSEvents {
                     foodSpoilage.setEnvironment(FoodEnvironment.STORAGE);
                     foodSpoilage.setLastUpdateTime(serverLevel.getGameTime());
                 });
-            } else if (NJSConfig.CRAFTING_MODE.get() == CraftingMode.WORST_STATUS) {
+            } else if (NJSServerConfig.FOOD_CRAFTING_MODE.get() == FoodCraftingMode.WORST_STATUS) {
                 double worstPercent = 0;
                 for (int i = 0; i < event.getInventory().getContainerSize(); i++) {
                     ItemStack itemStack = event.getInventory().getItem(i);
@@ -230,6 +247,28 @@ public class NJSEvents {
         @SubscribeEvent
         public static void onConfigReload(ModConfigEvent.Reloading event) {
             NJSUtils.validateChances(event);
+        }
+
+        @SubscribeEvent
+        public static void addCustomDatapack(AddPackFindersEvent event) {
+            if (event.getPackType() != PackType.SERVER_DATA) {
+                return;
+            }
+
+            Path path = ModList.get().getModFileById(NotJustSpoiled.MOD_ID).getFile().findResource("datapack");
+            Pack.ResourcesSupplier supplier = id -> new PathPackResources(NotJustSpoiled.MOD_ID, path, false);
+
+            Pack pack = Pack.readMetaAndCreate(
+                    NotJustSpoiled.MOD_ID,
+                    Component.literal("Not Just Spoiled"),
+                    true,
+                    supplier,
+                    PackType.SERVER_DATA,
+                    Pack.Position.TOP,
+                    PackSource.DEFAULT
+            );
+
+            event.addRepositorySource(source -> source.accept(pack));
         }
     }
 }
