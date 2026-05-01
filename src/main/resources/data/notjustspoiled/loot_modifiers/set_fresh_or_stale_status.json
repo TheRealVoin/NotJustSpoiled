@@ -154,6 +154,10 @@
         },
         {
           "condition": "forge:loot_table_id",
+          "loot_table_id": "alexscaves:chests/witch_hut"
+        },
+        {
+          "condition": "forge:loot_table_id",
           "loot_table_id": "betterwitchhuts:chests/hut_0"
         },
         {
