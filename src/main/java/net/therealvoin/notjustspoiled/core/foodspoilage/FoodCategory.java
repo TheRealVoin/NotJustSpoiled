@@ -33,7 +33,9 @@ public enum FoodCategory {
     SWEET(NJSServerConfig.SWEET_SPOILAGE_TIME, NJSTags.Items.SWEETS),
     DAIRY(NJSServerConfig.DAIRY_SPOILAGE_TIME, NJSTags.Items.DAIRY),
     PICKLED_FOOD(NJSServerConfig.PICKLED_FOOD_SPOILAGE_TIME, NJSTags.Items.PICKLED_FOODS),
-    COOKED_MEAL(NJSServerConfig.COOKED_MEAL_SPOILAGE_TIME, NJSTags.Items.COOKED_MEALS);
+    COOKED_MEAL(NJSServerConfig.COOKED_MEAL_SPOILAGE_TIME, NJSTags.Items.COOKED_MEALS),
+    RAW_DOUGH(NJSServerConfig.RAW_DOUGH_SPOILAGE_TIME, NJSTags.Items.RAW_DOUGH),
+    FOOD_DRESSING(NJSServerConfig.FOOD_DRESSING_SPOILAGE_TIME, NJSTags.Items.FOOD_DRESSING);
 
     private final ForgeConfigSpec.IntValue spoilageTime;
     private final TagKey<Item> tagKey;
