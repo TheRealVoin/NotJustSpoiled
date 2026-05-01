@@ -14,14 +14,14 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class BlockFoodSpoilageProvider implements IBlockFoodSpoilage, ICapabilitySerializable<CompoundTag> {
     public static final Capability<IBlockFoodSpoilage> BLOCK_FOOD_SPOILAGE = CapabilityManager.get(new CapabilityToken<>() {});
     private final LazyOptional<IBlockFoodSpoilage> optional = LazyOptional.of(() -> this);
 
-    private final Map<BlockPos, ItemStack> blocks = new HashMap<>();
+    private final Map<BlockPos, List<ItemStack>> blocks = new HashMap<>();
+
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> capability, @Nullable Direction side) {
@@ -34,17 +34,33 @@ public class BlockFoodSpoilageProvider implements IBlockFoodSpoilage, ICapabilit
 
     @Override
     public void putItemStackPos(BlockPos blockPos, ItemStack itemStack) {
-        blocks.put(blockPos, itemStack);
+        blocks.computeIfAbsent(blockPos, pos -> new ArrayList<>()).add(itemStack);
     }
 
     @Override
-    public void removeItemStackPos(BlockPos blockPos) {
-        blocks.remove(blockPos);
+    public void removeItemStackPos(BlockPos blockPos, ItemStack itemStack) {
+        List<ItemStack> list = blocks.get(blockPos);
+
+        if (list == null) {
+            return;
+        }
+
+        list.remove(itemStack);
+
+        if (list.isEmpty()) {
+            blocks.remove(blockPos);
+        }
     }
 
     @Override
-    public ItemStack getItemStackByPos(BlockPos blockPos) {
-        return blocks.get(blockPos);
+    public ItemStack getLastItemStackByPos(BlockPos blockPos) {
+        List<ItemStack> list = blocks.get(blockPos);
+
+        if (list == null || list.isEmpty()) {
+            return ItemStack.EMPTY;
+        }
+
+        return list.get(list.size() - 1);
     }
 
     @Override
@@ -52,11 +68,16 @@ public class BlockFoodSpoilageProvider implements IBlockFoodSpoilage, ICapabilit
         CompoundTag nbtTag = new CompoundTag();
         ListTag listTag = new ListTag();
 
-        for (Map.Entry<BlockPos, ItemStack> entry : blocks.entrySet()) {
-            CompoundTag tag = new CompoundTag();
-            tag.putLong("pos", entry.getKey().asLong());
-            tag.put("stack", entry.getValue().save(new CompoundTag()));
-            listTag.add(tag);
+        for (Map.Entry<BlockPos, List<ItemStack>> entry : blocks.entrySet()) {
+            BlockPos blockPos = entry.getKey();
+            List<ItemStack> itemStacks = entry.getValue();
+
+            for (ItemStack stack : itemStacks) {
+                CompoundTag tag = new CompoundTag();
+                tag.putLong("pos", blockPos.asLong());
+                tag.put("stack", stack.save(new CompoundTag()));
+                listTag.add(tag);
+            }
         }
 
         nbtTag.put("blocks", listTag);

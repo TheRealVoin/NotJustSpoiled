@@ -6,7 +6,7 @@ import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 
 @AutoRegisterCapability
 public interface IBlockFoodSpoilage {
-    ItemStack getItemStackByPos(BlockPos blockPos);
+    ItemStack getLastItemStackByPos(BlockPos blockPos);
     void putItemStackPos(BlockPos blockPos, ItemStack itemStack);
-    void removeItemStackPos(BlockPos blockPos);
+    void removeItemStackPos(BlockPos blockPos, ItemStack itemStack);
 }
