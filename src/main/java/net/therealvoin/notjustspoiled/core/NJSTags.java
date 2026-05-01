@@ -37,6 +37,8 @@ public class NJSTags {
         public static final TagKey<Item> DAIRY = createTag("dairy");
         public static final TagKey<Item> PICKLED_FOODS = createTag("pickled_foods");
         public static final TagKey<Item> COOKED_MEALS = createTag("cooked_meals");
+        public static final TagKey<Item> RAW_DOUGH = createTag("raw_dough");
+        public static final TagKey<Item> FOOD_DRESSING = createTag("food_dressing");
 
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(NotJustSpoiled.MOD_ID, name));
