@@ -1,6 +1,10 @@
 {
   "values": [
     {
+      "id": "farmersdelight:cooked_rice",
+      "required": false
+    },
+    {
       "id": "simplefarming:oatmeal",
       "required": false
     },
