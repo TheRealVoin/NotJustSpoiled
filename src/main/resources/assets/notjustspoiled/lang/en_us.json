@@ -70,5 +70,8 @@
   "tooltip.notjustspoiled.status.half-spoiled": "Half-spoiled",
   "tooltip.notjustspoiled.status.spoiled": "Spoiled",
   "tooltip.notjustspoiled.never_spoils": "Never Spoils",
-  "tooltip.notjustspoiled.debug.category": "Category"
+  "tooltip.notjustspoiled.debug.category": "Category",
+
+  "data.notjustspoiled.description": "Not Just Spoiled resources",
+  "datapack.notjustspoiled.description": "A datapack for Not Just Spoiled compatibility with mods"
 }

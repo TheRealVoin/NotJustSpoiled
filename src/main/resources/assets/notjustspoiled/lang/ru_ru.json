@@ -70,5 +70,8 @@
   "tooltip.notjustspoiled.status.half-spoiled": "полуиспорченный",
   "tooltip.notjustspoiled.status.spoiled": "испорченный",
   "tooltip.notjustspoiled.never_spoils": "не портится",
-  "tooltip.notjustspoiled.debug.category": "Категория"
+  "tooltip.notjustspoiled.debug.category": "Категория",
+
+  "data.notjustspoiled.description": "Набор ресурсов Not Just Spoiled",
+  "datapack.notjustspoiled.description": "Датапак для совместимости Not Just Spoiled с модами"
 }
