@@ -1,6 +1,7 @@
 package net.therealvoin.notjustspoiled.mixin.mods;
 
 import dev.enemeez.simplefarming.common.block.entity.FermenterBlockEntity;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.*;
@@ -12,26 +13,16 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import vectorwing.farmersdelight.common.block.entity.BasketBlockEntity;
 
-@Mixin(value = {FermenterBlockEntity.class, BasketBlockEntity.class}, remap = false)
+@Mixin(value = {BasketBlockEntity.class, FermenterBlockEntity.class}, remap = false)
 public abstract class SetItemMixin {
-    @Inject(method = "setItem", at = @At("HEAD"))
+    @Inject(method = {"setItem", "m_6836_"}, at = @At("HEAD"))
     private void changeFoodEnvironmentWhenPlacedInContainer(int index, ItemStack itemStack, CallbackInfo ci) {
-        Object object = this;
-        Level level = null;
-        FoodEnvironment foodEnvironment = null;
+        BlockEntity blockEntity = (BlockEntity) (Object) this;
+        Level level = blockEntity.getLevel();
+        FoodEnvironment foodEnvironment = FoodEnvironment.STORAGE;
 
-        if (object instanceof FermenterBlockEntity blockEntity) {
-            level = blockEntity.getLevel();
-            foodEnvironment = FoodEnvironment.STORAGE;
-        } else if (object instanceof BasketBlockEntity blockEntity) {
-            level = blockEntity.getLevel();
-            foodEnvironment = FoodEnvironment.STORAGE;
+        if (level instanceof ServerLevel serverLevel && !itemStack.isEmpty()) {
+            FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, foodEnvironment, serverLevel);
         }
-
-        if (level == null || level.isClientSide() || itemStack.isEmpty()) {
-            return;
-        }
-
-        FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, foodEnvironment, level);
     }
 }

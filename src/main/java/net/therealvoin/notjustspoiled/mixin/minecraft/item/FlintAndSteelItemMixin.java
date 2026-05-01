@@ -1,5 +1,6 @@
 package net.therealvoin.notjustspoiled.mixin.minecraft.item;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.FlintAndSteelItem;
 import net.minecraft.world.item.ItemStack;
@@ -18,16 +19,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class FlintAndSteelItemMixin {
     @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z", shift = At.Shift.AFTER, ordinal = 1))
     private void changedFoodEnvironmentWhenCampfireIgnited(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
-        Level level = context.getLevel();
-
-        if (level.isClientSide()) {
-            return;
-        }
-
-        BlockEntity blockEntity = level.getBlockEntity(context.getClickedPos());
-        if (blockEntity instanceof CampfireBlockEntity campfire) {
-            for (ItemStack itemStack : campfire.getItems()) {
-                FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, FoodEnvironment.COOKING, level);
+        if (context.getLevel() instanceof ServerLevel serverLevel) {
+            BlockEntity blockEntity = serverLevel.getBlockEntity(context.getClickedPos());
+            if (blockEntity instanceof CampfireBlockEntity campfire) {
+                for (ItemStack itemStack : campfire.getItems()) {
+                    FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, FoodEnvironment.COOKING, serverLevel);
+                }
             }
         }
     }

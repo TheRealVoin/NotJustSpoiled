@@ -1,6 +1,7 @@
 package net.therealvoin.notjustspoiled.mixin.mods.farmersdelight;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -20,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import vectorwing.farmersdelight.common.block.StoveBlock;
 import vectorwing.farmersdelight.common.block.entity.StoveBlockEntity;
 
-@Mixin(value = StoveBlock.class, remap = false)
+@Mixin(value = StoveBlock.class)
 public class StoveBlockMixin {
     @Inject(method = "use", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z", shift = At.Shift.AFTER))
     private void updateFoodWhenStoveIgnited(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<InteractionResult> cir) {
@@ -34,14 +35,12 @@ public class StoveBlockMixin {
 
     @Unique
     private static void notJustSpoiled$updateFood(Level level, BlockPos pos, FoodEnvironment foodEnvironment) {
-        if (level.isClientSide()) {
-            return;
-        }
-
-        ItemStackHandler inventory = ((StoveBlockEntity) level.getBlockEntity(pos)).getInventory();
-        for (int i = 0; i < inventory.getSlots(); i++) {
-            ItemStack itemStack = inventory.getStackInSlot(i);
-            FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, foodEnvironment, level);
+        if (level instanceof ServerLevel serverLevel) {
+            ItemStackHandler inventory = ((StoveBlockEntity) serverLevel.getBlockEntity(pos)).getInventory();
+            for (int i = 0; i < inventory.getSlots(); i++) {
+                ItemStack itemStack = inventory.getStackInSlot(i);
+                FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, foodEnvironment, serverLevel);
+            }
         }
     }
 }

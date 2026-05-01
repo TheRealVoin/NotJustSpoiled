@@ -49,18 +49,14 @@ public abstract class SetItemMixin {
             foodEnvironment = FoodEnvironment.STORAGE;
         }
 
-        if (level == null || level.isClientSide() || itemStack.isEmpty()) {
-            return;
+        if (level instanceof ServerLevel serverLevel && !itemStack.isEmpty()) {
+            FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, foodEnvironment, serverLevel);
+
+            itemStack.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
+                if (foodSpoilage.getFoodLifetime() == 0 && foodSpoilage.getEnvironment() != FoodEnvironment.INVENTORY) {
+                    NJSUtils.sendWarningMessage(serverLevel);
+                }
+            });
         }
-
-        ServerLevel serverLevel = (ServerLevel) level;
-
-        FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, foodEnvironment, level);
-
-        itemStack.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
-            if (foodSpoilage.getFoodLifetime() == 0 && foodSpoilage.getEnvironment() != FoodEnvironment.INVENTORY) {
-                NJSUtils.sendWarningMessage(serverLevel);
-            }
-        });
     }
 }

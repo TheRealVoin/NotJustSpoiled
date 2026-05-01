@@ -1,6 +1,7 @@
 package net.therealvoin.notjustspoiled.mixin.minecraft.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
@@ -21,27 +22,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class CampfireBlockMixin {
     @Inject(method = "dowse", at = @At("TAIL"))
     private static void changeFoodEnvironmentWhenCampfireExtinguished(Entity entity, LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState, CallbackInfo ci) {
-        if (!(levelAccessor instanceof Level level) || level.isClientSide()) {
-            return;
-        }
+        if (levelAccessor instanceof ServerLevel serverLevel) {
+            CampfireBlockEntity campfire = (CampfireBlockEntity) serverLevel.getBlockEntity(blockPos);
 
-        CampfireBlockEntity campfire = (CampfireBlockEntity) level.getBlockEntity(blockPos);
-
-        for (ItemStack itemStack : campfire.getItems()) {
-            FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, FoodEnvironment.GROUND, level);
+            for (ItemStack itemStack : campfire.getItems()) {
+                FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, FoodEnvironment.GROUND, serverLevel);
+            }
         }
     }
 
     @Inject(method = "onProjectileHit", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z", shift = At.Shift.AFTER))
     private void changeFoodEnvironmentWhenCampfireIgnitedByProjectile(Level level, BlockState blockState, BlockHitResult hitResult, Projectile projectile, CallbackInfo ci) {
-        if (level.isClientSide()) {
-            return;
-        }
+        if (level instanceof ServerLevel serverLevel) {
+            CampfireBlockEntity campfire = (CampfireBlockEntity) serverLevel.getBlockEntity(hitResult.getBlockPos());
 
-        CampfireBlockEntity campfire = (CampfireBlockEntity) level.getBlockEntity(hitResult.getBlockPos());
-
-        for (ItemStack itemStack : campfire.getItems()) {
-            FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, FoodEnvironment.COOKING, level);
+            for (ItemStack itemStack : campfire.getItems()) {
+                FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, FoodEnvironment.COOKING, serverLevel);
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 package net.therealvoin.notjustspoiled.mixin.minecraft.item;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -22,14 +23,12 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 public class BlockItemMixin {
     @Inject(method = "place", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/Block;setPlacedBy(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
     private void onPlace(BlockPlaceContext context, CallbackInfoReturnable<InteractionResult> cir, BlockPlaceContext blockplacecontext, BlockState blockstate, BlockPos blockpos, Level level, Player player, ItemStack itemstack, BlockState blockstate1) {
-        if (level.isClientSide() || FoodCategory.getFoodCategory(itemstack) == null) {
-            return;
+        if (level instanceof ServerLevel serverLevel && FoodCategory.getFoodCategory(itemstack) != null) {
+            serverLevel.getCapability(BlockFoodSpoilageProvider.BLOCK_FOOD_SPOILAGE).ifPresent(blockFoodSpoilage -> {
+                ItemStack itemStackCopy = itemstack.copy();
+                FoodSpoilageManager.changeEnvironmentAndUpdate(itemStackCopy, FoodEnvironment.GROUND, serverLevel);
+                blockFoodSpoilage.putItemStackPos(blockpos, itemStackCopy);
+            });
         }
-
-        level.getCapability(BlockFoodSpoilageProvider.BLOCK_FOOD_SPOILAGE).ifPresent(blockFoodSpoilage -> {
-            ItemStack itemStackCopy = itemstack.copy();
-            FoodSpoilageManager.changeEnvironmentAndUpdate(itemStackCopy, FoodEnvironment.GROUND, level);
-            blockFoodSpoilage.putItemStackPos(blockpos, itemStackCopy);
-        });
     }
 }

@@ -1,5 +1,6 @@
 package net.therealvoin.notjustspoiled.mixin.minecraft.entity;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.Level;
 import net.therealvoin.notjustspoiled.core.foodspoilage.FoodSpoilageManager;
@@ -13,11 +14,9 @@ public abstract class ItemEntityMixin {
     @Inject(method = "tryToMerge", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/ItemEntity;areMergable(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z"))
     private void makeFoodPossibleForMerging(ItemEntity itemEntity2, CallbackInfo ci) {
         ItemEntity itemEntity1 = (ItemEntity) (Object) this;
-        Level level = itemEntity1.level();
-        if (level.isClientSide()) {
-            return;
-        }
 
-        FoodSpoilageManager.tryAverageSpoilageOnMerge(itemEntity1.getItem(), itemEntity2.getItem(), level);
+        if (itemEntity1.level() instanceof ServerLevel serverLevel) {
+            FoodSpoilageManager.tryAverageSpoilageOnMerge(itemEntity1.getItem(), itemEntity2.getItem(), serverLevel);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package net.therealvoin.notjustspoiled.mixin.minecraft.container;
 
 import net.minecraft.core.NonNullList;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
@@ -27,14 +28,12 @@ public abstract class AbstractContainerMenuMixin {
     private void makeFoodPossibleForMerging(ItemStack stack, int startIndex, int endIndex, boolean reverseDirection, CallbackInfoReturnable<Boolean> cir, boolean flag, int i, Slot slot, ItemStack itemstack) {
         Level level = NJSUtils.getLevelBySlot(slot);
 
-        if (level == null || level.isClientSide()) {
-            return;
+        if (level instanceof ServerLevel serverLevel) {
+            itemstack.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
+                FoodSpoilageManager.changeEnvironmentAndUpdate(stack, foodSpoilage.getEnvironment(), serverLevel);
+                FoodSpoilageManager.tryAverageSpoilageOnMerge(stack, itemstack, serverLevel);
+            });
         }
-
-        itemstack.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
-            FoodSpoilageManager.changeEnvironmentAndUpdate(stack, foodSpoilage.getEnvironment(), level);
-            FoodSpoilageManager.tryAverageSpoilageOnMerge(stack, itemstack, level);
-        });
     }
 
     @Inject(method = "setCarried", at = @At("HEAD"))
@@ -47,12 +46,10 @@ public abstract class AbstractContainerMenuMixin {
             }
         }
 
-        if (level == null || level.isClientSide()) {
-            return;
-        }
-
-        if (this.carried.isEmpty() && !itemStack.isEmpty()) {
-            FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, FoodEnvironment.INVENTORY, level);
+        if (level instanceof ServerLevel serverLevel) {
+            if (this.carried.isEmpty() && !itemStack.isEmpty()) {
+                FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, FoodEnvironment.INVENTORY, serverLevel);
+            }
         }
     }
 
@@ -61,13 +58,11 @@ public abstract class AbstractContainerMenuMixin {
         ItemStack itemInSlot = slot.getItem();
         Level level = NJSUtils.getLevelBySlot(slot);
 
-        if (level == null || level.isClientSide()) {
-            return;
+        if (level instanceof ServerLevel serverLevel) {
+            itemInSlot.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
+                FoodSpoilageManager.changeEnvironmentAndUpdate(stack, foodSpoilage.getEnvironment(), serverLevel);
+                FoodSpoilageManager.tryAverageSpoilageOnMerge(itemInSlot, stack, serverLevel);
+            });
         }
-
-        itemInSlot.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
-            FoodSpoilageManager.changeEnvironmentAndUpdate(stack, foodSpoilage.getEnvironment(), level);
-            FoodSpoilageManager.tryAverageSpoilageOnMerge(itemInSlot, stack, level);
-        });
     }
 }
