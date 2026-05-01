@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "farmersdelight:ratatouille",
+      "required": false
+    },
+    {
+      "id": "simplefarming:stuffed_corn_zuccini",
+      "required": false
+    },
+    {
+      "id": "simplefarming:vegetable_curry",
+      "required": false
+    }
+  ]
+}
