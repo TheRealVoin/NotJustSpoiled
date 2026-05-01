@@ -1,10 +1,12 @@
 package net.therealvoin.notjustspoiled.core.foodspoilage;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.therealvoin.notjustspoiled.core.config.NJSServerConfig;
 import net.therealvoin.notjustspoiled.core.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
 import net.therealvoin.notjustspoiled.core.foodspoilage.capability.foodspoilage.IFoodSpoilage;
 import net.therealvoin.notjustspoiled.util.NJSUtils;
@@ -12,31 +14,29 @@ import net.therealvoin.notjustspoiled.util.NJSUtils;
 import java.util.List;
 
 public class FoodSpoilageManager {
-    private static final Component DEBUG1 = Component.literal("Item updated.\nlastUpdateTime: %d\nfoodLifetime: %f\ngameTime: %d");
+    private static final Component DEBUG1 = Component.translatable("message.notjustspoiled.debug.food_updated").append("\nlastUpdateTime: %d\nfoodLifetime: %f\ngameTime: %d");
     private static final Component DEBUG2 = Component.literal("environment: %s");
 
-    public static void changeEnvironmentAndUpdate(ItemStack itemStack, FoodEnvironment newFoodEnvironment, Level level) {
+    public static void changeEnvironmentAndUpdate(ItemStack itemStack, FoodEnvironment newFoodEnvironment, ServerLevel serverLevel) {
         itemStack.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
-            if (foodSpoilage.getEnvironment() != newFoodEnvironment) {
-                updateFoodLifetime(foodSpoilage, level);
-                foodSpoilage.setEnvironment(newFoodEnvironment);
+            if (foodSpoilage.getEnvironment() == newFoodEnvironment) {
+                return;
+            }
 
+            updateFoodLifetime(foodSpoilage, serverLevel);
+            foodSpoilage.setEnvironment(newFoodEnvironment);
 
-                // Debug
-//                List<ServerPlayer> players = level.getServer().getPlayerList().getPlayers();
-//                if (!players.isEmpty()) {
-//                    players.get(0).sendSystemMessage(Component.literal(String.format(DEBUG2.getString(), foodSpoilage.getEnvironment().name())));
-//                }
+            if (NJSServerConfig.SHOW_DEBUG_MESSAGE.get()) {
+                List<ServerPlayer> players = serverLevel.getServer().getPlayerList().getPlayers();
+                if (!players.isEmpty()) {
+                    players.get(0).sendSystemMessage(Component.literal(String.format(DEBUG2.getString(), foodSpoilage.getEnvironment().name())));
+                }
             }
         });
     }
 
-    public static void updateFoodLifetime(IFoodSpoilage foodSpoilage, Level level) {
-        if (level.isClientSide()) {
-            return;
-        }
-
-        long gameTime = level.getGameTime();
+    public static void updateFoodLifetime(IFoodSpoilage foodSpoilage, ServerLevel serverLevel) {
+        long gameTime = serverLevel.getGameTime();
 
         if (foodSpoilage.getLastUpdateTime() == 0) {
             foodSpoilage.setLastUpdateTime(gameTime);
@@ -50,33 +50,37 @@ public class FoodSpoilageManager {
         foodSpoilage.addFoodLifetime((gameTime - foodSpoilage.getLastUpdateTime()) * foodSpoilage.getEnvironment().getFoodSpoilageMultiplier());
         foodSpoilage.setLastUpdateTime(gameTime);
 
-        // Debug
-//        List<ServerPlayer> players = level.getServer().getPlayerList().getPlayers();
-//        if (!players.isEmpty()) {
-//            players.get(0).sendSystemMessage(Component.literal(String.format(DEBUG1.getString(), foodSpoilage.getLastUpdateTime(), foodSpoilage.getFoodLifetime(), gameTime)));
-//        }
+        if (NJSServerConfig.SHOW_DEBUG_MESSAGE.get()) {
+            List<ServerPlayer> players = serverLevel.getServer().getPlayerList().getPlayers();
+            if (!players.isEmpty()) {
+                players.get(0).sendSystemMessage(Component.literal(String.format(DEBUG1.getString(), foodSpoilage.getLastUpdateTime(), foodSpoilage.getFoodLifetime(), gameTime)));
+            }
+        }
     }
 
     public static FoodStatus getFoodStatus(ItemStack itemStack, Level level) {
         IFoodSpoilage foodSpoilage = NJSUtils.getCapability(itemStack);
-        if (foodSpoilage == null) {
+        if (foodSpoilage == null || foodSpoilage.getEnvironment() == FoodEnvironment.NONE) {
             return null;
         }
 
-        updateFoodLifetime(foodSpoilage, level);
-        return getFoodStatusHelper(foodSpoilage.getFoodLifetime(), FoodCategory.getFoodCategory(itemStack).getSpoilageTime());
+        double foodLifetime = (level.getGameTime() - foodSpoilage.getLastUpdateTime()) * foodSpoilage.getEnvironment().getFoodSpoilageMultiplier() + foodSpoilage.getFoodLifetime();
+        return getFoodStatusHelper(foodLifetime, FoodCategory.getFoodCategory(itemStack).getSpoilageTime());
     }
 
-    public static void tryAverageSpoilageOnMerge(ItemStack itemStack1, ItemStack itemStack2, Level level) {
+    public static void tryAverageSpoilageOnMerge(ItemStack itemStack1, ItemStack itemStack2, ServerLevel serverLevel) {
         if (!itemStack1.is(itemStack2.getItem())) {
             return;
         }
 
         itemStack1.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage1 -> {
             itemStack2.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage2 -> {
-                if (getFoodStatus(itemStack1, level) != getFoodStatus(itemStack2, level)) {
+                if (getFoodStatus(itemStack1, serverLevel) != getFoodStatus(itemStack2, serverLevel)) {
                     return;
                 }
+
+                updateFoodLifetime(foodSpoilage1, serverLevel);
+                updateFoodLifetime(foodSpoilage2, serverLevel);
 
                 int count1 = itemStack1.getCount();
                 int count2 = itemStack2.getCount();
@@ -87,23 +91,6 @@ public class FoodSpoilageManager {
                 foodSpoilage2.setFoodLifetime(average);
             });
         });
-    }
-
-    @SuppressWarnings("DataFlowIssue")
-    public static FoodStatus getFoodStatusForTooltip(ItemStack itemStack, Level level) {
-        IFoodSpoilage foodSpoilage = NJSUtils.getCapability(itemStack);
-
-        if (foodSpoilage == null) {
-            return null;
-        }
-
-        // Fix for uninitialized ItemStacks (such as in creative mode tab & other)
-        if (foodSpoilage.getLastUpdateTime() == 0) {
-            return null;
-        }
-
-        double foodLifetime = (level.getGameTime() - foodSpoilage.getLastUpdateTime()) * foodSpoilage.getEnvironment().getFoodSpoilageMultiplier() + foodSpoilage.getFoodLifetime();
-        return getFoodStatusHelper(foodLifetime, FoodCategory.getFoodCategory(itemStack).getSpoilageTime());
     }
 
     public static int getRandomFoodLifetime(FoodCategory foodCategory, RandomSource random) {
@@ -127,6 +114,17 @@ public class FoodSpoilageManager {
                 return -1;
             }
         }
+    }
+
+    public static boolean canMergeFood(ItemStack itemStack1, ItemStack itemStack2, Level level) {
+        if (!itemStack1.is(itemStack2.getItem())) {
+            return false;
+        }
+
+        FoodStatus foodStatus1 = getFoodStatus(itemStack1, level);
+        FoodStatus foodStatus2 = getFoodStatus(itemStack2, level);
+
+        return foodStatus1 == foodStatus2;
     }
 
     private static FoodStatus getFoodStatusHelper(double foodLifetime, int spoilageTime) {
