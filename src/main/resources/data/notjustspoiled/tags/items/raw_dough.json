@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "farmersdelight:wheat_dough",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:raw_pasta",
+      "required": false
+    }
+  ]
+}
