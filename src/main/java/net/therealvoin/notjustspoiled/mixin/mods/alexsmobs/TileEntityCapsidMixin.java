@@ -5,8 +5,6 @@ import com.llamalad7.mixinextras.sugar.Share;
 import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.therealvoin.notjustspoiled.core.foodspoilage.FoodEnvironment;
-import net.therealvoin.notjustspoiled.core.foodspoilage.FoodSpoilageManager;
 import net.therealvoin.notjustspoiled.util.NJSUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Pseudo;
@@ -28,10 +26,5 @@ public abstract class TileEntityCapsidMixin {
     private ItemStack copySpoilageCapToResultStack(ItemStack stackToSetInCapsid, @Share("stackInCapsidSnapshot") LocalRef<ItemStack> snapshot) {
         NJSUtils.copyCapability(snapshot.get(), stackToSetInCapsid, ((BlockEntity)(Object)this).getLevel());
         return stackToSetInCapsid;
-    }
-
-    @Inject(method = {"setItem", "m_6836_"}, at = @At("TAIL"))
-    private void changeFoodEnvironmentWhenPlacedInCapsid(int index, ItemStack stackToSetInCapsid, CallbackInfo ci) {
-        FoodSpoilageManager.changeEnvironmentAndUpdate(stackToSetInCapsid, FoodEnvironment.STORAGE, ((BlockEntity)(Object)this).getLevel());
     }
 }
