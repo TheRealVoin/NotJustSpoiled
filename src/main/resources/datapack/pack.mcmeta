@@ -1,9 +1,0 @@
-{
-  "pack": {
-    "pack_format": 15,
-    "description": {
-      "translate": "datapack.notjustspoiled.description",
-      "fallback": "A datapack for ${mod_name} compatibility with mods"
-    }
-  }
-}
