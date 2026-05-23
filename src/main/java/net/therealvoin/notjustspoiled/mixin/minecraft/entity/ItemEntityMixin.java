@@ -1,8 +1,8 @@
 package net.therealvoin.notjustspoiled.mixin.minecraft.entity;
 
-import net.minecraft.server.level.ServerLevel;
+import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
 import net.therealvoin.notjustspoiled.core.foodspoilage.FoodSpoilageManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,12 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin {
-    @Inject(method = "tryToMerge", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/ItemEntity;areMergable(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z"))
-    private void makeFoodPossibleForMerging(ItemEntity itemEntity2, CallbackInfo ci) {
-        ItemEntity itemEntity1 = (ItemEntity) (Object) this;
-
-        if (itemEntity1.level() instanceof ServerLevel serverLevel) {
-            FoodSpoilageManager.tryAverageSpoilageOnMerge(itemEntity1.getItem(), itemEntity2.getItem(), serverLevel);
-        }
+    @Inject(method = "tryToMerge", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/item/ItemEntity;areMergable(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z", shift = At.Shift.BEFORE))
+    private void updateFood(ItemEntity itemEntity, CallbackInfo ci, @Local(ordinal = 0) ItemStack itemStack1, @Local(ordinal = 1) ItemStack itemStack2) {
+        FoodSpoilageManager.tryAverageSpoilageOnMerge(itemStack1, itemStack2, itemEntity.level());
     }
 }
