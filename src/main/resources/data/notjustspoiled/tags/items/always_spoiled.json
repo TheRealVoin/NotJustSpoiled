@@ -3,6 +3,10 @@
     "minecraft:poisonous_potato",
     "minecraft:pufferfish",
     "minecraft:rotten_flesh",
-    "minecraft:spider_eye"
+    "minecraft:spider_eye",
+    {
+      "id": "alexscaves:stinky_fish",
+      "required": false
+    }
   ]
 }
