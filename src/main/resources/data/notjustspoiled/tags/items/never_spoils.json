@@ -1,11 +1,20 @@
 {
   "values": [
     "minecraft:chorus_fruit",
+    "minecraft:cocoa_beans",
     "minecraft:enchanted_golden_apple",
     "minecraft:golden_apple",
     "minecraft:golden_carrot",
     "minecraft:honey_bottle",
     "minecraft:sugar",
+    {
+      "id": "alexscaves:sprinkles",
+      "required": false
+    },
+    {
+      "id": "alexsmobs:fish_oil",
+      "required": false
+    },
     {
       "id": "alexsmobs:rainbow_jelly",
       "required": false
