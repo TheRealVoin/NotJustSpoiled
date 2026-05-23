@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.core;
+package net.therealvoin.notjustspoiled.data;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -27,7 +27,8 @@ public class NJSTags {
         public static final TagKey<Item> STEWS = createTag("stews");
         public static final TagKey<Item> SOUPS = createTag("soups");
         public static final TagKey<Item> MILK = createTag("milk");
-        public static final TagKey<Item> INSECTS = createTag("insects");
+        public static final TagKey<Item> RAW_INSECTS = createTag("raw_insects");
+        public static final TagKey<Item> COOKED_INSECTS = createTag("cooked_insects");
         public static final TagKey<Item> SANDWICHES = createTag("sandwiches");
         public static final TagKey<Item> SALADS = createTag("salads");
         public static final TagKey<Item> PORRIDGES = createTag("porridges");
@@ -39,6 +40,15 @@ public class NJSTags {
         public static final TagKey<Item> COOKED_MEALS = createTag("cooked_meals");
         public static final TagKey<Item> RAW_DOUGH = createTag("raw_dough");
         public static final TagKey<Item> FOOD_DRESSING = createTag("food_dressing");
+        public static final TagKey<Item> RAW_SEAFOODS = createTag("raw_seafoods");
+        public static final TagKey<Item> COOKED_SEAFOODS = createTag("cooked_seafoods");
+        public static final TagKey<Item> NUTS = createTag("nuts");
+        public static final TagKey<Item> VEGETABLE_DISHES = createTag("vegetable_dishes");
+        public static final TagKey<Item> MEAT_DISHES = createTag("meat_dishes");
+        public static final TagKey<Item> MEAT_WITH_VEGETABLE_DISHES = createTag("meat_with_vegetable_dishes");
+        public static final TagKey<Item> FISH_DISHES = createTag("fish_dishes");
+        public static final TagKey<Item> PASTA_DISHES = createTag("pasta_dishes");
+        public static final TagKey<Item> DRY_PASTRY = createTag("dry_pastry");
 
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(NotJustSpoiled.MOD_ID, name));
