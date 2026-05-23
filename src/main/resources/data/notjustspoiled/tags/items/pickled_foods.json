@@ -1,6 +1,10 @@
 {
   "values": [
     {
+      "id": "alexscaves:slam",
+      "required": false
+    },
+    {
       "id": "simplefarming:pickle",
       "required": false
     },
