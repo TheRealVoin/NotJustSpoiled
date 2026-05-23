@@ -1,6 +1,10 @@
 {
   "values": [
     {
+      "id": "alexscaves:alex_meal",
+      "required": false
+    },
+    {
       "id": "alexsmobs:shrimp_fried_rice",
       "required": false
     },
@@ -26,10 +30,6 @@
     },
     {
       "id": "simplefarming:eggplant_parmesan",
-      "required": false
-    },
-    {
-      "id": "simplefarming:fish_and_chips",
       "required": false
     },
     {
@@ -89,23 +89,11 @@
       "required": false
     },
     {
-      "id": "simplefarming:stuffed_corn_zucchini",
-      "required": false
-    },
-    {
-      "id": "simplefarming:sushi",
-      "required": false
-    },
-    {
       "id": "simplefarming:tofu_scramble",
       "required": false
     },
     {
       "id": "simplefarming:turnip_beetroot_gratin",
-      "required": false
-    },
-    {
-      "id": "simplefarming:vegetable_curry",
       "required": false
     }
   ]
