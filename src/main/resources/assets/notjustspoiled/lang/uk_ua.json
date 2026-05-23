@@ -16,7 +16,7 @@
   "config.notjustspoiled.stew_spoilage_time": "Час псування рагу",
   "config.notjustspoiled.soup_spoilage_time": "Час псування супу",
   "config.notjustspoiled.milk_spoilage_time": "Час псування молока",
-  "config.notjustspoiled.insect_spoilage_time": "Час псування комах",
+  "config.notjustspoiled.raw_insect_spoilage_time": "Час псування сирих комах",
   "config.notjustspoiled.sandwich_spoilage_time": "Час псування сендвічів",
   "config.notjustspoiled.salad_spoilage_time": "Час псування салатів",
   "config.notjustspoiled.porridge_spoilage_time": "Час псування каші",
@@ -26,6 +26,18 @@
   "config.notjustspoiled.dairy_spoilage_time": "Час псування молочки",
   "config.notjustspoiled.pickled_food_spoilage_time": "Час псування консервації",
   "config.notjustspoiled.cooked_meal_spoilage_time": "Час псування приготованої їжі",
+  "config.notjustspoiled.cooked_insect_spoilage_time": "Час псування смажених комах",
+  "config.notjustspoiled.dry_pastry_spoilage_time": "Час псування сухої випічки",
+  "config.notjustspoiled.nut_spoilage_time": "Час псування горіхів",
+  "config.notjustspoiled.vegetable_dish_spoilage_time": "Час псування овочевих страв",
+  "config.notjustspoiled.fish_dish_spoilage_time": "Час псування рибних страв",
+  "config.notjustspoiled.raw_seafood_spoilage_time": "Час псування сирих морепродуктів",
+  "config.notjustspoiled.cooked_seafood_spoilage_time": "Час псування смажених морепродуктів",
+  "config.notjustspoiled.meat_dish_spoilage_time": "Час псування м'ясних страв",
+  "config.notjustspoiled.raw_dough_spoilage_time": "Час псування сирого тіста",
+  "config.notjustspoiled.food_dressing_spoilage_time": "Час псування заправки для їжі",
+  "config.notjustspoiled.pasta_dish_spoilage_time": "Час псування страв із пасти",
+  "config.notjustspoiled.meat_with_vegetable_dish_spoilage_time": "Час псування порчи мясо-овочевих страв",
 
   "config.notjustspoiled.category.food_spoilage_multiplier": "Множник часу псування",
   "config.notjustspoiled.food_spoilage_in_inventory_multiplier": "Food Spoilage In Inventory Multiplier",
@@ -70,5 +82,8 @@
   "tooltip.notjustspoiled.status.half-spoiled": "напівзіпсований",
   "tooltip.notjustspoiled.status.spoiled": "зіпсований",
   "tooltip.notjustspoiled.never_spoils": "не псується",
-  "tooltip.notjustspoiled.debug.category": "Категорія"
+  "tooltip.notjustspoiled.debug.category": "Категорія",
+
+  "data.notjustspoiled.description": "Набір ресурсів Not Just Spoiled",
+  "datapack.notjustspoiled.description": "Датапак для сумісності Not Just Spoiled з модами"
 }
