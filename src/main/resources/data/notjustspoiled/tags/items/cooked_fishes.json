@@ -3,11 +3,19 @@
     "minecraft:cooked_cod",
     "minecraft:cooked_salmon",
     {
-      "id": "alexsmobs:cooked_catfish",
+      "id": "alexscaves:cooked_lanternfish",
       "required": false
     },
     {
-      "id": "alexsmobs:cooked_lobster_tail",
+      "id": "alexscaves:cooked_radgill",
+      "required": false
+    },
+    {
+      "id": "alexscaves:cooked_tripodfish",
+      "required": false
+    },
+    {
+      "id": "alexsmobs:cooked_catfish",
       "required": false
     },
     {
