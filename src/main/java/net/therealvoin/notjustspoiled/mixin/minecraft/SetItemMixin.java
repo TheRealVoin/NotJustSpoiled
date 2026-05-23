@@ -49,9 +49,9 @@ public abstract class SetItemMixin {
             foodEnvironment = FoodEnvironment.STORAGE;
         }
 
-        if (level instanceof ServerLevel serverLevel && !itemStack.isEmpty()) {
-            FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, foodEnvironment, serverLevel);
+        FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, foodEnvironment, level);
 
+        if (level instanceof ServerLevel serverLevel) {
             itemStack.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
                 if (foodSpoilage.getFoodLifetime() == 0 && foodSpoilage.getEnvironment() != FoodEnvironment.INVENTORY) {
                     NJSUtils.sendWarningMessage(serverLevel);
