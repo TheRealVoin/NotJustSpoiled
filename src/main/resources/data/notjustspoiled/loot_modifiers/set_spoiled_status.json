@@ -126,6 +126,54 @@
         },
         {
           "condition": "forge:loot_table_id",
+          "loot_table_id": "alexscaves:chests/abyssal_ruins"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "alexscaves:chests/caveman_house"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "alexscaves:chests/forlorn_ruins"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "alexscaves:chests/magnetic_ruins"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "alexscaves:chests/toxic_ruins"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "alexscaves:chests/underground_cabin"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "alexscaves:chests/underground_cabin_abyssal_chasm"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "alexscaves:chests/underground_cabin_candy_cavity"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "alexscaves:chests/underground_cabin_forlorn_hollows"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "alexscaves:chests/underground_cabin_magnetic_caves"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "alexscaves:chests/underground_cabin_primordial_caves"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "alexscaves:chests/underground_cabin_toxic_caves"
+        },
+        {
+          "condition": "forge:loot_table_id",
           "loot_table_id": "betterdeserttemples:chests/food_storage"
         },
         {
