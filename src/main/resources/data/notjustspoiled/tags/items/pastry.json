@@ -1,8 +1,11 @@
 {
   "values": [
     "minecraft:cake",
-    "minecraft:cookie",
     "minecraft:pumpkin_pie",
+    {
+      "id": "alexscaves:dough_block",
+      "required": false
+    },
     {
       "id": "farmersdelight:apple_pie",
       "required": false
@@ -24,10 +27,6 @@
       "required": false
     },
     {
-      "id": "farmersdelight:honey_cookie",
-      "required": false
-    },
-    {
       "id": "farmersdelight:pie_crust",
       "required": false
     },
@@ -37,10 +36,6 @@
     },
     {
       "id": "farmersdelight:sweet_berry_cheesecake_slice",
-      "required": false
-    },
-    {
-      "id": "farmersdelight:sweet_berry_cookie",
       "required": false
     },
     {
@@ -77,10 +72,6 @@
     },
     {
       "id": "simplefarming:pancakes",
-      "required": false
-    },
-    {
-      "id": "simplefarming:peanut_butter_cookie",
       "required": false
     },
     {
