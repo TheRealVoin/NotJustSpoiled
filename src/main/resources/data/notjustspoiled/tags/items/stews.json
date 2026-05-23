@@ -4,6 +4,14 @@
     "minecraft:rabbit_stew",
     "minecraft:suspicious_stew",
     {
+      "id": "alexscaves:seething_stew",
+      "required": false
+    },
+    {
+      "id": "alexscaves:vesper_stew",
+      "required": false
+    },
+    {
       "id": "alexsmobs:mosquito_repellent_stew",
       "required": false
     },
