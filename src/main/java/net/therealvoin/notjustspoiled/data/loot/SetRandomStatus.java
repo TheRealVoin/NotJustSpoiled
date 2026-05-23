@@ -27,7 +27,7 @@ public class SetRandomStatus extends LootModifier {
         for (ItemStack itemStack : generatedLoot) {
             itemStack.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
                 foodSpoilage.setEnvironment(FoodEnvironment.STORAGE);
-                foodSpoilage.setFoodLifetime(FoodSpoilageManager.getRandomFoodLifetime(FoodCategory.getFoodCategory(itemStack), context.getRandom()));
+                foodSpoilage.setFoodLifetime(FoodSpoilageManager.getRandomFoodLifetime(FoodCategory.getFoodCategory(itemStack), context.getRandom(), true));
                 foodSpoilage.setLastUpdateTime(context.getLevel().getGameTime());
             });
         }
