@@ -17,8 +17,12 @@ public class FoodSpoilageManager {
     private static final Component DEBUG1 = Component.translatable("message.notjustspoiled.debug.food_updated").append("\nlastUpdateTime: %d\nfoodLifetime: %f\ngameTime: %d");
     private static final Component DEBUG2 = Component.literal("environment: %s");
 
-    public static void changeEnvironmentAndUpdate(ItemStack itemStack, FoodEnvironment newFoodEnvironment, ServerLevel serverLevel) {
+    public static void changeEnvironmentAndUpdate(ItemStack itemStack, FoodEnvironment newFoodEnvironment, Level level) {
         itemStack.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
+            if (!(level instanceof ServerLevel serverLevel)) {
+                return;
+            }
+
             if (foodSpoilage.getEnvironment() == newFoodEnvironment) {
                 return;
             }
@@ -60,7 +64,7 @@ public class FoodSpoilageManager {
 
     public static FoodStatus getFoodStatus(ItemStack itemStack, Level level) {
         IFoodSpoilage foodSpoilage = NJSUtils.getCapability(itemStack);
-        if (foodSpoilage == null || foodSpoilage.getEnvironment() == FoodEnvironment.NONE) {
+        if (foodSpoilage == null || foodSpoilage.getLastUpdateTime() == 0) {
             return null;
         }
 
@@ -68,7 +72,11 @@ public class FoodSpoilageManager {
         return getFoodStatusHelper(foodLifetime, FoodCategory.getFoodCategory(itemStack).getSpoilageTime());
     }
 
-    public static void tryAverageSpoilageOnMerge(ItemStack itemStack1, ItemStack itemStack2, ServerLevel serverLevel) {
+    public static void tryAverageSpoilageOnMerge(ItemStack itemStack1, ItemStack itemStack2, Level level) {
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return;
+        }
+
         if (!itemStack1.is(itemStack2.getItem())) {
             return;
         }
@@ -93,9 +101,16 @@ public class FoodSpoilageManager {
         });
     }
 
-    public static int getRandomFoodLifetime(FoodCategory foodCategory, RandomSource random) {
+    public static int getRandomFoodLifetime(FoodCategory foodCategory, RandomSource random, boolean includeAll) {
         int spoilageTime = foodCategory.getSpoilageTime();
-        FoodStatus foodStatus = FoodStatus.getRandomFoodStatus(random);
+        FoodStatus foodStatus;
+
+        if (includeAll) {
+            foodStatus = FoodStatus.getRandomFoodStatus(random);
+        } else {
+            foodStatus = FoodStatus.getFreshOrStaleStatus(random);
+        }
+
 
         switch (foodStatus) {
             case FRESH -> {
@@ -114,17 +129,6 @@ public class FoodSpoilageManager {
                 return -1;
             }
         }
-    }
-
-    public static boolean canMergeFood(ItemStack itemStack1, ItemStack itemStack2, Level level) {
-        if (!itemStack1.is(itemStack2.getItem())) {
-            return false;
-        }
-
-        FoodStatus foodStatus1 = getFoodStatus(itemStack1, level);
-        FoodStatus foodStatus2 = getFoodStatus(itemStack2, level);
-
-        return foodStatus1 == foodStatus2;
     }
 
     private static FoodStatus getFoodStatusHelper(double foodLifetime, int spoilageTime) {
