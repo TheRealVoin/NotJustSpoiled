@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.mixin.forge;
+package net.therealvoin.notjustspoiled.mixin.forge.client;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.ForgeHooksClient;
