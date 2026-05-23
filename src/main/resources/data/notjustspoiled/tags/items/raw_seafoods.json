@@ -1,0 +1,17 @@
+{
+  "values": [
+    "minecraft:kelp",
+    {
+      "id": "alexscaves:mussel",
+      "required": false
+    },
+    {
+      "id": "alexscaves:sea_pig",
+      "required": false
+    },
+    {
+      "id": "alexsmobs:lobster_tail",
+      "required": false
+    }
+  ]
+}
