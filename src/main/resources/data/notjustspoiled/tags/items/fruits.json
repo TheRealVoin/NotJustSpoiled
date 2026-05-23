@@ -3,6 +3,14 @@
     "minecraft:apple",
     "minecraft:melon_slice",
     {
+      "id": "alexscaves:caramel_apple",
+      "required": false
+    },
+    {
+      "id": "alexscaves:darkened_apple",
+      "required": false
+    },
+    {
       "id": "alexsmobs:banana",
       "required": false
     },
@@ -44,6 +52,10 @@
     },
     {
       "id": "simplefarming:plum",
+      "required": false
+    },
+    {
+      "id": "yungscavebiomes:prickly_peach",
       "required": false
     }
   ]
