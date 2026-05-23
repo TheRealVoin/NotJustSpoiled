@@ -2,6 +2,10 @@
   "values": [
     "minecraft:beetroot_soup",
     {
+      "id": "alexscaves:primordial_soup",
+      "required": false
+    },
+    {
       "id": "alexsmobs:sopa_de_macaco",
       "required": false
     },
