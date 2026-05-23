@@ -6,6 +6,14 @@
     "minecraft:porkchop",
     "minecraft:rabbit",
     {
+      "id": "alexscaves:dinosaur_chop",
+      "required": false
+    },
+    {
+      "id": "alexscaves:vesper_wing",
+      "required": false
+    },
+    {
       "id": "alexsmobs:kangaroo_meat",
       "required": false
     },
