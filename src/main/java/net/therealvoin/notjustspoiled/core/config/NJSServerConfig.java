@@ -22,7 +22,8 @@ public class NJSServerConfig {
     public static final ForgeConfigSpec.IntValue STEW_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue SOUP_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue MILK_SPOILAGE_TIME;
-    public static final ForgeConfigSpec.IntValue INSECT_SPOILAGE_TIME;
+    public static final ForgeConfigSpec.IntValue RAW_INSECT_SPOILAGE_TIME;
+    public static final ForgeConfigSpec.IntValue COOKED_INSECT_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue SANDWICH_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue SALAD_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue PORRIDGE_SPOILAGE_TIME;
@@ -34,6 +35,15 @@ public class NJSServerConfig {
     public static final ForgeConfigSpec.IntValue COOKED_MEAL_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue RAW_DOUGH_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue FOOD_DRESSING_SPOILAGE_TIME;
+    public static final ForgeConfigSpec.IntValue RAW_SEAFOOD_SPOILAGE_TIME;
+    public static final ForgeConfigSpec.IntValue COOKED_SEAFOOD_SPOILAGE_TIME;
+    public static final ForgeConfigSpec.IntValue NUT_SPOILAGE_TIME;
+    public static final ForgeConfigSpec.IntValue VEGETABLE_DISH_SPOILAGE_TIME;
+    public static final ForgeConfigSpec.IntValue MEAT_DISH_SPOILAGE_TIME;
+    public static final ForgeConfigSpec.IntValue MEAT_WITH_VEGETABLE_DISH_SPOILAGE_TIME;
+    public static final ForgeConfigSpec.IntValue FISH_DISH_SPOILAGE_TIME;
+    public static final ForgeConfigSpec.IntValue PASTA_DISH_SPOILAGE_TIME;
+    public static final ForgeConfigSpec.IntValue DRY_PASTRY_SPOILAGE_TIME;
 
     public static final ForgeConfigSpec.DoubleValue FOOD_SPOILAGE_IN_INVENTORY_MULTIPLIER;
     public static final ForgeConfigSpec.DoubleValue FOOD_SPOILAGE_IN_STORAGE_MULTIPLIER;
@@ -139,10 +149,15 @@ public class NJSServerConfig {
                 .worldRestart()
                 .defineInRange("milkSpoilageTime", 36000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
 
-        INSECT_SPOILAGE_TIME = BUILDER
-                .translation("config.notjustspoiled.insect_spoilage_time")
+        RAW_INSECT_SPOILAGE_TIME = BUILDER
+                .translation("config.notjustspoiled.raw_insect_spoilage_time")
                 .worldRestart()
-                .defineInRange("insectSpoilageTime", 60000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
+                .defineInRange("rawInsectSpoilageTime", 60000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
+
+        COOKED_INSECT_SPOILAGE_TIME = BUILDER
+                .translation("config.notjustspoiled.cooked_insect_spoilage_time")
+                .worldRestart()
+                .defineInRange("cookedInsectSpoilageTime", 60000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
 
         SANDWICH_SPOILAGE_TIME = BUILDER
                 .translation("config.notjustspoiled.sandwich_spoilage_time")
@@ -198,6 +213,51 @@ public class NJSServerConfig {
                 .translation("config.notjustspoiled.food_dressing_spoilage_time")
                 .worldRestart()
                 .defineInRange("foodDressingSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
+
+        RAW_SEAFOOD_SPOILAGE_TIME = BUILDER
+                .translation("config.notjustspoiled.raw_seafood_spoilage_time")
+                .worldRestart()
+                .defineInRange("rawSeafoodSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
+
+        COOKED_SEAFOOD_SPOILAGE_TIME = BUILDER
+                .translation("config.notjustspoiled.cooked_seafood_spoilage_time")
+                .worldRestart()
+                .defineInRange("cookedSeafoodSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
+
+        NUT_SPOILAGE_TIME = BUILDER
+                .translation("config.notjustspoiled.nut_spoilage_time")
+                .worldRestart()
+                .defineInRange("nutSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
+
+        VEGETABLE_DISH_SPOILAGE_TIME = BUILDER
+                .translation("config.notjustspoiled.vegetable_dish_spoilage_time")
+                .worldRestart()
+                .defineInRange("vegetableDishSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
+
+        MEAT_DISH_SPOILAGE_TIME = BUILDER
+                .translation("config.notjustspoiled.meat_dish_spoilage_time")
+                .worldRestart()
+                .defineInRange("meatDishSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
+
+        MEAT_WITH_VEGETABLE_DISH_SPOILAGE_TIME = BUILDER
+                .translation("config.notjustspoiled.meat_with_vegetable_dish_spoilage_time")
+                .worldRestart()
+                .defineInRange("meatWithVegetableDishSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
+
+        FISH_DISH_SPOILAGE_TIME = BUILDER
+                .translation("config.notjustspoiled.fish_dish_spoilage_time")
+                .worldRestart()
+                .defineInRange("fishDishSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
+
+        PASTA_DISH_SPOILAGE_TIME = BUILDER
+                .translation("config.notjustspoiled.pasta_dish_spoilage_time")
+                .worldRestart()
+                .defineInRange("pastaDishSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
+
+        DRY_PASTRY_SPOILAGE_TIME = BUILDER
+                .translation("config.notjustspoiled.dry_pastry_spoilage_time")
+                .worldRestart()
+                .defineInRange("dryPastrySpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
         BUILDER.pop();
 
 
@@ -230,16 +290,16 @@ public class NJSServerConfig {
         BUILDER.translation("config.notjustspoiled.category.chance_to_appear_in_storage").push("Chance to appear in storage");
         BUILDER.translation("config.notjustspoiled.category.chance_to_appear_fresh_or_stale_food_in_storage").push("Fresh or stale food");
         FRESH_OR_STALE$CHANCE_TO_APPEAR_FRESH_FOOD_IN_STORAGE = BUILDER
-                .comment("s")
-                .translation("s")
+                .comment("Chance of fresh food to appear in storage")
+                .translation("chance_to_appear_fresh_food_in_storage")
                 .worldRestart()
-                .defineInRange("s", 0.5, 0.0, 1.0);
+                .defineInRange("chanceToAppearFreshFoodInStorage", 0.5, 0.0, 1.0);
 
         FRESH_OR_STALE$CHANCE_TO_APPEAR_STALE_FOOD_IN_STORAGE = BUILDER
                 .comment("ss")
-                .translation("ss")
+                .translation("chance_to_appear_stale_food_in_storage")
                 .worldRestart()
-                .defineInRange("ss", 0.5, 0.0, 1.0);
+                .defineInRange("chanceToAppearStaleFoodInStorage", 0.5, 0.0, 1.0);
         BUILDER.pop();
 
         BUILDER.translation("config.notjustspoiled.category.chance_to_appear_random_food_in_storage").push("Random food");
