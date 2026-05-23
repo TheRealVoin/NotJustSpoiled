@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "alexscaves:cooked_mussel",
+      "required": false
+    },
+    {
+      "id": "alexsmobs:cooked_lobster_tail",
+      "required": false
+    }
+  ]
+}
