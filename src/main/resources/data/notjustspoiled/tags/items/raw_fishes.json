@@ -4,6 +4,18 @@
     "minecraft:salmon",
     "minecraft:tropical_fish",
     {
+      "id": "alexscaves:lanternfish",
+      "required": false
+    },
+    {
+      "id": "alexscaves:radgill",
+      "required": false
+    },
+    {
+      "id": "alexscaves:tripodfish",
+      "required": false
+    },
+    {
       "id": "alexsmobs:blobfish",
       "required": false
     },
@@ -13,10 +25,6 @@
     },
     {
       "id": "alexsmobs:flying_fish",
-      "required": false
-    },
-    {
-      "id": "alexsmobs:lobster_tail",
       "required": false
     },
     {
