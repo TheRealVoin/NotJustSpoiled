@@ -4,6 +4,10 @@
     "minecraft:glow_berries",
     "minecraft:sweet_berries",
     {
+      "id": "alexscaves:giant_sweetberry",
+      "required": false
+    },
+    {
       "id": "deeperdarker:bloom_berries",
       "required": false
     },
