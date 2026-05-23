@@ -112,6 +112,18 @@ public enum FoodStatus {
         return defaultSaturation;
     }
 
+    public static FoodStatus getFreshOrStaleStatus(RandomSource random) {
+        double randomDouble = random.nextDouble();
+
+        double fresh = NJSServerConfig.FRESH_OR_STALE$CHANCE_TO_APPEAR_FRESH_FOOD_IN_STORAGE.get();
+
+        if (randomDouble < fresh) {
+            return FRESH;
+        } else {
+            return STALE;
+        }
+    }
+
     public static FoodStatus getRandomFoodStatus(RandomSource random) {
         double randomDouble = random.nextDouble();
 
