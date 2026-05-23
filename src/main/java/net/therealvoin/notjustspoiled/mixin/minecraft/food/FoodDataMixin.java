@@ -32,7 +32,6 @@ public abstract class FoodDataMixin {
             FoodProperties foodProperties = stack.getFoodProperties(entity);
             this.eat(foodStatus.getModifiedNutrition(foodProperties.getNutrition()), foodStatus.getModifiedSaturation(foodProperties.getSaturationModifier()));
             ci.cancel();
-
         }
     }
 }
