@@ -154,6 +154,18 @@
         },
         {
           "condition": "forge:loot_table_id",
+          "loot_table_id": "alexscaves:chests/gingerbread_town"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "alexscaves:chests/licowitch_tower"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "alexscaves:chests/licowitch_tower_secret"
+        },
+        {
+          "condition": "forge:loot_table_id",
           "loot_table_id": "alexscaves:chests/witch_hut"
         },
         {

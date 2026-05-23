@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CraftingMenu.class)
-public class CraftingMenuMixin {
+public abstract class CraftingMenuMixin {
     @Inject(method = "slotChangedCraftingGrid", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/ResultContainer;setItem(ILnet/minecraft/world/item/ItemStack;)V", shift = At.Shift.AFTER))
     private static void updateFoodWhenPlacedIntoCraftingSlotAndManageCrafting(AbstractContainerMenu menu, Level level, Player player, CraftingContainer container, ResultContainer result, CallbackInfo ci) {
         if (NJSServerConfig.FOOD_CRAFTING_MODE.get() == FoodCraftingMode.SAME_STATUS) {
@@ -54,7 +54,7 @@ public class CraftingMenuMixin {
                         FoodSpoilageManager.updateFoodLifetime(foodSpoilage, serverLevel);
                         FoodSpoilageManager.updateFoodLifetime(foodSpoilage2, serverLevel);
 
-                        if (FoodSpoilageManager.getFoodStatus(itemStack1, level) != FoodSpoilageManager.getFoodStatus(itemStack2, level)) {
+                        if (FoodSpoilageManager.getFoodStatus(itemStack1, serverLevel) != FoodSpoilageManager.getFoodStatus(itemStack2, serverLevel)) {
                             result.setItem(0, ItemStack.EMPTY);
                             return;
                         }
