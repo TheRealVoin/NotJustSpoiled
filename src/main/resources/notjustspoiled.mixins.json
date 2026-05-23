@@ -3,11 +3,13 @@
   "minVersion": "0.8.5",
   "package": "net.therealvoin.notjustspoiled.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "notjustspoiled.mixins.refmap.json",
+  "refmap": "notjustspoiled.refmap.json",
+  "plugin": "com.llamalad7.mixinextras.platform.forge.MixinExtrasConfigPlugin",
   "client": [
-    "forge.ForgeHooksClientMixin"
+    "forge.client.ForgeHooksClientMixin"
   ],
   "mixins": [
+    "forge.SidedInvWrapperMixin",
     "minecraft.SetItemMixin",
     "minecraft.block.AbstractFurnaceBlockEntityMixin",
     "minecraft.block.CampfireBlockEntityMixin",
@@ -23,12 +25,13 @@
     "minecraft.item.BlockItemMixin",
     "minecraft.item.FireChargeItemMixin",
     "minecraft.item.FlintAndSteelItemMixin",
+    "mods.alexscaves.NuclearFurnaceBlockEntityMixin",
     "mods.SetItemMixin",
-    "mods.farmersdelight.CuttingBoardBlockEntityMixin",
-    "mods.farmersdelight.SkilletBlockEntityMixin",
-    "mods.farmersdelight.SkilletItemMixin",
-    "mods.farmersdelight.StoveBlockEntityMixin",
-    "mods.farmersdelight.StoveBlockMixin"
+    "mods.alexscaves.AbyssalAltarBlockEntityMixin",
+    "mods.alexscaves.accessor.NuclearFurnaceBlockEntityAccessor",
+    "mods.alexsmobs.BlockCapsidMixin",
+    "mods.alexsmobs.TileEntityCapsidMixin",
+    "mods.genetic_animals.ChickenNestTileEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
