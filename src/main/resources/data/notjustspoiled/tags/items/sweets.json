@@ -1,8 +1,258 @@
 {
   "values": [
-    "minecraft:mushroom_stew",
-    "minecraft:rabbit_stew",
-    "minecraft:suspicious_stew",
+    {
+      "id": "alexscaves:biome_treat",
+      "required": false
+    },
+    {
+      "id": "alexscaves:block_of_chiseled_chocolate",
+      "required": false
+    },
+    {
+      "id": "alexscaves:block_of_chocolate",
+      "required": false
+    },
+    {
+      "id": "alexscaves:block_of_chocolate_frosting",
+      "required": false
+    },
+    {
+      "id": "alexscaves:block_of_frosted_chocolate",
+      "required": false
+    },
+    {
+      "id": "alexscaves:block_of_frosting",
+      "required": false
+    },
+    {
+      "id": "alexscaves:block_of_polished_chocolate",
+      "required": false
+    },
+    {
+      "id": "alexscaves:block_of_vanilla_frosting",
+      "required": false
+    },
+    {
+      "id": "alexscaves:candy_cane",
+      "required": false
+    },
+    {
+      "id": "alexscaves:candy_cane_block",
+      "required": false
+    },
+    {
+      "id": "alexscaves:candy_cane_pole",
+      "required": false
+    },
+    {
+      "id": "alexscaves:caramel",
+      "required": false
+    },
+    {
+      "id": "alexscaves:chiseled_candy_cane_block",
+      "required": false
+    },
+    {
+      "id": "alexscaves:frostmint",
+      "required": false
+    },
+    {
+      "id": "alexscaves:gelatin_blue",
+      "required": false
+    },
+    {
+      "id": "alexscaves:gelatin_green",
+      "required": false
+    },
+    {
+      "id": "alexscaves:gelatin_pink",
+      "required": false
+    },
+    {
+      "id": "alexscaves:gelatin_red",
+      "required": false
+    },
+    {
+      "id": "alexscaves:gelatin_yellow",
+      "required": false
+    },
+    {
+      "id": "alexscaves:gumball_pile",
+      "required": false
+    },
+    {
+      "id": "alexscaves:gummy_ring_blue",
+      "required": false
+    },
+    {
+      "id": "alexscaves:gummy_ring_green",
+      "required": false
+    },
+    {
+      "id": "alexscaves:gummy_ring_pink",
+      "required": false
+    },
+    {
+      "id": "alexscaves:gummy_ring_red",
+      "required": false
+    },
+    {
+      "id": "alexscaves:gummy_ring_yellow",
+      "required": false
+    },
+
+    {
+      "id": "alexscaves:hot_chocolate_bottle",
+      "required": false
+    },
+    {
+      "id": "alexscaves:jelly_bean",
+      "required": false
+    },
+    {
+      "id": "alexscaves:large_peppermint",
+      "required": false
+    },
+    {
+      "id": "alexscaves:licoroot",
+      "required": false
+    },
+    {
+      "id": "alexscaves:licoroot_sprout",
+      "required": false
+    },
+    {
+      "id": "alexscaves:licoroot_vine",
+      "required": false
+    },
+    {
+      "id": "alexscaves:lollipop_bunch",
+      "required": false
+    },
+    {
+      "id": "alexscaves:peppermint_powder",
+      "required": false
+    },
+    {
+      "id": "alexscaves:purple_soda_bottle",
+      "required": false
+    },
+    {
+      "id": "alexscaves:rock_candy_black",
+      "required": false
+    },
+    {
+      "id": "alexscaves:rock_candy_blue",
+      "required": false
+    },
+    {
+      "id": "alexscaves:rock_candy_brown",
+      "required": false
+    },
+    {
+      "id": "alexscaves:rock_candy_cyan",
+      "required": false
+    },
+    {
+      "id": "alexscaves:rock_candy_gray",
+      "required": false
+    },
+    {
+      "id": "alexscaves:rock_candy_green",
+      "required": false
+    },
+    {
+      "id": "alexscaves:rock_candy_light_blue",
+      "required": false
+    },
+    {
+      "id": "alexscaves:rock_candy_light_gray",
+      "required": false
+    },
+    {
+      "id": "alexscaves:rock_candy_lime",
+      "required": false
+    },
+    {
+      "id": "alexscaves:rock_candy_magenta",
+      "required": false
+    },
+    {
+      "id": "alexscaves:rock_candy_orange",
+      "required": false
+    },
+    {
+      "id": "alexscaves:rock_candy_pink",
+      "required": false
+    },
+    {
+      "id": "alexscaves:rock_candy_purple",
+      "required": false
+    },
+    {
+      "id": "alexscaves:rock_candy_red",
+      "required": false
+    },
+    {
+      "id": "alexscaves:rock_candy_white",
+      "required": false
+    },
+    {
+      "id": "alexscaves:rock_candy_yellow",
+      "required": false
+    },
+    {
+      "id": "alexscaves:sharpened_candy_cane",
+      "required": false
+    },
+    {
+      "id": "alexscaves:small_peppermint",
+      "required": false
+    },
+    {
+      "id": "alexscaves:spelunkie",
+      "required": false
+    },
+    {
+      "id": "alexscaves:stripped_candy_cane_block",
+      "required": false
+    },
+    {
+      "id": "alexscaves:stripped_candy_cane_pole",
+      "required": false
+    },
+    {
+      "id": "alexscaves:sugar_glass",
+      "required": false
+    },
+    {
+      "id": "alexscaves:sundrop",
+      "required": false
+    },
+    {
+      "id": "alexscaves:sweet_puff",
+      "required": false
+    },
+    {
+      "id": "alexscaves:sweetish_fish_blue",
+      "required": false
+    },
+    {
+      "id": "alexscaves:sweetish_fish_green",
+      "required": false
+    },
+    {
+      "id": "alexscaves:sweetish_fish_pink",
+      "required": false
+    },
+    {
+      "id": "alexscaves:sweetish_fish_red",
+      "required": false
+    },
+    {
+      "id": "alexscaves:sweetish_fish_yellow",
+      "required": false
+    },
     {
       "id": "simplefarming:candy",
       "required": false
