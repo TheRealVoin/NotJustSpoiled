@@ -6,6 +6,14 @@
     "minecraft:cooked_porkchop",
     "minecraft:cooked_rabbit",
     {
+      "id": "alexscaves:cooked_dinosaur_chop",
+      "required": false
+    },
+    {
+      "id": "alexscaves:dinosaur_nugget",
+      "required": false
+    },
+    {
       "id": "alexsmobs:cooked_kangaroo_meat",
       "required": false
     },
