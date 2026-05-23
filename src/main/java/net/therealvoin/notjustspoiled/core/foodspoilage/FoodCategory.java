@@ -4,7 +4,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.therealvoin.notjustspoiled.core.NJSTags;
+import net.therealvoin.notjustspoiled.data.NJSTags;
 import net.therealvoin.notjustspoiled.core.config.NJSServerConfig;
 
 public enum FoodCategory {
@@ -24,7 +24,8 @@ public enum FoodCategory {
     STEW(NJSServerConfig.STEW_SPOILAGE_TIME, NJSTags.Items.STEWS),
     SOUP(NJSServerConfig.SOUP_SPOILAGE_TIME, NJSTags.Items.SOUPS),
     MILK(NJSServerConfig.MILK_SPOILAGE_TIME, NJSTags.Items.MILK),
-    INSECT(NJSServerConfig.INSECT_SPOILAGE_TIME, NJSTags.Items.INSECTS),
+    RAW_INSECT(NJSServerConfig.RAW_INSECT_SPOILAGE_TIME, NJSTags.Items.RAW_INSECTS),
+    COOKED_INSECT(NJSServerConfig.COOKED_INSECT_SPOILAGE_TIME, NJSTags.Items.COOKED_INSECTS),
     SANDWICH(NJSServerConfig.SANDWICH_SPOILAGE_TIME, NJSTags.Items.SANDWICHES),
     SALAD(NJSServerConfig.SALAD_SPOILAGE_TIME, NJSTags.Items.SALADS),
     PORRIDGE(NJSServerConfig.PORRIDGE_SPOILAGE_TIME, NJSTags.Items.PORRIDGES),
@@ -35,7 +36,16 @@ public enum FoodCategory {
     PICKLED_FOOD(NJSServerConfig.PICKLED_FOOD_SPOILAGE_TIME, NJSTags.Items.PICKLED_FOODS),
     COOKED_MEAL(NJSServerConfig.COOKED_MEAL_SPOILAGE_TIME, NJSTags.Items.COOKED_MEALS),
     RAW_DOUGH(NJSServerConfig.RAW_DOUGH_SPOILAGE_TIME, NJSTags.Items.RAW_DOUGH),
-    FOOD_DRESSING(NJSServerConfig.FOOD_DRESSING_SPOILAGE_TIME, NJSTags.Items.FOOD_DRESSING);
+    FOOD_DRESSING(NJSServerConfig.FOOD_DRESSING_SPOILAGE_TIME, NJSTags.Items.FOOD_DRESSING),
+    RAW_SEAFOOD(NJSServerConfig.RAW_SEAFOOD_SPOILAGE_TIME, NJSTags.Items.RAW_SEAFOODS),
+    COOKED_SEAFOOD(NJSServerConfig.COOKED_SEAFOOD_SPOILAGE_TIME, NJSTags.Items.COOKED_SEAFOODS),
+    NUT(NJSServerConfig.NUT_SPOILAGE_TIME, NJSTags.Items.NUTS),
+    VEGETABLE_DISH(NJSServerConfig.VEGETABLE_DISH_SPOILAGE_TIME, NJSTags.Items.VEGETABLE_DISHES),
+    MEAT_DISH(NJSServerConfig.MEAT_DISH_SPOILAGE_TIME, NJSTags.Items.MEAT_DISHES),
+    MEAT_WITH_VEGETABLE_DISH(NJSServerConfig.MEAT_WITH_VEGETABLE_DISH_SPOILAGE_TIME, NJSTags.Items.MEAT_WITH_VEGETABLE_DISHES),
+    FISH_DISH(NJSServerConfig.FISH_DISH_SPOILAGE_TIME, NJSTags.Items.FISH_DISHES),
+    PASTA_DISH(NJSServerConfig.PASTA_DISH_SPOILAGE_TIME, NJSTags.Items.PASTA_DISHES),
+    DRY_PASTRY(NJSServerConfig.DRY_PASTRY_SPOILAGE_TIME, NJSTags.Items.DRY_PASTRY);
 
     private final ForgeConfigSpec.IntValue spoilageTime;
     private final TagKey<Item> tagKey;
