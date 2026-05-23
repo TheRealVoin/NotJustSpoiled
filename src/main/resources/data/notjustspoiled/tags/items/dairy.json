@@ -1,6 +1,34 @@
 {
   "values": [
     {
+      "id": "alexscaves:chocolate_ice_cream",
+      "required": false
+    },
+    {
+      "id": "alexscaves:chocolate_ice_cream_scoop",
+      "required": false
+    },
+    {
+      "id": "alexscaves:sundae",
+      "required": false
+    },
+    {
+      "id": "alexscaves:sweetberry_ice_cream",
+      "required": false
+    },
+    {
+      "id": "alexscaves:sweetberry_ice_cream_scoop",
+      "required": false
+    },
+    {
+      "id": "alexscaves:vanilla_ice_cream",
+      "required": false
+    },
+    {
+      "id": "alexscaves:vanilla_ice_cream_scoop",
+      "required": false
+    },
+    {
       "id": "simplefarming:cheese_slice",
       "required": false
     },
