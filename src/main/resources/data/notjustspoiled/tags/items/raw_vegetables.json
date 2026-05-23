@@ -2,9 +2,12 @@
   "values": [
     "minecraft:beetroot",
     "minecraft:carrot",
-    "minecraft:kelp",
     "minecraft:potato",
     "minecraft:pumpkin",
+    {
+      "id": "alexscaves:green_soylent",
+      "required": false
+    },
     {
       "id": "farmersdelight:beetroot_crate",
       "required": false
