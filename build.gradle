@@ -63,6 +63,11 @@ repositories {
     maven {
         url 'https://cursemaven.com'
     }
+
+    maven {
+        url = 'https://repo.spongepowered.org/repository/maven-public/'
+    }
+    mavenCentral()
 }
 
 dependencies {
@@ -73,9 +78,15 @@ dependencies {
     implementation fg.deobf("curse.maven:simple-farming-327554:4711850")
     implementation fg.deobf("curse.maven:jei-238222:7391695")
     implementation fg.deobf("curse.maven:configured-457570:5180900")
-    implementation fg.deobf("curse.maven:farmers-delight-398521:7801523")
+    //implementation fg.deobf("curse.maven:farmers-delight-398521:8007609")
     implementation fg.deobf("curse.maven:citadel-331936:7476570")
     implementation fg.deobf("curse.maven:alexs-caves-924854:5848216")
+    implementation fg.deobf("curse.maven:yungs-api-421850:5769971")
+
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.4"))
+    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.5.4")) {
+        jarJar.ranged(it, "[0.5.4,)")
+    }
 }
 
 tasks.named('processResources', ProcessResources).configure {
@@ -89,6 +100,7 @@ tasks.named('processResources', ProcessResources).configure {
 
             mod_id: mod_id,
             mod_name: mod_name,
+            mod_logo: mod_logo,
             mod_license: mod_license,
             mod_version: mod_version,
             mod_authors: mod_authors,
@@ -96,7 +108,7 @@ tasks.named('processResources', ProcessResources).configure {
             mod_issues_url: mod_issues_url,
             mod_description: mod_description,
 
-            appleskin_version_range: appleskin_version_range,
+            appleskin_version_range: appleskin_version_range
     ]
     inputs.properties replaceProperties
 
