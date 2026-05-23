@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(BlockItem.class)
-public class BlockItemMixin {
+public abstract class BlockItemMixin {
     @Inject(method = "place", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/Block;setPlacedBy(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
     private void onPlace(BlockPlaceContext context, CallbackInfoReturnable<InteractionResult> cir, BlockPlaceContext blockplacecontext, BlockState blockstate, BlockPos blockpos, Level level, Player player, ItemStack itemstack, BlockState blockstate1) {
         if (level instanceof ServerLevel serverLevel && FoodCategory.getFoodCategory(itemstack) != null) {
