@@ -1,6 +1,10 @@
 {
   "values": [
     {
+      "id": "alexscaves:serene_salad",
+      "required": false
+    },
+    {
       "id": "farmersdelight:fruit_salad",
       "required": false
     },
