@@ -21,9 +21,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin({RandomizableContainerBlockEntity.class, ChestBoat.class, AbstractMinecartContainer.class, SimpleContainer.class, AbstractFurnaceBlockEntity.class, Inventory.class})
+@Mixin({RandomizableContainerBlockEntity.class, ChestBoat.class, AbstractMinecartContainer.class, SimpleContainer.class, AbstractFurnaceBlockEntity.class})
 public abstract class SetItemMixin {
-    @Inject(method = "setItem", at = @At("HEAD"))
+    @Inject(method = "setItem", at = @At("TAIL"))
     private void changeFoodEnvironmentWhenPlacedInContainer(int index, ItemStack itemStack, CallbackInfo ci) {
         Object object = this;
         Level level = null;
