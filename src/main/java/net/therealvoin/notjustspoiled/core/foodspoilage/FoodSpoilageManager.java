@@ -18,14 +18,16 @@ public class FoodSpoilageManager {
     private static final Component DEBUG2 = Component.literal("environment: %s");
 
     public static void changeEnvironmentAndUpdate(ItemStack itemStack, FoodEnvironment newFoodEnvironment, Level level) {
-        itemStack.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
-            if (!(level instanceof ServerLevel serverLevel)) {
-                return;
-            }
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return;
+        }
 
+        itemStack.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
             if (foodSpoilage.getEnvironment() == newFoodEnvironment) {
                 return;
             }
+
+            System.out.println(itemStack.serializeNBT());
 
             updateFoodLifetime(foodSpoilage, serverLevel);
             foodSpoilage.setEnvironment(newFoodEnvironment);
@@ -77,7 +79,7 @@ public class FoodSpoilageManager {
             return;
         }
 
-        if (!itemStack1.is(itemStack2.getItem())) {
+        if (itemStack1.isEmpty() || itemStack2.isEmpty() || !itemStack1.is(itemStack2.getItem())) {
             return;
         }
 
