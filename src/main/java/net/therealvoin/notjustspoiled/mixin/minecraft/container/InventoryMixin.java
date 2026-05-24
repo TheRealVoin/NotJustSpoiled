@@ -1,6 +1,5 @@
 package net.therealvoin.notjustspoiled.mixin.minecraft.container;
 
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -21,9 +20,6 @@ public abstract class InventoryMixin {
 
     @Inject(method = "addResource(ILnet/minecraft/world/item/ItemStack;)I", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/entity/player/Inventory;getItem(I)Lnet/minecraft/world/item/ItemStack;"), locals = LocalCapture.CAPTURE_FAILHARD)
     private void updateFood(int pSlot, ItemStack pStack, CallbackInfoReturnable<Integer> cir, Item item, int i, ItemStack itemStack) {
-        if (player.level() instanceof ServerLevel serverLevel) {
-            FoodSpoilageManager.changeEnvironmentAndUpdate(pStack, FoodEnvironment.INVENTORY, serverLevel);
-            FoodSpoilageManager.tryAverageSpoilageOnMerge(itemStack, pStack, serverLevel);
-        }
+        FoodSpoilageManager.changeEnvironmentAndUpdate(pStack, FoodEnvironment.INVENTORY, player.level());
     }
 }
