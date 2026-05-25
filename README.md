@@ -1,5 +1,5 @@
 ![Not Just Spoiled title in minecraft logo style](https://cdn.modrinth.com/data/cached_images/afae8860c3fa49bae32ead1f3897ee1330167662.png)
-Not Just Spoiled adds simple food spoilage mechanic. This mod enhances your food managment and perfectly fits in any modpack.
+Not Just Spoiled adds simple food spoilage mechanic. This mod enhances your food management and perfectly fits in any modpack.
 
 # Features
 ### Food status
