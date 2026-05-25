@@ -27,8 +27,6 @@
     "minecraft.item.FlintAndSteelItemMixin",
     "mods.SetItemMixin",
     "mods.alexscaves.AbyssalAltarBlockEntityMixin",
-    "mods.alexscaves.NuclearFurnaceBlockEntityMixin",
-    "mods.alexscaves.accessor.NuclearFurnaceBlockEntityAccessor",
     "mods.alexsmobs.BlockCapsidMixin",
     "mods.alexsmobs.TileEntityCapsidMixin",
     "mods.genetic_animals.ChickenNestTileEntityMixin"
