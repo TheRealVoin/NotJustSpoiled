@@ -31,7 +31,6 @@ import net.therealvoin.notjustspoiled.core.foodspoilage.FoodSpoilageManager;
 import net.therealvoin.notjustspoiled.core.foodspoilage.capability.blockfoodspoilage.BlockFoodSpoilageProvider;
 import net.therealvoin.notjustspoiled.core.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
 import net.therealvoin.notjustspoiled.core.foodspoilage.capability.foodspoilage.IFoodSpoilage;
-import net.therealvoin.notjustspoiled.util.FoodFinderUtil;
 import net.therealvoin.notjustspoiled.util.NJSUtils;
 
 import java.nio.file.Path;
