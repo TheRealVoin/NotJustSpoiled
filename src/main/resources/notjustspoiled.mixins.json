@@ -27,8 +27,16 @@
     "minecraft.item.FlintAndSteelItemMixin",
     "mods.SetItemMixin",
     "mods.alexscaves.AbyssalAltarBlockEntityMixin",
+    "mods.alexscaves.NuclearFurnaceBlockEntityMixin",
+    "mods.alexscaves.accessor.NuclearFurnaceBlockEntityAccessor",
     "mods.alexsmobs.BlockCapsidMixin",
+    "mods.alexsmobs.MantisShrimpAIFryRiceMixin",
     "mods.alexsmobs.TileEntityCapsidMixin",
+    "mods.farmersdelight.AbstractStoveBlockEntityMixin",
+    "mods.farmersdelight.AbstractStoveBlockMixin",
+    "mods.farmersdelight.CuttingBoardBlockEntityMixin",
+    "mods.farmersdelight.SkilletBlockEntityMixin",
+    "mods.farmersdelight.SkilletItemMixin",
     "mods.genetic_animals.ChickenNestTileEntityMixin"
   ],
   "injectors": {
