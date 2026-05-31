@@ -1,37 +1,41 @@
 package net.therealvoin.notjustspoiled.mixin.minecraft.food;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.therealvoin.notjustspoiled.core.foodspoilage.FoodSpoilageManager;
 import net.therealvoin.notjustspoiled.core.foodspoilage.FoodStatus;
 import net.therealvoin.notjustspoiled.util.NJSUtils;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.ModifyArgs;
+import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @Mixin(FoodData.class)
 public abstract class FoodDataMixin {
-    @Shadow public abstract void eat(int pFoodLevelModifier, float pSaturationLevelModifier);
-
-    @Inject(method = "eat(Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/food/FoodData;eat(IF)V", shift = At.Shift.BEFORE), cancellable = true)
-    private void modifyFoodNutrition(Item item, ItemStack stack, LivingEntity entity, CallbackInfo ci) {
+    @ModifyArgs(method = "eat(Lnet/minecraft/world/item/Item;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/LivingEntity;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/food/FoodData;eat(IF)V"))
+    private void modifyFoodValuesAndApplyEffects(Args args, @Local(argsOnly = true) ItemStack itemStack, @Local(argsOnly = true) LivingEntity entity) {
         if (entity.level() instanceof ServerLevel serverLevel) {
-            FoodStatus foodStatus = FoodSpoilageManager.getFoodStatus(stack, serverLevel);
+            FoodStatus foodStatus = FoodSpoilageManager.getFoodStatus(itemStack, serverLevel);
             if (foodStatus == null) {
                 return;
             }
 
-            FoodSpoilageManager.updateFoodLifetime(NJSUtils.getCapability(stack), serverLevel);
+            FoodSpoilageManager.updateFoodLifetime(NJSUtils.getCapability(itemStack), serverLevel);
+            FoodProperties foodProperties = itemStack.getFoodProperties(entity);
+            args.set(0, foodStatus.getModifiedNutrition(foodProperties.getNutrition()));
+            args.set(1, foodStatus.getModifiedSaturation(foodProperties.getSaturationModifier()));
 
-            FoodProperties foodProperties = stack.getFoodProperties(entity);
-            this.eat(foodStatus.getModifiedNutrition(foodProperties.getNutrition()), foodStatus.getModifiedSaturation(foodProperties.getSaturationModifier()));
-            ci.cancel();
+            RandomSource random = serverLevel.getRandom();
+            for (FoodStatus.EffectData effectData : foodStatus.getEffectsData()) {
+                if (random.nextDouble() < effectData.getApplyChance()) {
+                    entity.addEffect(effectData.createEffectInstance(), entity);
+                }
+            }
         }
     }
 }
