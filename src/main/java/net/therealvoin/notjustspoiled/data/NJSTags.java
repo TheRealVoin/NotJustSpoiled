@@ -37,18 +37,13 @@ public class NJSTags {
         public static final TagKey<Item> SWEETS = createTag("sweets");
         public static final TagKey<Item> DAIRY = createTag("dairy");
         public static final TagKey<Item> PICKLED_FOODS = createTag("pickled_foods");
-        public static final TagKey<Item> COOKED_MEALS = createTag("cooked_meals");
         public static final TagKey<Item> RAW_DOUGH = createTag("raw_dough");
         public static final TagKey<Item> FOOD_DRESSING = createTag("food_dressing");
         public static final TagKey<Item> RAW_SEAFOODS = createTag("raw_seafoods");
         public static final TagKey<Item> COOKED_SEAFOODS = createTag("cooked_seafoods");
         public static final TagKey<Item> NUTS = createTag("nuts");
-        public static final TagKey<Item> VEGETABLE_DISHES = createTag("vegetable_dishes");
-        public static final TagKey<Item> MEAT_DISHES = createTag("meat_dishes");
-        public static final TagKey<Item> MEAT_WITH_VEGETABLE_DISHES = createTag("meat_with_vegetable_dishes");
-        public static final TagKey<Item> FISH_DISHES = createTag("fish_dishes");
-        public static final TagKey<Item> PASTA_DISHES = createTag("pasta_dishes");
         public static final TagKey<Item> DRY_PASTRY = createTag("dry_pastry");
+        public static final TagKey<Item> DISHES = createTag("dishes");
 
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(NotJustSpoiled.MOD_ID, name));
