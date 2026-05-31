@@ -32,17 +32,12 @@ public class NJSServerConfig {
     public static final ForgeConfigSpec.IntValue SWEET_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue DAIRY_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue PICKLED_FOOD_SPOILAGE_TIME;
-    public static final ForgeConfigSpec.IntValue COOKED_MEAL_SPOILAGE_TIME;
+    public static final ForgeConfigSpec.IntValue DISH_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue RAW_DOUGH_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue FOOD_DRESSING_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue RAW_SEAFOOD_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue COOKED_SEAFOOD_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue NUT_SPOILAGE_TIME;
-    public static final ForgeConfigSpec.IntValue VEGETABLE_DISH_SPOILAGE_TIME;
-    public static final ForgeConfigSpec.IntValue MEAT_DISH_SPOILAGE_TIME;
-    public static final ForgeConfigSpec.IntValue MEAT_WITH_VEGETABLE_DISH_SPOILAGE_TIME;
-    public static final ForgeConfigSpec.IntValue FISH_DISH_SPOILAGE_TIME;
-    public static final ForgeConfigSpec.IntValue PASTA_DISH_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue DRY_PASTRY_SPOILAGE_TIME;
 
     public static final ForgeConfigSpec.DoubleValue FOOD_SPOILAGE_IN_INVENTORY_MULTIPLIER;
@@ -61,6 +56,20 @@ public class NJSServerConfig {
     public static final ForgeConfigSpec.EnumValue<FoodCraftingMode> FOOD_CRAFTING_MODE;
 
     public static final ForgeConfigSpec.BooleanValue SHOW_DEBUG_MESSAGE;
+
+    public static final ForgeConfigSpec.DoubleValue CHANCE_TO_APPLY_POISON_EFFECT_FOR_HALF_SPOILED_FOOD;
+    public static final ForgeConfigSpec.DoubleValue CHANCE_TO_APPLY_POISON_EFFECT_FOR_SPOILED_FOOD;
+    public static final ForgeConfigSpec.DoubleValue CHANCE_TO_APPLY_HUNGER_EFFECT_FOR_HALF_SPOILED_FOOD;
+    public static final ForgeConfigSpec.DoubleValue CHANCE_TO_APPLY_HUNGER_EFFECT_FOR_SPOILED_FOOD;
+    public static final ForgeConfigSpec.DoubleValue CHANCE_TO_APPLY_NAUSEA_EFFECT_FOR_HALF_SPOILED_FOOD;
+    public static final ForgeConfigSpec.DoubleValue CHANCE_TO_APPLY_NAUSEA_EFFECT_FOR_SPOILED_FOOD;
+
+    public static final ForgeConfigSpec.IntValue POISON_EFFECT_FOR_HALF_SPOILED_FOOD_DURATION;
+    public static final ForgeConfigSpec.IntValue POISON_EFFECT_FOR_SPOILED_FOOD_DURATION;
+    public static final ForgeConfigSpec.IntValue HUNGER_EFFECT_FOR_HALF_SPOILED_FOOD_DURATION;
+    public static final ForgeConfigSpec.IntValue HUNGER_EFFECT_FOR_SPOILED_FOOD_DURATION;
+    public static final ForgeConfigSpec.IntValue NAUSEA_EFFECT_FOR_HALF_SPOILED_FOOD_DURATION;
+    public static final ForgeConfigSpec.IntValue NAUSEA_EFFECT_FOR_SPOILED_FOOD_DURATION;
 
     private static final int MIN_FOOD_SPOILAGE_TIME = 0;
     private static final int MAX_FOOD_SPOILAGE_TIME = Integer.MAX_VALUE;
@@ -199,7 +208,7 @@ public class NJSServerConfig {
                 .worldRestart()
                 .defineInRange("pickledFoodSpoilageTime", 6696000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
 
-        COOKED_MEAL_SPOILAGE_TIME = BUILDER
+        DISH_SPOILAGE_TIME = BUILDER
                 .translation("config.notjustspoiled.cooked_meal_spoilage_time")
                 .worldRestart()
                 .defineInRange("cookedMealSpoilageTime", 120000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
@@ -228,31 +237,6 @@ public class NJSServerConfig {
                 .translation("config.notjustspoiled.nut_spoilage_time")
                 .worldRestart()
                 .defineInRange("nutSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
-
-        VEGETABLE_DISH_SPOILAGE_TIME = BUILDER
-                .translation("config.notjustspoiled.vegetable_dish_spoilage_time")
-                .worldRestart()
-                .defineInRange("vegetableDishSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
-
-        MEAT_DISH_SPOILAGE_TIME = BUILDER
-                .translation("config.notjustspoiled.meat_dish_spoilage_time")
-                .worldRestart()
-                .defineInRange("meatDishSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
-
-        MEAT_WITH_VEGETABLE_DISH_SPOILAGE_TIME = BUILDER
-                .translation("config.notjustspoiled.meat_with_vegetable_dish_spoilage_time")
-                .worldRestart()
-                .defineInRange("meatWithVegetableDishSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
-
-        FISH_DISH_SPOILAGE_TIME = BUILDER
-                .translation("config.notjustspoiled.fish_dish_spoilage_time")
-                .worldRestart()
-                .defineInRange("fishDishSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
-
-        PASTA_DISH_SPOILAGE_TIME = BUILDER
-                .translation("config.notjustspoiled.pasta_dish_spoilage_time")
-                .worldRestart()
-                .defineInRange("pastaDishSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
 
         DRY_PASTRY_SPOILAGE_TIME = BUILDER
                 .translation("config.notjustspoiled.dry_pastry_spoilage_time")
@@ -344,6 +328,70 @@ public class NJSServerConfig {
                 .translation("config.notjustspoiled.debug.show_debug_message")
                 .worldRestart()
                 .define("showDebugMessage", false);
+        BUILDER.pop();
+
+        BUILDER.translation("f").push("Effects");
+        CHANCE_TO_APPLY_POISON_EFFECT_FOR_SPOILED_FOOD = BUILDER
+                .comment("ff")
+                .translation("fff")
+                .worldRestart()
+                .defineInRange("chance", 0.5, 0, 1);
+        CHANCE_TO_APPLY_POISON_EFFECT_FOR_HALF_SPOILED_FOOD = BUILDER
+                .comment("fff")
+                .translation("ffff")
+                .worldRestart()
+                .defineInRange("chancef", 0.5, 0, 1);
+        CHANCE_TO_APPLY_HUNGER_EFFECT_FOR_SPOILED_FOOD = BUILDER
+                .comment("fff")
+                .translation("fff")
+                .worldRestart()
+                .defineInRange("chance", 0.5, 0, 1);
+        CHANCE_TO_APPLY_HUNGER_EFFECT_FOR_HALF_SPOILED_FOOD = BUILDER
+                .comment("fff")
+                .translation("fffffff")
+                .worldRestart()
+                .defineInRange("chanceffff", 0.5, 0, 1);
+        CHANCE_TO_APPLY_NAUSEA_EFFECT_FOR_SPOILED_FOOD = BUILDER
+                .comment("fff")
+                .translation("fff")
+                .worldRestart()
+                .defineInRange("chance", 0.5, 0, 1);
+        CHANCE_TO_APPLY_NAUSEA_EFFECT_FOR_HALF_SPOILED_FOOD = BUILDER
+                .comment("fff")
+                .translation("ffffff")
+                .worldRestart()
+                .defineInRange("chancefff", 0.5, 0, 1);
+
+        POISON_EFFECT_FOR_SPOILED_FOOD_DURATION = BUILDER
+                .comment("ff4")
+                .translation("fff7")
+                .worldRestart()
+                .defineInRange("chance535", 200, 0, Integer.MAX_VALUE);
+        POISON_EFFECT_FOR_HALF_SPOILED_FOOD_DURATION = BUILDER
+                .comment("fff275")
+                .translation("ffff243")
+                .worldRestart()
+                .defineInRange("chancef456", 200, 0, Integer.MAX_VALUE);
+        HUNGER_EFFECT_FOR_SPOILED_FOOD_DURATION = BUILDER
+                .comment("fff")
+                .translation("fff")
+                .worldRestart()
+                .defineInRange("chancerw3rw3", 200, 0, Integer.MAX_VALUE);
+        HUNGER_EFFECT_FOR_HALF_SPOILED_FOOD_DURATION = BUILDER
+                .comment("fff")
+                .translation("fffffff")
+                .worldRestart()
+                .defineInRange("chanceffff3wrrw3r3w", 200, 0, Integer.MAX_VALUE);
+        NAUSEA_EFFECT_FOR_SPOILED_FOOD_DURATION = BUILDER
+                .comment("fff")
+                .translation("fff")
+                .worldRestart()
+                .defineInRange("chancerw3r3rw33wr", 200, 0, Integer.MAX_VALUE);
+        NAUSEA_EFFECT_FOR_HALF_SPOILED_FOOD_DURATION = BUILDER
+                .comment("fff")
+                .translation("ffffff")
+                .worldRestart()
+                .defineInRange("chancefff3rwr3rw", 200, 0, Integer.MAX_VALUE);
         BUILDER.pop();
 
         SERVER_CONFIG = BUILDER.build();
