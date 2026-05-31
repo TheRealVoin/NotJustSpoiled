@@ -71,7 +71,7 @@ public class FoodSpoilageManager {
         }
 
         double foodLifetime = (level.getGameTime() - foodSpoilage.getLastUpdateTime()) * foodSpoilage.getEnvironment().getFoodSpoilageMultiplier() + foodSpoilage.getFoodLifetime();
-        return getFoodStatusHelper(foodLifetime, FoodCategory.getFoodCategory(itemStack).getSpoilageTime());
+        return getFoodStatus(foodLifetime, FoodCategory.getFoodCategory(itemStack).getSpoilageTime());
     }
 
     public static void tryAverageSpoilageOnMerge(ItemStack itemStack1, ItemStack itemStack2, Level level) {
@@ -133,7 +133,7 @@ public class FoodSpoilageManager {
         }
     }
 
-    private static FoodStatus getFoodStatusHelper(double foodLifetime, int spoilageTime) {
+    public static FoodStatus getFoodStatus(double foodLifetime, int spoilageTime) {
         if (foodLifetime < spoilageTime / 3.0) {
             return FoodStatus.FRESH;
         } else if (foodLifetime < spoilageTime / 3.0 * 2) {
