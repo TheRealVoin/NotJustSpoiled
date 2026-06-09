@@ -13,6 +13,58 @@
       "required": false
     },
     {
+      "id": "ends_delight:dragon_leg_with_sauce",
+      "required": false
+    },
+    {
+      "id": "ends_delight:dragon_leg_with_sauce_block",
+      "required": false
+    },
+    {
+      "id": "ends_delight:end_barbecue_stick",
+      "required": false
+    },
+    {
+      "id": "ends_delight:ender_bamboo_rice",
+      "required": false
+    },
+    {
+      "id": "ends_delight:ender_noodle",
+      "required": false
+    },
+    {
+      "id": "ends_delight:grilled_shulker",
+      "required": false
+    },
+    {
+      "id": "ends_delight:grilled_shulker_block",
+      "required": false
+    },
+    {
+      "id": "ends_delight:roasted_dragon_steak",
+      "required": false
+    },
+    {
+      "id": "ends_delight:shulker_omelette",
+      "required": false
+    },
+    {
+      "id": "ends_delight:shulker_omelette_mixture",
+      "required": false
+    },
+    {
+      "id": "ends_delight:steamed_dragon_egg",
+      "required": false
+    },
+    {
+      "id": "ends_delight:steamed_dragon_egg_block",
+      "required": false
+    },
+    {
+      "id": "ends_delight:stir_fried_shulker_meat",
+      "required": false
+    },
+    {
       "id": "farmersdelight:bacon_and_eggs",
       "required": false
     },
@@ -29,7 +81,15 @@
       "required": false
     },
     {
+      "id": "farmersdelight:dog_food",
+      "required": false
+    },
+    {
       "id": "farmersdelight:dumplings",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:fried_rice",
       "required": false
     },
     {
@@ -42,6 +102,18 @@
     },
     {
       "id": "farmersdelight:honey_glazed_ham",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:kelp_roll",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:kelp_roll_slice",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:mushroom_rice",
       "required": false
     },
     {
@@ -58,6 +130,10 @@
     },
     {
       "id": "farmersdelight:ratatouille",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:rice_roll_medley_block",
       "required": false
     },
     {
@@ -97,7 +173,43 @@
       "required": false
     },
     {
+      "id": "farmersdelight:stuffed_pumpkin",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:stuffed_pumpkin_block",
+      "required": false
+    },
+    {
       "id": "farmersdelight:vegetable_noodles",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:cabbage_wrapped_elder_guardian",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:cooked_stuffed_cod",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:elder_guardian_roll",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:fugu_roll",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:honey_fried_kelp",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:squid_rings",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:stuffed_cod",
       "required": false
     },
     {
@@ -185,7 +297,7 @@
       "required": false
     },
     {
-      "id": "simplefarming:stuffed_corn_zuccini",
+      "id": "simplefarming:stuffed_corn_zucchini",
       "required": false
     },
     {
