@@ -7,6 +7,10 @@
       "required": false
     },
     {
+      "id": "farmersdelight:horse_feed",
+      "required": false
+    },
+    {
       "id": "farmersdelight:rice",
       "required": false
     },
