@@ -39,6 +39,7 @@ public class NJSServerConfig {
     public static final ForgeConfigSpec.IntValue COOKED_SEAFOOD_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue NUT_SPOILAGE_TIME;
     public static final ForgeConfigSpec.IntValue DRY_PASTRY_SPOILAGE_TIME;
+    public static final ForgeConfigSpec.IntValue DRINK_SPOILAGE_TIME;
 
     public static final ForgeConfigSpec.DoubleValue FOOD_SPOILAGE_IN_INVENTORY_MULTIPLIER;
     public static final ForgeConfigSpec.DoubleValue FOOD_SPOILAGE_IN_STORAGE_MULTIPLIER;
@@ -242,6 +243,11 @@ public class NJSServerConfig {
                 .translation("config.notjustspoiled.dry_pastry_spoilage_time")
                 .worldRestart()
                 .defineInRange("dryPastrySpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
+
+        DRINK_SPOILAGE_TIME = BUILDER
+                .translation("config.notjustspoiled.drink_spoilage_time")
+                .worldRestart()
+                .defineInRange("drinkSpoilageTime", 24000, MIN_FOOD_SPOILAGE_TIME, MAX_FOOD_SPOILAGE_TIME);
         BUILDER.pop();
 
 
