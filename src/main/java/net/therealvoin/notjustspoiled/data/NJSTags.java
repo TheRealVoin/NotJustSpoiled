@@ -44,6 +44,7 @@ public class NJSTags {
         public static final TagKey<Item> NUTS = createTag("nuts");
         public static final TagKey<Item> DRY_PASTRY = createTag("dry_pastry");
         public static final TagKey<Item> DISHES = createTag("dishes");
+        public static final TagKey<Item> DRINKS = createTag("drinks");
 
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(NotJustSpoiled.MOD_ID, name));
