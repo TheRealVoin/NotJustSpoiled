@@ -7,6 +7,10 @@
     {
       "id": "farmersdelight:raw_pasta",
       "required": false
+    },
+    {
+      "id": "simplefarming:noodles",
+      "required": false
     }
   ]
 }
