@@ -5,7 +5,23 @@
       "required": false
     },
     {
+      "id": "ends_delight:assorted_salad",
+      "required": false
+    },
+    {
+      "id": "ends_delight:end_mixed_salad",
+      "required": false
+    },
+    {
       "id": "farmersdelight:fruit_salad",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:gleaming_salad",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:gleaming_salad_block",
       "required": false
     },
     {
@@ -14,6 +30,10 @@
     },
     {
       "id": "farmersdelight:nether_salad",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:seagrass_salad",
       "required": false
     },
     {

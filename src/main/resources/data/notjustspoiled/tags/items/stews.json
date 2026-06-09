@@ -20,6 +20,18 @@
       "required": false
     },
     {
+      "id": "ends_delight:dragon_meat_stew",
+      "required": false
+    },
+    {
+      "id": "ends_delight:dragon_meat_stew_block",
+      "required": false
+    },
+    {
+      "id": "ends_delight:enderman_gristle_stew",
+      "required": false
+    },
+    {
       "id": "farmersdelight:baked_cod_stew",
       "required": false
     },
@@ -29,6 +41,10 @@
     },
     {
       "id": "farmersdelight:fish_stew",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:braised_sea_pickle",
       "required": false
     },
     {
