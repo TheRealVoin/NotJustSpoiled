@@ -38,6 +38,10 @@
     {
       "id": "farmersdelight:salmon_slice",
       "required": false
+    },
+    {
+      "id": "oceansdelight:fugu_slice",
+      "required": false
     }
   ]
 }

@@ -1,6 +1,7 @@
 {
   "values": [
     "minecraft:kelp",
+    "minecraft:seagrass",
     {
       "id": "alexscaves:mussel",
       "required": false
@@ -11,6 +12,34 @@
     },
     {
       "id": "alexsmobs:lobster_tail",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:cut_tentacles",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:elder_guardian_slab",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:elder_guardian_slice",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:guardian",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:guardian_tail",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:tentacle_on_a_stick",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:tentacles",
       "required": false
     }
   ]
