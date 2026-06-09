@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.mixin.mods.genetic_animals;
+package net.therealvoin.notjustspoiled.mixin.mods.eanimod;
 
 import mokiyoki.enhancedanimals.tileentity.ChickenNestTileEntity;
 import net.minecraft.world.item.ItemStack;
