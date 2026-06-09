@@ -40,7 +40,8 @@ public enum FoodCategory {
     RAW_SEAFOOD(NJSServerConfig.RAW_SEAFOOD_SPOILAGE_TIME, NJSTags.Items.RAW_SEAFOODS),
     COOKED_SEAFOOD(NJSServerConfig.COOKED_SEAFOOD_SPOILAGE_TIME, NJSTags.Items.COOKED_SEAFOODS),
     NUT(NJSServerConfig.NUT_SPOILAGE_TIME, NJSTags.Items.NUTS),
-    DRY_PASTRY(NJSServerConfig.DRY_PASTRY_SPOILAGE_TIME, NJSTags.Items.DRY_PASTRY);
+    DRY_PASTRY(NJSServerConfig.DRY_PASTRY_SPOILAGE_TIME, NJSTags.Items.DRY_PASTRY),
+    DRINK(NJSServerConfig.DRINK_SPOILAGE_TIME, NJSTags.Items.DRINKS);
 
     private final ForgeConfigSpec.IntValue spoilageTime;
     private final TagKey<Item> tagKey;
