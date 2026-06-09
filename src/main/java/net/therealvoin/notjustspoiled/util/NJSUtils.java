@@ -62,9 +62,9 @@ public class NJSUtils {
         }
 
         copyFrom.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage1 -> {
-            FoodSpoilageManager.updateFoodLifetime(foodSpoilage1, serverLevel);
-
             copyTo.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage2 -> {
+                FoodSpoilageManager.updateFoodLifetime(foodSpoilage1, serverLevel);
+
                 double spoilagePercent = foodSpoilage1.getFoodLifetime() / FoodCategory.getFoodCategory(copyFrom).getSpoilageTime();
                 foodSpoilage2.setFoodLifetime(spoilagePercent * FoodCategory.getFoodCategory(copyTo).getSpoilageTime());
                 foodSpoilage2.setEnvironment(foodSpoilage1.getEnvironment());
