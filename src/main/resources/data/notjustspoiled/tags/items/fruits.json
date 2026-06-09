@@ -1,6 +1,7 @@
 {
   "values": [
     "minecraft:apple",
+    "minecraft:melon",
     "minecraft:melon_slice",
     {
       "id": "alexscaves:caramel_apple",
@@ -12,6 +13,10 @@
     },
     {
       "id": "alexsmobs:banana",
+      "required": false
+    },
+    {
+      "id": "ends_delight:chorus_succulent",
       "required": false
     },
     {

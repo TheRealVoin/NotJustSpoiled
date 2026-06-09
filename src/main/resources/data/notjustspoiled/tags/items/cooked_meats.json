@@ -46,6 +46,30 @@
       "required": false
     },
     {
+      "id": "ends_delight:ender_sausage",
+      "required": false
+    },
+    {
+      "id": "ends_delight:roasted_dragon_meat",
+      "required": false
+    },
+    {
+      "id": "ends_delight:roasted_dragon_meat_cuts",
+      "required": false
+    },
+    {
+      "id": "ends_delight:roasted_shulker_meat",
+      "required": false
+    },
+    {
+      "id": "ends_delight:roasted_shulker_meat_slice",
+      "required": false
+    },
+    {
+      "id": "ends_delight:smoked_dragon_leg",
+      "required": false
+    },
+    {
       "id": "farmersdelight:beef_patty",
       "required": false
     },

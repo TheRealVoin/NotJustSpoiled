@@ -1,6 +1,10 @@
 {
   "values": [
     {
+      "id": "ends_delight:chorus_sauce",
+      "required": false
+    },
+    {
       "id": "farmersdelight:tomato_sauce",
       "required": false
     }

@@ -106,6 +106,10 @@
       "required": false
     },
     {
+      "id": "ends_delight:chorus_cookie",
+      "required": false
+    },
+    {
       "id": "farmersdelight:honey_cookie",
       "required": false
     },

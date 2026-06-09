@@ -5,6 +5,10 @@
       "required": false
     },
     {
+      "id": "ends_delight:fried_dragon_egg",
+      "required": false
+    },
+    {
       "id": "farmersdelight:fried_egg",
       "required": false
     },
