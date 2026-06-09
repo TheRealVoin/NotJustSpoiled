@@ -32,12 +32,15 @@
     "mods.alexsmobs.BlockCapsidMixin",
     "mods.alexsmobs.MantisShrimpAIFryRiceMixin",
     "mods.alexsmobs.TileEntityCapsidMixin",
+    "mods.eanimod.ChickenNestTileEntityMixin",
+    "mods.ends_delight.EndStoveBlockEntityMixin",
+    "mods.ends_delight.EndStoveBlockMixin",
     "mods.farmersdelight.AbstractStoveBlockEntityMixin",
     "mods.farmersdelight.AbstractStoveBlockMixin",
     "mods.farmersdelight.CuttingBoardBlockEntityMixin",
+    "mods.farmersdelight.FeastBlockMixin",
     "mods.farmersdelight.SkilletBlockEntityMixin",
-    "mods.farmersdelight.SkilletItemMixin",
-    "mods.genetic_animals.ChickenNestTileEntityMixin"
+    "mods.farmersdelight.SkilletItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1
