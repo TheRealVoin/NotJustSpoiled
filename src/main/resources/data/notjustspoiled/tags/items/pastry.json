@@ -7,6 +7,22 @@
       "required": false
     },
     {
+      "id": "ends_delight:chorus_flower_pie",
+      "required": false
+    },
+    {
+      "id": "ends_delight:chorus_fruit_pie",
+      "required": false
+    },
+    {
+      "id": "ends_delight:chorus_fruit_pie_slice",
+      "required": false
+    },
+    {
+      "id": "ends_delight:stuffed_rice_cake",
+      "required": false
+    },
+    {
       "id": "farmersdelight:apple_pie",
       "required": false
     },
@@ -28,6 +44,10 @@
     },
     {
       "id": "farmersdelight:pie_crust",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:pumpkin_pie_slice",
       "required": false
     },
     {

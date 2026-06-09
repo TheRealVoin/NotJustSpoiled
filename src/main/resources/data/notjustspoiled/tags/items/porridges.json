@@ -1,6 +1,10 @@
 {
   "values": [
     {
+      "id": "ends_delight:ender_congee",
+      "required": false
+    },
+    {
       "id": "farmersdelight:cooked_rice",
       "required": false
     },

@@ -46,6 +46,38 @@
       "required": false
     },
     {
+      "id": "ends_delight:dragon_leg",
+      "required": false
+    },
+    {
+      "id": "ends_delight:enderman_gristle",
+      "required": false
+    },
+    {
+      "id": "ends_delight:raw_dragon_meat",
+      "required": false
+    },
+    {
+      "id": "ends_delight:raw_dragon_meat_cuts",
+      "required": false
+    },
+    {
+      "id": "ends_delight:raw_ender_mite_meat",
+      "required": false
+    },
+    {
+      "id": "ends_delight:raw_ender_sausage",
+      "required": false
+    },
+    {
+      "id": "ends_delight:shulker_meat",
+      "required": false
+    },
+    {
+      "id": "ends_delight:shulker_meat_slice",
+      "required": false
+    },
+    {
       "id": "farmersdelight:bacon",
       "required": false
     },

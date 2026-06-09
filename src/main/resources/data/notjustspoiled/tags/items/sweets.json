@@ -100,11 +100,6 @@
       "id": "alexscaves:gummy_ring_yellow",
       "required": false
     },
-
-    {
-      "id": "alexscaves:hot_chocolate_bottle",
-      "required": false
-    },
     {
       "id": "alexscaves:jelly_bean",
       "required": false
@@ -127,14 +122,6 @@
     },
     {
       "id": "alexscaves:lollipop_bunch",
-      "required": false
-    },
-    {
-      "id": "alexscaves:peppermint_powder",
-      "required": false
-    },
-    {
-      "id": "alexscaves:purple_soda_bottle",
       "required": false
     },
     {
@@ -251,6 +238,14 @@
     },
     {
       "id": "alexscaves:sweetish_fish_yellow",
+      "required": false
+    },
+    {
+      "id": "ends_delight:chorus_fruit_popsicle",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:melon_popsicle",
       "required": false
     },
     {
