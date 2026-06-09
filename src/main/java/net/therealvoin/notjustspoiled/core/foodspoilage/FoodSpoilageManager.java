@@ -27,8 +27,6 @@ public class FoodSpoilageManager {
                 return;
             }
 
-            System.out.println(itemStack.serializeNBT());
-
             updateFoodLifetime(foodSpoilage, serverLevel);
             foodSpoilage.setEnvironment(newFoodEnvironment);
 
@@ -44,7 +42,7 @@ public class FoodSpoilageManager {
     public static void updateFoodLifetime(IFoodSpoilage foodSpoilage, ServerLevel serverLevel) {
         long gameTime = serverLevel.getGameTime();
 
-        if (foodSpoilage.getLastUpdateTime() == 0) {
+        if (!isInitialized(foodSpoilage)) {
             foodSpoilage.setLastUpdateTime(gameTime);
             return;
         }
@@ -140,8 +138,18 @@ public class FoodSpoilageManager {
             return FoodStatus.STALE;
         } else if (foodLifetime < spoilageTime) {
             return FoodStatus.HALF_SPOILED;
-        } else {
+        } else if (foodLifetime >= spoilageTime){
             return FoodStatus.SPOILED;
+        } else {
+            return null;
         }
+    }
+
+    public static boolean isInitialized(ItemStack itemStack) {
+        return NJSUtils.getCapability(itemStack).getLastUpdateTime() != 0;
+    }
+
+    public static boolean isInitialized(IFoodSpoilage foodSpoilage) {
+        return foodSpoilage.getLastUpdateTime() != 0;
     }
 }
