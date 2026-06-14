@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.core.foodspoilage;
+package net.therealvoin.notjustspoiled.common.foodspoilage;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -7,7 +7,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.therealvoin.notjustspoiled.core.config.NJSServerConfig;
+import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
 
 import java.util.List;
 
@@ -66,6 +66,10 @@ public enum FoodStatus {
 
     public Component getTranslation() {
         return Component.translatable("tooltip.notjustspoiled.status." + this.translationKey).withStyle(this.color);
+    }
+
+    public ChatFormatting getColor() {
+        return this.color;
     }
 
     public double getChanceToAppearInStorage() {

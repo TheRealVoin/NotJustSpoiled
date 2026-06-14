@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.core.foodspoilage.capability.blockfoodspoilage;
+package net.therealvoin.notjustspoiled.common.foodspoilage.capability.blockfoodspoilage;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

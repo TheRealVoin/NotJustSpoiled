@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.init;
+package net.therealvoin.notjustspoiled.common.init;
 
 import com.mojang.serialization.Codec;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
@@ -6,10 +6,10 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.therealvoin.notjustspoiled.NotJustSpoiled;
-import net.therealvoin.notjustspoiled.data.loot.SetFreshOrStaleStatus;
-import net.therealvoin.notjustspoiled.data.loot.SetFreshStatus;
-import net.therealvoin.notjustspoiled.data.loot.SetRandomStatus;
-import net.therealvoin.notjustspoiled.data.loot.SetSpoiledStatus;
+import net.therealvoin.notjustspoiled.common.data.loot.SetFreshOrStaleStatus;
+import net.therealvoin.notjustspoiled.common.data.loot.SetFreshStatus;
+import net.therealvoin.notjustspoiled.common.data.loot.SetRandomStatus;
+import net.therealvoin.notjustspoiled.common.data.loot.SetSpoiledStatus;
 
 public class NJSGlobalLootModifiers {
     public static final DeferredRegister<Codec<? extends IGlobalLootModifier>> GLOBAL_LOOT_MODIFIERS_DEFERRED_REGISTER;

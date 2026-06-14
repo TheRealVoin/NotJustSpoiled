@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.core.foodspoilage;
+package net.therealvoin.notjustspoiled.common.foodspoilage;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -6,10 +6,10 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.therealvoin.notjustspoiled.core.config.NJSServerConfig;
-import net.therealvoin.notjustspoiled.core.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
-import net.therealvoin.notjustspoiled.core.foodspoilage.capability.foodspoilage.IFoodSpoilage;
-import net.therealvoin.notjustspoiled.util.NJSUtils;
+import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
+import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
+import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.IFoodSpoilage;
+import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 
 import java.util.List;
 
@@ -51,7 +51,7 @@ public class FoodSpoilageManager {
             return;
         }
 
-        foodSpoilage.addFoodLifetime((gameTime - foodSpoilage.getLastUpdateTime()) * foodSpoilage.getEnvironment().getFoodSpoilageMultiplier());
+        foodSpoilage.setFoodLifetime(calculateActualFoodLifetime(gameTime, foodSpoilage.getLastUpdateTime(), foodSpoilage.getEnvironment().getFoodSpoilageMultiplier(), foodSpoilage.getFoodLifetime()));
         foodSpoilage.setLastUpdateTime(gameTime);
 
         if (NJSServerConfig.SHOW_DEBUG_MESSAGE.get()) {
@@ -64,11 +64,11 @@ public class FoodSpoilageManager {
 
     public static FoodStatus getFoodStatus(ItemStack itemStack, Level level) {
         IFoodSpoilage foodSpoilage = NJSUtils.getCapability(itemStack);
-        if (foodSpoilage == null || foodSpoilage.getLastUpdateTime() == 0) {
+        if (!isInitialized(foodSpoilage)) {
             return null;
         }
 
-        double foodLifetime = (level.getGameTime() - foodSpoilage.getLastUpdateTime()) * foodSpoilage.getEnvironment().getFoodSpoilageMultiplier() + foodSpoilage.getFoodLifetime();
+        double foodLifetime = calculateActualFoodLifetime(level.getGameTime(), foodSpoilage.getLastUpdateTime(), foodSpoilage.getEnvironment().getFoodSpoilageMultiplier(), foodSpoilage.getFoodLifetime());
         return getFoodStatus(foodLifetime, FoodCategory.getFoodCategory(itemStack).getSpoilageTime());
     }
 
@@ -138,18 +138,24 @@ public class FoodSpoilageManager {
             return FoodStatus.STALE;
         } else if (foodLifetime < spoilageTime) {
             return FoodStatus.HALF_SPOILED;
-        } else if (foodLifetime >= spoilageTime){
-            return FoodStatus.SPOILED;
         } else {
-            return null;
+            return FoodStatus.SPOILED;
         }
     }
 
+    public static double calculateActualFoodLifetime(long gameTime, long lastUpdateTime, double spoilageMultiplier, double foodLifetime) {
+        return (gameTime - lastUpdateTime) * spoilageMultiplier + foodLifetime;
+    }
+
     public static boolean isInitialized(ItemStack itemStack) {
-        return NJSUtils.getCapability(itemStack).getLastUpdateTime() != 0;
+        return isInitialized(NJSUtils.getCapability(itemStack));
     }
 
     public static boolean isInitialized(IFoodSpoilage foodSpoilage) {
-        return foodSpoilage.getLastUpdateTime() != 0;
+        return foodSpoilage != null && foodSpoilage.getLastUpdateTime() != 0;
+    }
+
+    public static boolean isInitialized(long lastUpdateTime) {
+        return lastUpdateTime != 0;
     }
 }

@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.util;
+package net.therealvoin.notjustspoiled.common.util;
 
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
 

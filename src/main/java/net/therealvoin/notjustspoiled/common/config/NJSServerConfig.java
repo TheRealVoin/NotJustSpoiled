@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.core.config;
+package net.therealvoin.notjustspoiled.common.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 

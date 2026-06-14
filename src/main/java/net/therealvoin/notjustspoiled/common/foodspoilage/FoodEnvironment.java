@@ -1,7 +1,7 @@
-package net.therealvoin.notjustspoiled.core.foodspoilage;
+package net.therealvoin.notjustspoiled.common.foodspoilage;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.therealvoin.notjustspoiled.core.config.NJSServerConfig;
+import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
 
 public enum FoodEnvironment {
     NONE(null),

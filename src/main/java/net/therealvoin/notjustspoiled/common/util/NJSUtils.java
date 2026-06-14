@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.util;
+package net.therealvoin.notjustspoiled.common.util;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.ClickEvent;
@@ -17,11 +17,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
-import net.therealvoin.notjustspoiled.core.config.NJSServerConfig;
-import net.therealvoin.notjustspoiled.core.foodspoilage.FoodCategory;
-import net.therealvoin.notjustspoiled.core.foodspoilage.FoodSpoilageManager;
-import net.therealvoin.notjustspoiled.core.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
-import net.therealvoin.notjustspoiled.core.foodspoilage.capability.foodspoilage.IFoodSpoilage;
+import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodCategory;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
+import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
+import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.IFoodSpoilage;
 
 import java.util.List;
 

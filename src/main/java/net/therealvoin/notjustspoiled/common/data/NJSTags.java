@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.data;
+package net.therealvoin.notjustspoiled.common.data;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;

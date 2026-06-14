@@ -1,10 +1,10 @@
-package net.therealvoin.notjustspoiled.util;
+package net.therealvoin.notjustspoiled.common.util;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.therealvoin.notjustspoiled.data.NJSTags;
-import net.therealvoin.notjustspoiled.core.foodspoilage.FoodCategory;
+import net.therealvoin.notjustspoiled.common.data.NJSTags;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodCategory;
 
 import java.util.List;
 

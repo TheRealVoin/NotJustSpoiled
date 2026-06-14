@@ -1,11 +1,11 @@
-package net.therealvoin.notjustspoiled.core.foodspoilage;
+package net.therealvoin.notjustspoiled.common.foodspoilage;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.therealvoin.notjustspoiled.data.NJSTags;
-import net.therealvoin.notjustspoiled.core.config.NJSServerConfig;
+import net.therealvoin.notjustspoiled.common.data.NJSTags;
+import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
 
 public enum FoodCategory {
     RAW_FISH(NJSServerConfig.RAW_FISH_SPOILAGE_TIME, NJSTags.Items.RAW_FISHES),

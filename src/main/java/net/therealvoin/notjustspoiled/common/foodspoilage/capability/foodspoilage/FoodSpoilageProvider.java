@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.core.foodspoilage.capability.foodspoilage;
+package net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -7,7 +7,7 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.LazyOptional;
-import net.therealvoin.notjustspoiled.core.foodspoilage.FoodEnvironment;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -41,11 +41,6 @@ public class FoodSpoilageProvider implements IFoodSpoilage, ICapabilitySerializa
     @Override
     public double getFoodLifetime() {
         return this.foodLifetime;
-    }
-
-    @Override
-    public void addFoodLifetime(double foodLifetimeToAdd) {
-        this.foodLifetime = this.foodLifetime + foodLifetimeToAdd;
     }
 
     @Override
