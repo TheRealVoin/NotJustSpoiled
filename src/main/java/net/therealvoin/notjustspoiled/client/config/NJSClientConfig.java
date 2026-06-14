@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.core.config;
+package net.therealvoin.notjustspoiled.client.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 
@@ -8,21 +8,28 @@ public class NJSClientConfig {
 
     public static final ForgeConfigSpec.BooleanValue SHOW_CATEGORY_IN_TOOLTIP;
     public static final ForgeConfigSpec.BooleanValue SHOW_ADDITIONAL_INFO;
+    public static final ForgeConfigSpec.BooleanValue FOOD_OVERLAY;
 
     static {
         BUILDER = new ForgeConfigSpec.Builder();
 
         BUILDER.translation("config.notjustspoiled.category.debug").push("Debug");
-        SHOW_CATEGORY_IN_TOOLTIP = BUILDER
-                .comment("Shows food category in tooltip. If food doesn't have category, then \"null\" will be displayed.")
-                .translation("config.notjustspoiled.debug.show_food_category")
-                .define("showCategoryInTooltip", false);
-
         SHOW_ADDITIONAL_INFO = BUILDER
                 .comment("Shows additional food info in tooltip (\"lastUpdateTime\", \"foodLifeTime\" and \"environment\").")
                 .translation("config.notjustspoiled.debug.show_additional_info")
                 .define("showAdditionalInfo", false);
+        BUILDER.pop();
 
+        BUILDER.translation("config.notjustspoiled.category.tooltip").push("Tooltip");
+        SHOW_CATEGORY_IN_TOOLTIP = BUILDER
+                .comment("Shows food category in tooltip. If food doesn't have category, then \"null\" will be displayed.")
+                .translation("config.notjustspoiled.tooltip.show_food_category")
+                .define("showCategoryInTooltip", false);
+
+        FOOD_OVERLAY = BUILDER
+                .comment("h")
+                .translation("config.notjustspoiled.tooltip.food_overlay")
+                .define("foodOverlay", true);
         BUILDER.pop();
 
         CLIENT_CONFIG = BUILDER.build();
