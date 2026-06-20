@@ -3,7 +3,7 @@ package net.therealvoin.notjustspoiled.mixin.forge;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
-import net.therealvoin.notjustspoiled.core.foodspoilage.FoodSpoilageManager;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
