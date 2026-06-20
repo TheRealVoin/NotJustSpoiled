@@ -11,17 +11,17 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
-import net.therealvoin.notjustspoiled.core.foodspoilage.FoodEnvironment;
-import net.therealvoin.notjustspoiled.core.foodspoilage.FoodSpoilageManager;
-import net.therealvoin.notjustspoiled.core.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
-import net.therealvoin.notjustspoiled.util.NJSUtils;
-import net.therealvoin.notjustspoiled.util.SimpleContainerAccessor;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
+import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
+import net.therealvoin.notjustspoiled.common.util.NJSUtils;
+import net.therealvoin.notjustspoiled.common.util.SimpleContainerAccessor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin({RandomizableContainerBlockEntity.class, ChestBoat.class, AbstractMinecartContainer.class, SimpleContainer.class, AbstractFurnaceBlockEntity.class})
+@Mixin({RandomizableContainerBlockEntity.class, ChestBoat.class, AbstractMinecartContainer.class, SimpleContainer.class, AbstractFurnaceBlockEntity.class, Inventory.class})
 public abstract class SetItemMixin {
     @Inject(method = "setItem", at = @At("TAIL"))
     private void changeFoodEnvironmentWhenPlacedInContainer(int index, ItemStack itemStack, CallbackInfo ci) {
