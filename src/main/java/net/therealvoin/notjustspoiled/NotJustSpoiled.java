@@ -4,9 +4,9 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.therealvoin.notjustspoiled.core.config.NJSClientConfig;
-import net.therealvoin.notjustspoiled.core.config.NJSServerConfig;
-import net.therealvoin.notjustspoiled.init.NJSGlobalLootModifiers;
+import net.therealvoin.notjustspoiled.client.config.NJSClientConfig;
+import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
+import net.therealvoin.notjustspoiled.common.init.NJSGlobalLootModifiers;
 import net.therealvoin.notjustspoiled.integration.AppleSkinIntegration;
 
 @Mod(NotJustSpoiled.MOD_ID)
