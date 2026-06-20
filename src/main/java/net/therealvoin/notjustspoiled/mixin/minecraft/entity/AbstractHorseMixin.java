@@ -2,7 +2,7 @@ package net.therealvoin.notjustspoiled.mixin.minecraft.entity;
 
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
-import net.therealvoin.notjustspoiled.util.SimpleContainerAccessor;
+import net.therealvoin.notjustspoiled.common.util.SimpleContainerAccessor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;

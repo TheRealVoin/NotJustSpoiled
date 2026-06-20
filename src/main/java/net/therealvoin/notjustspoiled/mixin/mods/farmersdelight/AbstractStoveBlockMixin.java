@@ -1,15 +1,14 @@
 package net.therealvoin.notjustspoiled.mixin.mods.farmersdelight;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
-import net.therealvoin.notjustspoiled.core.foodspoilage.FoodEnvironment;
-import net.therealvoin.notjustspoiled.core.foodspoilage.FoodSpoilageManager;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;

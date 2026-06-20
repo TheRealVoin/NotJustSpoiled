@@ -5,8 +5,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModList;
-import net.therealvoin.notjustspoiled.core.foodspoilage.FoodSpoilageManager;
-import net.therealvoin.notjustspoiled.core.foodspoilage.FoodStatus;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodStatus;
 import squeek.appleskin.api.event.FoodValuesEvent;
 import squeek.appleskin.api.food.FoodValues;
 
