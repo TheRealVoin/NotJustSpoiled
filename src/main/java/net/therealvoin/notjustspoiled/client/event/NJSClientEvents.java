@@ -60,13 +60,6 @@ public class NJSClientEvents {
             }
 
             FoodStatus currentFoodStatus = FoodSpoilageManager.getFoodStatus(tooltipItem, event.getEntity().level());
-
-            tooltipItem.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
-                LOGGER.info("lastUpdateTime = {}", foodSpoilage.getLastUpdateTime());
-                LOGGER.info("foodLifetime = {}", foodSpoilage.getFoodLifetime());
-                LOGGER.info("environment = {}", foodSpoilage.getEnvironment());
-            });
-
             if (currentFoodStatus == null) {
                 return;
             }
