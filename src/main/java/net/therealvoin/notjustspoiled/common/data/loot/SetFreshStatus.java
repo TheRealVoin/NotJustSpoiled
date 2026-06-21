@@ -16,7 +16,7 @@ public class SetFreshStatus extends LootModifier {
     public static final Codec<SetFreshStatus> CODEC =
             RecordCodecBuilder.create(instance -> codecStart(instance).apply(instance, SetFreshStatus::new));
 
-    protected SetFreshStatus(LootItemCondition[] conditionsIn) {
+    public SetFreshStatus(LootItemCondition[] conditionsIn) {
         super(conditionsIn);
     }
 

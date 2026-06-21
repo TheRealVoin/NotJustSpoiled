@@ -17,7 +17,7 @@ public class SetSpoiledStatus extends LootModifier {
     public static final Codec<SetSpoiledStatus> CODEC =
             RecordCodecBuilder.create(instance -> codecStart(instance).apply(instance, SetSpoiledStatus::new));
 
-    protected SetSpoiledStatus(LootItemCondition[] conditionsIn) {
+    public SetSpoiledStatus(LootItemCondition[] conditionsIn) {
         super(conditionsIn);
     }
 

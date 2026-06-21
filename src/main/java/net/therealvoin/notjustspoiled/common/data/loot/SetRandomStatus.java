@@ -18,7 +18,7 @@ public class SetRandomStatus extends LootModifier {
     public static final Codec<SetRandomStatus> CODEC =
             RecordCodecBuilder.create(instance -> codecStart(instance).apply(instance, SetRandomStatus::new));
 
-    protected SetRandomStatus(LootItemCondition[] conditionsIn) {
+    public SetRandomStatus(LootItemCondition[] conditionsIn) {
         super(conditionsIn);
     }
 
