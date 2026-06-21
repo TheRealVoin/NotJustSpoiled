@@ -1,6 +1,10 @@
 package net.therealvoin.notjustspoiled.common.event;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -13,6 +17,8 @@ import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.ItemStackedOnOtherEvent;
@@ -25,6 +31,8 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.therealvoin.notjustspoiled.NotJustSpoiled;
 import net.therealvoin.notjustspoiled.common.config.FoodCraftingMode;
 import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
+import net.therealvoin.notjustspoiled.common.data.datagen.NJSGlobalLootModifierProvider;
+import net.therealvoin.notjustspoiled.common.data.datagen.NJSItemTagsProvider;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodCategory;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
@@ -34,6 +42,7 @@ import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilag
 import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 
 import java.nio.file.Path;
+import java.util.concurrent.CompletableFuture;
 
 public class NJSCommonEvents {
     @Mod.EventBusSubscriber(modid = NotJustSpoiled.MOD_ID)
@@ -190,6 +199,17 @@ public class NJSCommonEvents {
         @SubscribeEvent
         public static void onConfigReload(ModConfigEvent.Reloading event) {
             NJSUtils.validateChances(event);
+        }
+
+        @SubscribeEvent
+        public static void generateData(GatherDataEvent event) {
+            DataGenerator generator = event.getGenerator();
+            PackOutput packOutput = generator.getPackOutput();
+            ExistingFileHelper helper = event.getExistingFileHelper();
+            CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+
+            generator.addProvider(event.includeServer(), new NJSItemTagsProvider(packOutput, lookupProvider, CompletableFuture.completedFuture(TagsProvider.TagLookup.empty()), helper));
+            generator.addProvider(event.includeServer(), new NJSGlobalLootModifierProvider(packOutput));
         }
 
         // Datapack event
