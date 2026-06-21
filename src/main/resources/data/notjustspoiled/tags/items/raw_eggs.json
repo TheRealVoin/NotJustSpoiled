@@ -1,9 +1,0 @@
-{
-  "values": [
-    "#forge:eggs",
-    {
-      "id": "ends_delight:liquid_dragon_egg",
-      "required": false
-    }
-  ]
-}
