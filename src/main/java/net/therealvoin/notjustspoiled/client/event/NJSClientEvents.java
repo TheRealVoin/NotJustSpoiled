@@ -1,6 +1,5 @@
 package net.therealvoin.notjustspoiled.client.event;
 
-import com.mojang.logging.LogUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -18,16 +17,12 @@ import net.therealvoin.notjustspoiled.client.config.NJSClientConfig;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodCategory;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodStatus;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.IFoodSpoilage;
+import net.therealvoin.notjustspoiled.common.foodspoilage.capability.IFoodSpoilage;
 import net.therealvoin.notjustspoiled.common.util.NJSUtils;
-import org.slf4j.Logger;
 
 import java.util.List;
 
 public class NJSClientEvents {
-    public static final Logger LOGGER = LogUtils.getLogger();
-
     @Mod.EventBusSubscriber(modid = NotJustSpoiled.MOD_ID, value = Dist.CLIENT)
     public static class ForgeBus {
         private static final Component STATUS = Component.translatable("tooltip.notjustspoiled.status").append(": ").withStyle(ChatFormatting.GRAY);
