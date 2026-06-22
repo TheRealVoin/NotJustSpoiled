@@ -11,7 +11,6 @@ import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -23,14 +22,14 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.therealvoin.notjustspoiled.NotJustSpoiled;
+import net.therealvoin.notjustspoiled.common.foodspoilage.BlockFoodSpoilage;
 import net.therealvoin.notjustspoiled.common.config.FoodCraftingMode;
 import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodCategory;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.blockfoodspoilage.BlockFoodSpoilageProvider;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.IFoodSpoilage;
+import net.therealvoin.notjustspoiled.common.foodspoilage.capability.FoodSpoilageProvider;
+import net.therealvoin.notjustspoiled.common.foodspoilage.capability.IFoodSpoilage;
 import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 
 import java.nio.file.Path;
@@ -39,33 +38,32 @@ public class NJSCommonEvents {
     @Mod.EventBusSubscriber(modid = NotJustSpoiled.MOD_ID)
     public static class ForgeBus {
         private static final ResourceLocation FOOD_SPOILAGE = ResourceLocation.fromNamespaceAndPath(NotJustSpoiled.MOD_ID, "food_spoilage");
-        private static final ResourceLocation BLOCK_FOOD_SPOILAGE = ResourceLocation.fromNamespaceAndPath(NotJustSpoiled.MOD_ID, "block_food_spoilage");
 
         // Food spoilage events
         @SubscribeEvent
         public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
-            if (event.getEntity() instanceof ItemEntity itemEntity) {
-                if (!(event.getLevel() instanceof ServerLevel serverLevel)) {
-                    return;
-                }
-
-                ItemStack itemEntityStack = itemEntity.getItem();
-
-                serverLevel.getCapability(BlockFoodSpoilageProvider.BLOCK_FOOD_SPOILAGE).ifPresent(blockFoodSpoilage -> {
-                    BlockPos blockPos = itemEntity.blockPosition();
-                    ItemStack itemStack = blockFoodSpoilage.getLastItemStackByPos(blockPos);
-                    if (itemStack.isEmpty()) {
-                        return;
-                    }
-
-                    NJSUtils.copyCapability(itemStack, itemEntityStack, serverLevel);
-                    if (itemEntity.level().getBlockState(blockPos).getBlock() == Blocks.AIR) {
-                        blockFoodSpoilage.removeItemStackPos(blockPos, itemStack);
-                    }
-                });
-
-                FoodSpoilageManager.changeEnvironmentAndUpdate(itemEntityStack, FoodEnvironment.GROUND, serverLevel);
+            if (!(event.getLevel() instanceof ServerLevel serverLevel)) {
+                return;
             }
+
+            if (!(event.getEntity() instanceof ItemEntity itemEntity)) {
+                return;
+            }
+
+            ItemStack itemEntityStack = itemEntity.getItem();
+            BlockFoodSpoilage data = BlockFoodSpoilage.get(serverLevel);
+            BlockPos blockPos = itemEntity.blockPosition();
+            ItemStack itemStack = data.getLastItemStackByPos(blockPos);
+            if (itemStack.isEmpty()) {
+                return;
+            }
+
+            NJSUtils.copyCapability(itemStack, itemEntityStack, serverLevel);
+            if (itemEntity.level().getBlockState(blockPos).getBlock() == Blocks.AIR) {
+                data.removeItemStackPos(blockPos, itemStack);
+            }
+
+            FoodSpoilageManager.changeEnvironmentAndUpdate(itemEntityStack, FoodEnvironment.GROUND, serverLevel);
         }
 
         @SubscribeEvent
@@ -168,13 +166,6 @@ public class NJSCommonEvents {
         public static void attachFoodSpoilageToFood(AttachCapabilitiesEvent<ItemStack> event) {
             if (FoodCategory.getFoodCategory(event.getObject()) != null) {
                 event.addCapability(FOOD_SPOILAGE, new FoodSpoilageProvider());
-            }
-        }
-
-        @SubscribeEvent
-        public static void attachFoodSpoilageToBlock(AttachCapabilitiesEvent<Level> event) {
-            if (event.getObject() instanceof ServerLevel) {
-                event.addCapability(BLOCK_FOOD_SPOILAGE, new BlockFoodSpoilageProvider());
             }
         }
     }
