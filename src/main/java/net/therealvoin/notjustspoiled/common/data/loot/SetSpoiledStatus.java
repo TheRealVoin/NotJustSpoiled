@@ -10,7 +10,7 @@ import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodCategory;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
+import net.therealvoin.notjustspoiled.common.foodspoilage.capability.FoodSpoilageProvider;
 import org.jetbrains.annotations.NotNull;
 
 public class SetSpoiledStatus extends LootModifier {

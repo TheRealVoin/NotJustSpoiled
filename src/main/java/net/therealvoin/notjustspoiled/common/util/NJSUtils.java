@@ -20,8 +20,8 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodCategory;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.IFoodSpoilage;
+import net.therealvoin.notjustspoiled.common.foodspoilage.capability.FoodSpoilageProvider;
+import net.therealvoin.notjustspoiled.common.foodspoilage.capability.IFoodSpoilage;
 
 import java.util.List;
 
