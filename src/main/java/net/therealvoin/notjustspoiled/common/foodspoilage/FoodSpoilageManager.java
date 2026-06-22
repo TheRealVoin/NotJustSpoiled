@@ -2,16 +2,13 @@ package net.therealvoin.notjustspoiled.common.foodspoilage;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.IFoodSpoilage;
+import net.therealvoin.notjustspoiled.common.foodspoilage.capability.FoodSpoilageProvider;
+import net.therealvoin.notjustspoiled.common.foodspoilage.capability.IFoodSpoilage;
 import net.therealvoin.notjustspoiled.common.util.NJSUtils;
-
-import java.util.List;
 
 public class FoodSpoilageManager {
     private static final Component DEBUG1 = Component.translatable("message.notjustspoiled.debug.food_updated").append("\nlastUpdateTime: %d\nfoodLifetime: %f\ngameTime: %d");
@@ -31,10 +28,7 @@ public class FoodSpoilageManager {
             foodSpoilage.setEnvironment(newFoodEnvironment);
 
             if (NJSServerConfig.SHOW_DEBUG_MESSAGE.get()) {
-                List<ServerPlayer> players = serverLevel.getServer().getPlayerList().getPlayers();
-                if (!players.isEmpty()) {
-                    players.get(0).sendSystemMessage(Component.literal(String.format(DEBUG2.getString(), foodSpoilage.getEnvironment().name())));
-                }
+                serverLevel.getServer().getPlayerList().broadcastSystemMessage(Component.literal(String.format(DEBUG2.getString(), foodSpoilage.getEnvironment().name())), false);
             }
         });
     }
@@ -55,10 +49,7 @@ public class FoodSpoilageManager {
         foodSpoilage.setLastUpdateTime(gameTime);
 
         if (NJSServerConfig.SHOW_DEBUG_MESSAGE.get()) {
-            List<ServerPlayer> players = serverLevel.getServer().getPlayerList().getPlayers();
-            if (!players.isEmpty()) {
-                players.get(0).sendSystemMessage(Component.literal(String.format(DEBUG1.getString(), foodSpoilage.getLastUpdateTime(), foodSpoilage.getFoodLifetime(), gameTime)));
-            }
+            serverLevel.getServer().getPlayerList().broadcastSystemMessage(Component.literal(String.format(DEBUG1.getString(), foodSpoilage.getLastUpdateTime(), foodSpoilage.getFoodLifetime(), gameTime)), false);
         }
     }
 
@@ -152,7 +143,7 @@ public class FoodSpoilageManager {
     }
 
     public static boolean isInitialized(IFoodSpoilage foodSpoilage) {
-        return foodSpoilage != null && foodSpoilage.getLastUpdateTime() != 0;
+        return foodSpoilage != null && isInitialized(foodSpoilage.getLastUpdateTime());
     }
 
     public static boolean isInitialized(long lastUpdateTime) {
