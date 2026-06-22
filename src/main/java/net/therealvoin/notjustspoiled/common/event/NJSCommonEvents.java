@@ -201,17 +201,6 @@ public class NJSCommonEvents {
             NJSUtils.validateChances(event);
         }
 
-        @SubscribeEvent
-        public static void generateData(GatherDataEvent event) {
-            DataGenerator generator = event.getGenerator();
-            PackOutput packOutput = generator.getPackOutput();
-            ExistingFileHelper helper = event.getExistingFileHelper();
-            CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
-
-            generator.addProvider(event.includeServer(), new NJSItemTagsProvider(packOutput, lookupProvider, CompletableFuture.completedFuture(TagsProvider.TagLookup.empty()), helper));
-            generator.addProvider(event.includeServer(), new NJSGlobalLootModifierProvider(packOutput));
-        }
-
         // Datapack event
         @SubscribeEvent
         public static void addCustomDatapack(AddPackFindersEvent event) {
