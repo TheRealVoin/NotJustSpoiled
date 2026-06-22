@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage;
+package net.therealvoin.notjustspoiled.common.foodspoilage.capability;
 
 import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;

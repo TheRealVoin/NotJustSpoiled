@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage;
+package net.therealvoin.notjustspoiled.common.foodspoilage.capability;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
