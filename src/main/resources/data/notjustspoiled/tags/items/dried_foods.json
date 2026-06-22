@@ -1,0 +1,21 @@
+{
+  "values": [
+    "minecraft:dried_kelp",
+    {
+      "id": "ends_delight:dried_endermite_meat",
+      "required": false
+    },
+    {
+      "id": "simplefarming:popcorn",
+      "required": false
+    },
+    {
+      "id": "simplefarming:raisins",
+      "required": false
+    },
+    {
+      "id": "simplefarming:trail_mix",
+      "required": false
+    }
+  ]
+}

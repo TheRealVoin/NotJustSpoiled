@@ -1,0 +1,30 @@
+{
+  "values": [
+    "minecraft:cooked_cod",
+    "minecraft:cooked_salmon",
+    {
+      "id": "alexscaves:cooked_lanternfish",
+      "required": false
+    },
+    {
+      "id": "alexscaves:cooked_radgill",
+      "required": false
+    },
+    {
+      "id": "alexscaves:cooked_tripodfish",
+      "required": false
+    },
+    {
+      "id": "alexsmobs:cooked_catfish",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:cooked_cod_slice",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:cooked_salmon_slice",
+      "required": false
+    }
+  ]
+}

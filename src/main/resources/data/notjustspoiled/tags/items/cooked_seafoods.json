@@ -1,0 +1,24 @@
+{
+  "values": [
+    {
+      "id": "alexscaves:cooked_mussel",
+      "required": false
+    },
+    {
+      "id": "alexsmobs:cooked_lobster_tail",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:baked_tentacle_on_a_stick",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:cooked_elder_guardian_slice",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:cooked_guardian_tail",
+      "required": false
+    }
+  ]
+}

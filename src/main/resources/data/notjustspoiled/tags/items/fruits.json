@@ -1,0 +1,67 @@
+{
+  "values": [
+    "minecraft:apple",
+    "minecraft:melon",
+    "minecraft:melon_slice",
+    {
+      "id": "alexscaves:caramel_apple",
+      "required": false
+    },
+    {
+      "id": "alexscaves:darkened_apple",
+      "required": false
+    },
+    {
+      "id": "alexsmobs:banana",
+      "required": false
+    },
+    {
+      "id": "ends_delight:chorus_succulent",
+      "required": false
+    },
+    {
+      "id": "simplefarming:apricot",
+      "required": false
+    },
+    {
+      "id": "simplefarming:banana",
+      "required": false
+    },
+    {
+      "id": "simplefarming:cactus_fruit",
+      "required": false
+    },
+    {
+      "id": "simplefarming:cherries",
+      "required": false
+    },
+    {
+      "id": "simplefarming:grapes",
+      "required": false
+    },
+    {
+      "id": "simplefarming:mango",
+      "required": false
+    },
+    {
+      "id": "simplefarming:olives",
+      "required": false
+    },
+    {
+      "id": "simplefarming:orange",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pear",
+      "required": false
+    },
+    {
+      "id": "simplefarming:plum",
+      "required": false
+    },
+    {
+      "id": "yungscavebiomes:prickly_peach",
+      "required": false
+    }
+  ]
+}

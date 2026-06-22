@@ -1,0 +1,78 @@
+{
+  "values": [
+    "minecraft:hay_block",
+    "minecraft:wheat",
+    {
+      "id": "eanimod:unboundhay_block",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:horse_feed",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:rice",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:rice_bag",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:rice_bale",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:rice_panicle",
+      "required": false
+    },
+    {
+      "id": "simplefarming:barley",
+      "required": false
+    },
+    {
+      "id": "simplefarming:barley_hay_block",
+      "required": false
+    },
+    {
+      "id": "simplefarming:corn",
+      "required": false
+    },
+    {
+      "id": "simplefarming:cumin_seeds",
+      "required": false
+    },
+    {
+      "id": "simplefarming:oat",
+      "required": false
+    },
+    {
+      "id": "simplefarming:oat_hay_block",
+      "required": false
+    },
+    {
+      "id": "simplefarming:quinoa_seeds",
+      "required": false
+    },
+    {
+      "id": "simplefarming:rice",
+      "required": false
+    },
+    {
+      "id": "simplefarming:rice_hay_block",
+      "required": false
+    },
+    {
+      "id": "simplefarming:rye",
+      "required": false
+    },
+    {
+      "id": "simplefarming:rye_hay_block",
+      "required": false
+    },
+    {
+      "id": "simplefarming:sorghum",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "values": [
+    {
+      "id": "ends_delight:ender_congee",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:cooked_rice",
+      "required": false
+    },
+    {
+      "id": "simplefarming:oatmeal",
+      "required": false
+    },
+    {
+      "id": "simplefarming:rice_bowl",
+      "required": false
+    },
+    {
+      "id": "simplefarming:sorghum_porridge",
+      "required": false
+    }
+  ]
+}

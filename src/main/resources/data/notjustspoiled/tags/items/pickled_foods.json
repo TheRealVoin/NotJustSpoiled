@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "alexscaves:slam",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pickle",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pickled_beetroot",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "values": [
+    "minecraft:beetroot_soup",
+    {
+      "id": "alexscaves:primordial_soup",
+      "required": false
+    },
+    {
+      "id": "alexsmobs:sopa_de_macaco",
+      "required": false
+    },
+    {
+      "id": "ends_delight:dragon_breath_and_chorus_soup",
+      "required": false
+    },
+    {
+      "id": "ends_delight:shulker_soup",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:bone_broth",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:chicken_soup",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:noodle_soup",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:onion_soup",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:pumpkin_soup",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:vegetable_soup",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:bowl_of_guardian_soup",
+      "required": false
+    },
+    {
+      "id": "oceansdelight:guardian_soup",
+      "required": false
+    },
+    {
+      "id": "simplefarming:borscht",
+      "required": false
+    },
+    {
+      "id": "simplefarming:broccoli_cheese_soup",
+      "required": false
+    },
+    {
+      "id": "simplefarming:carrot_soup",
+      "required": false
+    },
+    {
+      "id": "simplefarming:chicken_noodle_soup",
+      "required": false
+    },
+    {
+      "id": "simplefarming:cucumber_soup",
+      "required": false
+    },
+    {
+      "id": "simplefarming:onion_soup",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pea_soup",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pumpkin_soup",
+      "required": false
+    },
+    {
+      "id": "simplefarming:radish_soup",
+      "required": false
+    },
+    {
+      "id": "simplefarming:sausage_barley_soup",
+      "required": false
+    },
+    {
+      "id": "simplefarming:squash_soup",
+      "required": false
+    },
+    {
+      "id": "simplefarming:tomato_soup",
+      "required": false
+    }
+  ]
+}

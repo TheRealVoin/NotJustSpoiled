@@ -1,0 +1,126 @@
+{
+  "values": [
+    "minecraft:cake",
+    "minecraft:pumpkin_pie",
+    {
+      "id": "alexscaves:dough_block",
+      "required": false
+    },
+    {
+      "id": "ends_delight:chorus_flower_pie",
+      "required": false
+    },
+    {
+      "id": "ends_delight:chorus_fruit_pie",
+      "required": false
+    },
+    {
+      "id": "ends_delight:chorus_fruit_pie_slice",
+      "required": false
+    },
+    {
+      "id": "ends_delight:stuffed_rice_cake",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:apple_pie",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:apple_pie_slice",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:cake_slice",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:chocolate_pie",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:chocolate_pie_slice",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:pie_crust",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:pumpkin_pie_slice",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:sweet_berry_cheesecake",
+      "required": false
+    },
+    {
+      "id": "farmersdelight:sweet_berry_cheesecake_slice",
+      "required": false
+    },
+    {
+      "id": "simplefarming:apple_pie",
+      "required": false
+    },
+    {
+      "id": "simplefarming:apricot_pie",
+      "required": false
+    },
+    {
+      "id": "simplefarming:blackberry_pie",
+      "required": false
+    },
+    {
+      "id": "simplefarming:blueberry_pie",
+      "required": false
+    },
+    {
+      "id": "simplefarming:cassava_cake",
+      "required": false
+    },
+    {
+      "id": "simplefarming:cherry_pie",
+      "required": false
+    },
+    {
+      "id": "simplefarming:chocolate_cake",
+      "required": false
+    },
+    {
+      "id": "simplefarming:jaffa_cake",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pancakes",
+      "required": false
+    },
+    {
+      "id": "simplefarming:peanut_butter_pie",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pear_pie",
+      "required": false
+    },
+    {
+      "id": "simplefarming:plum_pie",
+      "required": false
+    },
+    {
+      "id": "simplefarming:raspberry_pie",
+      "required": false
+    },
+    {
+      "id": "simplefarming:sprinkle_cake",
+      "required": false
+    },
+    {
+      "id": "simplefarming:strawberry_pie",
+      "required": false
+    },
+    {
+      "id": "simplefarming:sweet_potato_quinoa_cakes",
+      "required": false
+    }
+  ]
+}
