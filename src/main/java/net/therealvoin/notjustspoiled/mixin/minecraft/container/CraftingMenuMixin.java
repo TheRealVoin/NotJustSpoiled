@@ -12,7 +12,7 @@ import net.therealvoin.notjustspoiled.common.config.FoodCraftingMode;
 import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodCategory;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.IFoodSpoilage;
+import net.therealvoin.notjustspoiled.common.foodspoilage.capability.IFoodSpoilage;
 import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
