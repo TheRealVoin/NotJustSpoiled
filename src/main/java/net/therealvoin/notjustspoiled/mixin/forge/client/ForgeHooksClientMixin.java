@@ -2,7 +2,7 @@ package net.therealvoin.notjustspoiled.mixin.forge.client;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.ForgeHooksClient;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
+import net.therealvoin.notjustspoiled.common.foodspoilage.capability.FoodSpoilageProvider;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
