@@ -27,7 +27,7 @@ public abstract class CuttingBoardBlockEntityMixin {
 
     @ModifyArg(method = "lambda$processStoredItemUsingTool$2", at = @At(value = "INVOKE", target = "Lvectorwing/farmersdelight/common/utility/ItemUtils;spawnItemEntity(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;DDDDDD)V"), index = 1)
     private ItemStack copyCapToResultStack(ItemStack stack) {
-        NJSUtils.copyCapability(this.getStoredItem(), stack, ((BlockEntity)(Object)this).getLevel());
+        NJSUtils.copySpoilage(this.getStoredItem(), stack, ((BlockEntity)(Object)this).getLevel());
         return stack;
     }
 }
