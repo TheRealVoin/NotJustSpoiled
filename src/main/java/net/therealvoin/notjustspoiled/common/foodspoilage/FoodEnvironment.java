@@ -7,7 +7,7 @@ public enum FoodEnvironment {
     NONE(null),
     INVENTORY(NJSServerConfig.FOOD_SPOILAGE_IN_INVENTORY_MULTIPLIER),
     STORAGE(NJSServerConfig.FOOD_SPOILAGE_IN_STORAGE_MULTIPLIER),
-    OPEN_AIR(NJSServerConfig.FOOD_SPOILAGE_ON_GROUND_MULTIPLIER),
+    OPEN_AIR(NJSServerConfig.FOOD_SPOILAGE_ON_OPEN_AIR_MULTIPLIER),
     COOKING(NJSServerConfig.FOOD_SPOILAGE_WHILE_COOKING_MULTIPLIER);
 
     private final ForgeConfigSpec.DoubleValue foodSpoilageMultiplier;

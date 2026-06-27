@@ -43,7 +43,7 @@ public class NJSServerConfig {
 
     public static final ForgeConfigSpec.DoubleValue FOOD_SPOILAGE_IN_INVENTORY_MULTIPLIER;
     public static final ForgeConfigSpec.DoubleValue FOOD_SPOILAGE_IN_STORAGE_MULTIPLIER;
-    public static final ForgeConfigSpec.DoubleValue FOOD_SPOILAGE_ON_GROUND_MULTIPLIER;
+    public static final ForgeConfigSpec.DoubleValue FOOD_SPOILAGE_ON_OPEN_AIR_MULTIPLIER;
     public static final ForgeConfigSpec.DoubleValue FOOD_SPOILAGE_WHILE_COOKING_MULTIPLIER;
 
     public static final ForgeConfigSpec.DoubleValue FRESH_OR_STALE$CHANCE_TO_APPEAR_FRESH_FOOD_IN_STORAGE;
@@ -264,11 +264,11 @@ public class NJSServerConfig {
                 .worldRestart()
                 .defineInRange("foodSpoilageInStorageMultiplier", 0.7, 0.01, 100);
 
-        FOOD_SPOILAGE_ON_GROUND_MULTIPLIER = BUILDER
-                .comment("A modifier that affects the speed of food spoiling on ground")
-                .translation("config.notjustspoiled.food_spoilage_on_ground_multiplier")
+        FOOD_SPOILAGE_ON_OPEN_AIR_MULTIPLIER = BUILDER
+                .comment("A modifier that affects the speed of food spoiling on open air")
+                .translation("config.notjustspoiled.food_spoilage_on_open_air_multiplier")
                 .worldRestart()
-                .defineInRange("foodSpoilageOnGroundMultiplier", 2, 0.01, 100);
+                .defineInRange("foodSpoilageOnOpenAirMultiplier", 2, 0.01, 100);
 
         FOOD_SPOILAGE_WHILE_COOKING_MULTIPLIER = BUILDER
                 .comment("A modifier that affects the speed of food spoiling while cooking")
