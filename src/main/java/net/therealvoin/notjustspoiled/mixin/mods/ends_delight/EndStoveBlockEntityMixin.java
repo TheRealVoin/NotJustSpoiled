@@ -25,6 +25,6 @@ public abstract class EndStoveBlockEntityMixin {
 
     @Inject(method = "cookAndOutputItems", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/item/crafting/CampfireCookingRecipe;getResultItem(Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;", shift = At.Shift.AFTER))
     private void copySpoilageCapToCookedFood(CallbackInfo ci, @Local(name = "stoveStack") ItemStack cookStack, @Local(name = "resultStack") ItemStack result) {
-        NJSUtils.copyCapability(cookStack, result, ((BlockEntity)(Object)this).getLevel());
+        NJSUtils.copySpoilage(cookStack, result, ((BlockEntity)(Object)this).getLevel());
     }
 }
