@@ -40,8 +40,8 @@
   "config.notjustspoiled.food_spoilage_in_inventory_multiplier.tooltip": "A multiplier that affects the speed of food spoilage in inventory.",
   "config.notjustspoiled.food_spoilage_in_storage_multiplier": "Food Spoilage In Storage Multiplier",
   "config.notjustspoiled.food_spoilage_in_storage_multiplier.tooltip": "A multiplier that affects the speed of food spoilage in storage.",
-  "config.notjustspoiled.food_spoilage_on_ground_multiplier": "Food Spoilage On Ground Multiplier",
-  "config.notjustspoiled.food_spoilage_on_ground_multiplier.tooltip": "A multiplier that affects the speed of food spoilage on ground.",
+  "config.notjustspoiled.food_spoilage_on_ground_multiplier": "Food Spoilage On Open Air Multiplier",
+  "config.notjustspoiled.food_spoilage_on_ground_multiplier.tooltip": "A multiplier that affects the speed of food spoilage on open air.",
   "config.notjustspoiled.food_spoilage_while_cooking_multiplier": "Food Spoilage While Cooking Multiplier",
   "config.notjustspoiled.food_spoilage_while_cooking_multiplier.tooltip": "A multiplier that affects the speed of food spoilage while cooking.",
 
