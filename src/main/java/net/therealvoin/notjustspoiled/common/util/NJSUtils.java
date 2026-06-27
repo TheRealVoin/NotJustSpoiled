@@ -19,13 +19,16 @@ import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodCategory;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilage;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.FoodSpoilageProvider;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.IFoodSpoilage;
 
 import java.util.List;
 
-public class NJSUtils {
+public final class NJSUtils {
+    private NJSUtils() {
+        // Utility class
+    }
+
     private static long lastWarningMessageTime = 0;
 
     public static Level getLevelBySlot(Slot slot) {
@@ -48,29 +51,23 @@ public class NJSUtils {
         return null;
     }
 
-    public static IFoodSpoilage getCapability(ItemStack itemStack) {
-        if (FoodCategory.getFoodCategory(itemStack) == null) {
-            return null;
-        }
-
-        return itemStack.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).resolve().orElse(null);
-    }
-
-    public static void copyCapability(ItemStack copyFrom, ItemStack copyTo, Level level) {
+    public static void copySpoilage(ItemStack copyFrom, ItemStack copyTo, Level level) {
         if (!(level instanceof ServerLevel serverLevel)) {
             return;
         }
 
-        copyFrom.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage1 -> {
-            copyTo.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage2 -> {
-                FoodSpoilageManager.updateFoodLifetime(foodSpoilage1, serverLevel);
+        FoodSpoilage foodSpoilage1 = FoodSpoilage.of(copyFrom);
+        FoodSpoilage foodSpoilage2 = FoodSpoilage.of(copyTo);
 
-                double spoilagePercent = foodSpoilage1.getFoodLifetime() / FoodCategory.getFoodCategory(copyFrom).getSpoilageTime();
-                foodSpoilage2.setFoodLifetime(spoilagePercent * FoodCategory.getFoodCategory(copyTo).getSpoilageTime());
-                foodSpoilage2.setEnvironment(foodSpoilage1.getEnvironment());
-                foodSpoilage2.setLastUpdateTime(foodSpoilage1.getLastUpdateTime());
-            });
-        });
+        if (foodSpoilage1 == null || foodSpoilage2 == null) {
+            return;
+        }
+
+        FoodSpoilageManager.updateFoodLifetime(foodSpoilage1, serverLevel);
+        double spoilagePercent = foodSpoilage1.getFoodLifetime() / FoodCategory.getFoodCategory(copyFrom).getSpoilageTime();
+        foodSpoilage2.setFoodLifetime(spoilagePercent * FoodCategory.getFoodCategory(copyTo).getSpoilageTime());
+        foodSpoilage2.setEnvironment(foodSpoilage1.getEnvironment());
+        foodSpoilage2.setLastUpdateTime(foodSpoilage1.getLastUpdateTime());
     }
 
     public static void validateChances(ModConfigEvent event) {
