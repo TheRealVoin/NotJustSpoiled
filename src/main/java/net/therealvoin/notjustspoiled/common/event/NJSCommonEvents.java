@@ -13,7 +13,6 @@ import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.AddPackFindersEvent;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.ItemStackedOnOtherEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -22,14 +21,9 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.therealvoin.notjustspoiled.NotJustSpoiled;
-import net.therealvoin.notjustspoiled.common.foodspoilage.BlockFoodSpoilage;
+import net.therealvoin.notjustspoiled.common.foodspoilage.*;
 import net.therealvoin.notjustspoiled.common.config.FoodCraftingMode;
 import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodCategory;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.FoodSpoilageProvider;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.IFoodSpoilage;
 import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 
 import java.nio.file.Path;
@@ -37,8 +31,6 @@ import java.nio.file.Path;
 public class NJSCommonEvents {
     @Mod.EventBusSubscriber(modid = NotJustSpoiled.MOD_ID)
     public static class ForgeBus {
-        private static final ResourceLocation FOOD_SPOILAGE = ResourceLocation.fromNamespaceAndPath(NotJustSpoiled.MOD_ID, "food_spoilage");
-
         // Food spoilage events
         @SubscribeEvent
         public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
@@ -54,13 +46,13 @@ public class NJSCommonEvents {
             BlockFoodSpoilage data = BlockFoodSpoilage.get(serverLevel);
             BlockPos blockPos = itemEntity.blockPosition();
             ItemStack itemStack = data.getLastItemStackByPos(blockPos);
-            if (itemStack.isEmpty()) {
-                return;
-            }
 
-            NJSUtils.copyCapability(itemStack, itemEntityStack, serverLevel);
-            if (itemEntity.level().getBlockState(blockPos).getBlock() == Blocks.AIR) {
-                data.removeItemStackPos(blockPos, itemStack);
+            if (!itemStack.isEmpty()) {
+                NJSUtils.copySpoilage(itemStack, itemEntityStack, serverLevel);
+
+                if (serverLevel.getBlockState(blockPos).getBlock() == Blocks.AIR) {
+                    data.removeItemStackPos(blockPos, itemStack);
+                }
             }
 
             FoodSpoilageManager.changeEnvironmentAndUpdate(itemEntityStack, FoodEnvironment.GROUND, serverLevel);
@@ -73,9 +65,11 @@ public class NJSCommonEvents {
                 ItemStack stackedOnItem = event.getCarriedItem();
 
                 if (!carriedItem.isEmpty() && !stackedOnItem.isEmpty()) {
-                    stackedOnItem.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
+                    FoodSpoilage foodSpoilage = FoodSpoilage.of(stackedOnItem);
+
+                    if (foodSpoilage != null) {
                         FoodSpoilageManager.changeEnvironmentAndUpdate(carriedItem, foodSpoilage.getEnvironment(), serverLevel);
-                    });
+                    }
 
                     FoodSpoilageManager.tryAverageSpoilageOnMerge(carriedItem, stackedOnItem, serverLevel);
                 }
@@ -99,7 +93,38 @@ public class NJSCommonEvents {
             int count = 0;
 
             FoodCraftingMode craftingMode = NJSServerConfig.FOOD_CRAFTING_MODE.get();
-            if (craftingMode == FoodCraftingMode.AVERAGE || craftingMode == FoodCraftingMode.SAME_STATUS) {
+            boolean mixedFreshAndStale = false;
+
+            if (craftingMode == FoodCraftingMode.FRESH_OR_STALE_STATUS) {
+                FoodStatus firstStatus = null;
+
+                for (int i = 0; i < event.getInventory().getContainerSize(); i++) {
+                    ItemStack stack = event.getInventory().getItem(i);
+
+                    FoodCategory category = FoodCategory.getFoodCategory(stack);
+                    if (stack.isEmpty() || category == null) {
+                        continue;
+                    }
+
+                    FoodSpoilage spoilage = FoodSpoilage.of(stack);
+                    if (spoilage == null) {
+                        continue;
+                    }
+
+                    FoodSpoilageManager.updateFoodLifetime(spoilage, serverLevel);
+
+                    FoodStatus status = FoodSpoilageManager.getFoodStatus(stack, serverLevel);
+
+                    if (firstStatus == null) {
+                        firstStatus = status;
+                    } else if (firstStatus != status) {
+                        mixedFreshAndStale = true;
+                        break;
+                    }
+                }
+            }
+
+            if (craftingMode == FoodCraftingMode.AVERAGE || craftingMode == FoodCraftingMode.SAME_STATUS || craftingMode == FoodCraftingMode.FRESH_STATUS || (craftingMode == FoodCraftingMode.FRESH_OR_STALE_STATUS && !mixedFreshAndStale)) {
                 for (int i = 0; i < event.getInventory().getContainerSize(); i++) {
                     ItemStack itemStack = event.getInventory().getItem(i);
                     FoodCategory itemStackCategory = FoodCategory.getFoodCategory(itemStack);
@@ -107,7 +132,7 @@ public class NJSCommonEvents {
                         continue;
                     }
 
-                    IFoodSpoilage foodSpoilage = NJSUtils.getCapability(itemStack);
+                    FoodSpoilage foodSpoilage = FoodSpoilage.of(itemStack);
                     if (foodSpoilage == null) {
                         continue;
                     }
@@ -122,13 +147,15 @@ public class NJSCommonEvents {
                 }
 
                 double finalSpoilagePercent = totalSpoilagePercent / count;
-                double finalFoodLifetime = finalSpoilagePercent * FoodCategory.getFoodCategory(craftedItem).getSpoilageTime();
-                craftedItem.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
+                double finalFoodLifetime = finalSpoilagePercent * craftedItemCategory.getSpoilageTime();
+
+                FoodSpoilage foodSpoilage = FoodSpoilage.of(craftedItem);
+                if (foodSpoilage != null) {
                     foodSpoilage.setFoodLifetime(finalFoodLifetime);
                     foodSpoilage.setEnvironment(FoodEnvironment.STORAGE);
                     foodSpoilage.setLastUpdateTime(serverLevel.getGameTime());
-                });
-            } else if (NJSServerConfig.FOOD_CRAFTING_MODE.get() == FoodCraftingMode.WORST_STATUS) {
+                }
+            } else if (craftingMode == FoodCraftingMode.WORST_STATUS || (craftingMode == FoodCraftingMode.FRESH_OR_STALE_STATUS && mixedFreshAndStale)) {
                 double worstPercent = 0;
                 for (int i = 0; i < event.getInventory().getContainerSize(); i++) {
                     ItemStack itemStack = event.getInventory().getItem(i);
@@ -138,7 +165,7 @@ public class NJSCommonEvents {
                         continue;
                     }
 
-                    IFoodSpoilage foodSpoilage = NJSUtils.getCapability(itemStack);
+                    FoodSpoilage foodSpoilage = FoodSpoilage.of(itemStack);
                     if (foodSpoilage == null) {
                         continue;
                     }
@@ -153,19 +180,12 @@ public class NJSCommonEvents {
 
                 double finalFoodLifeTime = worstPercent * craftedItemCategory.getSpoilageTime();
 
-                craftedItem.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
+                FoodSpoilage foodSpoilage = FoodSpoilage.of(craftedItem);
+                if (foodSpoilage != null) {
                     foodSpoilage.setFoodLifetime(finalFoodLifeTime);
                     foodSpoilage.setEnvironment(FoodEnvironment.STORAGE);
                     foodSpoilage.setLastUpdateTime(serverLevel.getGameTime());
-                });
-            }
-        }
-
-        // Capability events
-        @SubscribeEvent
-        public static void attachFoodSpoilageToFood(AttachCapabilitiesEvent<ItemStack> event) {
-            if (FoodCategory.getFoodCategory(event.getObject()) != null) {
-                event.addCapability(FOOD_SPOILAGE, new FoodSpoilageProvider());
+                }
             }
         }
     }
