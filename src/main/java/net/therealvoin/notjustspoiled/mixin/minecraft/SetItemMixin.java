@@ -12,8 +12,8 @@ import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilage;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.foodspoilage.FoodSpoilageProvider;
 import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 import net.therealvoin.notjustspoiled.common.util.SimpleContainerAccessor;
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,6 +25,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class SetItemMixin {
     @Inject(method = "setItem", at = @At("TAIL"))
     private void changeFoodEnvironmentWhenPlacedInContainer(int index, ItemStack itemStack, CallbackInfo ci) {
+//        if (itemStack.isEmpty()) {
+//            return;
+//        }
+
         Object object = this;
         Level level = null;
         FoodEnvironment foodEnvironment = null;
@@ -32,6 +36,12 @@ public abstract class SetItemMixin {
         if (object instanceof Inventory inventory) {
             level = inventory.player.level();
             foodEnvironment = FoodEnvironment.INVENTORY;
+
+            if (index == 8) {
+                System.out.println(level.isClientSide());
+                System.out.println(itemStack.serializeNBT());
+                Thread.dumpStack();
+            }
         } else if (object instanceof AbstractMinecartContainer minecartContainer) {
             level = minecartContainer.level();
             foodEnvironment = FoodEnvironment.STORAGE;
@@ -52,11 +62,13 @@ public abstract class SetItemMixin {
         FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, foodEnvironment, level);
 
         if (level instanceof ServerLevel serverLevel) {
-            itemStack.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
+            FoodSpoilage foodSpoilage = FoodSpoilage.of(itemStack);
+
+            if (foodSpoilage != null) {
                 if (foodSpoilage.getFoodLifetime() == 0 && foodSpoilage.getEnvironment() != FoodEnvironment.INVENTORY) {
                     NJSUtils.sendWarningMessage(serverLevel);
                 }
-            });
+            }
         }
     }
 }
