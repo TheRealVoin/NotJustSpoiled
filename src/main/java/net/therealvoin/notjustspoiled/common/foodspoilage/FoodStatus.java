@@ -76,6 +76,19 @@ public enum FoodStatus {
         return this.chanceToAppearInStorage.get();
     }
 
+    public double getThreshold(int spoilageTime) {
+        return switch (this) {
+            case FRESH -> spoilageTime / 3.0;
+            case STALE -> spoilageTime / 3.0 * 2;
+            case HALF_SPOILED -> spoilageTime;
+            case SPOILED -> throw new IllegalStateException("Spoiled status has no threshold");
+        };
+    }
+
+    public FoodStatus getNext() {
+        return this.ordinal() < values().length - 1 ? values()[this.ordinal() + 1] : null;
+    }
+
     public int getModifiedNutrition(int defaultNutrition) {
         switch (this) {
             case STALE -> {
@@ -207,8 +220,25 @@ public enum FoodStatus {
             this.applyChance = applyChance;
         }
 
+        public MobEffect getEffect() {
+            return this.effect;
+        }
+
+        public int getDuration() {
+            return this.duration.get();
+        }
+
+        public int getAmplifier() {
+            return this.amplifier;
+        }
+
         public MobEffectInstance createEffectInstance() {
-            return new MobEffectInstance(this.effect, this.duration.get(), this.amplifier, false, false);
+            return createEffectInstance(this.effect);
+        }
+
+        // Added specifically for TAN integration
+        public MobEffectInstance createEffectInstance(MobEffect effect) {
+            return new MobEffectInstance(effect, this.duration.get(), this.amplifier, false, false);
         }
 
         public double getApplyChance() {
