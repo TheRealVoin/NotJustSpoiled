@@ -27,7 +27,7 @@ public abstract class EndStoveBlockMixin {
 
     @Inject(method = "extinguish", at = @At("TAIL"), remap = false)
     private void updateFoodWhenStoveExtinguished(BlockState state, Level level, BlockPos pos, CallbackInfo ci) {
-        notJustSpoiled$updateFood(level, pos, FoodEnvironment.GROUND);
+        notJustSpoiled$updateFood(level, pos, FoodEnvironment.OPEN_AIR);
     }
 
     @Unique

@@ -23,7 +23,7 @@ public abstract class CampfireBlockMixin {
             CampfireBlockEntity campfire = (CampfireBlockEntity) level.getBlockEntity(blockPos);
 
             for (ItemStack foodStack : campfire.getItems()) {
-                FoodSpoilageManager.changeEnvironmentAndUpdate(foodStack, FoodEnvironment.GROUND, level);
+                FoodSpoilageManager.changeEnvironmentAndUpdate(foodStack, FoodEnvironment.OPEN_AIR, level);
             }
         }
     }

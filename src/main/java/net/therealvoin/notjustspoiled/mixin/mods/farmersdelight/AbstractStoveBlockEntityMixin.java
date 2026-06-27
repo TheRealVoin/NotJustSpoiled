@@ -23,7 +23,7 @@ public class AbstractStoveBlockEntityMixin {
 
     @ModifyArg(method = "placeFood", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/items/ItemStackHandler;setStackInSlot(ILnet/minecraft/world/item/ItemStack;)V"), index = 1, remap = false)
     private ItemStack updateFoodWhenPlacedOnStove(ItemStack stackToPlaceOnStove) {
-        FoodEnvironment foodEnvironment = ((AbstractStoveBlockEntity)(Object)this).getBlockState().getValue(AbstractStoveBlock.LIT) ? FoodEnvironment.COOKING : FoodEnvironment.GROUND;
+        FoodEnvironment foodEnvironment = ((AbstractStoveBlockEntity)(Object)this).getBlockState().getValue(AbstractStoveBlock.LIT) ? FoodEnvironment.COOKING : FoodEnvironment.OPEN_AIR;
         FoodSpoilageManager.changeEnvironmentAndUpdate(stackToPlaceOnStove, foodEnvironment, ((BlockEntity)(Object)this).getLevel());
         return stackToPlaceOnStove;
     }

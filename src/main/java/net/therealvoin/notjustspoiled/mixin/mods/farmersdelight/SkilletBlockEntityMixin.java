@@ -28,7 +28,7 @@ public abstract class SkilletBlockEntityMixin {
         ItemStack remainderStack = original.call(instance, slot, stack, simulate);
 
         if (!ItemStack.matches(remainderStack, stack)) {
-            FoodEnvironment foodEnvironment = this.isHeated() ? FoodEnvironment.COOKING : FoodEnvironment.GROUND;
+            FoodEnvironment foodEnvironment = this.isHeated() ? FoodEnvironment.COOKING : FoodEnvironment.OPEN_AIR;
             FoodSpoilageManager.changeEnvironmentAndUpdate(stack, foodEnvironment, player.level());
         }
 
@@ -42,7 +42,7 @@ public abstract class SkilletBlockEntityMixin {
 
     @Inject(method = "cookingTick", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/util/Mth;clamp(III)I", shift = At.Shift.AFTER))
     private static void changeFoodEnvironmentWhenSkilletBecomesCooled(Level level, BlockPos pos, BlockState state, SkilletBlockEntity skillet, CallbackInfo ci) {
-        FoodSpoilageManager.changeEnvironmentAndUpdate(skillet.getStoredStack(), FoodEnvironment.GROUND, level);
+        FoodSpoilageManager.changeEnvironmentAndUpdate(skillet.getStoredStack(), FoodEnvironment.OPEN_AIR, level);
     }
 
     @Inject(method = "cookAndOutputItems", at = @At("HEAD"), remap = false)

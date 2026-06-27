@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class EndStoveBlockEntityMixin {
     @ModifyArg(method = "addItem", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/items/ItemStackHandler;setStackInSlot(ILnet/minecraft/world/item/ItemStack;)V"), index = 1, remap = false)
     private ItemStack changeFoodEnvironmentWhenPlacedOnStove(ItemStack stackToPlaceOnStove) {
-        FoodEnvironment foodEnvironment = ((EndStoveBlockEntity)(Object)this).getBlockState().getValue(EndStoveBlock.LIT) ? FoodEnvironment.COOKING : FoodEnvironment.GROUND;
+        FoodEnvironment foodEnvironment = ((EndStoveBlockEntity)(Object)this).getBlockState().getValue(EndStoveBlock.LIT) ? FoodEnvironment.COOKING : FoodEnvironment.OPEN_AIR;
         FoodSpoilageManager.changeEnvironmentAndUpdate(stackToPlaceOnStove, foodEnvironment, ((BlockEntity)(Object)this).getLevel());
         return stackToPlaceOnStove;
     }

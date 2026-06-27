@@ -26,7 +26,7 @@ public class AbstractStoveBlockMixin {
 
     @Inject(method = "extinguish", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/LevelAccessor;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z", shift = At.Shift.AFTER))
     private void updateFoodWhenStoveExtinguished(Entity entity, LevelAccessor level, BlockPos pos, BlockState state, CallbackInfo ci) {
-        notJustSpoiled$updateFood((Level) level, pos, FoodEnvironment.GROUND);
+        notJustSpoiled$updateFood((Level) level, pos, FoodEnvironment.OPEN_AIR);
     }
 
     @Unique

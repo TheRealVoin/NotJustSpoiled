@@ -20,7 +20,7 @@ public abstract class CuttingBoardBlockEntityMixin {
     private ItemStack changeEnvironmentWhenPlacedOnCuttingBoard(ItemStack stackToPlaceOnCuttingBoard) {
         Level level = ((BlockEntity)(Object)this).getLevel();
 
-        FoodSpoilageManager.changeEnvironmentAndUpdate(stackToPlaceOnCuttingBoard, FoodEnvironment.GROUND, level);
+        FoodSpoilageManager.changeEnvironmentAndUpdate(stackToPlaceOnCuttingBoard, FoodEnvironment.OPEN_AIR, level);
 
         return stackToPlaceOnCuttingBoard;
     }

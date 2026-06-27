@@ -14,6 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class ItemFrameMixin {
     @Inject(method = "setItem(Lnet/minecraft/world/item/ItemStack;Z)V", at = @At("TAIL"))
     private void changeFoodEnvironmentWhenPlacedInItemFrame(CallbackInfo ci, @Local(argsOnly = true) ItemStack stackToPlaceInItemFrame) {
-        FoodSpoilageManager.changeEnvironmentAndUpdate(stackToPlaceInItemFrame, FoodEnvironment.GROUND, ((ItemFrame)(Object)this).level());
+        FoodSpoilageManager.changeEnvironmentAndUpdate(stackToPlaceInItemFrame, FoodEnvironment.OPEN_AIR, ((ItemFrame)(Object)this).level());
     }
 }

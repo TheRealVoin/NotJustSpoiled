@@ -26,7 +26,7 @@ public abstract class CampfireBlockEntityMixin {
     private ItemStack changeFoodEnvironmentWhenPlacedOnCampfire(ItemStack stackInHand, int amount, Operation<ItemStack> original) {
         ItemStack stackToPlaceOnCampfire = original.call(stackInHand, amount);
         CampfireBlockEntity campfire = (CampfireBlockEntity) (Object) this;
-        FoodEnvironment foodEnvironment = campfire.getBlockState().getValue(CampfireBlock.LIT) ? FoodEnvironment.COOKING : FoodEnvironment.GROUND;
+        FoodEnvironment foodEnvironment = campfire.getBlockState().getValue(CampfireBlock.LIT) ? FoodEnvironment.COOKING : FoodEnvironment.OPEN_AIR;
         FoodSpoilageManager.changeEnvironmentAndUpdate(stackToPlaceOnCampfire, foodEnvironment, campfire.getLevel());
 
         return stackToPlaceOnCampfire;

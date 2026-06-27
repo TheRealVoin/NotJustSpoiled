@@ -15,6 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class AbyssalAltarBlockEntityMixin {
     @Inject(method = "setItem", at = @At("TAIL"))
     private void changeFoodEnvironmentWhenPlacedOnAbyssalAltar(CallbackInfo ci, @Local(argsOnly = true) ItemStack stackToPutOnAbyssalAltar) {
-        FoodSpoilageManager.changeEnvironmentAndUpdate(stackToPutOnAbyssalAltar, FoodEnvironment.GROUND, ((BlockEntity)(Object)this).getLevel());
+        FoodSpoilageManager.changeEnvironmentAndUpdate(stackToPutOnAbyssalAltar, FoodEnvironment.OPEN_AIR, ((BlockEntity)(Object)this).getLevel());
     }
 }

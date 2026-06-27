@@ -23,7 +23,7 @@ public abstract class BlockItemMixin {
         if (level instanceof ServerLevel serverLevel && FoodCategory.getFoodCategory(itemstack) != null) {
             BlockFoodSpoilage data = BlockFoodSpoilage.get(serverLevel);
             ItemStack itemStackCopy = itemstack.copy();
-            FoodSpoilageManager.changeEnvironmentAndUpdate(itemStackCopy, FoodEnvironment.GROUND, serverLevel);
+            FoodSpoilageManager.changeEnvironmentAndUpdate(itemStackCopy, FoodEnvironment.OPEN_AIR, serverLevel);
             data.putItemStackPos(blockpos, itemStackCopy);
         }
     }

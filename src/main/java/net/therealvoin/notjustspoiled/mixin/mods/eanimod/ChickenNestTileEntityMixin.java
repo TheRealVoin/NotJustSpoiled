@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class ChickenNestTileEntityMixin {
     @Inject(method = "addEggToNest", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/NonNullList;set(ILjava/lang/Object;)Ljava/lang/Object;", shift = At.Shift.AFTER), remap = false)
     private void changeFoodEnvironmentWhenPlacedInChickenNest(Level level, ItemStack stackToPutInNest, CallbackInfo ci) {
-        FoodSpoilageManager.changeEnvironmentAndUpdate(stackToPutInNest, FoodEnvironment.GROUND, level);
+        FoodSpoilageManager.changeEnvironmentAndUpdate(stackToPutInNest, FoodEnvironment.OPEN_AIR, level);
     }
 
     @Inject(method = "removeItem", at = @At("RETURN"))
