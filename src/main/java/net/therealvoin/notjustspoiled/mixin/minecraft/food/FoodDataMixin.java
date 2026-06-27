@@ -7,9 +7,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilage;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodStatus;
-import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
@@ -25,7 +25,7 @@ public abstract class FoodDataMixin {
                 return;
             }
 
-            FoodSpoilageManager.updateFoodLifetime(NJSUtils.getCapability(itemStack), serverLevel);
+            FoodSpoilageManager.updateFoodLifetime(FoodSpoilage.of(itemStack), serverLevel);
             FoodProperties foodProperties = itemStack.getFoodProperties(entity);
             args.set(0, foodStatus.getModifiedNutrition(foodProperties.getNutrition()));
             args.set(1, foodStatus.getModifiedSaturation(foodProperties.getSaturationModifier()));
