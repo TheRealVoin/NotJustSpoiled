@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class CampfireBlockEntityMixin {
     @Inject(method = "cookTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/Containers;dropItemStack(Lnet/minecraft/world/level/Level;DDDLnet/minecraft/world/item/ItemStack;)V", shift = At.Shift.BEFORE))
     private static void copySpoilageCapToCookedFood(CallbackInfo ci, @Local(argsOnly = true) Level level, @Local(ordinal = 0) ItemStack inputItem, @Local(ordinal = 1) ItemStack resultItem) {
-        NJSUtils.copyCapability(inputItem, resultItem, level);
+        NJSUtils.copySpoilage(inputItem, resultItem, level);
     }
 
     @WrapOperation(method = "placeFood", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;split(I)Lnet/minecraft/world/item/ItemStack;"))
