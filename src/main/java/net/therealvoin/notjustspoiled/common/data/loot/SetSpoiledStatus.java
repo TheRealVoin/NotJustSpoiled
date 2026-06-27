@@ -10,7 +10,7 @@ import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodCategory;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.FoodSpoilageProvider;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilage;
 import org.jetbrains.annotations.NotNull;
 
 public class SetSpoiledStatus extends LootModifier {
@@ -24,11 +24,12 @@ public class SetSpoiledStatus extends LootModifier {
     @Override
     protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
         for (ItemStack itemStack : generatedLoot) {
-            itemStack.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
+            FoodSpoilage foodSpoilage = FoodSpoilage.of(itemStack);
+            if (foodSpoilage != null) {
                 foodSpoilage.setEnvironment(FoodEnvironment.STORAGE);
                 foodSpoilage.setFoodLifetime(FoodCategory.getFoodCategory(itemStack).getSpoilageTime());
                 foodSpoilage.setLastUpdateTime(context.getLevel().getGameTime());
-            });
+            }
         }
 
         return generatedLoot;
