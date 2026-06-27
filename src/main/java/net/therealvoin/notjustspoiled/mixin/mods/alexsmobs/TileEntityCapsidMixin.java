@@ -22,7 +22,7 @@ public abstract class TileEntityCapsidMixin {
 
     @ModifyArg(method = "tick", at = @At(value = "INVOKE", target = "Lcom/github/alexthe666/alexsmobs/tileentity/TileEntityCapsid;setItem(ILnet/minecraft/world/item/ItemStack;)V", ordinal = 2), index = 1)
     private ItemStack copySpoilageCapToResultStack(ItemStack stackToSetInCapsid, @Share("stackInCapsidSnapshot") LocalRef<ItemStack> snapshot) {
-        NJSUtils.copyCapability(snapshot.get(), stackToSetInCapsid, ((BlockEntity)(Object)this).getLevel());
+        NJSUtils.copySpoilage(snapshot.get(), stackToSetInCapsid, ((BlockEntity)(Object)this).getLevel());
         return stackToSetInCapsid;
     }
 }
