@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class AbstractFurnaceBlockEntityMixin {
     @Inject(method = "burn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;shrink(I)V"))
     private void copySpoilageCapToCookedFood(CallbackInfoReturnable<Boolean> cir, @Local(argsOnly = true) NonNullList<ItemStack> inventory) {
-        NJSUtils.copyCapability(inventory.get(0), inventory.get(2), ((BlockEntity)(Object)this).getLevel());
+        NJSUtils.copySpoilage(inventory.get(0), inventory.get(2), ((BlockEntity)(Object)this).getLevel());
     }
 
     @Inject(method = "serverTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;setBlock(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Z", shift = At.Shift.AFTER))
