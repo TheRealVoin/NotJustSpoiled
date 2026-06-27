@@ -322,10 +322,12 @@ public class NJSServerConfig {
                 .comment("Correctly calculates the spoilage time of a crafted food",
                         "AVERAGE: the spoilage time is defined as an arithmetic mean of the spoilage time of all ingredients",
                         "SAME_STATUS: the food can be crafted only when all ingredients have the same status",
-                        "WORST_STATUS: the spoilage time is determined by the worst ingredient, ignoring others")
+                        "WORST_STATUS: the spoilage time is determined by the worst ingredient, ignoring others",
+                        "FRESH_STATUS: the food can be crafted only when all ingredients have fresh status",
+                        "FRESH_OR_STALE_STATUS: the food can be crafted only when all ingredients have fresh or stale status. If all food is fresh or stale, then AVERAGE logic will be applied, and when there are both, then WORST_STATUS will be applied")
                 .translation("config.notjustspoiled.food_crafting_mode")
                 .worldRestart()
-                .defineEnum("craftingMode", FoodCraftingMode.WORST_STATUS);
+                .defineEnum("craftingMode", FoodCraftingMode.FRESH_OR_STALE_STATUS);
         BUILDER.pop();
 
         BUILDER.translation("config.notjustspoiled.category.debug").push("Debug");
@@ -336,68 +338,68 @@ public class NJSServerConfig {
                 .define("showDebugMessage", false);
         BUILDER.pop();
 
-        BUILDER.translation("f").push("Effects");
+        BUILDER.translation("no").push("Effects");
         CHANCE_TO_APPLY_POISON_EFFECT_FOR_SPOILED_FOOD = BUILDER
-                .comment("ff")
-                .translation("fff")
+                .comment("Chance to apply hunger effect on the player, when spoiled food eaten")
+                .translation("no")
                 .worldRestart()
-                .defineInRange("chance", 0.5, 0, 1);
+                .defineInRange("chanceToApplyPoisonEffectForSpoiledFood", 0.7, 0, 1);
         CHANCE_TO_APPLY_POISON_EFFECT_FOR_HALF_SPOILED_FOOD = BUILDER
-                .comment("fff")
-                .translation("ffff")
+                .comment("Chance to apply poison effect on the player, when half-spoiled food eaten")
+                .translation("no")
                 .worldRestart()
-                .defineInRange("chancef", 0.5, 0, 1);
+                .defineInRange("chanceToApplyPoisonEffectForHalfSpoiledFood", 0.3, 0, 1);
         CHANCE_TO_APPLY_HUNGER_EFFECT_FOR_SPOILED_FOOD = BUILDER
-                .comment("fff")
-                .translation("fff")
+                .comment("Chance to apply hunger effect on the player, when spoiled food eaten")
+                .translation("no")
                 .worldRestart()
-                .defineInRange("chance", 0.5, 0, 1);
+                .defineInRange("chanceToApplyHungerEffectForSpoiledFood", 0.8, 0, 1);
         CHANCE_TO_APPLY_HUNGER_EFFECT_FOR_HALF_SPOILED_FOOD = BUILDER
-                .comment("fff")
-                .translation("fffffff")
+                .comment("Chance to apply hunger effect on the player, when half-spoiled food eaten")
+                .translation("no")
                 .worldRestart()
-                .defineInRange("chanceffff", 0.5, 0, 1);
+                .defineInRange("chanceToApplyHungerEffectForHalfSpoiledFood", 0.4, 0, 1);
         CHANCE_TO_APPLY_NAUSEA_EFFECT_FOR_SPOILED_FOOD = BUILDER
-                .comment("fff")
-                .translation("fff")
+                .comment("Chance to apply nausea effect on the player, when spoiled food eaten")
+                .translation("no")
                 .worldRestart()
-                .defineInRange("chance", 0.5, 0, 1);
+                .defineInRange("chanceToApplyNauseaEffectForSpoiledFood", 0.8, 0, 1);
         CHANCE_TO_APPLY_NAUSEA_EFFECT_FOR_HALF_SPOILED_FOOD = BUILDER
-                .comment("fff")
-                .translation("ffffff")
+                .comment("Chance to apply nausea effect on the player, when half-spoiled food eaten")
+                .translation("no")
                 .worldRestart()
-                .defineInRange("chancefff", 0.5, 0, 1);
+                .defineInRange("chanceToApplyNauseaEffectForHalfSpoiledFood", 0.4, 0, 1);
 
         POISON_EFFECT_FOR_SPOILED_FOOD_DURATION = BUILDER
-                .comment("ff4")
-                .translation("fff7")
+                .comment("Duration of poison effect for spoiled food")
+                .translation("no")
                 .worldRestart()
-                .defineInRange("chance535", 200, 0, Integer.MAX_VALUE);
+                .defineInRange("poisonEffectDurationForSpoiledFood", 300, 0, Integer.MAX_VALUE);
         POISON_EFFECT_FOR_HALF_SPOILED_FOOD_DURATION = BUILDER
-                .comment("fff275")
-                .translation("ffff243")
+                .comment("Duration of poison effect for half-spoiled food")
+                .translation("no")
                 .worldRestart()
-                .defineInRange("chancef456", 200, 0, Integer.MAX_VALUE);
+                .defineInRange("poisonEffectDurationForHalfSpoiledFood", 200, 0, Integer.MAX_VALUE);
         HUNGER_EFFECT_FOR_SPOILED_FOOD_DURATION = BUILDER
-                .comment("fff")
-                .translation("fff")
+                .comment("Duration of hunger effect for spoiled food")
+                .translation("no")
                 .worldRestart()
-                .defineInRange("chancerw3rw3", 200, 0, Integer.MAX_VALUE);
+                .defineInRange("hungerEffectDurationForSpoiledFood", 400, 0, Integer.MAX_VALUE);
         HUNGER_EFFECT_FOR_HALF_SPOILED_FOOD_DURATION = BUILDER
-                .comment("fff")
-                .translation("fffffff")
+                .comment("Duration of hunger effect for half-spoiled food")
+                .translation("no")
                 .worldRestart()
-                .defineInRange("chanceffff3wrrw3r3w", 200, 0, Integer.MAX_VALUE);
+                .defineInRange("hungerEffectDurationForHalfSpoiledFood", 300, 0, Integer.MAX_VALUE);
         NAUSEA_EFFECT_FOR_SPOILED_FOOD_DURATION = BUILDER
-                .comment("fff")
-                .translation("fff")
+                .comment("Duration of nausea effect for spoiled food")
+                .translation("no")
                 .worldRestart()
-                .defineInRange("chancerw3r3rw33wr", 200, 0, Integer.MAX_VALUE);
+                .defineInRange("nauseaEffectDurationForSpoiledFood", 400, 0, Integer.MAX_VALUE);
         NAUSEA_EFFECT_FOR_HALF_SPOILED_FOOD_DURATION = BUILDER
-                .comment("fff")
-                .translation("ffffff")
+                .comment("Duration of nausea effect for half-spoiled food")
+                .translation("no")
                 .worldRestart()
-                .defineInRange("chancefff3rwr3rw", 200, 0, Integer.MAX_VALUE);
+                .defineInRange("nauseaEffectDurationForHalfSpoiledFood", 300, 0, Integer.MAX_VALUE);
         BUILDER.pop();
 
         SERVER_CONFIG = BUILDER.build();
