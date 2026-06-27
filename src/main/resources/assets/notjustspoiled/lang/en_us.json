@@ -29,15 +29,11 @@
   "config.notjustspoiled.cooked_insect_spoilage_time": "Cooked Insect Spoilage Time",
   "config.notjustspoiled.dry_pastry_spoilage_time": "Dry Pastry Spoilage Time",
   "config.notjustspoiled.nut_spoilage_time": "Nut Spoilage Time",
-  "config.notjustspoiled.vegetable_dish_spoilage_time": "Vegetable Dish Spoilage Time",
-  "config.notjustspoiled.fish_dish_spoilage_time": "Fish Dish Spoilage Time",
   "config.notjustspoiled.raw_seafood_spoilage_time": "Raw Seafood Spoilage Time",
   "config.notjustspoiled.cooked_seafood_spoilage_time": "Cooked Seafood Spoilage Time",
-  "config.notjustspoiled.meat_dish_spoilage_time": "Meat Dish Spoilage Time",
   "config.notjustspoiled.raw_dough_spoilage_time": "Raw Dough Spoilage Time",
   "config.notjustspoiled.food_dressing_spoilage_time": "Food Dressing Spoilage Time",
-  "config.notjustspoiled.pasta_dish_spoilage_time": "Pasta Dish Spoilage Time",
-  "config.notjustspoiled.meat_with_vegetable_dish_spoilage_time": "Meat With Vegetable Dish Spoilage Time",
+  "config.notjustspoiled.drink_spoilage_time": "Drink Spoilage Time",
 
   "config.notjustspoiled.category.food_spoilage_multiplier": "Food Spoilage Multiplier",
   "config.notjustspoiled.food_spoilage_in_inventory_multiplier": "Food Spoilage In Inventory Multiplier",
@@ -67,7 +63,7 @@
   "config.notjustspoiled.debug.show_debug_message": "Show Debug Message",
   "config.notjustspoiled.debug.show_debug_message.tooltip": "Sends to the chat a debug message when food is updated.",
   "config.notjustspoiled.debug.show_food_category": "Show Food Category",
-  "config.notjustspoiled.debug.show_food_category.tooltip": "Shows food category in tooltip. If food doesn't have category, then \"null\" will be displayed.",
+  "config.notjustspoiled.debug.show_food_category.tooltip": "Shows food category in tooltip. If food doesn't have category, then nothing will be displayed.",
   "config.notjustspoiled.debug.show_additional_info": "Show Additional Info",
   "config.notjustspoiled.debug.show_additional_info.tooltip": "Shows additional food info in tooltip (\"lastUpdateTime\", \"foodLifeTime\" and \"environment\").",
 
@@ -83,6 +79,10 @@
   "tooltip.notjustspoiled.status.spoiled": "Spoiled",
   "tooltip.notjustspoiled.never_spoils": "Never Spoils",
   "tooltip.notjustspoiled.debug.category": "Category",
+  "tooltip.notjustspoiled.to_next_status": "Next status in",
+  "tooltip.notjustspoiled.to_next_status.days": "%d days",
+  "tooltip.notjustspoiled.to_next_status.one_day": "less than 1 day",
+  "tooltip.notjustspoiled.spoils_in": "Spoils in",
 
   "data.notjustspoiled.description": "Not Just Spoiled resources",
   "datapack.notjustspoiled.description": "A datapack for Not Just Spoiled compatibility with mods"
