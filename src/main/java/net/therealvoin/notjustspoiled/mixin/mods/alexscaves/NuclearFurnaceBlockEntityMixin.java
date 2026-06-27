@@ -27,7 +27,7 @@ public abstract class NuclearFurnaceBlockEntityMixin {
 
     @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;grow(I)V", ordinal = 0))
     private static void mergeFood(ItemStack stackInResultSlot, int increment, Operation<Void> original, @Local(argsOnly = true) Level level, @Local(name = "cookResult") ItemStack resultStack, @Share("inputStackSnapshot") LocalRef<ItemStack> inputStack) {
-        NJSUtils.copyCapability(inputStack.get(), resultStack, level);
+        NJSUtils.copySpoilage(inputStack.get(), resultStack, level);
 
         FoodSpoilageManager.changeEnvironmentAndUpdate(resultStack, FoodEnvironment.STORAGE, level);
         FoodSpoilageManager.tryAverageSpoilageOnMerge(stackInResultSlot, resultStack, level);
@@ -37,7 +37,7 @@ public abstract class NuclearFurnaceBlockEntityMixin {
 
     @ModifyArg(method = "tick", at = @At(value = "INVOKE", target = "Lcom/github/alexmodguy/alexscaves/server/block/blockentity/NuclearFurnaceBlockEntity;setItem(ILnet/minecraft/world/item/ItemStack;)V", ordinal = 0), index = 1)
     private static ItemStack changeFoodEnvironmentWhenPlacedInResultSlot(ItemStack stackToSetInResultSlot, @Local(argsOnly = true) Level level, @Share("inputStackSnapshot") LocalRef<ItemStack> inputStack) {
-        NJSUtils.copyCapability(inputStack.get(), stackToSetInResultSlot, level);
+        NJSUtils.copySpoilage(inputStack.get(), stackToSetInResultSlot, level);
         FoodSpoilageManager.changeEnvironmentAndUpdate(stackToSetInResultSlot, FoodEnvironment.STORAGE, level);
 
         return stackToSetInResultSlot;
