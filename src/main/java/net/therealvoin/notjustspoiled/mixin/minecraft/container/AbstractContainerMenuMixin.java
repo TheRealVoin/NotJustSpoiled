@@ -7,8 +7,8 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilage;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
-import net.therealvoin.notjustspoiled.common.foodspoilage.capability.FoodSpoilageProvider;
 import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -29,10 +29,12 @@ public abstract class AbstractContainerMenuMixin {
         Level level = NJSUtils.getLevelBySlot(slot);
 
         if (level instanceof ServerLevel serverLevel) {
-            itemstack.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
+            FoodSpoilage foodSpoilage = FoodSpoilage.of(itemstack);
+
+            if (foodSpoilage != null) {
                 FoodSpoilageManager.changeEnvironmentAndUpdate(stack, foodSpoilage.getEnvironment(), serverLevel);
                 FoodSpoilageManager.tryAverageSpoilageOnMerge(stack, itemstack, serverLevel);
-            });
+            }
         }
     }
 
@@ -59,10 +61,11 @@ public abstract class AbstractContainerMenuMixin {
         Level level = NJSUtils.getLevelBySlot(slot);
 
         if (level instanceof ServerLevel serverLevel) {
-            itemInSlot.getCapability(FoodSpoilageProvider.FOOD_SPOILAGE).ifPresent(foodSpoilage -> {
+            FoodSpoilage foodSpoilage = FoodSpoilage.of(itemInSlot);
+            if (foodSpoilage != null) {
                 FoodSpoilageManager.changeEnvironmentAndUpdate(stack, foodSpoilage.getEnvironment(), serverLevel);
                 FoodSpoilageManager.tryAverageSpoilageOnMerge(itemInSlot, stack, serverLevel);
-            });
+            }
         }
     }
 }
