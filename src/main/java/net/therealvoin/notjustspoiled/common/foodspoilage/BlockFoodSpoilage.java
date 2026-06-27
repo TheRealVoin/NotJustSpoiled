@@ -21,7 +21,7 @@ public class BlockFoodSpoilage extends SavedData {
         return level.getDataStorage().computeIfAbsent(
                 BlockFoodSpoilage::load,
                 BlockFoodSpoilage::new,
-                "blockFoodSpoilage"
+                "block_food_spoilage"
         );
     }
 
@@ -53,7 +53,7 @@ public class BlockFoodSpoilage extends SavedData {
             for (int i = 0; i < listTag.size(); i++) {
                 CompoundTag compoundTag = listTag.getCompound(i);
                 BlockPos blockPos = BlockPos.of(compoundTag.getLong("pos"));
-                ItemStack itemStack = ItemStack.of(tag.getCompound("stack"));
+                ItemStack itemStack = ItemStack.of(compoundTag.getCompound("stack"));
                 data.putItemStackPos(blockPos, itemStack);
             }
         }
