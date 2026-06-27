@@ -24,6 +24,6 @@ public class SkilletItemMixin {
     @Inject(method = "lambda$finishUsingItem$1", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/item/crafting/CampfireCookingRecipe;assemble(Lnet/minecraft/world/Container;Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;"))
     private static void copyCapToCookedFood(CallbackInfo ci, @Local(argsOnly = true) ItemStack stack, @Local(argsOnly = true) Level level, @Local(name = "resultStack") ItemStack resultStack) {
         ItemStack cookingStack = ItemStack.of(stack.getOrCreateTag().getCompound("Cooking"));
-        NJSUtils.copyCapability(cookingStack, resultStack, level);
+        NJSUtils.copySpoilage(cookingStack, resultStack, level);
     }
 }
