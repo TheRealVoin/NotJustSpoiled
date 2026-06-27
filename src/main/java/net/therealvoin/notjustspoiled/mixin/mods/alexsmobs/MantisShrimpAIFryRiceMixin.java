@@ -26,7 +26,7 @@ public class MantisShrimpAIFryRiceMixin {
         Level level = mantisShrimp.level();
 
         FoodSpoilageManager.changeEnvironmentAndUpdate(stackInHand, FoodEnvironment.INVENTORY, level);
-        NJSUtils.copyCapability(stackInHand, riceStack, level);
+        NJSUtils.copySpoilage(stackInHand, riceStack, level);
     }
 
     @Inject(method = "tick", at = @At("TAIL"))
