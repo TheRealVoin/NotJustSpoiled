@@ -112,9 +112,7 @@ tasks.named('processResources', ProcessResources).configure {
             mod_authors: mod_authors,
             mod_url: mod_url,
             mod_issues_url: mod_issues_url,
-            mod_description: mod_description,
-
-            appleskin_version_range: appleskin_version_range
+            mod_description: mod_description
     ]
     inputs.properties replaceProperties
 
