@@ -1,5 +1,6 @@
 package net.therealvoin.notjustspoiled.common.foodspoilage;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -55,7 +56,7 @@ public enum FoodCategory {
     }
 
     public Component getTranslation() {
-        return Component.translatable("tooltip.notjustspoiled.food_category." + this.key);
+        return Component.translatable("tooltip.notjustspoiled.food_category." + this.key).withStyle(ChatFormatting.LIGHT_PURPLE);
     }
 
     public int getSpoilageTime() {
