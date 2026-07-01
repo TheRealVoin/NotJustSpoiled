@@ -119,6 +119,14 @@ public class NJSClientEvents {
             for (Item item : ForgeRegistries.ITEMS) {
                 event.register(item, (guiGraphics, font, stack, xOffset, yOffset) -> {
                     if (NJSClientConfig.FOOD_OVERLAY.get()) {
+                        if (stack.is(NJSTags.Items.ALWAYS_SPOILED)) {
+                            guiGraphics.fill(xOffset, yOffset, xOffset + 16, yOffset + 16, 0x80000000 | ChatFormatting.RED.getColor());
+                            return true;
+                        } else if (stack.is(NJSTags.Items.NEVER_SPOILS)) {
+                            guiGraphics.fill(xOffset, yOffset, xOffset + 16, yOffset + 16, 0x80000000 | ChatFormatting.AQUA.getColor());
+                            return true;
+                        }
+
                         FoodStatus foodStatus = FoodSpoilageManager.getFoodStatus(stack, Minecraft.getInstance().level);
                         if (foodStatus == null) {
                             return false;
