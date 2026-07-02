@@ -6,7 +6,7 @@ public class NJSClientConfig {
     public static final ForgeConfigSpec CONFIG;
     public static final ForgeConfigSpec.BooleanValue FOOD_SLOT_OVERLAY;
     public static final ForgeConfigSpec.BooleanValue SHOW_FOOD_CATEGORY;
-    public static final ForgeConfigSpec.BooleanValue SHOW_REMAINING_DAYS_TO_NEXT_STATUS;
+    public static final ForgeConfigSpec.BooleanValue SHOW_REMAINING_DAYS_TO_NEXT_FOOD_STATUS;
     public static final ForgeConfigSpec.BooleanValue SHOW_REMAINING_DAYS_TO_SPOILED_STATUS;
     public static final ForgeConfigSpec.BooleanValue SHOW_DEBUG_INFO;
 
@@ -19,10 +19,10 @@ public class NJSClientConfig {
                 .translation("config.notjustspoiled.tooltip.show_food_category")
                 .define("showFoodCategory", false);
 
-        SHOW_REMAINING_DAYS_TO_NEXT_STATUS = builder
+        SHOW_REMAINING_DAYS_TO_NEXT_FOOD_STATUS = builder
                 .comment("Shows the number of in-game days until the food reaches the next status.")
-                .translation("config.notjustspoiled.tooltip.show_remaining_days_to_next_status")
-                .define("showRemainingDaysToNextStatus", true);
+                .translation("config.notjustspoiled.tooltip.show_remaining_days_to_next_food_status")
+                .define("showRemainingDaysToNextFoodStatus", true);
 
         SHOW_REMAINING_DAYS_TO_SPOILED_STATUS = builder
                 .comment("Shows the number of in-game days until the food becomes spoiled.")
