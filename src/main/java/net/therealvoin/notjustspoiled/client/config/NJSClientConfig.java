@@ -9,6 +9,7 @@ public class NJSClientConfig {
     public static final ForgeConfigSpec.BooleanValue SHOW_REMAINING_DAYS_TO_NEXT_FOOD_STATUS;
     public static final ForgeConfigSpec.BooleanValue SHOW_REMAINING_DAYS_TO_SPOILED_STATUS;
     public static final ForgeConfigSpec.BooleanValue SHOW_DEBUG_INFO;
+    public static final ForgeConfigSpec.BooleanValue SEND_DEBUG_MESSAGE;
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -42,6 +43,11 @@ public class NJSClientConfig {
                 .comment("Shows additional debug information in the tooltip.")
                 .translation("config.notjustspoiled.debug.show_debug_info")
                 .define("showDebugInfo", false);
+
+        SEND_DEBUG_MESSAGE = builder
+                .comment("Sends a debug message to the chat when food is updated.")
+                .translation("config.noyjustspoiled.debug.send_debug_message")
+                .define("sendDebugMessage", false);
         builder.pop();
 
         CONFIG = builder.build();
