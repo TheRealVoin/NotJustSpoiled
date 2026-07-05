@@ -45,7 +45,7 @@ public class NJSClientConfig {
                 .define("showDebugInfo", false);
 
         SEND_DEBUG_MESSAGE = builder
-                .comment("Sends a debug message to the chat when food is updated.")
+                .comment("Sends a debug message to the chat when food is updated or initialized.")
                 .translation("config.noyjustspoiled.debug.send_debug_message")
                 .define("sendDebugMessage", false);
         builder.pop();
