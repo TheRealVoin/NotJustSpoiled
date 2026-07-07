@@ -27,7 +27,7 @@ public class FoodSpoilage {
     }
 
     public FoodEnvironment getEnvironment() {
-        return this.getFoodSpoilageTag().contains("environment") ? FoodEnvironment.valueOf(this.getFoodSpoilageTag().getString("environment")) : FoodEnvironment.NONE;
+        return this.getFoodSpoilageTag().contains("environment") ? FoodEnvironment.valueOf(this.getFoodSpoilageTag().getString("environment")) : null;
     }
 
     public void setEnvironment(FoodEnvironment foodEnvironment) {
