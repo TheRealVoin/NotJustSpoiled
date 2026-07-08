@@ -1,0 +1,34 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "net.therealvoin.notjustspoiled.compat.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "notjustspoiled.refmap.json",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "toughasnails.client.TooltipHandlerMixin"
+  ],
+  "mixins": [
+    "alexscaves.AbyssalAltarBlockEntityMixin",
+    "alexscaves.NuclearFurnaceBlockEntityMixin",
+    "alexscaves.accessor.NuclearFurnaceBlockEntityAccessor",
+    "alexsmobs.BlockCapsidMixin",
+    "alexsmobs.MantisShrimpAIFryRiceMixin",
+    "alexsmobs.TileEntityCapsidMixin",
+    "eanimod.ChickenNestTileEntityMixin",
+    "ends_delight.EndStoveBlockEntityMixin",
+    "ends_delight.EndStoveBlockMixin",
+    "farmersdelight.AbstractStoveBlockEntityMixin",
+    "farmersdelight.AbstractStoveBlockMixin",
+    "farmersdelight.BasketBlockEntityMixin",
+    "farmersdelight.CuttingBoardBlockEntityMixin",
+    "farmersdelight.FeastBlockMixin",
+    "farmersdelight.SkilletBlockEntityMixin",
+    "farmersdelight.SkilletItemMixin",
+    "simplefarming.FermenterBlockEntityMixin",
+    "toughasnails.ThirstHandlerMixin",
+    "toughasnails.WaterPurifierBlockEntityMixin"
+  ]
+}

@@ -5,9 +5,11 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "notjustspoiled.refmap.json",
   "plugin": "com.llamalad7.mixinextras.platform.forge.MixinExtrasConfigPlugin",
+  "injectors": {
+    "defaultRequire": 1
+  },
   "client": [
-    "forge.client.ForgeHooksClientMixin",
-    "mods.toughasnails.TooltipHandlerMixin"
+    "forge.client.ForgeHooksClientMixin"
   ],
   "mixins": [
     "forge.SidedInvWrapperMixin",
@@ -26,26 +28,6 @@
     "minecraft.food.FoodDataMixin",
     "minecraft.item.BlockItemMixin",
     "minecraft.item.FireChargeItemMixin",
-    "minecraft.item.FlintAndSteelItemMixin",
-    "mods.SetItemMixin",
-    "mods.alexscaves.AbyssalAltarBlockEntityMixin",
-    "mods.alexscaves.NuclearFurnaceBlockEntityMixin",
-    "mods.alexscaves.accessor.NuclearFurnaceBlockEntityAccessor",
-    "mods.alexsmobs.BlockCapsidMixin",
-    "mods.alexsmobs.MantisShrimpAIFryRiceMixin",
-    "mods.alexsmobs.TileEntityCapsidMixin",
-    "mods.eanimod.ChickenNestTileEntityMixin",
-    "mods.ends_delight.EndStoveBlockEntityMixin",
-    "mods.ends_delight.EndStoveBlockMixin",
-    "mods.farmersdelight.AbstractStoveBlockEntityMixin",
-    "mods.farmersdelight.AbstractStoveBlockMixin",
-    "mods.farmersdelight.CuttingBoardBlockEntityMixin",
-    "mods.farmersdelight.FeastBlockMixin",
-    "mods.farmersdelight.SkilletBlockEntityMixin",
-    "mods.farmersdelight.SkilletItemMixin",
-    "mods.toughasnails.ThirstHandlerMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  }
+    "minecraft.item.FlintAndSteelItemMixin"
+  ]
 }
