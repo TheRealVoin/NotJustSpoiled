@@ -249,6 +249,18 @@
       "required": false
     },
     {
+      "id": "simpledelights:creamcicle",
+      "required": false
+    },
+    {
+      "id": "simpledelights:mango_sorbet",
+      "required": false
+    },
+    {
+      "id": "simpledelights:orange_sorbet",
+      "required": false
+    },
+    {
       "id": "simplefarming:candy",
       "required": false
     },
