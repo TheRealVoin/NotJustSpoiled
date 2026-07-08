@@ -16,6 +16,10 @@
       "required": false
     },
     {
+      "id": "alexsdelight:raw_catfish_slice",
+      "required": false
+    },
+    {
       "id": "alexsmobs:blobfish",
       "required": false
     },
