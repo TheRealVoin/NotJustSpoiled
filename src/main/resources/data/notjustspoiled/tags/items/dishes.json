@@ -9,6 +9,18 @@
       "required": false
     },
     {
+      "id": "alexsdelight:gongylidia_bruschetta",
+      "required": false
+    },
+    {
+      "id": "alexsdelight:kangaroo_pasta",
+      "required": false
+    },
+    {
+      "id": "alexsdelight:lobster_pasta",
+      "required": false
+    },
+    {
       "id": "alexsmobs:shrimp_fried_rice",
       "required": false
     },
@@ -210,6 +222,42 @@
     },
     {
       "id": "oceansdelight:stuffed_cod",
+      "required": false
+    },
+    {
+      "id": "simpledelights:cholent",
+      "required": false
+    },
+    {
+      "id": "simpledelights:dubu_jjigae",
+      "required": false
+    },
+    {
+      "id": "simpledelights:lettuce_wrap",
+      "required": false
+    },
+    {
+      "id": "simpledelights:mango_habanero_wings",
+      "required": false
+    },
+    {
+      "id": "simpledelights:mapo_tofu",
+      "required": false
+    },
+    {
+      "id": "simpledelights:orange_chicken",
+      "required": false
+    },
+    {
+      "id": "simpledelights:plum_pork",
+      "required": false
+    },
+    {
+      "id": "simpledelights:stir_fry",
+      "required": false
+    },
+    {
+      "id": "simpledelights:sweet_potato_casserole",
       "required": false
     },
     {
