@@ -9,6 +9,10 @@
       "required": false
     },
     {
+      "id": "simpledelights:dino_oatmeal",
+      "required": false
+    },
+    {
       "id": "simplefarming:oatmeal",
       "required": false
     },
