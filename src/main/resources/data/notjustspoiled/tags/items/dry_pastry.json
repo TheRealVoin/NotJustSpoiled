@@ -118,6 +118,14 @@
       "required": false
     },
     {
+      "id": "simpledelights:granola",
+      "required": false
+    },
+    {
+      "id": "simpledelights:jam_bar",
+      "required": false
+    },
+    {
       "id": "simplefarming:peanut_butter_cookie",
       "required": false
     }
