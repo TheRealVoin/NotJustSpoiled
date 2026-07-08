@@ -53,8 +53,8 @@ public abstract class CraftingMenuMixin {
                             continue;
                         }
 
-                        FoodSpoilageManager.updateFoodLifetime(foodSpoilage, serverLevel);
-                        FoodSpoilageManager.updateFoodLifetime(foodSpoilage2, serverLevel);
+                        FoodSpoilageManager.updateFoodLifetime(itemStack1, serverLevel);
+                        FoodSpoilageManager.updateFoodLifetime(itemStack2, serverLevel);
 
                         FoodStatus foodStatus1 = FoodSpoilageManager.getFoodStatus(itemStack1, serverLevel);
                         FoodStatus foodStatus2 = FoodSpoilageManager.getFoodStatus(itemStack2, serverLevel);
