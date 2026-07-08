@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.mixin.mods.toughasnails;
+package net.therealvoin.notjustspoiled.compat.mixin.toughasnails;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.server.level.ServerLevel;
@@ -27,15 +27,15 @@ public abstract class ThirstHandlerMixin {
                 return;
             }
 
-            FoodSpoilageManager.updateFoodLifetime(FoodSpoilage.of(itemStack), serverLevel);
+            FoodSpoilageManager.updateFoodLifetime(itemStack, serverLevel);
             args.set(0, foodStatus.getModifiedNutrition(args.get(0)));
             args.set(1, foodStatus.getModifiedSaturation(args.get(1)));
 
             RandomSource random = serverLevel.getRandom();
             for (FoodStatus.EffectData effectData : foodStatus.getEffectsData()) {
-                MobEffect effect = effectData.getEffect() == MobEffects.HUNGER ? TANEffects.THIRST : effectData.getEffect();
+                MobEffect effect = effectData.effect() == MobEffects.HUNGER ? TANEffects.THIRST : effectData.effect();
 
-                if (random.nextDouble() < effectData.getApplyChance()) {
+                if (random.nextDouble() < effectData.applyChance()) {
                     player.addEffect(effectData.createEffectInstance(effect), player);
                 }
             }

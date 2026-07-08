@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.mixin.mods.toughasnails;
+package net.therealvoin.notjustspoiled.compat.mixin.toughasnails.client;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.Minecraft;

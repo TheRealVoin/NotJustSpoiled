@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.mixin.mods.alexsmobs;
+package net.therealvoin.notjustspoiled.compat.mixin.alexsmobs;
 
 import com.github.alexthe666.alexsmobs.block.BlockCapsid;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;

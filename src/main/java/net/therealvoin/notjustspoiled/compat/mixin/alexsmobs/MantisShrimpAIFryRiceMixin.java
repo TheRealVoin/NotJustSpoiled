@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.mixin.mods.alexsmobs;
+package net.therealvoin.notjustspoiled.compat.mixin.alexsmobs;
 
 import com.github.alexthe666.alexsmobs.entity.EntityMantisShrimp;
 import com.github.alexthe666.alexsmobs.entity.ai.MantisShrimpAIFryRice;

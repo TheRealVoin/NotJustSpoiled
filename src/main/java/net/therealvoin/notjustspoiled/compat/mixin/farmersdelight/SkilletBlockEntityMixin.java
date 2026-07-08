@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.mixin.mods.farmersdelight;
+package net.therealvoin.notjustspoiled.compat.mixin.farmersdelight;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;

@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.mixin.mods.eanimod;
+package net.therealvoin.notjustspoiled.compat.mixin.eanimod;
 
 import mokiyoki.enhancedanimals.tileentity.ChickenNestTileEntity;
 import net.minecraft.world.item.ItemStack;
@@ -15,12 +15,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ChickenNestTileEntity.class)
 public abstract class ChickenNestTileEntityMixin {
     @Inject(method = "addEggToNest", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/NonNullList;set(ILjava/lang/Object;)Ljava/lang/Object;", shift = At.Shift.AFTER), remap = false)
-    private void changeFoodEnvironmentWhenPlacedInChickenNest(Level level, ItemStack stackToPutInNest, CallbackInfo ci) {
+    private void updateFoodWhenPlacedInChickenNest(Level level, ItemStack stackToPutInNest, CallbackInfo ci) {
         FoodSpoilageManager.changeEnvironmentAndUpdate(stackToPutInNest, FoodEnvironment.OPEN_AIR, level);
     }
 
     @Inject(method = "removeItem", at = @At("RETURN"))
-    private void changeFoodEnvironmentWhenPlacedInInventory(CallbackInfoReturnable<ItemStack> cir) {
+    private void updateFoodWhenPlacedInInventory(CallbackInfoReturnable<ItemStack> cir) {
         FoodSpoilageManager.changeEnvironmentAndUpdate(cir.getReturnValue(), FoodEnvironment.INVENTORY, ((BlockEntity)(Object)this).getLevel());
     }
 }

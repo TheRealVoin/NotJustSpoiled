@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.mixin.mods.ends_delight;
+package net.therealvoin.notjustspoiled.compat.mixin.ends_delight;
 
 import cn.foggyhillside.ends_delight.block.EndStoveBlock;
 import cn.foggyhillside.ends_delight.blockentitiy.EndStoveBlockEntity;

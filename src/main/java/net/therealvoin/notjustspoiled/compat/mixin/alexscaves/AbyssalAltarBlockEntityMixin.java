@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.mixin.mods.alexscaves;
+package net.therealvoin.notjustspoiled.compat.mixin.alexscaves;
 
 import com.github.alexmodguy.alexscaves.server.block.blockentity.AbyssalAltarBlockEntity;
 import com.llamalad7.mixinextras.sugar.Local;

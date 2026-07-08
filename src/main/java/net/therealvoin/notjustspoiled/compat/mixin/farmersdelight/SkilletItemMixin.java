@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.mixin.mods.farmersdelight;
+package net.therealvoin.notjustspoiled.compat.mixin.farmersdelight;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.world.InteractionResultHolder;
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import vectorwing.farmersdelight.common.item.SkilletItem;
 
 @Mixin(SkilletItem.class)
-public class SkilletItemMixin {
+public abstract class SkilletItemMixin {
     @Inject(method = "use", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/item/ItemStack;split(I)Lnet/minecraft/world/item/ItemStack;", shift = At.Shift.AFTER))
     private void updateFoodWhenPlacedInSkillet(CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir, @Local(argsOnly = true) Level level, @Local(name = "cookingStackUnit") ItemStack cookingStackUnit) {
         FoodSpoilageManager.changeEnvironmentAndUpdate(cookingStackUnit, FoodEnvironment.COOKING, level);

@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.mixin.mods.farmersdelight;
+package net.therealvoin.notjustspoiled.compat.mixin.farmersdelight;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;

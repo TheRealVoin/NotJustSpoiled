@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.mixin.mods.alexscaves.accessor;
+package net.therealvoin.notjustspoiled.compat.mixin.alexscaves.accessor;
 
 import com.github.alexmodguy.alexscaves.server.block.blockentity.NuclearFurnaceBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;

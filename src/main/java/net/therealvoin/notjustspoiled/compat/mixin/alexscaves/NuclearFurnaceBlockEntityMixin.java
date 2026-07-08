@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.mixin.mods.alexscaves;
+package net.therealvoin.notjustspoiled.compat.mixin.alexscaves;
 
 import com.github.alexmodguy.alexscaves.server.block.blockentity.NuclearFurnaceBlockEntity;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -8,9 +8,10 @@ import com.llamalad7.mixinextras.sugar.Share;
 import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
-import net.therealvoin.notjustspoiled.mixin.mods.alexscaves.accessor.NuclearFurnaceBlockEntityAccessor;
+import net.therealvoin.notjustspoiled.compat.mixin.alexscaves.accessor.NuclearFurnaceBlockEntityAccessor;
 import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,6 +21,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(NuclearFurnaceBlockEntity.class)
 public abstract class NuclearFurnaceBlockEntityMixin {
+    @Inject(method = "setItem", at = @At("TAIL"))
+    private void updateFoodWhenPlacedInNuclearFurnace(int slot, ItemStack stack, CallbackInfo ci) {
+        FoodSpoilageManager.changeEnvironmentAndUpdate(stack, FoodEnvironment.STORAGE, ((BlockEntity)(Object)this).getLevel());
+    }
+
     @Inject(method = "tick", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/core/NonNullList;get(I)Ljava/lang/Object;", ordinal = 1, shift = At.Shift.BEFORE), remap = false)
     private static void createInputStackSnapshot(CallbackInfo ci, @Local(name = "cookStack") ItemStack inputStack, @Share("inputStackSnapshot") LocalRef<ItemStack> snapshot) {
         snapshot.set(inputStack.copy());
@@ -36,7 +42,7 @@ public abstract class NuclearFurnaceBlockEntityMixin {
     }
 
     @ModifyArg(method = "tick", at = @At(value = "INVOKE", target = "Lcom/github/alexmodguy/alexscaves/server/block/blockentity/NuclearFurnaceBlockEntity;setItem(ILnet/minecraft/world/item/ItemStack;)V", ordinal = 0), index = 1)
-    private static ItemStack changeFoodEnvironmentWhenPlacedInResultSlot(ItemStack stackToSetInResultSlot, @Local(argsOnly = true) Level level, @Share("inputStackSnapshot") LocalRef<ItemStack> inputStack) {
+    private static ItemStack updateFoodWhenPlacedInResultSlot(ItemStack stackToSetInResultSlot, @Local(argsOnly = true) Level level, @Share("inputStackSnapshot") LocalRef<ItemStack> inputStack) {
         NJSUtils.copySpoilage(inputStack.get(), stackToSetInResultSlot, level);
         FoodSpoilageManager.changeEnvironmentAndUpdate(stackToSetInResultSlot, FoodEnvironment.STORAGE, level);
 
@@ -44,7 +50,7 @@ public abstract class NuclearFurnaceBlockEntityMixin {
     }
 
     @Inject(method = "tick", at = @At("TAIL"), remap = false)
-    private static void changeFoodEnvironmentWhenFurnaceBecomesLitOrUnlit(CallbackInfo ci, @Local(argsOnly = true) NuclearFurnaceBlockEntity blockEntity) {
+    private static void updateFoodWhenFurnaceBecomesLitOrUnlit(CallbackInfo ci, @Local(argsOnly = true) NuclearFurnaceBlockEntity blockEntity) {
         FoodEnvironment foodEnvironment = FoodEnvironment.STORAGE;
 
         if (((NuclearFurnaceBlockEntityAccessor)(blockEntity)).getCookTime() > 0) {
