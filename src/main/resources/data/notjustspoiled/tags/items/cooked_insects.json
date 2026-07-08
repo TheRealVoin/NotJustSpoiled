@@ -3,6 +3,10 @@
     {
       "id": "alexscaves:cooked_trilocaris_tail",
       "required": false
+    },
+    {
+      "id": "alexsdelight:cooked_centipede_leg",
+      "required": false
     }
   ]
 }
