@@ -5,6 +5,10 @@
       "required": false
     },
     {
+      "id": "alexsdelight:maggot_salad",
+      "required": false
+    },
+    {
       "id": "ends_delight:assorted_salad",
       "required": false
     },
@@ -34,6 +38,10 @@
     },
     {
       "id": "oceansdelight:seagrass_salad",
+      "required": false
+    },
+    {
+      "id": "simpledelights:summer_salad",
       "required": false
     },
     {
