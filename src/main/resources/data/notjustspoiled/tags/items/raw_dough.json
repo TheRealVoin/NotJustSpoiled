@@ -9,6 +9,10 @@
       "required": false
     },
     {
+      "id": "simpledelights:squash_noodles",
+      "required": false
+    },
+    {
       "id": "simplefarming:noodles",
       "required": false
     }
