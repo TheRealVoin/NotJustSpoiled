@@ -11,6 +11,10 @@
       "required": false
     },
     {
+      "id": "simpledelights:chocolate_strawberries",
+      "required": false
+    },
+    {
       "id": "simplefarming:blackberries",
       "required": false
     },
