@@ -17,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.therealvoin.notjustspoiled.NotJustSpoiled;
 import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodCategory;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilage;
@@ -63,7 +64,7 @@ public final class NJSUtils {
             return;
         }
 
-        FoodSpoilageManager.updateFoodLifetime(foodSpoilage1, serverLevel);
+        FoodSpoilageManager.updateFoodLifetime(copyFrom, serverLevel);
         double spoilagePercent = foodSpoilage1.getFoodLifetime() / FoodCategory.getFoodCategory(copyFrom).getSpoilageTime();
         foodSpoilage2.setFoodLifetime(spoilagePercent * FoodCategory.getFoodCategory(copyTo).getSpoilageTime());
         foodSpoilage2.setEnvironment(foodSpoilage1.getEnvironment());
@@ -71,7 +72,7 @@ public final class NJSUtils {
     }
 
     public static void validateChances(ModConfigEvent event) {
-        if (event.getConfig().getSpec() != NJSServerConfig.SERVER_CONFIG) {
+        if (event.getConfig().getSpec() != NJSServerConfig.CONFIG) {
             return;
         }
 
@@ -124,7 +125,7 @@ public final class NJSUtils {
             if (currentGameTime == lastWarningMessageTime) {
                 return;
             }
-            Component modName = Component.translatable("message.notjustspoiled.warning_message.mod_name").withStyle(ChatFormatting.BOLD);
+            Component modName = Component.literal(NotJustSpoiled.MOD_NAME).withStyle(ChatFormatting.BOLD);
             Component issuesPage = Component.translatable("message.notjustspoiled.warning_message.issues_page").withStyle(Style.EMPTY.withUnderlined(true).withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/TheRealVoin/NotJustSpoiled/issues")));
             players.get(0).sendSystemMessage(Component.translatable("message.notjustspoiled.warning_message", modName, issuesPage));
             lastWarningMessageTime = currentGameTime;
