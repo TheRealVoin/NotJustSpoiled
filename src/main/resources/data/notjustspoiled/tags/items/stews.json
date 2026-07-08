@@ -12,6 +12,10 @@
       "required": false
     },
     {
+      "id": "alexsdelight:kangaroo_stew",
+      "required": false
+    },
+    {
       "id": "alexsmobs:mosquito_repellent_stew",
       "required": false
     },
