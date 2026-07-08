@@ -33,6 +33,10 @@
       "required": false
     },
     {
+      "id": "simpledelights:berry_kompot",
+      "required": false
+    },
+    {
       "id": "toughasnails:apple_juice",
       "required": false
     },
