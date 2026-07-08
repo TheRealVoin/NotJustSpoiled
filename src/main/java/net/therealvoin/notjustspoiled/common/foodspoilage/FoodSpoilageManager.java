@@ -5,16 +5,10 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.therealvoin.notjustspoiled.common.network.DebugMessagePacket;
 
-public final class FoodSpoilageManager {
-    private FoodSpoilageManager() {
-        // Utility class
-    }
-
-    private static final Component DEBUG1 = Component.translatable("message.notjustspoiled.debug.food_updated").append("\nlastUpdateTime: %d\nfoodLifetime: %f\ngameTime: %d");
-    private static final Component DEBUG2 = Component.literal("environment: %s");
-
+public class FoodSpoilageManager {
     public static void changeEnvironmentAndUpdate(ItemStack itemStack, FoodEnvironment newFoodEnvironment, Level level) {
         if (!(level instanceof ServerLevel serverLevel)) {
             return;
@@ -26,19 +20,20 @@ public final class FoodSpoilageManager {
             return;
         }
 
-        updateFoodLifetime(foodSpoilage, serverLevel);
+        updateFoodLifetime(itemStack, serverLevel);
         foodSpoilage.setEnvironment(newFoodEnvironment);
 
-        if (NJSServerConfig.SHOW_DEBUG_MESSAGE.get()) {
-            serverLevel.getServer().getPlayerList().broadcastSystemMessage(Component.literal(String.format(DEBUG2.getString(), foodSpoilage.getEnvironment().name())), false);
-        }
+        DebugMessagePacket.sendToAll(Component.literal("environment: " + newFoodEnvironment));
     }
 
-    public static void updateFoodLifetime(FoodSpoilage foodSpoilage, ServerLevel serverLevel) {
+    public static void updateFoodLifetime(ItemStack itemStack, ServerLevel serverLevel) {
         long gameTime = serverLevel.getGameTime();
+
+        FoodSpoilage foodSpoilage = FoodSpoilage.of(itemStack);
 
         if (!isInitialized(foodSpoilage)) {
             foodSpoilage.setLastUpdateTime(gameTime);
+            DebugMessagePacket.sendToAll(Component.literal("Initialized food: " + ForgeRegistries.ITEMS.getKey(itemStack.getItem()).toString() + "\nlastUpdateTime: " + gameTime));
             return;
         }
 
@@ -49,9 +44,7 @@ public final class FoodSpoilageManager {
         foodSpoilage.setFoodLifetime(calculateActualFoodLifetime(foodSpoilage, serverLevel));
         foodSpoilage.setLastUpdateTime(gameTime);
 
-        if (NJSServerConfig.SHOW_DEBUG_MESSAGE.get()) {
-            serverLevel.getServer().getPlayerList().broadcastSystemMessage(Component.literal(String.format(DEBUG1.getString(), foodSpoilage.getLastUpdateTime(), foodSpoilage.getFoodLifetime(), gameTime)), false);
-        }
+        DebugMessagePacket.sendToAll(Component.literal("Updated food: " + ForgeRegistries.ITEMS.getKey(itemStack.getItem()).toString() + "\nfoodLifetime: " + foodSpoilage.getFoodLifetime() + "\nlastUpdateTime: " + gameTime));
     }
 
     public static FoodStatus getFoodStatus(ItemStack itemStack, Level level) {
@@ -84,8 +77,8 @@ public final class FoodSpoilageManager {
             return;
         }
 
-        updateFoodLifetime(foodSpoilage1, serverLevel);
-        updateFoodLifetime(foodSpoilage2, serverLevel);
+        updateFoodLifetime(itemStack1, serverLevel);
+        updateFoodLifetime(itemStack2, serverLevel);
 
         int count1 = itemStack1.getCount();
         int count2 = itemStack2.getCount();
