@@ -2,12 +2,10 @@ package net.therealvoin.notjustspoiled.mixin.minecraft.food;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodData;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ItemStack;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilage;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodStatus;
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,17 +23,12 @@ public abstract class FoodDataMixin {
                 return;
             }
 
-            FoodSpoilageManager.updateFoodLifetime(FoodSpoilage.of(itemStack), serverLevel);
+            FoodSpoilageManager.updateFoodLifetime(itemStack, serverLevel);
             FoodProperties foodProperties = itemStack.getFoodProperties(entity);
             args.set(0, foodStatus.getModifiedNutrition(foodProperties.getNutrition()));
             args.set(1, foodStatus.getModifiedSaturation(foodProperties.getSaturationModifier()));
 
-            RandomSource random = serverLevel.getRandom();
-            for (FoodStatus.EffectData effectData : foodStatus.getEffectsData()) {
-                if (random.nextDouble() < effectData.getApplyChance()) {
-                    entity.addEffect(effectData.createEffectInstance(), entity);
-                }
-            }
+            foodStatus.applyEffects(entity);
         }
     }
 }
