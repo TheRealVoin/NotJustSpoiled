@@ -7,7 +7,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.therealvoin.notjustspoiled.client.config.NJSClientConfig;
 import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
 import net.therealvoin.notjustspoiled.common.init.NJSGlobalLootModifiers;
-import net.therealvoin.notjustspoiled.integration.AppleSkinIntegration;
+import net.therealvoin.notjustspoiled.common.network.NJSNetwork;
+import net.therealvoin.notjustspoiled.compat.appleskin.AppleSkinCompat;
 
 @Mod(NotJustSpoiled.MOD_ID)
 public class NotJustSpoiled {
@@ -17,9 +18,10 @@ public class NotJustSpoiled {
     public NotJustSpoiled(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
         NJSGlobalLootModifiers.GLOBAL_LOOT_MODIFIERS_DEFERRED_REGISTER.register(modEventBus);
-        context.registerConfig(ModConfig.Type.CLIENT, NJSClientConfig.CLIENT_CONFIG);
-        context.registerConfig(ModConfig.Type.SERVER, NJSServerConfig.SERVER_CONFIG);
+        context.registerConfig(ModConfig.Type.CLIENT, NJSClientConfig.CONFIG);
+        context.registerConfig(ModConfig.Type.SERVER, NJSServerConfig.CONFIG);
+        NJSNetwork.register();
 
-        AppleSkinIntegration.init();
+        AppleSkinCompat.init();
     }
 }
