@@ -1,6 +1,14 @@
 {
   "values": [
     {
+      "id": "alexsdelight:bison_burger",
+      "required": false
+    },
+    {
+      "id": "alexsdelight:bunfungus_sandwich",
+      "required": false
+    },
+    {
       "id": "alexsmobs:kangaroo_burger",
       "required": false
     },
