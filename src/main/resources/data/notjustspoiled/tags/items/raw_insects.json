@@ -5,6 +5,10 @@
       "required": false
     },
     {
+      "id": "alexsmobs:centipede_leg",
+      "required": false
+    },
+    {
       "id": "alexsmobs:maggot",
       "required": false
     }
