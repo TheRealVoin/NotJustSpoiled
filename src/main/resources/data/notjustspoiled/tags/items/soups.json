@@ -6,6 +6,10 @@
       "required": false
     },
     {
+      "id": "alexsdelight:acacia_blossom_soup",
+      "required": false
+    },
+    {
       "id": "alexsmobs:sopa_de_macaco",
       "required": false
     },
@@ -47,6 +51,10 @@
     },
     {
       "id": "oceansdelight:guardian_soup",
+      "required": false
+    },
+    {
+      "id": "simpledelights:pear_bisque",
       "required": false
     },
     {
