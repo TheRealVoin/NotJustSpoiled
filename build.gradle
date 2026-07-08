@@ -157,6 +157,7 @@ tasks.withType(JavaCompile).configureEach {
 mixin {
     add sourceSets.main, 'notjustspoiled.refmap.json'
     config 'notjustspoiled.mixins.json'
+    config 'notjustspoiled.compat.mixins.json'
 
     mixin.debug = true
 }
