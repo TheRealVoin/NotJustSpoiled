@@ -18,7 +18,7 @@ public class AppleSkinCompat {
     }
 
     @SubscribeEvent
-    public static void onFoodValues(FoodValuesEvent event) {
+    public static void modifyFoodValues(FoodValuesEvent event) {
         FoodStatus foodStatus = FoodSpoilageManager.getFoodStatus(event.itemStack, event.player.level());
         if (foodStatus == null) {
             return;
@@ -26,6 +26,9 @@ public class AppleSkinCompat {
 
         int defaultNutrition = event.defaultFoodValues.hunger;
         float defaultSaturationModifier = event.defaultFoodValues.saturationModifier;
-        event.modifiedFoodValues = new FoodValues(foodStatus.getModifiedNutrition(defaultNutrition), foodStatus.getModifiedSaturation(defaultSaturationModifier));
+        event.modifiedFoodValues = new FoodValues(
+                foodStatus.getModifiedNutrition(defaultNutrition),
+                foodStatus.getModifiedSaturation(defaultSaturationModifier)
+        );
     }
 }
