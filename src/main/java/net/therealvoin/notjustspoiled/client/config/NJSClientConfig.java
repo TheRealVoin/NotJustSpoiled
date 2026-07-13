@@ -4,10 +4,13 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class NJSClientConfig {
     public static final ForgeConfigSpec CONFIG;
-    public static final ForgeConfigSpec.BooleanValue FOOD_SLOT_OVERLAY;
+
     public static final ForgeConfigSpec.BooleanValue SHOW_FOOD_CATEGORY;
     public static final ForgeConfigSpec.BooleanValue SHOW_REMAINING_DAYS_TO_NEXT_FOOD_STATUS;
     public static final ForgeConfigSpec.BooleanValue SHOW_REMAINING_DAYS_TO_SPOILED_STATUS;
+
+    public static final ForgeConfigSpec.BooleanValue FOOD_SLOT_OVERLAY;
+
     public static final ForgeConfigSpec.BooleanValue SHOW_DEBUG_INFO;
     public static final ForgeConfigSpec.BooleanValue SEND_DEBUG_MESSAGE;
 
@@ -46,7 +49,7 @@ public class NJSClientConfig {
 
         SEND_DEBUG_MESSAGE = builder
                 .comment("Sends a debug message to the chat when food is updated or initialized.")
-                .translation("config.noyjustspoiled.debug.send_debug_message")
+                .translation("config.notjustspoiled.debug.send_debug_message")
                 .define("sendDebugMessage", false);
         builder.pop();
 
