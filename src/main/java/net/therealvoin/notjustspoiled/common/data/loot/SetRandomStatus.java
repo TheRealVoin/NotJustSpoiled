@@ -15,8 +15,12 @@ import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import org.jetbrains.annotations.NotNull;
 
 public class SetRandomStatus extends LootModifier {
-    public static final Codec<SetRandomStatus> CODEC =
-            RecordCodecBuilder.create(instance -> codecStart(instance).apply(instance, SetRandomStatus::new));
+    public static final Codec<SetRandomStatus> CODEC = RecordCodecBuilder.create(
+            instance -> codecStart(instance).apply(
+                    instance,
+                    SetRandomStatus::new
+            )
+    );
 
     public SetRandomStatus(LootItemCondition[] conditionsIn) {
         super(conditionsIn);

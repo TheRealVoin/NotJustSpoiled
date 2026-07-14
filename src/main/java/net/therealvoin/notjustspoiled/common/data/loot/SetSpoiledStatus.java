@@ -14,8 +14,12 @@ import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilage;
 import org.jetbrains.annotations.NotNull;
 
 public class SetSpoiledStatus extends LootModifier {
-    public static final Codec<SetSpoiledStatus> CODEC =
-            RecordCodecBuilder.create(instance -> codecStart(instance).apply(instance, SetSpoiledStatus::new));
+    public static final Codec<SetSpoiledStatus> CODEC = RecordCodecBuilder.create(
+            instance -> codecStart(instance).apply(
+                    instance,
+                    SetSpoiledStatus::new
+            )
+    );
 
     public SetSpoiledStatus(LootItemCondition[] conditionsIn) {
         super(conditionsIn);

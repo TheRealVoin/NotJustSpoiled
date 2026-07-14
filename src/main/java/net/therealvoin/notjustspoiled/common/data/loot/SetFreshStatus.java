@@ -13,8 +13,12 @@ import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilage;
 import org.jetbrains.annotations.NotNull;
 
 public class SetFreshStatus extends LootModifier {
-    public static final Codec<SetFreshStatus> CODEC =
-            RecordCodecBuilder.create(instance -> codecStart(instance).apply(instance, SetFreshStatus::new));
+    public static final Codec<SetFreshStatus> CODEC = RecordCodecBuilder.create(
+            instance -> codecStart(instance).apply(
+                    instance,
+                    SetFreshStatus::new
+            )
+    );
 
     public SetFreshStatus(LootItemCondition[] conditionsIn) {
         super(conditionsIn);
