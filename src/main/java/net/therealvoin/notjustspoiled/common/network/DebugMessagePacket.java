@@ -3,6 +3,7 @@ package net.therealvoin.notjustspoiled.common.network;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.PacketDistributor;
 import net.therealvoin.notjustspoiled.client.config.NJSClientConfig;
@@ -24,17 +25,21 @@ public class DebugMessagePacket {
         return new DebugMessagePacket(buf.readComponent());
     }
 
-    public static void handle(DebugMessagePacket packet, Supplier<NetworkEvent.Context> context) {
-        context.get().enqueueWork(() -> {
-            if (NJSClientConfig.SEND_DEBUG_MESSAGE.get()) {
-                Minecraft.getInstance().player.sendSystemMessage(packet.message);
+    public static void handle(DebugMessagePacket packet, Supplier<NetworkEvent.Context> ctx) {
+        NetworkEvent.Context context = ctx.get();
+
+        context.enqueueWork(() -> {
+            Player player = Minecraft.getInstance().player;
+
+            if (player != null && NJSClientConfig.SEND_DEBUG_MESSAGE.get()) {
+                player.sendSystemMessage(packet.message);
             }
         });
 
-        context.get().setPacketHandled(true);
+        context.setPacketHandled(true);
     }
 
     public static void sendToAll(Component message) {
-        NJSNetwork.INSTANCE.send(PacketDistributor.ALL.noArg(), new DebugMessagePacket(message));
+        NJSNetwork.CHANNEL.send(PacketDistributor.ALL.noArg(), new DebugMessagePacket(message));
     }
 }
