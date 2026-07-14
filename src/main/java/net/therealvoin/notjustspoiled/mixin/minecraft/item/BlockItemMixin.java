@@ -24,7 +24,7 @@ public abstract class BlockItemMixin {
             BlockFoodSpoilage data = BlockFoodSpoilage.get(serverLevel);
             ItemStack itemStackCopy = itemstack.copy();
             FoodSpoilageManager.changeEnvironmentAndUpdate(itemStackCopy, FoodEnvironment.OPEN_AIR, serverLevel);
-            data.putItemStackPos(blockpos, itemStackCopy);
+            data.putItemStackAt(blockpos, itemStackCopy);
         }
     }
 }
