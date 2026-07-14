@@ -7,8 +7,8 @@ import net.therealvoin.notjustspoiled.NotJustSpoiled;
 
 public class NJSNetwork {
     private static final String PROTOCOL_VERSION = "1";
-    private static int id = 0;
-    public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
+    private static int packetId = 0;
+    public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
             ResourceLocation.fromNamespaceAndPath(NotJustSpoiled.MOD_ID, "main"),
             () -> PROTOCOL_VERSION,
             PROTOCOL_VERSION::equals,
@@ -16,8 +16,8 @@ public class NJSNetwork {
     );
 
     public static void register() {
-        INSTANCE.registerMessage(
-                id++,
+        CHANNEL.registerMessage(
+                packetId++,
                 DebugMessagePacket.class,
                 DebugMessagePacket::write,
                 DebugMessagePacket::read,
