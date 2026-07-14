@@ -13,6 +13,7 @@ import net.therealvoin.notjustspoiled.common.data.loot.SetSpoiledStatus;
 
 public class NJSGlobalLootModifiers {
     public static final DeferredRegister<Codec<? extends IGlobalLootModifier>> GLOBAL_LOOT_MODIFIERS;
+
     public static final RegistryObject<Codec<? extends IGlobalLootModifier>> SET_FRESH_STATUS;
     public static final RegistryObject<Codec<? extends IGlobalLootModifier>> SET_FRESH_OR_STALE_STATUS;
     public static final RegistryObject<Codec<? extends IGlobalLootModifier>> SET_SPOILED_STATUS;
