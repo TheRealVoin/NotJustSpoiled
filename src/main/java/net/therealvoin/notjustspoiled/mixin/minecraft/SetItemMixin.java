@@ -36,12 +36,6 @@ public abstract class SetItemMixin {
         if (object instanceof Inventory inventory) {
             level = inventory.player.level();
             foodEnvironment = FoodEnvironment.INVENTORY;
-
-            if (index == 8) {
-                System.out.println(level.isClientSide());
-                System.out.println(itemStack.serializeNBT());
-                Thread.dumpStack();
-            }
         } else if (object instanceof AbstractMinecartContainer minecartContainer) {
             level = minecartContainer.level();
             foodEnvironment = FoodEnvironment.STORAGE;
