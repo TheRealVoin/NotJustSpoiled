@@ -22,7 +22,6 @@ public class SetFreshOrStaleStatus extends LootModifier {
         super(conditionsIn);
     }
 
-
     @Override
     protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
         for (ItemStack itemStack : generatedLoot) {
