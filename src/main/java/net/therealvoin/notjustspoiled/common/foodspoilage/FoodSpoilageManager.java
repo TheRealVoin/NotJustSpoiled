@@ -31,7 +31,7 @@ public class FoodSpoilageManager {
 
         FoodSpoilage foodSpoilage = FoodSpoilage.of(itemStack);
 
-        if (!isInitialized(foodSpoilage)) {
+        if (foodSpoilage != null && !foodSpoilage.isInitialized()) {
             foodSpoilage.setLastUpdateTime(gameTime);
             DebugMessagePacket.sendToAll(Component.literal("Initialized food: " + ForgeRegistries.ITEMS.getKey(itemStack.getItem()).toString() + "\nlastUpdateTime: " + gameTime));
             return;
@@ -49,7 +49,7 @@ public class FoodSpoilageManager {
 
     public static FoodStatus getFoodStatus(ItemStack itemStack, Level level) {
         FoodSpoilage foodSpoilage = FoodSpoilage.of(itemStack);
-        if (!isInitialized(foodSpoilage)) {
+        if (foodSpoilage == null || !foodSpoilage.isInitialized()) {
             return null;
         }
 
@@ -133,13 +133,5 @@ public class FoodSpoilageManager {
 
     public static double calculateActualFoodLifetime(FoodSpoilage foodSpoilage, Level level) {
         return (level.getGameTime() - foodSpoilage.getLastUpdateTime()) * foodSpoilage.getEnvironment().getFoodSpoilageMultiplier() + foodSpoilage.getFoodLifetime();
-    }
-
-    public static boolean isInitialized(ItemStack itemStack) {
-        return isInitialized(FoodSpoilage.of(itemStack));
-    }
-
-    public static boolean isInitialized(FoodSpoilage foodSpoilage) {
-        return foodSpoilage != null && foodSpoilage.getLastUpdateTime() != -1;
     }
 }

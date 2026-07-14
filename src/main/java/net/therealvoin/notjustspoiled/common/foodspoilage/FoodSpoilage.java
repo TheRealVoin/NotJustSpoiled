@@ -48,4 +48,8 @@ public class FoodSpoilage {
 
         return new FoodSpoilage(itemStack);
     }
+
+    public boolean isInitialized() {
+        return this.getLastUpdateTime() != 1;
+    }
 }
