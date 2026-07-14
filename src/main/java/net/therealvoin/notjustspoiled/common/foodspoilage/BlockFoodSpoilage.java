@@ -54,14 +54,14 @@ public class BlockFoodSpoilage extends SavedData {
                 CompoundTag compoundTag = listTag.getCompound(i);
                 BlockPos blockPos = BlockPos.of(compoundTag.getLong("pos"));
                 ItemStack itemStack = ItemStack.of(compoundTag.getCompound("stack"));
-                data.putItemStackPos(blockPos, itemStack);
+                data.putItemStackAt(blockPos, itemStack);
             }
         }
 
         return data;
     }
 
-    public ItemStack getLastItemStackByPos(BlockPos pos) {
+    public ItemStack getLastItemStackAt(BlockPos pos) {
         List<ItemStack> list = blocks.get(pos);
 
         if (list == null || list.isEmpty()) {
@@ -71,12 +71,12 @@ public class BlockFoodSpoilage extends SavedData {
         return list.get(list.size() - 1);
     }
 
-    public void putItemStackPos(BlockPos pos, ItemStack stack) {
+    public void putItemStackAt(BlockPos pos, ItemStack stack) {
         blocks.computeIfAbsent(pos, blockPos -> new ArrayList<>()).add(stack);
         super.setDirty();
     }
 
-    public void removeItemStackPos(BlockPos pos, ItemStack itemStack) {
+    public void removeItemStackAt(BlockPos pos, ItemStack itemStack) {
         List<ItemStack> list = blocks.get(pos);
 
         if (list == null) {
