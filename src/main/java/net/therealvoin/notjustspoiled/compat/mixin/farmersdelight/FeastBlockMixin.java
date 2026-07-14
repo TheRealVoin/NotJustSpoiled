@@ -20,7 +20,7 @@ public class FeastBlockMixin {
     private void copySpoilageCapToFood(CallbackInfoReturnable<InteractionResult> cir, @Local(argsOnly = true) Level level, @Local(argsOnly = true) BlockPos blockPos, @Local(name = "serving") ItemStack serving) {
         if (level instanceof ServerLevel serverLevel) {
             BlockFoodSpoilage data = BlockFoodSpoilage.get(serverLevel);
-            NJSUtils.copySpoilage(data.getLastItemStackByPos(blockPos), serving, level);
+            NJSUtils.copySpoilage(data.getLastItemStackAt(blockPos), serving, level);
         }
     }
 }
