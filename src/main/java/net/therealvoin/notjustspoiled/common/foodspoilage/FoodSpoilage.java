@@ -11,7 +11,8 @@ public class FoodSpoilage {
     }
 
     public long getLastUpdateTime() {
-        return this.getFoodSpoilageTag().contains("lastUpdateTime") ? this.getFoodSpoilageTag().getLong("lastUpdateTime") : -1;
+        CompoundTag tag = this.getFoodSpoilageTag();
+        return tag.contains("lastUpdateTime") ? tag.getLong("lastUpdateTime") : -1;
     }
 
     public void setLastUpdateTime(long lastUpdateTime) {
@@ -19,7 +20,8 @@ public class FoodSpoilage {
     }
 
     public double getFoodLifetime() {
-        return this.getFoodSpoilageTag().contains("foodLifetime") ? this.getFoodSpoilageTag().getDouble("foodLifetime") : 0;
+        CompoundTag tag = this.getFoodSpoilageTag();
+        return tag.contains("foodLifetime") ? tag.getDouble("foodLifetime") : 0;
     }
 
     public void setFoodLifetime(double foodLifetime) {
@@ -27,7 +29,8 @@ public class FoodSpoilage {
     }
 
     public FoodEnvironment getEnvironment() {
-        return this.getFoodSpoilageTag().contains("environment") ? FoodEnvironment.valueOf(this.getFoodSpoilageTag().getString("environment")) : null;
+        CompoundTag tag = this.getFoodSpoilageTag();
+        return tag.contains("environment") ? FoodEnvironment.valueOf(tag.getString("environment")) : null;
     }
 
     public void setEnvironment(FoodEnvironment foodEnvironment) {
