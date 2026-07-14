@@ -1,0 +1,22 @@
+{
+  "effects": [
+    {
+      "effect": "minecraft:poison",
+      "duration": 240,
+      "amplifier": 0,
+      "chance": 0.4
+    },
+    {
+      "effect": "minecraft:hunger",
+      "duration": 500,
+      "amplifier": 0,
+      "chance": 0.5
+    },
+    {
+      "effect": "minecraft:nausea",
+      "duration": 300,
+      "amplifier": 0,
+      "chance": 0.6
+    }
+  ]
+}
