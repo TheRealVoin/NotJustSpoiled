@@ -46,7 +46,7 @@ public class NJSClientEvents {
             List<Component> tooltip = event.getToolTip();
 
             if (tooltipItem.is(NJSTags.Items.ALWAYS_SPOILED)) {
-                tooltip.add(STATUS.copy().append(FoodStatus.SPOILED.getTranslation()));
+                tooltip.add(STATUS.copy().append(FoodStatus.SPOILED.getDisplayName()));
                 return;
             } else if (tooltipItem.is(NJSTags.Items.NEVER_SPOILS)) {
                 tooltip.add(STATUS.copy().append(NEVER_SPOILS));
@@ -58,7 +58,7 @@ public class NJSClientEvents {
 
             if (NJSClientConfig.SHOW_FOOD_CATEGORY.get()) {
                 if (tooltipItemCategory != null) {
-                    tooltip.add(CATEGORY.copy().append(tooltipItemCategory.getTranslation()));
+                    tooltip.add(CATEGORY.copy().append(tooltipItemCategory.getDisplayName()));
                 }
             }
 
@@ -67,7 +67,7 @@ public class NJSClientEvents {
                 return;
             }
 
-            tooltip.add(STATUS.copy().append(currentFoodStatus.getTranslation()));
+            tooltip.add(STATUS.copy().append(currentFoodStatus.getDisplayName()));
 
             FoodSpoilage foodSpoilage = FoodSpoilage.of(tooltipItem);
             FoodStatus nextFoodStatus = currentFoodStatus.getNext();
