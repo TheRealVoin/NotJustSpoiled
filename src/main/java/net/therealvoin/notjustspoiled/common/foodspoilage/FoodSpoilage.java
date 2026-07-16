@@ -42,7 +42,7 @@ public class FoodSpoilage {
     }
 
     public static FoodSpoilage of(ItemStack itemStack) {
-        if (FoodCategory.getFoodCategory(itemStack) == null) {
+        if (FoodCategory.of(itemStack) == null) {
             return null;
         }
 
@@ -50,6 +50,6 @@ public class FoodSpoilage {
     }
 
     public boolean isInitialized() {
-        return this.getLastUpdateTime() != 1;
+        return this.getLastUpdateTime() != -1;
     }
 }
