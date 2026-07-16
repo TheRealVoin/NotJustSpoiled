@@ -21,10 +21,10 @@ public class NotJustSpoiled {
     public NotJustSpoiled(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
 
+        NJSNetwork.register();
         NJSGlobalLootModifiers.GLOBAL_LOOT_MODIFIERS.register(modEventBus);
         context.registerConfig(ModConfig.Type.CLIENT, NJSClientConfig.CONFIG);
         context.registerConfig(ModConfig.Type.SERVER, NJSServerConfig.CONFIG);
-        NJSNetwork.register();
 
         AppleSkinCompat.init();
     }
