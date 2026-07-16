@@ -70,7 +70,7 @@ public enum FoodCategory {
         return null;
     }
 
-    public static FoodCategory getFoodCategory(ItemStack stack) {
+    public static FoodCategory of(ItemStack stack) {
         for (FoodCategory foodCategory : values()) {
             if (stack.is(foodCategory.tag)) {
                 return foodCategory;
