@@ -21,6 +21,7 @@ public class NJSGlobalLootModifiers {
 
     static {
         GLOBAL_LOOT_MODIFIERS = DeferredRegister.create(ForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, NotJustSpoiled.MOD_ID);
+
         SET_FRESH_STATUS = GLOBAL_LOOT_MODIFIERS.register("set_fresh_status", () -> SetFreshStatus.CODEC);
         SET_FRESH_OR_STALE_STATUS = GLOBAL_LOOT_MODIFIERS.register("set_fresh_or_stale_status", () -> SetFreshOrStaleStatus.CODEC);
         SET_SPOILED_STATUS = GLOBAL_LOOT_MODIFIERS.register("set_spoiled_status", () -> SetSpoiledStatus.CODEC);
