@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
-import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -37,7 +36,7 @@ public abstract class SkilletBlockEntityMixin {
 
     @Inject(method = "cookAndOutputItems", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/item/crafting/CampfireCookingRecipe;assemble(Lnet/minecraft/world/Container;Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;", shift = At.Shift.AFTER))
     private void copySpoilageToResultStack(ItemStack cookingStack, Level level, CallbackInfo ci, @Local(name = "resultStack") ItemStack resultStack) {
-        NJSUtils.copySpoilage(cookingStack, resultStack, level);
+        FoodSpoilageManager.copySpoilage(cookingStack, resultStack, level);
     }
 
     @Inject(method = "cookingTick", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/util/Mth;clamp(III)I", shift = At.Shift.AFTER))

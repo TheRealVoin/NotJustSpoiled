@@ -8,7 +8,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
-import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -29,7 +28,7 @@ public abstract class TileEntityCapsidMixin {
 
     @ModifyArg(method = "tick", at = @At(value = "INVOKE", target = "Lcom/github/alexthe666/alexsmobs/tileentity/TileEntityCapsid;setItem(ILnet/minecraft/world/item/ItemStack;)V", ordinal = 2), index = 1)
     private ItemStack copySpoilageToResultStack(ItemStack stackToSetInCapsid, @Share("stackInCapsidSnapshot") LocalRef<ItemStack> snapshot) {
-        NJSUtils.copySpoilage(snapshot.get(), stackToSetInCapsid, ((BlockEntity)(Object)this).getLevel());
+        FoodSpoilageManager.copySpoilage(snapshot.get(), stackToSetInCapsid, ((BlockEntity)(Object)this).getLevel());
         return stackToSetInCapsid;
     }
 }

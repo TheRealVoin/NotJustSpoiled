@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import net.therealvoin.notjustspoiled.compat.mixin.alexscaves.accessor.NuclearFurnaceBlockEntityAccessor;
-import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -33,7 +32,7 @@ public abstract class NuclearFurnaceBlockEntityMixin {
 
     @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;grow(I)V", ordinal = 0))
     private static void mergeFood(ItemStack stackInResultSlot, int increment, Operation<Void> original, @Local(argsOnly = true) Level level, @Local(name = "cookResult") ItemStack resultStack, @Share("inputStackSnapshot") LocalRef<ItemStack> inputStack) {
-        NJSUtils.copySpoilage(inputStack.get(), resultStack, level);
+        FoodSpoilageManager.copySpoilage(inputStack.get(), resultStack, level);
 
         FoodSpoilageManager.changeEnvironmentAndUpdate(resultStack, FoodEnvironment.STORAGE, level);
         FoodSpoilageManager.tryAverageSpoilageOnMerge(stackInResultSlot, resultStack, level);
@@ -43,7 +42,7 @@ public abstract class NuclearFurnaceBlockEntityMixin {
 
     @ModifyArg(method = "tick", at = @At(value = "INVOKE", target = "Lcom/github/alexmodguy/alexscaves/server/block/blockentity/NuclearFurnaceBlockEntity;setItem(ILnet/minecraft/world/item/ItemStack;)V", ordinal = 0), index = 1)
     private static ItemStack updateFoodWhenPlacedInResultSlot(ItemStack stackToSetInResultSlot, @Local(argsOnly = true) Level level, @Share("inputStackSnapshot") LocalRef<ItemStack> inputStack) {
-        NJSUtils.copySpoilage(inputStack.get(), stackToSetInResultSlot, level);
+        FoodSpoilageManager.copySpoilage(inputStack.get(), stackToSetInResultSlot, level);
         FoodSpoilageManager.changeEnvironmentAndUpdate(stackToSetInResultSlot, FoodEnvironment.STORAGE, level);
 
         return stackToSetInResultSlot;

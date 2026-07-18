@@ -5,7 +5,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
-import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,7 +17,7 @@ import vectorwing.farmersdelight.common.block.entity.AbstractStoveBlockEntity;
 public class AbstractStoveBlockEntityMixin {
     @Inject(method = "cookAndOutputItems", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;isItemEnabled(Lnet/minecraft/world/flag/FeatureFlagSet;)Z", shift = At.Shift.BEFORE))
     private void copySpoilageCapToCookedFood(CallbackInfo ci, @Local(name = "ingredient") ItemStack ingredient, @Local(name = "result") ItemStack result) {
-        NJSUtils.copySpoilage(ingredient, result, ((AbstractStoveBlockEntity)(Object)this).getLevel());
+        FoodSpoilageManager.copySpoilage(ingredient, result, ((AbstractStoveBlockEntity)(Object)this).getLevel());
     }
 
     @ModifyArg(method = "placeFood", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/items/ItemStackHandler;setStackInSlot(ILnet/minecraft/world/item/ItemStack;)V"), index = 1, remap = false)

@@ -6,7 +6,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
-import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,6 +23,6 @@ public abstract class SkilletItemMixin {
     @Inject(method = "lambda$finishUsingItem$1", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/item/crafting/CampfireCookingRecipe;assemble(Lnet/minecraft/world/Container;Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;"))
     private static void copyCapToCookedFood(CallbackInfo ci, @Local(argsOnly = true) ItemStack stack, @Local(argsOnly = true) Level level, @Local(name = "resultStack") ItemStack resultStack) {
         ItemStack cookingStack = ItemStack.of(stack.getOrCreateTag().getCompound("Cooking"));
-        NJSUtils.copySpoilage(cookingStack, resultStack, level);
+        FoodSpoilageManager.copySpoilage(cookingStack, resultStack, level);
     }
 }
