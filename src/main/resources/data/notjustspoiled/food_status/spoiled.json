@@ -1,4 +1,5 @@
 {
+  "nutritionMultiplier": 0.4,
   "effects": [
     {
       "effect": "minecraft:poison",
