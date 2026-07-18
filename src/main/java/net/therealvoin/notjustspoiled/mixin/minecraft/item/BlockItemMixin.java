@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class BlockItemMixin {
     @Inject(method = "place", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/Block;setPlacedBy(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;)V", shift = At.Shift.AFTER))
     private void onPlace(CallbackInfoReturnable<InteractionResult> cir, @Local BlockPos blockpos, @Local Level level, @Local ItemStack itemstack) {
-        if (level instanceof ServerLevel serverLevel && FoodCategory.getFoodCategory(itemstack) != null) {
+        if (level instanceof ServerLevel serverLevel && FoodCategory.of(itemstack) != null) {
             BlockFoodSpoilage data = BlockFoodSpoilage.get(serverLevel);
             ItemStack itemStackCopy = itemstack.copy();
             FoodSpoilageManager.changeEnvironmentAndUpdate(itemStackCopy, FoodEnvironment.OPEN_AIR, serverLevel);
