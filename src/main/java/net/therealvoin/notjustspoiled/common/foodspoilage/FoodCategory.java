@@ -16,7 +16,7 @@ public enum FoodCategory {
     COOKED_MEAT("cooked_meat", NJSTags.Items.COOKED_MEATS),
     COOKED_VEGETABLE("cooked_vegetable", NJSTags.Items.COOKED_VEGETABLES),
     BERRY("berry", NJSTags.Items.BERRIES),
-    PASTRY("pastry", NJSTags.Items.PASTRY),
+    PASTRY("pastry", NJSTags.Items.PASTRIES),
     FRUIT("fruit", NJSTags.Items.FRUITS),
     GRAIN("grain", NJSTags.Items.GRAINS),
     RAW_EGG("raw_egg", NJSTags.Items.RAW_EGGS),
@@ -41,7 +41,7 @@ public enum FoodCategory {
     RAW_SEAFOOD("raw_seafood", NJSTags.Items.RAW_SEAFOODS),
     COOKED_SEAFOOD("cooked_seafood", NJSTags.Items.COOKED_SEAFOODS),
     NUT("nut", NJSTags.Items.NUTS),
-    DRY_PASTRY("dry_pastry", NJSTags.Items.DRY_PASTRY),
+    DRY_PASTRY("dry_pastry", NJSTags.Items.DRY_PASTRIES),
     DRINK("drink", NJSTags.Items.DRINKS);
 
     private final String key;
