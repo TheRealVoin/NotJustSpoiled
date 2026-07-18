@@ -53,7 +53,7 @@ public class NJSClientEvents {
                 return;
             }
 
-            FoodCategory tooltipItemCategory = FoodCategory.getFoodCategory(tooltipItem);
+            FoodCategory tooltipItemCategory = FoodCategory.of(tooltipItem);
             Level level = player.level();
 
             if (NJSClientConfig.SHOW_FOOD_CATEGORY.get()) {
@@ -74,7 +74,7 @@ public class NJSClientEvents {
 
             if (currentFoodStatus != FoodStatus.SPOILED) {
                 if (NJSClientConfig.SHOW_REMAINING_DAYS_TO_NEXT_FOOD_STATUS.get() && nextFoodStatus != FoodStatus.SPOILED) {
-                    tooltip.add((createTranslationLine(TO_NEXT_STATUS, currentFoodStatus.getThreshold(tooltipItemCategory.getSpoilageTime()), foodSpoilage, level)));
+                    tooltip.add((createTranslationLine(TO_NEXT_STATUS, currentFoodStatus.getEnd(tooltipItemCategory.getSpoilageTime()), foodSpoilage, level)));
                 }
 
                 if (NJSClientConfig.SHOW_REMAINING_DAYS_TO_SPOILED_STATUS.get() || NJSClientConfig.SHOW_REMAINING_DAYS_TO_NEXT_FOOD_STATUS.get() && nextFoodStatus == FoodStatus.SPOILED) {
