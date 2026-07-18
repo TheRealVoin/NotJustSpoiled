@@ -28,7 +28,7 @@ public class AppleSkinCompat {
         float defaultSaturationModifier = event.defaultFoodValues.saturationModifier;
         event.modifiedFoodValues = new FoodValues(
                 foodStatus.getModifiedNutrition(defaultNutrition),
-                foodStatus.getModifiedSaturation(defaultSaturationModifier)
+                defaultSaturationModifier
         );
     }
 }
