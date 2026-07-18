@@ -36,8 +36,8 @@ public class NJSTags {
         public static final TagKey<Item> DAIRY = createTag("dairy");
 
         public static final TagKey<Item> BREADS = createTag("breads");
-        public static final TagKey<Item> PASTRY = createTag("pastry");
-        public static final TagKey<Item> DRY_PASTRY = createTag("dry_pastry");
+        public static final TagKey<Item> PASTRIES = createTag("pastries");
+        public static final TagKey<Item> DRY_PASTRIES = createTag("dry_pastries");
 
         public static final TagKey<Item> STEWS = createTag("stews");
         public static final TagKey<Item> SOUPS = createTag("soups");
