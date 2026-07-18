@@ -1,43 +1,20 @@
 package net.therealvoin.notjustspoiled.common.data.loot;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
-import net.minecraftforge.common.loot.LootModifier;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilage;
-import org.jetbrains.annotations.NotNull;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodStatus;
 
-public class SetFreshStatus extends LootModifier {
-    public static final Codec<SetFreshStatus> CODEC = RecordCodecBuilder.create(
-            instance -> codecStart(instance).apply(
-                    instance,
-                    SetFreshStatus::new
-            )
-    );
+import java.util.Map;
+
+public class SetFreshStatus extends AbstractSetFoodStatus {
+    public static final Codec<SetFreshStatus> CODEC = createCodec(SetFreshStatus::new);
 
     public SetFreshStatus(LootItemCondition[] conditionsIn) {
-        super(conditionsIn);
-    }
-
-    @Override
-    protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-        for (ItemStack itemStack : generatedLoot) {
-            FoodSpoilage foodSpoilage = FoodSpoilage.of(itemStack);
-
-            if (foodSpoilage != null) {
-                foodSpoilage.setEnvironment(FoodEnvironment.STORAGE);
-                // 1 instead of 0 to prevent the warning message from appearing
-                foodSpoilage.setFoodLifetime(1);
-                foodSpoilage.setLastUpdateTime(context.getLevel().getGameTime());
-            }
-        }
-
-        return generatedLoot;
+        super(
+                conditionsIn,
+                Map.entry(FoodStatus.FRESH, () -> 1)
+        );
     }
 
     @Override
