@@ -5,10 +5,10 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import java.util.List;
 
-public record FoodStatusData(float nutritionMultiplier, List<FoodStatusEffect> effects) {
+public record FoodStatusData(double nutritionMultiplier, List<FoodStatusEffect> effects) {
     public static final Codec<FoodStatusData> CODEC = RecordCodecBuilder.create(
             instance -> instance.group(
-                    Codec.floatRange(0, 1)
+                    Codec.doubleRange(0, 1)
                             .fieldOf("nutritionMultiplier")
                             .forGetter(FoodStatusData::nutritionMultiplier),
                     FoodStatusEffect.CODEC
