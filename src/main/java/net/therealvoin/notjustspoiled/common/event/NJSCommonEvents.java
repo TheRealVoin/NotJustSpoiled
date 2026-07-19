@@ -43,13 +43,13 @@ public class NJSCommonEvents {
             ItemStack itemEntityStack = itemEntity.getItem();
             BlockFoodSpoilage data = BlockFoodSpoilage.get(serverLevel);
             BlockPos blockPos = itemEntity.blockPosition();
-            ItemStack itemStack = data.getLastItemStackByPos(blockPos);
+            ItemStack itemStack = data.getLastItemStackAt(blockPos);
 
             if (!itemStack.isEmpty()) {
-                NJSUtils.copySpoilage(itemStack, itemEntityStack, serverLevel);
+                FoodSpoilageManager.copySpoilage(itemStack, itemEntityStack, serverLevel);
 
                 if (serverLevel.getBlockState(blockPos).getBlock() == Blocks.AIR) {
-                    data.removeItemStackPos(blockPos, itemStack);
+                    data.removeItemStackAt(blockPos, itemStack);
                 }
             }
 
@@ -81,7 +81,7 @@ public class NJSCommonEvents {
             }
 
             ItemStack craftedItem = event.getCrafting();
-            FoodCategory craftedItemCategory = FoodCategory.getFoodCategory(craftedItem);
+            FoodCategory craftedItemCategory = FoodCategory.of(craftedItem);
 
             if (craftedItemCategory == null) {
                 return;
@@ -99,7 +99,7 @@ public class NJSCommonEvents {
                 for (int i = 0; i < event.getInventory().getContainerSize(); i++) {
                     ItemStack stack = event.getInventory().getItem(i);
 
-                    FoodCategory category = FoodCategory.getFoodCategory(stack);
+                    FoodCategory category = FoodCategory.of(stack);
                     if (stack.isEmpty() || category == null) {
                         continue;
                     }
@@ -109,7 +109,7 @@ public class NJSCommonEvents {
                         continue;
                     }
 
-                    FoodSpoilageManager.updateFoodLifetime(spoilage, serverLevel);
+                    FoodSpoilageManager.updateFoodLifetime(stack, serverLevel);
 
                     FoodStatus status = FoodSpoilageManager.getFoodStatus(stack, serverLevel);
 
@@ -125,7 +125,7 @@ public class NJSCommonEvents {
             if (craftingMode == FoodCraftingMode.AVERAGE || craftingMode == FoodCraftingMode.SAME_STATUS || craftingMode == FoodCraftingMode.FRESH_STATUS || (craftingMode == FoodCraftingMode.FRESH_OR_STALE_STATUS && !mixedFreshAndStale)) {
                 for (int i = 0; i < event.getInventory().getContainerSize(); i++) {
                     ItemStack itemStack = event.getInventory().getItem(i);
-                    FoodCategory itemStackCategory = FoodCategory.getFoodCategory(itemStack);
+                    FoodCategory itemStackCategory = FoodCategory.of(itemStack);
                     if (itemStack.isEmpty() || itemStackCategory == null) {
                         continue;
                     }
@@ -135,7 +135,7 @@ public class NJSCommonEvents {
                         continue;
                     }
 
-                    FoodSpoilageManager.updateFoodLifetime(foodSpoilage, serverLevel);
+                    FoodSpoilageManager.updateFoodLifetime(itemStack, serverLevel);
                     totalSpoilagePercent += foodSpoilage.getFoodLifetime() / itemStackCategory.getSpoilageTime();
                     count++;
                 }
@@ -158,7 +158,7 @@ public class NJSCommonEvents {
                 for (int i = 0; i < event.getInventory().getContainerSize(); i++) {
                     ItemStack itemStack = event.getInventory().getItem(i);
 
-                    FoodCategory itemStackCategory = FoodCategory.getFoodCategory(itemStack);
+                    FoodCategory itemStackCategory = FoodCategory.of(itemStack);
                     if (itemStack.isEmpty() || itemStackCategory == null) {
                         continue;
                     }
@@ -168,7 +168,7 @@ public class NJSCommonEvents {
                         continue;
                     }
 
-                    FoodSpoilageManager.updateFoodLifetime(foodSpoilage, serverLevel);
+                    FoodSpoilageManager.updateFoodLifetime(itemStack, serverLevel);
                     double percent = foodSpoilage.getFoodLifetime() / itemStackCategory.getSpoilageTime();
 
                     if (percent > worstPercent) {
@@ -210,7 +210,7 @@ public class NJSCommonEvents {
 
             Path path = ModList.get().getModFileById(NotJustSpoiled.MOD_ID).getFile().findResource("datapack");
             Pack.ResourcesSupplier supplier = id -> new PathPackResources(NotJustSpoiled.MOD_ID, path, true);
-            Pack.Info info = new Pack.Info(Component.translatable("datapack.notjustspoiled.description"), 15, 15, FeatureFlagSet.of(), true);
+            Pack.Info info = new Pack.Info(Component.translatable("datapack.notjustspoiled.description", NotJustSpoiled.MOD_NAME), 15, 15, FeatureFlagSet.of(), true);
 
             Pack pack =  Pack.create(
                     NotJustSpoiled.MOD_ID,
