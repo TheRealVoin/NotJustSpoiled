@@ -30,7 +30,7 @@ public abstract class CraftingMenuMixin {
                 for (int i = 0; i < container.getContainerSize(); i++) {
                     ItemStack itemStack1 = container.getItem(i);
 
-                    FoodCategory category1 = FoodCategory.getFoodCategory(itemStack1);
+                    FoodCategory category1 = FoodCategory.of(itemStack1);
                     if (itemStack1.isEmpty() || category1 == null) {
                         continue;
                     }
@@ -43,7 +43,7 @@ public abstract class CraftingMenuMixin {
                     for (int j = 0; j < container.getContainerSize(); j++) {
                         ItemStack itemStack2 = container.getItem(j);
 
-                        FoodCategory category2 = FoodCategory.getFoodCategory(itemStack2);
+                        FoodCategory category2 = FoodCategory.of(itemStack2);
                         if (itemStack2.isEmpty() || category2 == null) {
                             continue;
                         }
