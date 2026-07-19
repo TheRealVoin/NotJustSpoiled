@@ -61,20 +61,19 @@ public class NJSCommonEvents {
 
         @SubscribeEvent
         public static void onItemStackedOnOther(ItemStackedOnOtherEvent event) {
-            if (event.getPlayer().level() instanceof ServerLevel serverLevel) {
-                ItemStack carriedItem = event.getStackedOnItem();
-                ItemStack stackedOnItem = event.getCarriedItem();
-
-                if (!carriedItem.isEmpty() && !stackedOnItem.isEmpty()) {
-                    FoodSpoilage foodSpoilage = FoodSpoilage.of(stackedOnItem);
-
-                    if (foodSpoilage != null) {
-                        FoodSpoilageManager.changeEnvironmentAndUpdate(carriedItem, foodSpoilage.getEnvironment(), serverLevel);
-                    }
-
-                    FoodSpoilageManager.tryAverageSpoilageOnMerge(carriedItem, stackedOnItem, serverLevel);
-                }
+            if (!(event.getPlayer().level() instanceof ServerLevel serverLevel)) {
+                return;
             }
+
+            ItemStack carriedItem = event.getStackedOnItem();
+            ItemStack stackedOnItem = event.getCarriedItem();
+            FoodSpoilage foodSpoilage = FoodSpoilage.of(stackedOnItem);
+
+            if (foodSpoilage != null) {
+                FoodSpoilageManager.changeEnvironmentAndUpdate(carriedItem, foodSpoilage.getEnvironment(), serverLevel);
+            }
+
+            FoodSpoilageManager.tryAverageSpoilageOnMerge(carriedItem, stackedOnItem, serverLevel);
         }
 
         @SubscribeEvent
@@ -84,110 +83,55 @@ public class NJSCommonEvents {
             }
 
             ItemStack craftedItem = event.getCrafting();
-            FoodCategory craftedItemCategory = FoodCategory.of(craftedItem);
+            FoodSpoilage craftedFoodSpoilage = FoodSpoilage.of(craftedItem);
 
-            if (craftedItemCategory == null) {
+            if (craftedFoodSpoilage == null) {
                 return;
             }
 
-            double totalSpoilagePercent = 0;
-            int count = 0;
-
             FoodCraftingMode craftingMode = NJSServerConfig.FOOD_CRAFTING_MODE.get();
-            boolean mixedFreshAndStale = false;
 
-            if (craftingMode == FoodCraftingMode.FRESH_OR_STALE_STATUS) {
-                FoodStatus firstStatus = null;
+            double totalSpoilagePercent = 0;
+            int totalCount = 0;
+            double worstPercent = 0;
 
-                for (int i = 0; i < event.getInventory().getContainerSize(); i++) {
-                    ItemStack stack = event.getInventory().getItem(i);
+            FoodStatus firstStatus = null;
+            boolean hasMixedStatuses = false;
 
-                    FoodCategory category = FoodCategory.of(stack);
-                    if (stack.isEmpty() || category == null) {
-                        continue;
-                    }
+            for (int i = 0; i < event.getInventory().getContainerSize(); i++) {
+                ItemStack itemStack = event.getInventory().getItem(i);
 
-                    FoodSpoilage spoilage = FoodSpoilage.of(stack);
-                    if (spoilage == null) {
-                        continue;
-                    }
+                FoodSpoilage foodSpoilage = FoodSpoilage.of(itemStack);
+                if (foodSpoilage == null) {
+                    continue;
+                }
 
-                    FoodSpoilageManager.updateFoodLifetime(stack, serverLevel);
+                double spoilagePercent = FoodSpoilageManager.calculateActualFoodLifetime(foodSpoilage, serverLevel) / FoodCategory.of(itemStack).getSpoilageTime();
 
-                    FoodStatus status = FoodSpoilageManager.getFoodStatus(stack, serverLevel);
+                totalSpoilagePercent += spoilagePercent;
+                worstPercent = Math.max(worstPercent, spoilagePercent);
+                totalCount++;
 
-                    if (firstStatus == null) {
-                        firstStatus = status;
-                    } else if (firstStatus != status) {
-                        mixedFreshAndStale = true;
-                        break;
-                    }
+                FoodStatus foodStatus = FoodSpoilageManager.getFoodStatus(itemStack, serverLevel);
+
+                if (firstStatus == null) {
+                    firstStatus = foodStatus;
+                } else if (firstStatus != foodStatus) {
+                    hasMixedStatuses = true;
                 }
             }
 
-            if (craftingMode == FoodCraftingMode.AVERAGE || craftingMode == FoodCraftingMode.SAME_STATUS || craftingMode == FoodCraftingMode.FRESH_STATUS || (craftingMode == FoodCraftingMode.FRESH_OR_STALE_STATUS && !mixedFreshAndStale)) {
-                for (int i = 0; i < event.getInventory().getContainerSize(); i++) {
-                    ItemStack itemStack = event.getInventory().getItem(i);
-                    FoodCategory itemStackCategory = FoodCategory.of(itemStack);
-                    if (itemStack.isEmpty() || itemStackCategory == null) {
-                        continue;
-                    }
-
-                    FoodSpoilage foodSpoilage = FoodSpoilage.of(itemStack);
-                    if (foodSpoilage == null) {
-                        continue;
-                    }
-
-                    FoodSpoilageManager.updateFoodLifetime(itemStack, serverLevel);
-                    totalSpoilagePercent += foodSpoilage.getFoodLifetime() / itemStackCategory.getSpoilageTime();
-                    count++;
-                }
-
-                if (count == 0) {
-                    return;
-                }
-
-                double finalSpoilagePercent = totalSpoilagePercent / count;
-                double finalFoodLifetime = finalSpoilagePercent * craftedItemCategory.getSpoilageTime();
-
-                FoodSpoilage foodSpoilage = FoodSpoilage.of(craftedItem);
-                if (foodSpoilage != null) {
-                    foodSpoilage.setFoodLifetime(finalFoodLifetime);
-                    foodSpoilage.setEnvironment(FoodEnvironment.STORAGE);
-                    foodSpoilage.setLastUpdateTime(serverLevel.getGameTime());
-                }
-            } else if (craftingMode == FoodCraftingMode.WORST_STATUS || (craftingMode == FoodCraftingMode.FRESH_OR_STALE_STATUS && mixedFreshAndStale)) {
-                double worstPercent = 0;
-                for (int i = 0; i < event.getInventory().getContainerSize(); i++) {
-                    ItemStack itemStack = event.getInventory().getItem(i);
-
-                    FoodCategory itemStackCategory = FoodCategory.of(itemStack);
-                    if (itemStack.isEmpty() || itemStackCategory == null) {
-                        continue;
-                    }
-
-                    FoodSpoilage foodSpoilage = FoodSpoilage.of(itemStack);
-                    if (foodSpoilage == null) {
-                        continue;
-                    }
-
-                    FoodSpoilageManager.updateFoodLifetime(itemStack, serverLevel);
-                    double percent = foodSpoilage.getFoodLifetime() / itemStackCategory.getSpoilageTime();
-
-                    if (percent > worstPercent) {
-                        worstPercent = percent;
-                    }
-                }
-
-                double finalFoodLifeTime = worstPercent * craftedItemCategory.getSpoilageTime();
-
-                FoodSpoilage foodSpoilage = FoodSpoilage.of(craftedItem);
-                if (foodSpoilage != null) {
-                    foodSpoilage.setFoodLifetime(finalFoodLifeTime);
-                    foodSpoilage.setEnvironment(FoodEnvironment.STORAGE);
-                    foodSpoilage.setLastUpdateTime(serverLevel.getGameTime());
-                }
+            if (totalCount == 0) {
+                return;
             }
+
+            double finalSpoilagePercent = craftingMode.getCalculationMode(hasMixedStatuses) == FoodCraftingMode.CalculationMode.AVERAGE
+                    ? totalSpoilagePercent / totalCount
+                    : worstPercent;
+
+            craftedFoodSpoilage.setFoodLifetime(finalSpoilagePercent * FoodCategory.of(craftedItem).getSpoilageTime());
+            craftedFoodSpoilage.setEnvironment(FoodEnvironment.STORAGE);
+            craftedFoodSpoilage.setLastUpdateTime(serverLevel.getGameTime());
         }
 
         @SubscribeEvent
