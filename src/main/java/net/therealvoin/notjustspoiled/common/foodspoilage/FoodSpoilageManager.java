@@ -2,7 +2,6 @@ package net.therealvoin.notjustspoiled.common.foodspoilage;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -54,7 +53,15 @@ public class FoodSpoilageManager {
         }
 
         double foodLifetime = calculateActualFoodLifetime(foodSpoilage, level);
-        return getFoodStatus(foodLifetime, FoodCategory.getFoodCategory(itemStack).getSpoilageTime());
+        int spoilageTime = FoodCategory.of(itemStack).getSpoilageTime();
+
+        for (FoodStatus foodStatus : FoodStatus.values()) {
+            if (foodLifetime < foodStatus.getEnd(spoilageTime)) {
+                return foodStatus;
+            }
+        }
+
+        return FoodStatus.SPOILED;
     }
 
     public static void tryAverageSpoilageOnMerge(ItemStack itemStack1, ItemStack itemStack2, Level level) {
@@ -89,49 +96,26 @@ public class FoodSpoilageManager {
         foodSpoilage2.setFoodLifetime(average);
     }
 
-    public static int getRandomFoodLifetime(FoodCategory foodCategory, RandomSource random, boolean includeAll) {
-        int spoilageTime = foodCategory.getSpoilageTime();
-        FoodStatus foodStatus;
-
-        if (includeAll) {
-            foodStatus = FoodStatus.getRandomFoodStatus(random);
-        } else {
-            foodStatus = FoodStatus.getFreshOrStaleStatus(random);
-        }
-
-
-        switch (foodStatus) {
-            case FRESH -> {
-                return random.nextIntBetweenInclusive(0, spoilageTime / 3 - 1);
-            }
-            case STALE -> {
-                return random.nextIntBetweenInclusive(spoilageTime / 3, spoilageTime / 3 * 2 - 1);
-            }
-            case HALF_SPOILED -> {
-                return random.nextIntBetweenInclusive(spoilageTime / 3 * 2, spoilageTime - 1);
-            }
-            case SPOILED -> {
-                return spoilageTime;
-            }
-            default -> {
-                return -1;
-            }
-        }
-    }
-
-    public static FoodStatus getFoodStatus(double foodLifetime, int spoilageTime) {
-        if (foodLifetime < FoodStatus.FRESH.getThreshold(spoilageTime)) {
-            return FoodStatus.FRESH;
-        } else if (foodLifetime < FoodStatus.STALE.getThreshold(spoilageTime)) {
-            return FoodStatus.STALE;
-        } else if (foodLifetime < FoodStatus.HALF_SPOILED.getThreshold(spoilageTime)) {
-            return FoodStatus.HALF_SPOILED;
-        } else {
-            return FoodStatus.SPOILED;
-        }
-    }
-
     public static double calculateActualFoodLifetime(FoodSpoilage foodSpoilage, Level level) {
         return (level.getGameTime() - foodSpoilage.getLastUpdateTime()) * foodSpoilage.getEnvironment().getFoodSpoilageMultiplier() + foodSpoilage.getFoodLifetime();
+    }
+
+    public static void copySpoilage(ItemStack copyFrom, ItemStack copyTo, Level level) {
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return;
+        }
+
+        FoodSpoilage foodSpoilage1 = FoodSpoilage.of(copyFrom);
+        FoodSpoilage foodSpoilage2 = FoodSpoilage.of(copyTo);
+
+        if (foodSpoilage1 == null || foodSpoilage2 == null) {
+            return;
+        }
+
+        updateFoodLifetime(copyFrom, serverLevel);
+        double spoilagePercent = foodSpoilage1.getFoodLifetime() / FoodCategory.of(copyFrom).getSpoilageTime();
+        foodSpoilage2.setFoodLifetime(spoilagePercent * FoodCategory.of(copyTo).getSpoilageTime());
+        foodSpoilage2.setEnvironment(foodSpoilage1.getEnvironment());
+        foodSpoilage2.setLastUpdateTime(foodSpoilage1.getLastUpdateTime());
     }
 }
