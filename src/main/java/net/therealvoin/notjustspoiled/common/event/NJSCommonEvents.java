@@ -12,6 +12,7 @@ import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.AddPackFindersEvent;
+import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.ItemStackedOnOtherEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -20,6 +21,8 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.therealvoin.notjustspoiled.NotJustSpoiled;
+import net.therealvoin.notjustspoiled.common.data.foodcategory.FoodCategoryReloadListener;
+import net.therealvoin.notjustspoiled.common.data.foodstatus.FoodStatusReloadListener;
 import net.therealvoin.notjustspoiled.common.foodspoilage.*;
 import net.therealvoin.notjustspoiled.common.config.FoodCraftingMode;
 import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
@@ -185,6 +188,12 @@ public class NJSCommonEvents {
                     foodSpoilage.setLastUpdateTime(serverLevel.getGameTime());
                 }
             }
+        }
+
+        @SubscribeEvent
+        public static void registerDataDriven(AddReloadListenerEvent event) {
+            event.addListener(new FoodStatusReloadListener());
+            event.addListener(new FoodCategoryReloadListener());
         }
     }
 
