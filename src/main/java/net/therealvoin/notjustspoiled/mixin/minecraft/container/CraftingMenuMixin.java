@@ -10,7 +10,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.therealvoin.notjustspoiled.common.config.FoodCraftingMode;
 import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodCategory;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilage;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodStatus;
@@ -22,55 +21,35 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(CraftingMenu.class)
 public abstract class CraftingMenuMixin {
     @Inject(method = "slotChangedCraftingGrid", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/ResultContainer;setItem(ILnet/minecraft/world/item/ItemStack;)V", shift = At.Shift.AFTER))
-    private static void updateFoodWhenPlacedIntoCraftingSlotAndManageCrafting(AbstractContainerMenu menu, Level level, Player player, CraftingContainer container, ResultContainer result, CallbackInfo ci) {
-        if (level instanceof ServerLevel serverLevel) {
-            FoodCraftingMode craftingMode = NJSServerConfig.FOOD_CRAFTING_MODE.get();
+    private static void manageCrafting(AbstractContainerMenu menu, Level level, Player player, CraftingContainer container, ResultContainer result, CallbackInfo ci) {
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return;
+        }
 
-            if (craftingMode == FoodCraftingMode.SAME_STATUS || craftingMode == FoodCraftingMode.FRESH_STATUS || craftingMode == FoodCraftingMode.FRESH_OR_STALE_STATUS) {
-                for (int i = 0; i < container.getContainerSize(); i++) {
-                    ItemStack itemStack1 = container.getItem(i);
+        FoodCraftingMode mode = NJSServerConfig.FOOD_CRAFTING_MODE.get();
 
-                    FoodCategory category1 = FoodCategory.of(itemStack1);
-                    if (itemStack1.isEmpty() || category1 == null) {
-                        continue;
-                    }
+        if (mode.canAlwaysCraft()) {
+            return;
+        }
 
-                    FoodSpoilage foodSpoilage = FoodSpoilage.of(itemStack1);
-                    if (foodSpoilage == null) {
-                        continue;
-                    }
+        FoodStatus firstStatus = null;
 
-                    for (int j = 0; j < container.getContainerSize(); j++) {
-                        ItemStack itemStack2 = container.getItem(j);
+        for (int i = 0; i < container.getContainerSize(); i++) {
+            ItemStack stack = container.getItem(i);
 
-                        FoodCategory category2 = FoodCategory.of(itemStack2);
-                        if (itemStack2.isEmpty() || category2 == null) {
-                            continue;
-                        }
+            if (FoodSpoilage.of(stack) == null) {
+                continue;
+            }
 
-                        FoodSpoilage foodSpoilage2 = FoodSpoilage.of(itemStack2);
-                        if (foodSpoilage2 == null) {
-                            continue;
-                        }
+            FoodStatus status = FoodSpoilageManager.getFoodStatus(stack, serverLevel);
+            if (firstStatus == null) {
+                firstStatus = status;
+                continue;
+            }
 
-                        FoodSpoilageManager.updateFoodLifetime(itemStack1, serverLevel);
-                        FoodSpoilageManager.updateFoodLifetime(itemStack2, serverLevel);
-
-                        FoodStatus foodStatus1 = FoodSpoilageManager.getFoodStatus(itemStack1, serverLevel);
-                        FoodStatus foodStatus2 = FoodSpoilageManager.getFoodStatus(itemStack2, serverLevel);
-                        boolean condition = false;
-                        switch (craftingMode) {
-                            case SAME_STATUS -> condition = foodStatus1 != foodStatus2;
-                            case FRESH_STATUS -> condition = foodStatus1 != FoodStatus.FRESH || foodStatus2 != FoodStatus.FRESH;
-                            case FRESH_OR_STALE_STATUS -> condition = foodStatus1 == FoodStatus.HALF_SPOILED || foodStatus1 == FoodStatus.SPOILED || foodStatus2 == FoodStatus.HALF_SPOILED || foodStatus2 == FoodStatus.SPOILED;
-                        }
-
-                        if (condition) {
-                            result.setItem(0, ItemStack.EMPTY);
-                            return;
-                        }
-                    }
-                }
+            if (!mode.isAllowed(firstStatus, status)) {
+                result.setItem(0, ItemStack.EMPTY);
+                return;
             }
         }
     }
