@@ -193,12 +193,12 @@ public class NJSCommonEvents {
         // Config events
         @SubscribeEvent
         public static void onConfigLoad(ModConfigEvent.Loading event) {
-            NJSUtils.validateChances(event);
+            validateChances(event);
         }
 
         @SubscribeEvent
         public static void onConfigReload(ModConfigEvent.Reloading event) {
-            NJSUtils.validateChances(event);
+            validateChances(event);
         }
 
         // Datapack event
