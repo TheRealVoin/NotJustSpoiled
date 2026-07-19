@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Inventory.class)
@@ -19,6 +20,12 @@ public abstract class InventoryMixin {
     @Inject(method = "addResource(ILnet/minecraft/world/item/ItemStack;)I", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/entity/player/Inventory;getItem(I)Lnet/minecraft/world/item/ItemStack;", shift = At.Shift.AFTER))
     private void changeFoodEnvironmentWhenPlacedInInventory(int pSlot, ItemStack pStack, CallbackInfoReturnable<Integer> cir) {
         FoodSpoilageManager.changeEnvironmentAndUpdate(pStack, FoodEnvironment.INVENTORY, player.level());
+    }
+
+    @ModifyArg(method = "setItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/NonNullList;set(ILjava/lang/Object;)Ljava/lang/Object;"), index = 1)
+    private Object changeFoodEnvironmentWhenPlacedInInventory(Object itemStack) {
+        FoodSpoilageManager.changeEnvironmentAndUpdate((ItemStack) itemStack, FoodEnvironment.INVENTORY, player.level());
+        return itemStack;
     }
 
 //    @WrapOperation(method = "addResource(ILnet/minecraft/world/item/ItemStack;)I", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;grow(I)V"))
