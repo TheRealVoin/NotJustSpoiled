@@ -26,12 +26,6 @@ public abstract class CraftingMenuMixin {
             return;
         }
 
-        FoodCraftingMode mode = NJSServerConfig.FOOD_CRAFTING_MODE.get();
-
-        if (mode.canAlwaysCraft()) {
-            return;
-        }
-
         FoodStatus firstStatus = null;
 
         for (int i = 0; i < container.getContainerSize(); i++) {
@@ -47,7 +41,7 @@ public abstract class CraftingMenuMixin {
                 continue;
             }
 
-            if (!mode.isAllowed(firstStatus, status)) {
+            if (!NJSServerConfig.FOOD_CRAFTING_MODE.get().isAllowed(firstStatus, status)) {
                 result.setItem(0, ItemStack.EMPTY);
                 return;
             }
