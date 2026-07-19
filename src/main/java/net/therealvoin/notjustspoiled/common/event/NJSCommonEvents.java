@@ -23,7 +23,6 @@ import net.therealvoin.notjustspoiled.NotJustSpoiled;
 import net.therealvoin.notjustspoiled.common.foodspoilage.*;
 import net.therealvoin.notjustspoiled.common.config.FoodCraftingMode;
 import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
-import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 
 import java.nio.file.Path;
 
@@ -226,6 +225,53 @@ public class NJSCommonEvents {
             );
 
             event.addRepositorySource(source -> source.accept(pack));
+        }
+
+        private static void validateChances(ModConfigEvent event) {
+            if (event.getConfig().getSpec() != NJSServerConfig.CONFIG) {
+                return;
+            }
+
+            double fresh = NJSServerConfig.RANDOM$CHANCE_TO_APPEAR_FRESH_FOOD_IN_STORAGE.get();
+            double stale = NJSServerConfig.RANDOM$CHANCE_TO_APPEAR_STALE_FOOD_IN_STORAGE.get();
+            double halfSpoiled = NJSServerConfig.RANDOM$CHANCE_TO_APPEAR_HALF_SPOILED_FOOD_IN_STORAGE.get();
+            double spoiled = NJSServerConfig.RANDOM$CHANCE_TO_APPEAR_SPOILED_FOOD_IN_STORAGE.get();
+            double remaining = 1.0;
+
+            fresh = Math.min(fresh, remaining);
+            remaining -= fresh;
+            stale = Math.min(stale, remaining);
+            remaining -= stale;
+            halfSpoiled = Math.min(halfSpoiled, remaining);
+            remaining -= halfSpoiled;
+            spoiled = Math.min(spoiled, remaining);
+            remaining -= spoiled;
+
+            if (remaining > 0) {
+                fresh += remaining;
+            }
+
+            NJSServerConfig.RANDOM$CHANCE_TO_APPEAR_FRESH_FOOD_IN_STORAGE.set(fresh);
+            NJSServerConfig.RANDOM$CHANCE_TO_APPEAR_STALE_FOOD_IN_STORAGE.set(stale);
+            NJSServerConfig.RANDOM$CHANCE_TO_APPEAR_HALF_SPOILED_FOOD_IN_STORAGE.set(halfSpoiled);
+            NJSServerConfig.RANDOM$CHANCE_TO_APPEAR_SPOILED_FOOD_IN_STORAGE.set(spoiled);
+
+
+            fresh = NJSServerConfig.FRESH_OR_STALE$CHANCE_TO_APPEAR_FRESH_FOOD_IN_STORAGE.get();
+            stale = NJSServerConfig.FRESH_OR_STALE$CHANCE_TO_APPEAR_STALE_FOOD_IN_STORAGE.get();
+            remaining = 1.0;
+
+            fresh = Math.min(fresh, remaining);
+            remaining -= fresh;
+            stale = Math.min(stale, remaining);
+            remaining -= stale;
+
+            if (remaining > 0) {
+                fresh += remaining;
+            }
+
+            NJSServerConfig.FRESH_OR_STALE$CHANCE_TO_APPEAR_FRESH_FOOD_IN_STORAGE.set(fresh);
+            NJSServerConfig.FRESH_OR_STALE$CHANCE_TO_APPEAR_STALE_FOOD_IN_STORAGE.set(stale);
         }
     }
 }
