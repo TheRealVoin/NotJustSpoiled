@@ -47,6 +47,10 @@ public abstract class SetItemMixin {
             level = chestBoat.level();
         }
 
+        if (level == null) {
+            return;
+        }
+
         FoodSpoilageManager.changeEnvironmentAndUpdate(itemStack, FoodEnvironment.STORAGE, level);
         notJustSpoiled$sendWarningMessageIfNeeded(itemStack, level);
     }
