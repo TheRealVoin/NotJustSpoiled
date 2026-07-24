@@ -1,6 +1,7 @@
 {
   "values": [
     "minecraft:dried_kelp",
+    "minecraft:dried_kelp_block",
     {
       "id": "ends_delight:dried_endermite_meat",
       "required": false
