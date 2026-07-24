@@ -12,8 +12,9 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 @Mixin(Player.class)
 public abstract class PlayerMixin {
     @ModifyArg(method = "setItemSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/NonNullList;set(ILjava/lang/Object;)Ljava/lang/Object;"), index = 1)
-    private Object changeFoodEnvironmentWhenPlacedInEquipmentSlot(Object itemStack) {
-        FoodSpoilageManager.changeEnvironmentAndUpdate((ItemStack) itemStack, FoodEnvironment.INVENTORY, ((Entity)(Object)this).level());
-        return itemStack;
+    private Object changeFoodEnvironmentWhenPlacedInEquipmentSlot(Object value) {
+        ItemStack stackToPlaceInEquipmentSlot = (ItemStack) value;
+        FoodSpoilageManager.changeEnvironmentAndUpdate(stackToPlaceInEquipmentSlot, FoodEnvironment.INVENTORY, ((Entity)(Object)this).level());
+        return stackToPlaceInEquipmentSlot;
     }
 }
