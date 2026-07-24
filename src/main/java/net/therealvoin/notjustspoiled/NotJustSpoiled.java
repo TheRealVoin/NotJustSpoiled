@@ -9,7 +9,7 @@ import net.therealvoin.notjustspoiled.client.config.NJSClientConfig;
 import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
 import net.therealvoin.notjustspoiled.common.init.NJSGlobalLootModifiers;
 import net.therealvoin.notjustspoiled.common.network.NJSNetwork;
-import net.therealvoin.notjustspoiled.compat.appleskin.AppleSkinCompat;
+import net.therealvoin.notjustspoiled.compat.appleskin.AppleSkinIntegration;
 import org.slf4j.Logger;
 
 @Mod(NotJustSpoiled.MOD_ID)
@@ -26,6 +26,6 @@ public class NotJustSpoiled {
         context.registerConfig(ModConfig.Type.CLIENT, NJSClientConfig.CONFIG);
         context.registerConfig(ModConfig.Type.SERVER, NJSServerConfig.CONFIG);
 
-        AppleSkinCompat.init();
+        AppleSkinIntegration.init();
     }
 }
