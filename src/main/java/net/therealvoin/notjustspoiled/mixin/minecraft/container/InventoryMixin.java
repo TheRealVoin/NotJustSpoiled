@@ -23,25 +23,25 @@ public abstract class InventoryMixin {
     @Shadow @Final public Player player;
 
     @ModifyArg(method = "setItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/NonNullList;set(ILjava/lang/Object;)Ljava/lang/Object;"), index = 1)
-    private Object changeFoodEnvironmentWhenPlacedInInventory(Object itemStack) {
-        FoodSpoilageManager.changeEnvironmentAndUpdate((ItemStack) itemStack, FoodEnvironment.INVENTORY, player.level());
-        return itemStack;
+    private Object changeFoodEnvironmentWhenPlacedInInventory(Object stackToPlaceInInventory) {
+        FoodSpoilageManager.changeEnvironmentAndUpdate((ItemStack) stackToPlaceInInventory, FoodEnvironment.INVENTORY, player.level());
+        return stackToPlaceInInventory;
     }
 
     @ModifyArgs(method = "hasRemainingSpaceForItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;isSameItemSameTags(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z"))
-    private void modifyCheck(Args args) {
-        NJSUtils.removeSpoilageTagForEqualityCheck(args, player.level());
+    private void removeSpoilageTagFromEqualityCheck(Args args) {
+        NJSUtils.removeSpoilageTagFromEqualityCheck(args, player.level());
     }
 
     @WrapOperation(method = "addResource(ILnet/minecraft/world/item/ItemStack;)I", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;grow(I)V"))
-    private void mergeFood(ItemStack instance, int increment, Operation<Void> original, @Local(argsOnly = true) ItemStack pStack) {
+    private void averageFoodLifetimeBeforeMerge(ItemStack stackInSlot, int increment, Operation<Void> originalMethod, @Local(argsOnly = true) ItemStack stackToPlaceInSlot) {
         Level level = player.level();
-        if (instance.isEmpty()) {
-            original.call(instance, increment);
-            FoodSpoilageManager.changeEnvironmentAndUpdate(instance, FoodEnvironment.INVENTORY, level);
+        if (stackInSlot.isEmpty()) {
+            originalMethod.call(stackInSlot, increment);
+            FoodSpoilageManager.changeEnvironmentAndUpdate(stackInSlot, FoodEnvironment.INVENTORY, level);
         } else {
-            FoodSpoilageManager.updateFoodAndAverageFoodLifetimeBeforeMerge(instance, pStack, increment, level);
-            original.call(instance, increment);
+            FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSlot, FoodEnvironment.INVENTORY, stackToPlaceInSlot, FoodEnvironment.OPEN_AIR, increment, level);
+            originalMethod.call(stackInSlot, increment);
         }
     }
 }
