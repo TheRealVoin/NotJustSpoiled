@@ -7,6 +7,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilage;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodStatus;
@@ -19,33 +20,32 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin {
     @WrapOperation(method = "areMergable", at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/CompoundTag;equals(Ljava/lang/Object;)Z"))
-    private static boolean modifyEqualityCheck(CompoundTag instance, Object pOther, Operation<Boolean> original, ItemStack itemStack1, ItemStack itemStack2) {
-        FoodSpoilage foodSpoilage1 = FoodSpoilage.of(itemStack1);
-        FoodSpoilage foodSpoilage2 = FoodSpoilage.of(itemStack2);
+    private static boolean removeSpoilageTagFromEqualityCheck(CompoundTag destinationTag, Object originTag, Operation<Boolean> originalMethod, ItemStack destinationStack, ItemStack originStack) {
+        FoodSpoilage destinationSpoilage = FoodSpoilage.of(destinationStack);
+        FoodSpoilage originSpoilage = FoodSpoilage.of(originStack);
 
-        if (foodSpoilage1 == null || !foodSpoilage1.isInitialized() || foodSpoilage2 == null || !foodSpoilage2.isInitialized()) {
-            return original.call(instance, pOther);
+        if (destinationSpoilage == null || originSpoilage == null) {
+            return originalMethod.call(destinationTag, originTag);
         }
 
         Level level = NJSUtils.getLevelWithoutContext();
+        FoodStatus destinationStatus = FoodSpoilageManager.getFoodStatus(destinationStack, level);
+        FoodStatus originStatus = FoodSpoilageManager.getFoodStatus(originStack, level);
 
-        FoodStatus foodStatus1 = FoodSpoilageManager.getFoodStatus(itemStack1, level);
-        FoodStatus foodStatus2 = FoodSpoilageManager.getFoodStatus(itemStack2, level);
-
-        if (foodStatus1 != foodStatus2) {
-            return original.call(instance, pOther);
+        if (destinationStatus != originStatus) {
+            return originalMethod.call(destinationTag, originTag);
         }
 
-        CompoundTag tagWithoutSpoilageTag1 = instance.copy();
-        CompoundTag tagWithoutSpoilageTag2 = ((CompoundTag) pOther).copy();
-        tagWithoutSpoilageTag1.remove("food_spoilage");
-        tagWithoutSpoilageTag2.remove("food_spoilage");
+        CompoundTag destinationTagWithoutSpoilage = destinationTag.copy();
+        CompoundTag originTagWithoutSpoilage = ((CompoundTag) originTag).copy();
+        destinationTagWithoutSpoilage.remove("food_spoilage");
+        originTagWithoutSpoilage.remove("food_spoilage");
 
-        return original.call(tagWithoutSpoilageTag1, tagWithoutSpoilageTag2);
+        return originalMethod.call(destinationTagWithoutSpoilage, originTagWithoutSpoilage);
     }
 
     @Inject(method = "merge(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;I)Lnet/minecraft/world/item/ItemStack;", at = @At(value = "INVOKE_ASSIGN", target = "Ljava/lang/Math;min(II)I", ordinal = 1, shift = At.Shift.AFTER))
-    private static void averageFoodLifetimeBeforeMerge(ItemStack destinationStack, ItemStack originStack, int amount, CallbackInfoReturnable<ItemStack> cir, @Local(ordinal = 1) int i) {
-        FoodSpoilageManager.updateFoodAndAverageFoodLifetimeBeforeMerge(destinationStack, originStack, i, NJSUtils.getLevelWithoutContext());
+    private static void averageFoodLifetimeBeforeMerge(ItemStack destinationStack, ItemStack originStack, int amount, CallbackInfoReturnable<ItemStack> cir, @Local(ordinal = 1) int movedAmount) {
+        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(destinationStack, FoodEnvironment.OPEN_AIR, originStack, FoodEnvironment.OPEN_AIR, movedAmount, NJSUtils.getLevelWithoutContext());
     }
 }
