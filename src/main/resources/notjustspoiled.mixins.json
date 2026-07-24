@@ -15,6 +15,7 @@
     "forge.SidedInvWrapperMixin",
     "minecraft.SetItemMixin",
     "minecraft.block.AbstractFurnaceBlockEntityMixin",
+    "minecraft.block.CakeBlockMixin",
     "minecraft.block.CampfireBlockEntityMixin",
     "minecraft.block.CampfireBlockMixin",
     "minecraft.container.AbstractContainerMenuMixin",
