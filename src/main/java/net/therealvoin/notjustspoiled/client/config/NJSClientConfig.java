@@ -9,7 +9,7 @@ public class NJSClientConfig {
     public static final ForgeConfigSpec.BooleanValue SHOW_REMAINING_DAYS_TO_NEXT_FOOD_STATUS;
     public static final ForgeConfigSpec.BooleanValue SHOW_REMAINING_DAYS_TO_SPOILED_STATUS;
 
-    public static final ForgeConfigSpec.BooleanValue FOOD_SLOT_OVERLAY;
+    public static final ForgeConfigSpec.BooleanValue ENABLE_FOOD_SLOT_OVERLAY;
 
     public static final ForgeConfigSpec.BooleanValue SHOW_DEBUG_INFO;
     public static final ForgeConfigSpec.BooleanValue SEND_DEBUG_MESSAGE;
@@ -35,10 +35,10 @@ public class NJSClientConfig {
         builder.pop();
 
         builder.translation("config.notjustspoiled.visuals").push("Visuals");
-        FOOD_SLOT_OVERLAY = builder
+        ENABLE_FOOD_SLOT_OVERLAY = builder
                 .comment("Makes the food slot glow with a color corresponding to the food's status.")
-                .translation("config.notjustspoiled.visuals.food_slot_overlay")
-                .define("foodSlotOverlay", true);
+                .translation("config.notjustspoiled.visuals.enable_food_slot_overlay")
+                .define("enableFoodSlotOverlay", true);
         builder.pop();
 
         builder.translation("config.notjustspoiled.debug").push("Debug");
