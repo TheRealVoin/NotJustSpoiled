@@ -8,8 +8,8 @@
   "config.notjustspoiled.tooltip.show_remaining_days_to_spoiled_status.tooltip": "Показывает оставшееся количество игровых дней до полной порчи еды.",
 
   "config.notjustspoiled.visuals": "Визуал",
-  "config.notjustspoiled.visuals.food_slot_overlay": "Подсветка слота с едой",
-  "config.notjustspoiled.visuals.food_slot_overlay.tooltip": "Заставляет светиться слот, в котором лежит еда, цветом соответствующего статуса.",
+  "config.notjustspoiled.visuals.enable_food_slot_overlay": "Включить оверлей слота с едой",
+  "config.notjustspoiled.visuals.enable_food_slot_overlay.tooltip": "Заставляет светиться слот, в котором лежит еда, цветом соответствующего статуса.",
 
   "config.notjustspoiled.debug": "Отладка",
   "config.notjustspoiled.debug.show_debug_info": "Показать доп. информацию",

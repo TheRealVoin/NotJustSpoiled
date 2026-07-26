@@ -8,8 +8,8 @@
   "config.notjustspoiled.tooltip.show_remaining_days_to_spoiled_status.tooltip": "Shows the number of in-game days until the food becomes spoiled.",
 
   "config.notjustspoiled.visuals": "Visuals",
-  "config.notjustspoiled.visuals.food_slot_overlay": "Food Slot Overlay",
-  "config.notjustspoiled.visuals.food_slot_overlay.tooltip": "Makes the food slot glow with a color corresponding to the food's status.",
+  "config.notjustspoiled.visuals.enable_food_slot_overlay": "Enable Food Slot Overlay",
+  "config.notjustspoiled.visuals.enable_food_slot_overlay.tooltip": "Makes the food slot glow with a color corresponding to the food's status.",
 
   "config.notjustspoiled.debug": "Debug",
   "config.notjustspoiled.debug.show_debug_info": "Show Debug Info",
