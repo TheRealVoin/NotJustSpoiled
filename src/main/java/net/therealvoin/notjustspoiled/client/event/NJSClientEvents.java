@@ -72,6 +72,10 @@ public class NJSClientEvents {
             FoodSpoilage foodSpoilage = FoodSpoilage.of(tooltipItem);
             FoodStatus nextFoodStatus = currentFoodStatus.getNext();
 
+            if (!foodSpoilage.isInitialized()) {
+                return;
+            }
+
             if (currentFoodStatus != FoodStatus.SPOILED) {
                 if (NJSClientConfig.SHOW_REMAINING_DAYS_TO_NEXT_FOOD_STATUS.get() && nextFoodStatus != FoodStatus.SPOILED) {
                     tooltip.add((createTranslationLine(TO_NEXT_STATUS, currentFoodStatus.getEnd(tooltipItemCategory.getSpoilageTime()), foodSpoilage, level)));
@@ -112,7 +116,7 @@ public class NJSClientEvents {
         }
 
         private static boolean renderFoodSlotOverlay(GuiGraphics guiGraphics, Font font, ItemStack stack, int xOffset, int yOffset) {
-            if (!NJSClientConfig.FOOD_SLOT_OVERLAY.get()) {
+            if (!NJSClientConfig.ENABLE_FOOD_SLOT_OVERLAY.get()) {
                 return false;
             }
 
