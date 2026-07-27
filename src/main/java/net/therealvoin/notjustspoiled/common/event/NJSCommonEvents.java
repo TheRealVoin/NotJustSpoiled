@@ -3,6 +3,7 @@ package net.therealvoin.notjustspoiled.common.event;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.PathPackResources;
 import net.minecraft.server.packs.repository.Pack;
@@ -13,21 +14,29 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.event.AddReloadListenerEvent;
-import net.minecraftforge.event.ItemStackedOnOtherEvent;
+import net.minecraftforge.event.OnDatapackSyncEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.minecraftforge.network.PacketDistributor;
 import net.therealvoin.notjustspoiled.NotJustSpoiled;
+import net.therealvoin.notjustspoiled.common.data.foodcategory.FoodCategoryData;
 import net.therealvoin.notjustspoiled.common.data.foodcategory.FoodCategoryReloadListener;
+import net.therealvoin.notjustspoiled.common.data.foodstatus.FoodStatusData;
 import net.therealvoin.notjustspoiled.common.data.foodstatus.FoodStatusReloadListener;
 import net.therealvoin.notjustspoiled.common.foodspoilage.*;
 import net.therealvoin.notjustspoiled.common.config.FoodCraftingMode;
 import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
+import net.therealvoin.notjustspoiled.common.network.NJSNetwork;
+import net.therealvoin.notjustspoiled.common.network.SyncFoodCategoryDataPacket;
+import net.therealvoin.notjustspoiled.common.network.SyncFoodStatusDataPacket;
 
 import java.nio.file.Path;
+import java.util.EnumMap;
+import java.util.Map;
 
 public class NJSCommonEvents {
     @Mod.EventBusSubscriber(modid = NotJustSpoiled.MOD_ID)
@@ -49,7 +58,7 @@ public class NJSCommonEvents {
             ItemStack itemStack = data.getLastItemStackAt(blockPos);
 
             if (!itemStack.isEmpty()) {
-                FoodSpoilageManager.copySpoilage(itemStack, itemEntityStack, serverLevel);
+                FoodSpoilageManager.copySpoilage(itemStack, FoodEnvironment.OPEN_AIR, itemEntityStack, serverLevel);
 
                 if (serverLevel.getBlockState(blockPos).getBlock() == Blocks.AIR) {
                     data.removeItemStackAt(blockPos, itemStack);
@@ -57,23 +66,6 @@ public class NJSCommonEvents {
             }
 
             FoodSpoilageManager.changeEnvironmentAndUpdate(itemEntityStack, FoodEnvironment.OPEN_AIR, serverLevel);
-        }
-
-        @SubscribeEvent
-        public static void onItemStackedOnOther(ItemStackedOnOtherEvent event) {
-            if (!(event.getPlayer().level() instanceof ServerLevel serverLevel)) {
-                return;
-            }
-
-            ItemStack carriedItem = event.getStackedOnItem();
-            ItemStack stackedOnItem = event.getCarriedItem();
-            FoodSpoilage foodSpoilage = FoodSpoilage.of(stackedOnItem);
-
-            if (foodSpoilage != null) {
-                FoodSpoilageManager.changeEnvironmentAndUpdate(carriedItem, foodSpoilage.getEnvironment(), serverLevel);
-            }
-
-            FoodSpoilageManager.tryAverageSpoilageOnMerge(carriedItem, stackedOnItem, serverLevel);
         }
 
         @SubscribeEvent
@@ -138,6 +130,28 @@ public class NJSCommonEvents {
         public static void registerDataDriven(AddReloadListenerEvent event) {
             event.addListener(new FoodStatusReloadListener());
             event.addListener(new FoodCategoryReloadListener());
+        }
+
+        @SubscribeEvent
+        public static void onDatapackSync(OnDatapackSyncEvent event) {
+            Map<FoodStatus, FoodStatusData> statusDataMap = new EnumMap<>(FoodStatus.class);
+            Map<FoodCategory, FoodCategoryData> categoryDataMap = new EnumMap<>(FoodCategory.class);
+
+            for (FoodStatus foodStatus : FoodStatus.values()) {
+                statusDataMap.put(foodStatus, foodStatus.getServerData());
+            }
+
+            for (FoodCategory foodfoodCategory : FoodCategory.values()) {
+                categoryDataMap.put(foodfoodCategory, foodfoodCategory.getServerData());
+            }
+
+            SyncFoodStatusDataPacket statusPacket = new SyncFoodStatusDataPacket(statusDataMap);
+            SyncFoodCategoryDataPacket categoryPacket = new SyncFoodCategoryDataPacket(categoryDataMap);
+
+            for (ServerPlayer player : event.getPlayers()) {
+                NJSNetwork.CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), statusPacket);
+                NJSNetwork.CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), categoryPacket);
+            }
         }
     }
 
