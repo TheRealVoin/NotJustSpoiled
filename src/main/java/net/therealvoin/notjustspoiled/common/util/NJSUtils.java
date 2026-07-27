@@ -1,7 +1,15 @@
 package net.therealvoin.notjustspoiled.common.util;
 
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.vehicle.AbstractMinecartContainer;
+import net.minecraft.world.entity.vehicle.ChestBoat;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraftforge.fml.util.thread.EffectiveSide;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import net.therealvoin.notjustspoiled.client.util.NJSClientUtils;
@@ -11,7 +19,7 @@ import net.therealvoin.notjustspoiled.common.foodspoilage.FoodStatus;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 public class NJSUtils {
-    public static void removeSpoilageTagForEqualityCheck(Args args, Level level) {
+    public static void removeSpoilageTagFromEqualityCheck(Args args, Level level) {
         ItemStack itemStack1 = args.get(0);
         ItemStack itemStack2 = args.get(1);
         FoodSpoilage foodSpoilage1 = FoodSpoilage.of(itemStack1);
@@ -43,5 +51,25 @@ public class NJSUtils {
         } else {
             return NJSClientUtils.getClientLevel();
         }
+    }
+
+    public static Level getLevelBySlot(Slot slot) {
+        Container container = slot.container;
+        if (container instanceof Inventory inventory) {
+            return inventory.player.level();
+        } else if (container instanceof BaseContainerBlockEntity blockEntity) {
+            return blockEntity.getLevel();
+        } else if (container instanceof AbstractMinecartContainer minecart) {
+            return minecart.level();
+        } else if (container instanceof ChestBoat chestBoat) {
+            return chestBoat.level();
+        } else if (container instanceof SimpleContainer simpleContainer) {
+            AbstractHorse horse = ((SimpleContainerAccessor) simpleContainer).getHorse();
+            if (horse != null) {
+                return horse.level();
+            }
+        }
+
+        return getLevelWithoutContext();
     }
 }
