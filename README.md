@@ -52,7 +52,7 @@ Almost every aspect of the food spoilage system can be customized through config
 ---
 
 # Performance
-The mod is built around a smart lazy-update system instead of redundant ticking of players, item and block entities, meaning that food is updated in only0 3 scenarios:
+The mod is built around a smart lazy-update system instead of redundant ticking of players, item and block entities, meaning that food is updated in only 3 scenarios:
 - when its environment changes;
 - when a player eats it;
 - when it merges with other food stacks.
