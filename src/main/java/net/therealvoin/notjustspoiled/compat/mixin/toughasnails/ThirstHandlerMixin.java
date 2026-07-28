@@ -6,8 +6,8 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.therealvoin.notjustspoiled.common.data.foodstatus.FoodStatusEffect;
-import net.therealvoin.notjustspoiled.common.data.foodstatus.FoodStatusReloadListener;
+import net.therealvoin.notjustspoiled.common.data.foodstatus.FoodStatusEffectData;
+import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodStatus;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,9 +26,9 @@ public abstract class ThirstHandlerMixin {
                 return defaultThirst;
             }
 
-            FoodSpoilageManager.updateFoodLifetime(itemStack, serverLevel);
+            FoodSpoilageManager.updateFoodLifetime(itemStack, FoodEnvironment.INVENTORY, serverLevel);
 
-            for (FoodStatusEffect effect : FoodStatusReloadListener.get(foodStatus).effects()) {
+            for (FoodStatusEffectData effect : foodStatus.getData().effects()) {
                 if (player.getRandom().nextFloat() < effect.applyChance()) {
                     player.addEffect(
                             new MobEffectInstance(
