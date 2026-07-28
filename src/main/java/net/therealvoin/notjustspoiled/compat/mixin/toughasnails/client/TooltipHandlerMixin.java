@@ -13,12 +13,12 @@ import toughasnails.client.handler.TooltipHandler;
 @Mixin(TooltipHandler.class)
 public abstract class TooltipHandlerMixin {
     @ModifyArg(method = "onRenderTooltip", at = @At(value = "INVOKE", target = "Ltoughasnails/client/handler/TooltipHandler$ThirstClientTooltipComponent;<init>(I)V"))
-    private static int d(int amount, @Local(name = "stack") ItemStack itemStack) {
-        FoodStatus currentFoodStatus = FoodSpoilageManager.getFoodStatus(itemStack, Minecraft.getInstance().level);
+    private static int modifyThirstValues(int defaultThirst, @Local(name = "stack") ItemStack stack) {
+        FoodStatus currentFoodStatus = FoodSpoilageManager.getFoodStatus(stack, Minecraft.getInstance().level);
         if (currentFoodStatus == null) {
-            return amount;
+            return defaultThirst;
         }
 
-        return currentFoodStatus.getModifiedNutrition(amount);
+        return currentFoodStatus.getModifiedNutrition(defaultThirst);
     }
 }
