@@ -28,7 +28,7 @@ public abstract class TileEntityCapsidMixin {
 
     @ModifyArg(method = "tick", at = @At(value = "INVOKE", target = "Lcom/github/alexthe666/alexsmobs/tileentity/TileEntityCapsid;setItem(ILnet/minecraft/world/item/ItemStack;)V", ordinal = 2), index = 1)
     private ItemStack copySpoilageToResultStack(ItemStack stackToSetInCapsid, @Share("stackInCapsidSnapshot") LocalRef<ItemStack> snapshot) {
-        FoodSpoilageManager.copySpoilage(snapshot.get(), stackToSetInCapsid, ((BlockEntity)(Object)this).getLevel());
+        FoodSpoilageManager.copySpoilage(snapshot.get(), FoodEnvironment.STORAGE, stackToSetInCapsid, ((BlockEntity)(Object)this).getLevel());
         return stackToSetInCapsid;
     }
 }
