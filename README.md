@@ -13,7 +13,7 @@ Food status system is the core of Not Just Spoiled. While other mods simply conv
 Every food item belongs to one of **34** logically divided food categories, each with its own spoilage time. This allows different types of food to spoil at different rates, making food management a more important part of gameplay. For now, categories affect only spoilage duration, but additional mechanics based on food categories are planned for future updates.
 
 ### Food Environment
-Food in this mod does not spoil after a fixed amount of time. Instead, spoilage speed depends on the environment the food is currently in. There are 4 environments: inventory, storage, open air and while cooking. The worse the environment, the faster the food spoils!
+Food in this mod does not spoil after a fixed amount of time. Instead, spoilage speed depends on the environment the food is currently in. There are 3 environments: inventory, storage and open air. The worse the environment, the faster the food spoils!
 
 ### Food Spoilage in Loot Tables
 Food in loot tables (like chests, archaeology, etc.) can have different spoilage statuses depending on where it is found. Instead of always generating fresh food, loot tables can define the expected condition of the food they generate using built-in loot modifiers. For example, food in buried treasures, shipwrecks, mineshafts or other abandoned structures generates already spoiled, while food in villages, mansions, bastions, etc. will be fresh or stale. This mechanic makes loot feel more dynamic and logical, as the spoilage status of found food depends on the place where it was discovered.
