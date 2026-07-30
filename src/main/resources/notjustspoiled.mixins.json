@@ -27,8 +27,6 @@
     "minecraft.entity.ItemFrameMixin",
     "minecraft.entity.PlayerMixin",
     "minecraft.food.FoodDataMixin",
-    "minecraft.item.BlockItemMixin",
-    "minecraft.item.FireChargeItemMixin",
-    "minecraft.item.FlintAndSteelItemMixin"
+    "minecraft.item.BlockItemMixin"
   ]
 }
