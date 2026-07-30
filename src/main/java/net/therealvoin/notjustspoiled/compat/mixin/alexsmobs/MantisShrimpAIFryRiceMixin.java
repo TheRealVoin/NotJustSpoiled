@@ -19,7 +19,7 @@ public class MantisShrimpAIFryRiceMixin {
     @Shadow @Final private EntityMantisShrimp mantisShrimp;
 
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lcom/github/alexthe666/alexsmobs/entity/EntityMantisShrimp;setItemInHand(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;)V", shift = At.Shift.BEFORE))
-    private void copySpoilageCapToResultStack(CallbackInfo ci, @Local(name = "rice") ItemStack riceStack) {
+    private void copySpoilageToResultStack(CallbackInfo ci, @Local(name = "rice") ItemStack riceStack) {
         ItemStack stackInHand = mantisShrimp.getItemInHand(InteractionHand.MAIN_HAND);
         FoodSpoilageManager.copySpoilage(stackInHand, FoodEnvironment.INVENTORY, riceStack, mantisShrimp.level());
     }
