@@ -4,19 +4,18 @@ import com.github.alexmodguy.alexscaves.server.block.blockentity.NuclearFurnaceB
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
-import com.llamalad7.mixinextras.sugar.Share;
-import com.llamalad7.mixinextras.sugar.ref.LocalRef;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
-import net.therealvoin.notjustspoiled.compat.mixin.alexscaves.accessor.NuclearFurnaceBlockEntityAccessor;
+import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @Mixin(NuclearFurnaceBlockEntity.class)
 public abstract class NuclearFurnaceBlockEntityMixin {
@@ -25,37 +24,29 @@ public abstract class NuclearFurnaceBlockEntityMixin {
         FoodSpoilageManager.changeEnvironmentAndUpdate(stack, FoodEnvironment.STORAGE, ((BlockEntity)(Object)this).getLevel());
     }
 
-    @Inject(method = "tick", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/core/NonNullList;get(I)Ljava/lang/Object;", ordinal = 1, shift = At.Shift.BEFORE), remap = false)
-    private static void createInputStackSnapshot(CallbackInfo ci, @Local(name = "cookStack") ItemStack inputStack, @Share("inputStackSnapshot") LocalRef<ItemStack> snapshot) {
-        snapshot.set(inputStack.copy());
+    @ModifyArgs(method = "setItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;isSameItemSameTags(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z"))
+    private void removeSpoilageTagFromEqualityCheck(Args args) {
+        NJSUtils.removeSpoilageTagFromEqualityCheck(args, ((BlockEntity)(Object)this).getLevel());
+    }
+
+    @Inject(method = "tick", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/item/crafting/AbstractCookingRecipe;getResultItem(Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;", shift = At.Shift.AFTER))
+    private static void copySpoilageToCookedFood(CallbackInfo ci, @Local(argsOnly = true) Level level, @Local(name = "cookResult") ItemStack resultSTack, @Local(name = "cookStack") ItemStack cookStack) {
+        FoodSpoilageManager.copySpoilage(cookStack, FoodEnvironment.STORAGE, resultSTack, level);
     }
 
     @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;grow(I)V", ordinal = 0))
-    private static void mergeFood(ItemStack stackInResultSlot, int increment, Operation<Void> original, @Local(argsOnly = true) Level level, @Local(name = "cookResult") ItemStack resultStack, @Share("inputStackSnapshot") LocalRef<ItemStack> inputStack) {
-        FoodSpoilageManager.copySpoilage(inputStack.get(), resultStack, level);
-
-        FoodSpoilageManager.changeEnvironmentAndUpdate(resultStack, FoodEnvironment.STORAGE, level);
-        FoodSpoilageManager.tryAverageSpoilageOnMerge(stackInResultSlot, resultStack, level);
-
-        original.call(stackInResultSlot, increment);
+    private static void mergeFood(ItemStack stackInResultSlot, int increment, Operation<Void> originalMethod, @Local(argsOnly = true) Level level, @Local(name = "cookResult") ItemStack resultStack) {
+        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInResultSlot, FoodEnvironment.STORAGE, resultStack, FoodEnvironment.STORAGE, increment, level);
+        originalMethod.call(stackInResultSlot, increment);
     }
 
-    @ModifyArg(method = "tick", at = @At(value = "INVOKE", target = "Lcom/github/alexmodguy/alexscaves/server/block/blockentity/NuclearFurnaceBlockEntity;setItem(ILnet/minecraft/world/item/ItemStack;)V", ordinal = 0), index = 1)
-    private static ItemStack updateFoodWhenPlacedInResultSlot(ItemStack stackToSetInResultSlot, @Local(argsOnly = true) Level level, @Share("inputStackSnapshot") LocalRef<ItemStack> inputStack) {
-        FoodSpoilageManager.copySpoilage(inputStack.get(), stackToSetInResultSlot, level);
-        FoodSpoilageManager.changeEnvironmentAndUpdate(stackToSetInResultSlot, FoodEnvironment.STORAGE, level);
-
-        return stackToSetInResultSlot;
+    @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;isSameItem(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z", ordinal = 0))
+    private static boolean addSpoilageTagToEqualityCheck(ItemStack stackInResultSlot, ItemStack resultStack, Operation<Boolean> originalMethod, @Local(argsOnly = true) Level level) {
+        return NJSUtils.addSpoilageTagToEqualityCheck(stackInResultSlot, resultStack, originalMethod, level);
     }
 
-    @Inject(method = "tick", at = @At("TAIL"), remap = false)
-    private static void updateFoodWhenFurnaceBecomesLitOrUnlit(CallbackInfo ci, @Local(argsOnly = true) NuclearFurnaceBlockEntity blockEntity) {
-        FoodEnvironment foodEnvironment = FoodEnvironment.STORAGE;
-
-        if (((NuclearFurnaceBlockEntityAccessor)(blockEntity)).getCookTime() > 0) {
-            foodEnvironment = FoodEnvironment.COOKING;
-        }
-
-        FoodSpoilageManager.changeEnvironmentAndUpdate(blockEntity.getItem(0), foodEnvironment, blockEntity.getLevel());
+    @WrapOperation(method = "canFitInResultSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;isSameItem(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z"))
+    private boolean addSpoilageTagToEqualityCheck(ItemStack stackInResultSlot, ItemStack stackToSetInResultSlot, Operation<Boolean> originalMethod) {
+        return NJSUtils.addSpoilageTagToEqualityCheck(stackInResultSlot, stackToSetInResultSlot, originalMethod, ((BlockEntity)(Object)this).getLevel());
     }
 }
