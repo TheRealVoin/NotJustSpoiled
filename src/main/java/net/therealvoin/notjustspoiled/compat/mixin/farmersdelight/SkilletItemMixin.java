@@ -17,12 +17,12 @@ import vectorwing.farmersdelight.common.item.SkilletItem;
 public abstract class SkilletItemMixin {
     @Inject(method = "use", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/item/ItemStack;split(I)Lnet/minecraft/world/item/ItemStack;", shift = At.Shift.AFTER))
     private void updateFoodWhenPlacedInSkillet(CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir, @Local(argsOnly = true) Level level, @Local(name = "cookingStackUnit") ItemStack cookingStackUnit) {
-        FoodSpoilageManager.changeEnvironmentAndUpdate(cookingStackUnit, FoodEnvironment.COOKING, level);
+        FoodSpoilageManager.changeEnvironmentAndUpdate(cookingStackUnit, FoodEnvironment.OPEN_AIR, level);
     }
 
     @Inject(method = "lambda$finishUsingItem$1", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/item/crafting/CampfireCookingRecipe;assemble(Lnet/minecraft/world/Container;Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;"))
     private static void copyCapToCookedFood(CallbackInfo ci, @Local(argsOnly = true) ItemStack stack, @Local(argsOnly = true) Level level, @Local(name = "resultStack") ItemStack resultStack) {
         ItemStack cookingStack = ItemStack.of(stack.getOrCreateTag().getCompound("Cooking"));
-        FoodSpoilageManager.copySpoilage(cookingStack, resultStack, level);
+        FoodSpoilageManager.copySpoilage(cookingStack, FoodEnvironment.OPEN_AIR, resultStack, level);
     }
 }
