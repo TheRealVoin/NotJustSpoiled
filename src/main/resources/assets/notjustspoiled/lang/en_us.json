@@ -24,8 +24,6 @@
   "config.notjustspoiled.food_spoilage_multiplier.storage.tooltip": "A multiplier that affects the speed of food spoilage in storage.",
   "config.notjustspoiled.food_spoilage_multiplier.open_air": "Food Spoilage On Open Air Multiplier",
   "config.notjustspoiled.food_spoilage_multiplier.open_air.tooltip": "A multiplier that affects the speed of food spoilage on open air.",
-  "config.notjustspoiled.food_spoilage_multiplier.while_cooking": "Food Spoilage While Cooking Multiplier",
-  "config.notjustspoiled.food_spoilage_multiplier.while_cooking.tooltip": "A multiplier that affects the speed of food spoilage while cooking.",
 
   "config.notjustspoiled.chance_to_appear_food_in_storage": "Chance To Appear Food In Storage",
   "config.notjustspoiled.chance_to_appear_food_in_storage.fresh_or_stale": "Fresh or stale",

@@ -24,8 +24,6 @@
   "config.notjustspoiled.food_spoilage_multiplier.storage.tooltip": "Множитель, влияющий на скорость порчи еды в хранилище.",
   "config.notjustspoiled.food_spoilage_multiplier.open_air": "Множитель порчи на открытом воздухе",
   "config.notjustspoiled.food_spoilage_multiplier.open_air.tooltip": "Множитель, влияющий на скорость порчи еды на открытом воздухе.",
-  "config.notjustspoiled.food_spoilage_multiplier.while_cooking": "Множитель порчи во время готовки",
-  "config.notjustspoiled.food_spoilage_multiplier.while_cooking.tooltip": "Множитель, влияющий на скорость порчи еды во время готовки.",
 
   "config.notjustspoiled.chance_to_appear_food_in_storage": "Шансы появления еды в хранилищах",
   "config.notjustspoiled.chance_to_appear_food_in_storage.fresh_or_stale": "Свежая или несвежая",

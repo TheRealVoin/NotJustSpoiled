@@ -24,8 +24,6 @@
   "config.notjustspoiled.food_spoilage_multiplier.storage.tooltip": "Множник, який впливає на швидкість псування їжі в сховищі.",
   "config.notjustspoiled.food_spoilage_multiplier.open_air": "Множник псування на відкритому повітрі",
   "config.notjustspoiled.food_spoilage_multiplier.open_air.tooltip": "Множник, який впливає на швидкість псування їжі на відкритому повітрі.",
-  "config.notjustspoiled.food_spoilage_multiplier.while_cooking": "Множник псування під час готування",
-  "config.notjustspoiled.food_spoilage_multiplier.while_cooking.tooltip": "Множник, який впливає на швидкість псування їжі під час готування.",
 
   "config.notjustspoiled.chance_to_appear_food_in_storage": "Шанси появи в сховищі",
   "config.notjustspoiled.chance_to_appear_food_in_storage.fresh_or_stale": "Свіжа або несвіжая їжа",
