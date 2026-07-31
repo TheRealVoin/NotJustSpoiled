@@ -41,6 +41,10 @@ public class FoodSpoilage {
         return this.itemStack.getOrCreateTagElement("food_spoilage");
     }
 
+    public ItemStack getItemStack() {
+        return this.itemStack;
+    }
+
     public static FoodSpoilage of(ItemStack itemStack) {
         if (FoodCategory.of(itemStack) == null) {
             return null;
