@@ -19,10 +19,7 @@ public class FoodSpoilageManager {
         updateFoodLifetime(itemStack, currentEnvironment, level);
         foodSpoilage.setEnvironment(newFoodEnvironment);
 
-
-        if (!level.isClientSide()) {
-            DebugMessagePacket.sendToAll(Component.literal("environment: " + newFoodEnvironment));
-        }
+        DebugMessagePacket.sendToAll(Component.literal("environment: " + newFoodEnvironment));
     }
 
     public static void updateFoodLifetime(ItemStack itemStack, FoodEnvironment currentEnvironment, Level level) {
@@ -46,9 +43,7 @@ public class FoodSpoilageManager {
         foodSpoilage.setFoodLifetime(calculateActualFoodLifetime(foodSpoilage, level));
         foodSpoilage.setLastUpdateTime(gameTime);
 
-        if (!level.isClientSide()) {
-            DebugMessagePacket.sendToAll(Component.literal("Updated food: " + ForgeRegistries.ITEMS.getKey(itemStack.getItem()).toString() + "\nfoodLifetime: " + foodSpoilage.getFoodLifetime() + "\nlastUpdateTime: " + gameTime));
-        }
+        DebugMessagePacket.sendToAll(Component.literal("Updated food: " + ForgeRegistries.ITEMS.getKey(itemStack.getItem()).toString() + "\nfoodLifetime: " + foodSpoilage.getFoodLifetime() + "\nlastUpdateTime: " + gameTime));
     }
 
     public static FoodStatus getFoodStatus(ItemStack itemStack, Level level) {
@@ -121,8 +116,6 @@ public class FoodSpoilageManager {
     private static void initializeFood(FoodSpoilage foodSpoilage, FoodEnvironment foodEnvironment, Level level) {
         foodSpoilage.setEnvironment(foodEnvironment);
         foodSpoilage.setLastUpdateTime(level.getGameTime());
-        if (!level.isClientSide()) {
-            DebugMessagePacket.sendToAll(Component.literal("Initialized food: " + ForgeRegistries.ITEMS.getKey(foodSpoilage.getItemStack().getItem()).toString() + "\nlastUpdateTime: " + level.getGameTime()));
-        }
+        DebugMessagePacket.sendToAll(Component.literal("Initialized food: " + ForgeRegistries.ITEMS.getKey(foodSpoilage.getItemStack().getItem()).toString() + "\nlastUpdateTime: " + level.getGameTime()));
     }
 }
