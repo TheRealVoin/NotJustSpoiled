@@ -5,8 +5,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.fml.util.thread.EffectiveSide;
+import net.therealvoin.notjustspoiled.client.util.ClientFoodCategoryData;
 import net.therealvoin.notjustspoiled.common.data.NJSTags;
-import net.therealvoin.notjustspoiled.common.data.foodcategory.FoodCategoryReloadListener;
+import net.therealvoin.notjustspoiled.common.data.foodcategory.FoodCategoryData;
 
 public enum FoodCategory {
     RAW_FISH("raw_fish", NJSTags.Items.RAW_FISHES),
@@ -46,6 +48,7 @@ public enum FoodCategory {
 
     private final String key;
     private final TagKey<Item> tag;
+    private FoodCategoryData serverData;
 
     FoodCategory(String key, TagKey<Item> tag) {
         this.key = key;
@@ -57,7 +60,23 @@ public enum FoodCategory {
     }
 
     public int getSpoilageTime() {
-        return FoodCategoryReloadListener.get(this).spoilageTime();
+        return this.getData().spoilageTime();
+    }
+
+    public FoodCategoryData getData() {
+        if (EffectiveSide.get().isServer()) {
+            return this.serverData;
+        } else {
+            return ClientFoodCategoryData.getData().get(this);
+        }
+    }
+
+    public FoodCategoryData getServerData() {
+        return this.serverData;
+    }
+
+    public void setServerData(FoodCategoryData data) {
+        this.serverData = data;
     }
 
     public static FoodCategory byName(String name) {
