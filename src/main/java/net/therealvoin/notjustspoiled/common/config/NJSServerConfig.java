@@ -105,7 +105,7 @@ public class NJSServerConfig {
                         "AVERAGE: the spoilage time is defined as an arithmetic mean of the spoilage time of all ingredients.",
                         "SAME_STATUS: the food can be crafted only when all ingredients have the same status.",
                         "WORST_STATUS: the spoilage time is determined by the worst ingredient, ignoring others.",
-                        "FRESH_STATUS: the food can be crafted only when all ingredients have fresh status.",
+                        "FRESH_ONLY: the food can be crafted only when all ingredients have fresh status.",
                         "FRESH_OR_STALE_STATUS: the food can be crafted only when all ingredients are fresh or stale. If all food is fresh or stale, then AVERAGE logic will be applied, and when there are both, then WORST_STATUS will be applied."
                 )
                 .translation("config.notjustspoiled.food_crafting_mode")

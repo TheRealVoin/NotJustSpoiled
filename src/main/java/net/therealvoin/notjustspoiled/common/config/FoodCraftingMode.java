@@ -36,7 +36,7 @@ public enum FoodCraftingMode {
             return CalculationMode.WORST;
         }
     },
-    FRESH_STATUS {
+    FRESH_ONLY {
         @Override
         public boolean isAllowed(FoodStatus first, FoodStatus second) {
             return first == FoodStatus.FRESH && second == FoodStatus.FRESH;

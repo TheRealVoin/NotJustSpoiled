@@ -38,7 +38,7 @@
   "config.notjustspoiled.chance_to_appear_food_in_storage.spoiled.tooltip": "Chance of spoiled food to appear in storage.\n\nNote: all values must add up to 1.",
 
   "config.notjustspoiled.food_crafting_mode": "Food Crafting Mode",
-  "config.notjustspoiled.food_crafting_mode.tooltip": "Correctly calculates the spoilage time of a crafted food.\n\nAVERAGE: the spoilage time is defined as an arithmetic mean of the spoilage time of all ingredients.\nSAME_STATUS: the food can be crafted only when all ingredients have the same status.\nWORST_STATUS: the spoilage time is determined by the worst ingredient, ignoring others.",
+  "config.notjustspoiled.food_crafting_mode.tooltip": "Correctly calculates the spoilage time of a crafted food.\n\nAVERAGE: the spoilage time is defined as an arithmetic mean of the spoilage time of all ingredients.\nSAME_STATUS: the food can be crafted only when all ingredients have the same status.\nWORST_STATUS: the spoilage time is determined by the worst ingredient, ignoring others.\nFRESH_ONLY: the food can be crafted only when all ingredients have fresh status.\nFRESH_OR_STALE_STATUS: the food can be crafted only when all ingredients are fresh or stale. If all food is fresh or stale, then AVERAGE logic will be applied, and when there are both, then WORST_STATUS will be applied.",
 
   "message.notjustspoiled.warning_message": "Oops! It seems that %s needs additional compatibility with one of your mod that adds new chests loot tables (e.g. structure mod). Please, report it on the %s.",
   "message.notjustspoiled.warning_message.issues_page": "mod's issues page",
