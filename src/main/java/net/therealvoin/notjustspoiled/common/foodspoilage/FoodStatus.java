@@ -48,7 +48,7 @@ public enum FoodStatus {
     }
 
     public int getModifiedNutrition(int defaultNutrition) {
-        return Math.max(1, (int) Math.round(defaultNutrition * this.getData().nutritionMultiplier()));
+        return defaultNutrition == 0 ? defaultNutrition : Math.max(1, (int) Math.round(defaultNutrition * this.getData().nutritionMultiplier()));
     }
 
     public FoodStatusData getData() {
