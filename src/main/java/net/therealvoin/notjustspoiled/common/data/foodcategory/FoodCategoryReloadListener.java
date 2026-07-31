@@ -12,12 +12,9 @@ import net.therealvoin.notjustspoiled.NotJustSpoiled;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodCategory;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.EnumMap;
 import java.util.Map;
 
 public class FoodCategoryReloadListener extends SimpleJsonResourceReloadListener {
-    private static final Map<FoodCategory, FoodCategoryData> DATA = new EnumMap<>(FoodCategory.class);
-
     public FoodCategoryReloadListener() {
         super(new Gson(), "food_category");
     }
@@ -37,11 +34,7 @@ public class FoodCategoryReloadListener extends SimpleJsonResourceReloadListener
 
             result.error().ifPresent(error -> NotJustSpoiled.LOGGER.error("{}: {}", entry.getKey(), error.message()));
 
-            result.result().ifPresent(data -> DATA.put(foodCategory, data));
+            result.result().ifPresent(foodCategory::setServerData);
         }
-    }
-
-    public static FoodCategoryData get(FoodCategory foodCategory) {
-        return DATA.get(foodCategory);
     }
 }
