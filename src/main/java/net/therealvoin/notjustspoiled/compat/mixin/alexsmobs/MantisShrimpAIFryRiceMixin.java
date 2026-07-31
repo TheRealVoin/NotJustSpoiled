@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(MantisShrimpAIFryRice.class)
 public class MantisShrimpAIFryRiceMixin {
-    @Shadow @Final private EntityMantisShrimp mantisShrimp;
+    @Shadow(remap = false) @Final private EntityMantisShrimp mantisShrimp;
 
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lcom/github/alexthe666/alexsmobs/entity/EntityMantisShrimp;setItemInHand(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;)V", shift = At.Shift.BEFORE))
     private void copySpoilageToResultStack(CallbackInfo ci, @Local(name = "rice") ItemStack riceStack) {
