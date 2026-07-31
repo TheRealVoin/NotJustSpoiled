@@ -4,8 +4,10 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
-import net.therealvoin.notjustspoiled.common.data.foodstatus.FoodStatusEffect;
-import net.therealvoin.notjustspoiled.common.data.foodstatus.FoodStatusReloadListener;
+import net.minecraftforge.fml.util.thread.EffectiveSide;
+import net.therealvoin.notjustspoiled.client.util.ClientFoodStatusData;
+import net.therealvoin.notjustspoiled.common.data.foodstatus.FoodStatusData;
+import net.therealvoin.notjustspoiled.common.data.foodstatus.FoodStatusEffectData;
 
 public enum FoodStatus {
     FRESH("fresh", ChatFormatting.GREEN, 0),
@@ -16,6 +18,7 @@ public enum FoodStatus {
     private final String key;
     private final ChatFormatting color;
     private final double start;
+    private FoodStatusData serverData;
 
     FoodStatus(String key, ChatFormatting color, double start) {
         this.key = key;
@@ -45,11 +48,27 @@ public enum FoodStatus {
     }
 
     public int getModifiedNutrition(int defaultNutrition) {
-        return Math.max(1, (int) Math.round(defaultNutrition * FoodStatusReloadListener.get(this).nutritionMultiplier()));
+        return Math.max(1, (int) Math.round(defaultNutrition * this.getData().nutritionMultiplier()));
+    }
+
+    public FoodStatusData getData() {
+        if (EffectiveSide.get().isServer()) {
+            return this.serverData;
+        } else {
+            return ClientFoodStatusData.getData().get(this);
+        }
+    }
+
+    public FoodStatusData getServerData() {
+        return this.serverData;
+    }
+
+    public void setServerData(FoodStatusData data) {
+        this.serverData = data;
     }
 
     public void applyEffects(LivingEntity entity) {
-        for (FoodStatusEffect effectData : FoodStatusReloadListener.get(this).effects()) {
+        for (FoodStatusEffectData effectData : this.getServerData().effects()) {
             if (entity.getRandom().nextFloat() < effectData.applyChance()) {
                 entity.addEffect(
                         new MobEffectInstance(
