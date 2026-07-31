@@ -21,7 +21,7 @@ public abstract class ItemStackHandlerMixin {
         NJSUtils.removeSpoilageTagFromEqualityCheck(args, NJSUtils.getLevelWithoutContext());
     }
 
-    @WrapOperation(method = "insertItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;grow(I)V"))
+    @WrapOperation(method = "insertItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;grow(I)V"), remap = true)
     private void averageFoodLifetimeBeforeMerge(ItemStack stackInSLot, int increment, Operation<Void> originalMethod, @Local(argsOnly = true) ItemStack stackToSetInSlot) {
         FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSLot, FoodEnvironment.STORAGE, stackToSetInSlot, FoodEnvironment.STORAGE, increment, NJSUtils.getLevelWithoutContext());
     }
