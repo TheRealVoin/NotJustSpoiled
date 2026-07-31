@@ -23,5 +23,21 @@ public class NJSNetwork {
                 DebugMessagePacket::read,
                 DebugMessagePacket::handle
         );
+
+        CHANNEL.registerMessage(
+                packetId++,
+                SyncFoodStatusDataPacket.class,
+                SyncFoodStatusDataPacket::write,
+                SyncFoodStatusDataPacket::read,
+                SyncFoodStatusDataPacket::handle
+        );
+
+        CHANNEL.registerMessage(
+                packetId++,
+                SyncFoodCategoryDataPacket.class,
+                SyncFoodCategoryDataPacket::write,
+                SyncFoodCategoryDataPacket::read,
+                SyncFoodCategoryDataPacket::handle
+        );
     }
 }
