@@ -3,7 +3,6 @@ package net.therealvoin.notjustspoiled.common.network;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.PacketDistributor;
 import net.therealvoin.notjustspoiled.client.config.NJSClientConfig;
@@ -29,10 +28,8 @@ public class DebugMessagePacket {
         NetworkEvent.Context context = ctx.get();
 
         context.enqueueWork(() -> {
-            Player player = Minecraft.getInstance().player;
-
-            if (player != null && NJSClientConfig.SEND_DEBUG_MESSAGE.get()) {
-                player.sendSystemMessage(packet.message);
+            if (Minecraft.getInstance().player != null && NJSClientConfig.SEND_DEBUG_MESSAGE.get()) {
+                Minecraft.getInstance().player.sendSystemMessage(packet.message);
             }
         });
 
