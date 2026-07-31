@@ -24,6 +24,7 @@ public abstract class ItemStackHandlerMixin {
     @WrapOperation(method = "insertItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;grow(I)V"), remap = true)
     private void averageFoodLifetimeBeforeMerge(ItemStack stackInSLot, int increment, Operation<Void> originalMethod, @Local(argsOnly = true) ItemStack stackToSetInSlot) {
         FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSLot, FoodEnvironment.STORAGE, stackToSetInSlot, FoodEnvironment.STORAGE, increment, NJSUtils.getLevelWithoutContext());
+        originalMethod.call(stackInSLot, increment);
     }
 
     @ModifyArg(method = "insertItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/NonNullList;set(ILjava/lang/Object;)Ljava/lang/Object;"), index = 1)
