@@ -1,5 +1,6 @@
 package net.therealvoin.notjustspoiled.common.util;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.animal.horse.AbstractHorse;
@@ -43,6 +44,24 @@ public class NJSUtils {
 
         args.set(0, stackWithoutSpoilageTag1);
         args.set(1, stackWithoutSpoilageTag2);
+    }
+
+    public static boolean addSpoilageTagToEqualityCheck(ItemStack itemStack1, ItemStack itemStack2, Operation<Boolean> originalMethod, Level level) {
+        FoodSpoilage spoilage1 = FoodSpoilage.of(itemStack1);
+        FoodSpoilage spoilage2 = FoodSpoilage.of(itemStack2);
+
+        if (spoilage1 == null || spoilage2 == null) {
+            return originalMethod.call(itemStack1, itemStack2);
+        }
+
+        FoodStatus status1 = FoodSpoilageManager.getFoodStatus(itemStack1, level);
+        FoodStatus status2 = FoodSpoilageManager.getFoodStatus(itemStack2, level);
+
+        if (status1 != status2) {
+            return false;
+        }
+
+        return originalMethod.call(itemStack1, itemStack2);
     }
 
     public static Level getLevelWithoutContext() {
