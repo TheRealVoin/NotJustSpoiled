@@ -1,8 +1,10 @@
 package net.therealvoin.notjustspoiled.compat.mixin.farmersdelight;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.items.ItemStackHandler;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,18 +17,21 @@ import vectorwing.farmersdelight.common.block.entity.CuttingBoardBlockEntity;
 public abstract class CuttingBoardBlockEntityMixin {
     @Shadow public abstract ItemStack getStoredItem();
 
-    @ModifyArg(method = "addItem", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/items/ItemStackHandler;insertItem(ILnet/minecraft/world/item/ItemStack;Z)Lnet/minecraft/world/item/ItemStack;"), index = 1)
-    private ItemStack changeEnvironmentWhenPlacedOnCuttingBoard(ItemStack stackToPlaceOnCuttingBoard) {
-        Level level = ((BlockEntity)(Object)this).getLevel();
+    @WrapOperation(method = "addItem", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/items/ItemStackHandler;insertItem(ILnet/minecraft/world/item/ItemStack;Z)Lnet/minecraft/world/item/ItemStack;"))
+    private ItemStack changeFoodEnvironmentWhenPlacedOnCuttingBoard(ItemStackHandler inventory, int slot, ItemStack stack, boolean simulate, Operation<ItemStack> originalMethod) {
+        CuttingBoardBlockEntity blockEntity = ((CuttingBoardBlockEntity)(Object)this);
+        if (blockEntity.getStoredItem().isEmpty()) {
+            ItemStack remainderStack = originalMethod.call(inventory, slot, stack, simulate);
+            FoodSpoilageManager.changeEnvironmentAndUpdate(blockEntity.getStoredItem(), FoodEnvironment.OPEN_AIR, blockEntity.getLevel());
+            return remainderStack;
+        }
 
-        FoodSpoilageManager.changeEnvironmentAndUpdate(stackToPlaceOnCuttingBoard, FoodEnvironment.OPEN_AIR, level);
-
-        return stackToPlaceOnCuttingBoard;
+        return originalMethod.call(inventory, slot, stack, simulate);
     }
 
     @ModifyArg(method = "lambda$processStoredItemUsingTool$2", at = @At(value = "INVOKE", target = "Lvectorwing/farmersdelight/common/utility/ItemUtils;spawnItemEntity(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;DDDDDD)V"), index = 1)
-    private ItemStack copyCapToResultStack(ItemStack stack) {
-        FoodSpoilageManager.copySpoilage(this.getStoredItem(), stack, ((BlockEntity)(Object)this).getLevel());
+    private ItemStack copySpoilageToResultStack(ItemStack stack) {
+        FoodSpoilageManager.copySpoilage(this.getStoredItem(), FoodEnvironment.OPEN_AIR, stack, ((BlockEntity)(Object)this).getLevel());
         return stack;
     }
 }
