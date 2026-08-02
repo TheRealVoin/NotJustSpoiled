@@ -28,7 +28,7 @@ public abstract class SidedInvWrapperMixin {
         NJSUtils.removeSpoilageTagFromEqualityCheck(args, level);
     }
 
-    @WrapOperation(method = "insertItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;grow(I)V"))
+    @WrapOperation(method = "insertItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;grow(I)V"), remap = true)
     private void averageFoodLifetimeBeforeMerge(ItemStack stackToSetInSlot, int increment, Operation<Void> originalMethod, @Local(name = "stackInSlot") ItemStack stackInSlot) {
         Level level = this.inv instanceof BlockEntity blockEntity ? blockEntity.getLevel() : NJSUtils.getLevelWithoutContext();
         FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSlot, FoodEnvironment.STORAGE, stackToSetInSlot, FoodEnvironment.STORAGE, stackToSetInSlot.getCount(), level);
