@@ -12,6 +12,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.OnDatapackSyncEvent;
@@ -21,12 +22,14 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.network.PacketDistributor;
 import net.therealvoin.notjustspoiled.NotJustSpoiled;
 import net.therealvoin.notjustspoiled.common.data.foodcategory.FoodCategoryData;
 import net.therealvoin.notjustspoiled.common.data.foodcategory.FoodCategoryReloadListener;
 import net.therealvoin.notjustspoiled.common.data.foodstatus.FoodStatusData;
 import net.therealvoin.notjustspoiled.common.data.foodstatus.FoodStatusReloadListener;
+import net.therealvoin.notjustspoiled.common.data.recipe.SpoiledFoodBrewingRecipe;
 import net.therealvoin.notjustspoiled.common.foodspoilage.*;
 import net.therealvoin.notjustspoiled.common.config.FoodCraftingMode;
 import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
@@ -157,6 +160,11 @@ public class NJSCommonEvents {
 
     @Mod.EventBusSubscriber(modid = NotJustSpoiled.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ModBus {
+        @SubscribeEvent
+        public static void registerBrewingRecipe(FMLCommonSetupEvent event) {
+            event.enqueueWork(() -> BrewingRecipeRegistry.addRecipe(new SpoiledFoodBrewingRecipe()));
+        }
+
         // Config events
         @SubscribeEvent
         public static void onConfigLoad(ModConfigEvent.Loading event) {
