@@ -25,6 +25,8 @@
     "minecraft.entity.ItemEntityMixin",
     "minecraft.entity.ItemFrameMixin",
     "minecraft.entity.PlayerMixin",
+    "minecraft.entity.ThrowableItemProjectileMixin",
+    "minecraft.entity.ThrownEggMixin",
     "minecraft.food.FoodDataMixin",
     "minecraft.item.BlockItemMixin"
   ]
