@@ -60,6 +60,10 @@
       "required": false
     },
     {
+      "id": "survival_instinct:orange",
+      "required": false
+    },
+    {
       "id": "yungscavebiomes:prickly_peach",
       "required": false
     }

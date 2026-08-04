@@ -37,6 +37,34 @@
       "required": false
     },
     {
+      "id": "survival_instinct:apple_juice",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:blue_soda",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:energy_can",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:lemon_soda",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:monster_can",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:orange_juice",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:red_soda",
+      "required": false
+    },
+    {
       "id": "toughasnails:apple_juice",
       "required": false
     },

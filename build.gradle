@@ -78,6 +78,7 @@ dependencies {
     compileOnly fg.deobf("curse.maven:alexs-mobs-426558:5698791") // v1.22.9
     compileOnly fg.deobf("curse.maven:genetic-animals-313213:6134040") // v0.11.12
     compileOnly fg.deobf("curse.maven:simple-farming-327554:4711850") // v2.2.6
+    compileOnly fg.deobf("curse.maven:survival-instinct-1242915:7357198") // v1.0.2
     implementation fg.deobf("curse.maven:tough-as-nails-246391:5815863") // v9.2.0.171
     implementation fg.deobf("curse.maven:appleskin-248787:4770828")
     implementation fg.deobf("curse.maven:jei-238222:7391695")

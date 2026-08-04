@@ -98,6 +98,30 @@
       "required": false
     },
     {
+      "id": "survival_instinct:beer",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:bottle_of_water",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:gallon_of_water",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:tequila",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:whiskey",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:wine",
+      "required": false
+    },
+    {
       "id": "toughasnails:charc_os",
       "required": false
     },

@@ -32,6 +32,14 @@
     {
       "id": "farmersdelight:milk_bottle",
       "required": false
+    },
+    {
+      "id": "survival_instinct:gallon_of_milk",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:milk",
+      "required": false
     }
   ]
 }

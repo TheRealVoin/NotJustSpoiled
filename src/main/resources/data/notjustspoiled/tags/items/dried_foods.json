@@ -17,6 +17,14 @@
     {
       "id": "simplefarming:trail_mix",
       "required": false
+    },
+    {
+      "id": "survival_instinct:cheese_chips",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:potato_chips",
+      "required": false
     }
   ]
 }

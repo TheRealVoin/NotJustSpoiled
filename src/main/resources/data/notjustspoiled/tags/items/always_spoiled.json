@@ -11,6 +11,14 @@
     {
       "id": "farmersdelight:rotten_tomato",
       "required": false
+    },
+    {
+      "id": "survival_instinct:rotten_apple",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:rotten_orange",
+      "required": false
     }
   ]
 }

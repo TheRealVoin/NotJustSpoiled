@@ -279,6 +279,10 @@
     {
       "id": "simplefarming:marshmallow",
       "required": false
+    },
+    {
+      "id": "survival_instinct:chocolate_bar",
+      "required": false
     }
   ]
 }

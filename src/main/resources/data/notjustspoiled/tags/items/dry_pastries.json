@@ -128,6 +128,10 @@
     {
       "id": "simplefarming:peanut_butter_cookie",
       "required": false
+    },
+    {
+      "id": "survival_instinct:rice_cookie",
+      "required": false
     }
   ]
 }

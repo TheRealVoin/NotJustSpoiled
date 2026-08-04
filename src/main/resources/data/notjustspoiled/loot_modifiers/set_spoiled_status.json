@@ -582,6 +582,74 @@
         },
         {
           "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/cash_register"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/facility_loot"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/facility_office"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/farm_loot"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/fire_station"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/garage_loot"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/gas_station_loot"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/hardware_loot"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/market_sheld_2"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/market_shelf"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/military_loot"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/pharmacy_loot"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/refrigerator"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/suburban_house_loot"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/survivor_camp_loot"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/survivor_house_loot"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "survival_instinct:chests/trash_can"
+        },
+        {
+          "condition": "forge:loot_table_id",
           "loot_table_id": "terralith:igloo"
         },
         {

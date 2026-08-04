@@ -24,6 +24,9 @@
     "farmersdelight.SkilletBlockEntityMixin",
     "farmersdelight.SkilletItemMixin",
     "simplefarming.FermenterBlockEntityMixin",
+    "survival_instinct.DrinkMilkProcedureMixin",
+    "survival_instinct.GUIMenuMixin",
+    "survival_instinct.OrangeItemMixin",
     "toughasnails.ThirstHandlerMixin",
     "toughasnails.WaterPurifierBlockEntityMixin"
   ]
