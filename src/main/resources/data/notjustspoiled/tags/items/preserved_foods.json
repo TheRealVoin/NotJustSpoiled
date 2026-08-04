@@ -1,0 +1,48 @@
+{
+  "values": [
+    {
+      "id": "alexscaves:slam",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pickle",
+      "required": false
+    },
+    {
+      "id": "simplefarming:pickled_beetroot",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:bean_can",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:cod_can",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:fruit_can",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:meat_can",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:military_can",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:sardine_can",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:tomato_soup",
+      "required": false
+    },
+    {
+      "id": "survival_instinct:tuna_can",
+      "required": false
+    }
+  ]
+}

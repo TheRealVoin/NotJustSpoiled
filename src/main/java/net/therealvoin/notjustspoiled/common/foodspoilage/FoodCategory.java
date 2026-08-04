@@ -36,7 +36,7 @@ public enum FoodCategory {
     DRIED_FOOD("dried_food", NJSTags.Items.DRIED_FOODS),
     SWEET("sweet", NJSTags.Items.SWEETS),
     DAIRY("dairy", NJSTags.Items.DAIRY),
-    PICKLED_FOOD("pickled_food", NJSTags.Items.PICKLED_FOODS),
+    PRESERVED_FOOD("preserved_food", NJSTags.Items.PRESERVED_FOODS),
     DISH("dish", NJSTags.Items.DISHES),
     RAW_DOUGH("raw_dough", NJSTags.Items.RAW_DOUGH),
     FOOD_DRESSING("food_dressing", NJSTags.Items.FOOD_DRESSING),
