@@ -55,6 +55,10 @@ public abstract class SetItemMixin {
 
     @Unique
     private static void notJustSpoiled$sendWarningMessageIfNeeded(ItemStack itemStack, Level level) {
+        if (!NJSServerConfig.SEND_COMPATIBILITY_WARNING_MESSAGE.get()) {
+            return;
+        }
+
         if (!(level instanceof ServerLevel serverLevel)) {
             return;
         }

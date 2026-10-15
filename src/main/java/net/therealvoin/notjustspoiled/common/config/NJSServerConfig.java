@@ -17,6 +17,8 @@ public class NJSServerConfig {
     public static final ForgeConfigSpec.DoubleValue RANDOM$CHANCE_TO_APPEAR_HALF_SPOILED_FOOD_IN_STORAGE;
     public static final ForgeConfigSpec.DoubleValue RANDOM$CHANCE_TO_APPEAR_SPOILED_FOOD_IN_STORAGE;
 
+    public static final ForgeConfigSpec.BooleanValue SEND_COMPATIBILITY_WARNING_MESSAGE;
+
     public static final ForgeConfigSpec.EnumValue<FoodCraftingMode> FOOD_CRAFTING_MODE;
 
     static {
@@ -97,6 +99,13 @@ public class NJSServerConfig {
                 .worldRestart()
                 .defineInRange("chanceToAppearSpoiledFoodInStorage", 0.4, 0, 1);
         builder.pop();
+        builder.pop();
+
+        builder.translation("config.notjustspoiled.misc").push("Miscellaneous");
+        SEND_COMPATIBILITY_WARNING_MESSAGE = builder
+                .comment("Sends a warning message to the chat when spoilable food generates in loot table that isn't included in any mod's food loot modifier.")
+                .translation("config.notjustspoiled.misc.send_compatibility_warning_message")
+                .define("sendCompatibilityWarningMessage", true);
         builder.pop();
 
         FOOD_CRAFTING_MODE = builder
