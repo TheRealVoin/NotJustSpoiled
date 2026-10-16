@@ -46,6 +46,33 @@
       "required": false
     },
     {
+      "id": "dragnlivestock:cooked_camel",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:cooked_caribou",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:cooked_chevon",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:cooked_frog",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:cooked_horse",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:cooked_llama",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:cooked_unicorn",
+      "required": false
+    },
     {
       "id": "dragnpets:cooked_cat",
       "required": false

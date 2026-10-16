@@ -11,6 +11,10 @@
     {
       "id": "alexsmobs:maggot",
       "required": false
+    },
+    {
+      "id": "dragnlivestock:grub",
+      "required": false
     }
   ]
 }

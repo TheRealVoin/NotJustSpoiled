@@ -15,6 +15,13 @@
       "required": false
     },
     {
+      "id": "dragnlivestock:cod_roe",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:roe",
+      "required": false
+    },
     {
       "id": "dragnpets:tropical_fish_roe",
       "required": false

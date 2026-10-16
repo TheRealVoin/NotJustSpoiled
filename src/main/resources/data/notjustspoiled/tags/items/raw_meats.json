@@ -46,6 +46,57 @@
       "required": false
     },
     {
+      "id": "dragnlivestock:beef_strips",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:camel",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:caribou",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:chevon",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:chicken_strips",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:frog",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:game_strips",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:generic_strips",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:horse",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:llama",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:mutton_strips",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:pork_strips",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:unicorn",
+      "required": false
+    },
     {
       "id": "dragnpets:cat",
       "required": false

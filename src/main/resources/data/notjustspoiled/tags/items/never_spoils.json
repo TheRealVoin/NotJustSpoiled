@@ -26,6 +26,10 @@
       "required": false
     },
     {
+      "id": "dragnlivestock:fish_oil",
+      "required": false
+    },
+    {
       "id": "ends_delight:chorus_fruit_crate",
       "required": false
     },

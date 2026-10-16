@@ -14,6 +14,34 @@
       "required": false
     },
     {
+      "id": "dragnlivestock:carrot_soup",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:glow_berry_soup",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:grain_soup",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:melon_soup",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:potato_soup",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:pumpkin_soup",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:sweet_berry_soup",
+      "required": false
+    },
+    {
       "id": "ends_delight:dragon_breath_and_chorus_soup",
       "required": false
     },

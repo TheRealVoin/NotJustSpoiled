@@ -7,6 +7,10 @@
     {
       "id": "alexsdelight:cooked_centipede_leg",
       "required": false
+    },
+    {
+      "id": "dragnlivestock:cooked_grub",
+      "required": false
     }
   ]
 }

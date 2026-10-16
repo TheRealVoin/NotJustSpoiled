@@ -2,6 +2,34 @@
   "values": [
     "minecraft:milk_bucket",
     {
+      "id": "dragnlivestock:cow_milk_jug",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:goat_milk_bucket",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:goat_milk_jug",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:llama_milk_bucket",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:llama_milk_jug",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:sheep_milk_bucket",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:sheep_milk_jug",
+      "required": false
+    },
+    {
       "id": "eanimod:fivesixths_milk_bucket",
       "required": false
     },

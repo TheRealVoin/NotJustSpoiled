@@ -3,6 +3,34 @@
     "minecraft:dried_kelp",
     "minecraft:dried_kelp_block",
     {
+      "id": "dragnlivestock:beef_jerky",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:chicken_jerky",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:fish_jerky",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:game_jerky",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:generic_jerky",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:mutton_jerky",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:pork_jerky",
+      "required": false
+    },
+    {
       "id": "ends_delight:dried_endermite_meat",
       "required": false
     },

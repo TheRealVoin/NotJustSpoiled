@@ -29,6 +29,42 @@
       "required": false
     },
     {
+      "id": "dragnlivestock:cheese",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:cheesecake",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:goat_cheese",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:llama_cheese",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:raw_cheese",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:raw_goat_cheese",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:raw_llama_cheese",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:raw_sheep_cheese",
+      "required": false
+    },
+    {
+      "id": "dragnlivestock:sheep_cheese",
+      "required": false
+    },
+    {
       "id": "farmersdelight:glow_berry_custard",
       "required": false
     },

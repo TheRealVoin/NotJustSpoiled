@@ -36,6 +36,10 @@
       "required": false
     },
     {
+      "id": "dragnlivestock:fish_strips",
+      "required": false
+    },
+    {
       "id": "dragnpets:tropical_fish_fillet",
       "required": false
     },

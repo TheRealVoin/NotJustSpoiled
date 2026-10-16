@@ -25,6 +25,10 @@
       "required": false
     },
     {
+      "id": "dragnlivestock:omelette",
+      "required": false
+    },
+    {
       "id": "ends_delight:dragon_leg_with_sauce",
       "required": false
     },

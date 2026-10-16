@@ -9,6 +9,10 @@
       "required": false
     },
     {
+      "id": "dragnlivestock:egg_salad",
+      "required": false
+    },
+    {
       "id": "ends_delight:assorted_salad",
       "required": false
     },
