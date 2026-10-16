@@ -40,7 +40,7 @@ public abstract class InventoryMixin {
             originalMethod.call(stackInSlot, increment);
             FoodSpoilageManager.changeEnvironmentAndUpdate(stackInSlot, FoodEnvironment.INVENTORY, level);
         } else {
-            FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSlot, FoodEnvironment.INVENTORY, stackToPlaceInSlot, FoodEnvironment.OPEN_AIR, increment, level);
+            FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSlot, stackToPlaceInSlot, increment, level);
             originalMethod.call(stackInSlot, increment);
         }
     }
