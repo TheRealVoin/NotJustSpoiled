@@ -5,7 +5,6 @@ import com.github.alexthe666.alexsmobs.entity.ai.MantisShrimpAIFryRice;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,6 +20,6 @@ public class MantisShrimpAIFryRiceMixin {
     @Inject(method = "tick", at = @At(value = "INVOKE", target = "Lcom/github/alexthe666/alexsmobs/entity/EntityMantisShrimp;setItemInHand(Lnet/minecraft/world/InteractionHand;Lnet/minecraft/world/item/ItemStack;)V", shift = At.Shift.BEFORE))
     private void copySpoilageToResultStack(CallbackInfo ci, @Local(name = "rice") ItemStack riceStack) {
         ItemStack stackInHand = mantisShrimp.getItemInHand(InteractionHand.MAIN_HAND);
-        FoodSpoilageManager.copySpoilage(stackInHand, FoodEnvironment.INVENTORY, riceStack, mantisShrimp.level());
+        FoodSpoilageManager.copySpoilage(stackInHand, riceStack, mantisShrimp.level());
     }
 }

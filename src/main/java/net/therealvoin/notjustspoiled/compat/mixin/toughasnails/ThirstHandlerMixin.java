@@ -26,7 +26,7 @@ public abstract class ThirstHandlerMixin {
                 return defaultThirst;
             }
 
-            FoodSpoilageManager.updateFoodLifetime(itemStack, FoodEnvironment.INVENTORY, serverLevel);
+            FoodSpoilageManager.updateFoodLifetime(itemStack, serverLevel);
 
             for (FoodStatusEffectData effect : foodStatus.getData().effects()) {
                 if (player.getRandom().nextFloat() < effect.applyChance()) {

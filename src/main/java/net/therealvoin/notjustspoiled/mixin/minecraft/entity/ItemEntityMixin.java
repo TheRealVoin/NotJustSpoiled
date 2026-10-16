@@ -7,7 +7,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilage;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodStatus;
@@ -46,6 +45,6 @@ public abstract class ItemEntityMixin {
 
     @Inject(method = "merge(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;I)Lnet/minecraft/world/item/ItemStack;", at = @At(value = "INVOKE_ASSIGN", target = "Ljava/lang/Math;min(II)I", ordinal = 1, shift = At.Shift.AFTER))
     private static void averageFoodLifetimeBeforeMerge(ItemStack destinationStack, ItemStack originStack, int amount, CallbackInfoReturnable<ItemStack> cir, @Local(ordinal = 1) int movedAmount) {
-        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(destinationStack, FoodEnvironment.OPEN_AIR, originStack, FoodEnvironment.OPEN_AIR, movedAmount, NJSUtils.getLevelWithoutContext());
+        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(destinationStack, originStack, movedAmount, NJSUtils.getLevelWithoutContext());
     }
 }

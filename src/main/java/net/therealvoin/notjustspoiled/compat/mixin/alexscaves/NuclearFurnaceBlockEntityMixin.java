@@ -31,12 +31,12 @@ public abstract class NuclearFurnaceBlockEntityMixin {
 
     @Inject(method = "tick", at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/item/crafting/AbstractCookingRecipe;getResultItem(Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;", shift = At.Shift.AFTER))
     private static void copySpoilageToCookedFood(CallbackInfo ci, @Local(argsOnly = true) Level level, @Local(name = "cookResult") ItemStack resultSTack, @Local(name = "cookStack") ItemStack cookStack) {
-        FoodSpoilageManager.copySpoilage(cookStack, FoodEnvironment.STORAGE, resultSTack, level);
+        FoodSpoilageManager.copySpoilage(cookStack, resultSTack, level);
     }
 
     @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;grow(I)V", ordinal = 0))
     private static void mergeFood(ItemStack stackInResultSlot, int increment, Operation<Void> originalMethod, @Local(argsOnly = true) Level level, @Local(name = "cookResult") ItemStack resultStack) {
-        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInResultSlot, FoodEnvironment.STORAGE, resultStack, FoodEnvironment.STORAGE, increment, level);
+        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInResultSlot, resultStack, increment, level);
         originalMethod.call(stackInResultSlot, increment);
     }
 

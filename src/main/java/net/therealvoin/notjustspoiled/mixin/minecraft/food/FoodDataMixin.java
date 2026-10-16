@@ -28,7 +28,7 @@ public abstract class FoodDataMixin {
             return defaultNutrition;
         }
 
-        FoodSpoilageManager.updateFoodLifetime(itemStack, FoodEnvironment.INVENTORY, level);
+        FoodSpoilageManager.updateFoodLifetime(itemStack, level);
         foodStatus.applyEffects(entity);
 
         return foodStatus.getModifiedNutrition(defaultNutrition);

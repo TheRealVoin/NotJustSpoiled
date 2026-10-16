@@ -9,7 +9,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.CakeBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.therealvoin.notjustspoiled.common.foodspoilage.BlockFoodSpoilage;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodStatus;
 import org.spongepowered.asm.mixin.Mixin;
@@ -34,7 +33,7 @@ public abstract class CakeBlockMixin {
             return defaultNutrition;
         }
 
-        FoodSpoilageManager.updateFoodLifetime(cakeStack, FoodEnvironment.OPEN_AIR, level);
+        FoodSpoilageManager.updateFoodLifetime(cakeStack, level);
         foodStatus.applyEffects(player);
 
         if (blockState.getValue(CakeBlock.BITES) >= CakeBlock.MAX_BITES) {
