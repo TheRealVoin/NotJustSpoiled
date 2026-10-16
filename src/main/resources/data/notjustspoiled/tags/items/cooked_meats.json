@@ -46,6 +46,19 @@
       "required": false
     },
     {
+    {
+      "id": "dragnpets:cooked_cat",
+      "required": false
+    },
+    {
+      "id": "dragnpets:cooked_parrot_thigh",
+      "required": false
+    },
+    {
+      "id": "dragnpets:cooked_wolf",
+      "required": false
+    },
+    {
       "id": "eanimod:cookedchicken_darkbig",
       "required": false
     },

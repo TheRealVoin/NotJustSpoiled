@@ -46,6 +46,19 @@
       "required": false
     },
     {
+    {
+      "id": "dragnpets:cat",
+      "required": false
+    },
+    {
+      "id": "dragnpets:parrot_thigh",
+      "required": false
+    },
+    {
+      "id": "dragnpets:wolf",
+      "required": false
+    },
+    {
       "id": "eanimod:rawchicken_darkbig",
       "required": false
     },

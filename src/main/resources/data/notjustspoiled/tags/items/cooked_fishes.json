@@ -23,6 +23,10 @@
       "required": false
     },
     {
+      "id": "dragnpets:cooked_tropical_fish_fillet",
+      "required": false
+    },
+    {
       "id": "farmersdelight:cooked_cod_slice",
       "required": false
     },
