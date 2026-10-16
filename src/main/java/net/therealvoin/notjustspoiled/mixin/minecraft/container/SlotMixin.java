@@ -1,10 +1,8 @@
 package net.therealvoin.notjustspoiled.mixin.minecraft.container;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,8 +22,6 @@ public abstract class SlotMixin {
     @Inject(method = "safeInsert(Lnet/minecraft/world/item/ItemStack;I)Lnet/minecraft/world/item/ItemStack;", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;shrink(I)V", shift = At.Shift.BEFORE))
     private void mergeFood(ItemStack stackToPlaceInSlot, int increment, CallbackInfoReturnable<ItemStack> cir, @Local(ordinal = 1) ItemStack stackInSlot, @Local(ordinal = 1) int movedAmount) {
         Slot slot = ((Slot)(Object)this);
-        FoodEnvironment foodEnvironment = slot.container instanceof Inventory ? FoodEnvironment.INVENTORY : FoodEnvironment.STORAGE;
-
-        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSlot, foodEnvironment, stackToPlaceInSlot, FoodEnvironment.INVENTORY, movedAmount, NJSUtils.getLevelBySlot(slot));
+        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSlot, stackToPlaceInSlot, movedAmount, NJSUtils.getLevelBySlot(slot));
     }
 }
