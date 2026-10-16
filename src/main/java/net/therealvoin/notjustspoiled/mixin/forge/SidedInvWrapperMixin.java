@@ -8,7 +8,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 import org.spongepowered.asm.mixin.Final;
@@ -31,7 +30,7 @@ public abstract class SidedInvWrapperMixin {
     @WrapOperation(method = "insertItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;grow(I)V"), remap = true)
     private void averageFoodLifetimeBeforeMerge(ItemStack stackToSetInSlot, int increment, Operation<Void> originalMethod, @Local(name = "stackInSlot") ItemStack stackInSlot) {
         Level level = this.inv instanceof BlockEntity blockEntity ? blockEntity.getLevel() : NJSUtils.getLevelWithoutContext();
-        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSlot, FoodEnvironment.STORAGE, stackToSetInSlot, FoodEnvironment.STORAGE, stackToSetInSlot.getCount(), level);
+        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSlot, stackToSetInSlot, stackToSetInSlot.getCount(), level);
         originalMethod.call(stackToSetInSlot, increment);
     }
 }
