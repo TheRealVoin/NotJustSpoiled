@@ -4,7 +4,6 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.NonNullList;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
@@ -34,14 +33,12 @@ public abstract class AbstractContainerMenuMixin {
 
     @Inject(method = "moveItemStackTo", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;setCount(I)V", ordinal = 0, shift = At.Shift.BEFORE))
     private void averageFoodLifetimeBeforeMerge1(CallbackInfoReturnable<Boolean> cir, @Local(argsOnly = true) ItemStack stackToPlaceInSlot, @Local(ordinal = 1) ItemStack stackInSlot, @Local Slot slot) {
-        FoodEnvironment foodEnvironment = slot.container instanceof Inventory ? FoodEnvironment.INVENTORY : FoodEnvironment.STORAGE;
-        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSlot, foodEnvironment, stackToPlaceInSlot, foodEnvironment, stackToPlaceInSlot.getCount(), NJSUtils.getLevelBySlot(slot));
+        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSlot, stackToPlaceInSlot, stackToPlaceInSlot.getCount(), NJSUtils.getLevelBySlot(slot));
     }
 
     @Inject(method = "moveItemStackTo", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;shrink(I)V", shift = At.Shift.AFTER))
     private void averageFoodLifetimeBeforeMerge2(CallbackInfoReturnable<Boolean> cir, @Local(argsOnly = true) ItemStack stackToPlaceInSlot, @Local(ordinal = 1) ItemStack stackInSlot, @Local Slot slot, @Local(ordinal = 4) int maxSize) {
-        FoodEnvironment foodEnvironment = slot.container instanceof Inventory ? FoodEnvironment.INVENTORY : FoodEnvironment.STORAGE;
-        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSlot, foodEnvironment, stackToPlaceInSlot, foodEnvironment, maxSize - stackInSlot.getCount(), NJSUtils.getLevelBySlot(slot));
+        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSlot, stackToPlaceInSlot, maxSize - stackInSlot.getCount(), NJSUtils.getLevelBySlot(slot));
     }
 
     @Inject(method = "setCarried", at = @At("HEAD"))
@@ -71,7 +68,7 @@ public abstract class AbstractContainerMenuMixin {
 
     @WrapOperation(method = "doClick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;grow(I)V"))
     private void averageFoodLifetimeBeforeMerge3(ItemStack carriedStack, int increment, Operation<Void> originalMethod, @Local(ordinal = 2) ItemStack stackToAddToCarried) {
-        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(carriedStack, FoodEnvironment.INVENTORY, stackToAddToCarried, FoodEnvironment.INVENTORY, increment, NJSUtils.getLevelWithoutContext());
+        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(carriedStack, stackToAddToCarried, increment, NJSUtils.getLevelWithoutContext());
         originalMethod.call(carriedStack, increment);
     }
 }
