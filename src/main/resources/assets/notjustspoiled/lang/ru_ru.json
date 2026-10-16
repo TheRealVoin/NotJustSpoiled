@@ -38,7 +38,8 @@
   "config.notjustspoiled.chance_to_appear_food_in_storage.spoiled.tooltip": "Шанс появления испорченной еды в хранилище.\n\nПримечание: все значения в сумме должны давать 1.",
 
   "config.notjustspoiled.misc": "Разное",
-  "config.notjustspoiled.misc.send_compatibility_warning_message": "Отправляет в чат предупреждение, когда портящаяся еда генерируется в таблице лута, которая не принадлежит ни одному из модификаторов лута еды.",
+  "config.notjustspoiled.misc.send_compatibility_warning_message": "Отправлять предупреждение о совместимости",
+  "config.notjustspoiled.misc.send_compatibility_warning_message.tooltip": "Отправляет в чат предупреждение, когда портящаяся еда генерируется в таблице лута, которая не принадлежит ни одному из модификаторов лута еды.",
 
   "config.notjustspoiled.food_crafting_mode": "Режим крафта еды",
   "config.notjustspoiled.food_crafting_mode.tooltip": "Корректно считает время порчи созданной еды.\n\nAVERAGE: время порчи определяется как среднее арифметическое времени порчи всех ингредиентов.\nSAME_STATUS: еду можно создать только когда все ингредиенты имеют одинаковый статус.\nWORST_STATUS: время порчи определяется по наихудшему ингредиенту, игнорируя остальные.\nFRESH_ONLY: еду можно создать только когда все ингредиенты свежие.\nFRESH_OR_STALE_STATUS: еду можно создать только когда все ингредиенты свежие или несвежие. Если вся еда свежая или несвежая, будет применена логика AVERAGE, а если имеются оба статуса, то будет применена логика WORST_STATUS.",
