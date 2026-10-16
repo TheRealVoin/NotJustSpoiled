@@ -18,26 +18,12 @@ public class SpoiledFoodBrewingRecipe implements IBrewingRecipe {
 
     @Override
     public boolean isIngredient(@NotNull ItemStack ingredient) {
-//        FoodSpoilage foodSpoilage = FoodSpoilage.of(ingredient);
-//
-//        if (foodSpoilage == null) {
-//            return false;
-//        }
-//
-//        return FoodSpoilageManager.getFoodStatus(ingredient, NJSUtils.getLevelWithoutContext()) == FoodStatus.SPOILED;
-
         return FoodSpoilage.of(ingredient) != null;
     }
 
     @Override
     public @NotNull ItemStack getOutput(@NotNull ItemStack input, @NotNull ItemStack ingredient) {
-//        if (!isInput(input) || !isIngredient(ingredient)) {
-//            return ItemStack.EMPTY;
-//        }
-//
-//        return PotionUtils.setPotion(input.copy(), Potions.POISON);
-
-        if (!isInput(input) || !isIngredient(ingredient)) {
+        if (!this.isInput(input) || !this.isIngredient(ingredient)) {
             return ItemStack.EMPTY;
         }
 
