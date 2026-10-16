@@ -2,10 +2,8 @@ package net.therealvoin.notjustspoiled.compat.mixin.survival_instinct;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import net.mcreator.survivalinstinct.world.inventory.*;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
 import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilageManager;
 import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,13 +28,11 @@ public abstract class GUIMenuMixin {
 
     @Inject(method = "moveItemStackTo", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;setCount(I)V", ordinal = 0, shift = At.Shift.BEFORE))
     private void averageFoodLifetimeBeforeMerge1(CallbackInfoReturnable<Boolean> cir, @Local(argsOnly = true) ItemStack stackToPlaceInSlot, @Local(name = "itemstack") ItemStack stackInSlot, @Local(name = "slot") Slot slot) {
-        FoodEnvironment foodEnvironment = slot.container instanceof Inventory ? FoodEnvironment.INVENTORY : FoodEnvironment.STORAGE;
-        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSlot, foodEnvironment, stackToPlaceInSlot, foodEnvironment, stackToPlaceInSlot.getCount(), NJSUtils.getLevelBySlot(slot));
+        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSlot, stackToPlaceInSlot, stackToPlaceInSlot.getCount(), NJSUtils.getLevelBySlot(slot));
     }
 
     @Inject(method = "moveItemStackTo", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;shrink(I)V", shift = At.Shift.AFTER))
     private void averageFoodLifetimeBeforeMerge2(CallbackInfoReturnable<Boolean> cir, @Local(argsOnly = true) ItemStack stackToPlaceInSlot, @Local(name = "itemstack") ItemStack stackInSlot, @Local(name = "slot") Slot slot, @Local(name = "maxSize") int maxSize) {
-        FoodEnvironment foodEnvironment = slot.container instanceof Inventory ? FoodEnvironment.INVENTORY : FoodEnvironment.STORAGE;
-        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSlot, foodEnvironment, stackToPlaceInSlot, foodEnvironment, maxSize - stackInSlot.getCount(), NJSUtils.getLevelBySlot(slot));
+        FoodSpoilageManager.averageFoodLifetimeBeforeMerge(stackInSlot, stackToPlaceInSlot, maxSize - stackInSlot.getCount(), NJSUtils.getLevelBySlot(slot));
     }
 }
