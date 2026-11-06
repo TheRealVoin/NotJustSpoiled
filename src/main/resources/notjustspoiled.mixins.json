@@ -10,14 +10,15 @@
   },
   "mixins": [
     "forge.IForgeMobEffectInstanceMixin",
+    "forge.InvWrapperMixin",
     "forge.ItemStackHandlerMixin",
+    "forge.ShulkerItemStackInvWrapperMixin",
     "forge.SidedInvWrapperMixin",
     "minecraft.SetItemMixin",
     "minecraft.block.AbstractFurnaceBlockEntityMixin",
     "minecraft.block.CakeBlockMixin",
     "minecraft.block.CampfireBlockEntityMixin",
     "minecraft.container.AbstractContainerMenuMixin",
-    "minecraft.container.CraftingMenuMixin",
     "minecraft.container.InventoryMixin",
     "minecraft.container.SimpleContainerMixin",
     "minecraft.container.SlotMixin",
@@ -28,6 +29,9 @@
     "minecraft.entity.ThrowableItemProjectileMixin",
     "minecraft.entity.ThrownEggMixin",
     "minecraft.food.FoodDataMixin",
-    "minecraft.item.BlockItemMixin"
+    "minecraft.item.BlockItemMixin",
+    "minecraft.recipe.AbstractCookingRecipeMixin",
+    "minecraft.recipe.RecipeMixin",
+    "minecraft.recipe.accessor.TransientCraftingContainerAccessor"
   ]
 }
