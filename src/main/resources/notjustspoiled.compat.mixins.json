@@ -34,6 +34,8 @@
     "farmersdelight.AbstractStoveBlockEntityMixin",
     "farmersdelight.BasketBlockEntityMixin",
     "farmersdelight.CuttingBoardBlockEntityMixin",
+    "farmersdelight.CuttingBoardRecipeMixin",
+    "farmersdelight.DoughRecipeMixin",
     "farmersdelight.FeastBlockMixin",
     "farmersdelight.SkilletBlockEntityMixin",
     "farmersdelight.SkilletItemMixin",
