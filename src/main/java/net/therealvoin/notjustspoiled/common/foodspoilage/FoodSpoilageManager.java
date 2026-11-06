@@ -1,10 +1,14 @@
 package net.therealvoin.notjustspoiled.common.foodspoilage;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.therealvoin.notjustspoiled.common.config.FoodCraftingMode;
+import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
 import net.therealvoin.notjustspoiled.common.network.DebugMessagePacket;
+import net.therealvoin.notjustspoiled.common.util.NJSUtils;
 
 public class FoodSpoilageManager {
     public static void changeEnvironmentAndUpdate(ItemStack itemStack, FoodEnvironment newFoodEnvironment, Level level) {
@@ -14,9 +18,7 @@ public class FoodSpoilageManager {
             return;
         }
 
-        FoodEnvironment currentEnvironment = foodSpoilage.isInitialized() ? foodSpoilage.getEnvironment() : newFoodEnvironment;
-
-        updateFoodLifetime(itemStack, currentEnvironment, level);
+        updateFoodLifetime(itemStack, level);
         foodSpoilage.setEnvironment(newFoodEnvironment);
 
         if (!level.isClientSide()) {
@@ -24,7 +26,7 @@ public class FoodSpoilageManager {
         }
     }
 
-    public static void updateFoodLifetime(ItemStack itemStack, FoodEnvironment currentEnvironment, Level level) {
+    public static void updateFoodLifetime(ItemStack itemStack, Level level) {
         FoodSpoilage foodSpoilage = FoodSpoilage.of(itemStack);
 
         if (foodSpoilage == null) {
@@ -32,7 +34,10 @@ public class FoodSpoilageManager {
         }
 
         if (!foodSpoilage.isInitialized()) {
-            initializeFood(foodSpoilage, currentEnvironment, level);
+            foodSpoilage.setLastUpdateTime(level.getGameTime());
+            if (!level.isClientSide()) {
+                DebugMessagePacket.sendToAll(Component.literal("Initialized food: " + ForgeRegistries.ITEMS.getKey(foodSpoilage.getItemStack().getItem()).toString() + "\nlastUpdateTime: " + level.getGameTime()));
+            }
             return;
         }
 
@@ -72,7 +77,7 @@ public class FoodSpoilageManager {
         return FoodStatus.SPOILED;
     }
 
-    public static void averageFoodLifetimeBeforeMerge(ItemStack destinationStack, FoodEnvironment destinationEnvironment, ItemStack originStack, FoodEnvironment originEnvironment, int movedAmount, Level level) {
+    public static void averageFoodLifetimeBeforeMerge(ItemStack destinationStack, ItemStack originStack, int movedAmount, Level level) {
         if (getFoodStatus(destinationStack, level) != getFoodStatus(originStack, level)) {
             return;
         }
@@ -84,8 +89,8 @@ public class FoodSpoilageManager {
             return;
         }
 
-        updateFoodLifetime(destinationStack, destinationEnvironment, level);
-        updateFoodLifetime(originStack, originEnvironment, level);
+        updateFoodLifetime(destinationStack, level);
+        updateFoodLifetime(originStack, level);
 
         int destinationCount = destinationStack.getCount();
 
@@ -104,7 +109,7 @@ public class FoodSpoilageManager {
         return (level.getGameTime() - foodSpoilage.getLastUpdateTime()) * foodSpoilage.getEnvironment().getFoodSpoilageMultiplier() + foodSpoilage.getFoodLifetime();
     }
 
-    public static void copySpoilage(ItemStack copyFrom, FoodEnvironment copyFromEnvironment, ItemStack copyTo, Level level) {
+    public static void copySpoilage(ItemStack copyFrom, ItemStack copyTo, Level level) {
         FoodSpoilage foodSpoilage1 = FoodSpoilage.of(copyFrom);
         FoodSpoilage foodSpoilage2 = FoodSpoilage.of(copyTo);
 
@@ -112,18 +117,87 @@ public class FoodSpoilageManager {
             return;
         }
 
-        updateFoodLifetime(copyFrom, copyFromEnvironment, level);
+        updateFoodLifetime(copyFrom, level);
         double spoilagePercent = foodSpoilage1.getFoodLifetime() / FoodCategory.of(copyFrom).getSpoilageTime();
         foodSpoilage2.setFoodLifetime(spoilagePercent * FoodCategory.of(copyTo).getSpoilageTime());
         foodSpoilage2.setEnvironment(foodSpoilage1.getEnvironment());
         foodSpoilage2.setLastUpdateTime(foodSpoilage1.getLastUpdateTime());
     }
 
-    private static void initializeFood(FoodSpoilage foodSpoilage, FoodEnvironment foodEnvironment, Level level) {
-        foodSpoilage.setEnvironment(foodEnvironment);
-        foodSpoilage.setLastUpdateTime(level.getGameTime());
-        if (!level.isClientSide()) {
-            DebugMessagePacket.sendToAll(Component.literal("Initialized food: " + ForgeRegistries.ITEMS.getKey(foodSpoilage.getItemStack().getItem()).toString() + "\nlastUpdateTime: " + level.getGameTime()));
+    public static void manageCrafting(ItemStack craftedItem, Container inventory) {
+        FoodSpoilage resultStackSpoilage = FoodSpoilage.of(craftedItem);
+
+        if (resultStackSpoilage == null) {
+            return;
         }
+
+        FoodCraftingMode craftingMode = NJSServerConfig.FOOD_CRAFTING_MODE.get();
+
+        double totalSpoilagePercent = 0;
+        int totalCount = 0;
+        double worstPercent = 0;
+
+        FoodStatus firstStatus = null;
+        boolean hasMixedStatuses = false;
+        Level level = NJSUtils.getLevelWithoutContext();
+
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            ItemStack itemStack = inventory.getItem(i);
+
+            FoodSpoilage foodSpoilage = FoodSpoilage.of(itemStack);
+            if (foodSpoilage == null) {
+                continue;
+            }
+
+            double spoilagePercent = FoodSpoilageManager.calculateActualFoodLifetime(foodSpoilage, level) / FoodCategory.of(itemStack).getSpoilageTime();
+
+            totalSpoilagePercent += spoilagePercent;
+            worstPercent = Math.max(worstPercent, spoilagePercent);
+            totalCount++;
+
+            FoodStatus foodStatus = FoodSpoilageManager.getFoodStatus(itemStack, level);
+
+            if (firstStatus == null) {
+                firstStatus = foodStatus;
+            } else if (firstStatus != foodStatus) {
+                hasMixedStatuses = true;
+            }
+        }
+
+        if (totalCount == 0) {
+            return;
+        }
+
+        double finalSpoilagePercent = craftingMode.getCalculationMode(hasMixedStatuses) == FoodCraftingMode.CalculationMode.AVERAGE
+                ? totalSpoilagePercent / totalCount
+                : worstPercent;
+
+        resultStackSpoilage.setFoodLifetime(finalSpoilagePercent * FoodCategory.of(craftedItem).getSpoilageTime());
+        resultStackSpoilage.setEnvironment(FoodEnvironment.STORAGE);
+        resultStackSpoilage.setLastUpdateTime(level.getGameTime());
+    }
+
+    public static boolean isCraftingAllowed(Container inventory, Level level) {
+        FoodStatus firstStatus = null;
+
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            ItemStack stack = inventory.getItem(i);
+
+            if (FoodSpoilage.of(stack) == null) {
+                continue;
+            }
+
+            FoodStatus status = FoodSpoilageManager.getFoodStatus(stack, level);
+            if (firstStatus == null) {
+                firstStatus = status;
+                continue;
+            }
+
+            if (!NJSServerConfig.FOOD_CRAFTING_MODE.get().isAllowed(firstStatus, status)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
