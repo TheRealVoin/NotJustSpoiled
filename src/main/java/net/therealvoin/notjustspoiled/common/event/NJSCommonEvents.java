@@ -17,7 +17,6 @@ import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.OnDatapackSyncEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
@@ -31,7 +30,6 @@ import net.therealvoin.notjustspoiled.common.data.foodstatus.FoodStatusData;
 import net.therealvoin.notjustspoiled.common.data.foodstatus.FoodStatusReloadListener;
 import net.therealvoin.notjustspoiled.common.data.recipe.SpoiledFoodBrewingRecipe;
 import net.therealvoin.notjustspoiled.common.foodspoilage.*;
-import net.therealvoin.notjustspoiled.common.config.FoodCraftingMode;
 import net.therealvoin.notjustspoiled.common.config.NJSServerConfig;
 import net.therealvoin.notjustspoiled.common.network.NJSNetwork;
 import net.therealvoin.notjustspoiled.common.network.SyncFoodCategoryDataPacket;
@@ -61,7 +59,7 @@ public class NJSCommonEvents {
             ItemStack itemStack = data.getLastItemStackAt(blockPos);
 
             if (!itemStack.isEmpty()) {
-                FoodSpoilageManager.copySpoilage(itemStack, FoodEnvironment.OPEN_AIR, itemEntityStack, serverLevel);
+                FoodSpoilageManager.copySpoilage(itemStack, itemEntityStack, serverLevel);
 
                 if (serverLevel.getBlockState(blockPos).getBlock() == Blocks.AIR) {
                     data.removeItemStackAt(blockPos, itemStack);
@@ -69,64 +67,6 @@ public class NJSCommonEvents {
             }
 
             FoodSpoilageManager.changeEnvironmentAndUpdate(itemEntityStack, FoodEnvironment.OPEN_AIR, serverLevel);
-        }
-
-        @SubscribeEvent
-        public static void onItemCrafted(PlayerEvent.ItemCraftedEvent event) {
-            if (!(event.getEntity().level() instanceof ServerLevel serverLevel)) {
-                return;
-            }
-
-            ItemStack craftedItem = event.getCrafting();
-            FoodSpoilage craftedFoodSpoilage = FoodSpoilage.of(craftedItem);
-
-            if (craftedFoodSpoilage == null) {
-                return;
-            }
-
-            FoodCraftingMode craftingMode = NJSServerConfig.FOOD_CRAFTING_MODE.get();
-
-            double totalSpoilagePercent = 0;
-            int totalCount = 0;
-            double worstPercent = 0;
-
-            FoodStatus firstStatus = null;
-            boolean hasMixedStatuses = false;
-
-            for (int i = 0; i < event.getInventory().getContainerSize(); i++) {
-                ItemStack itemStack = event.getInventory().getItem(i);
-
-                FoodSpoilage foodSpoilage = FoodSpoilage.of(itemStack);
-                if (foodSpoilage == null) {
-                    continue;
-                }
-
-                double spoilagePercent = FoodSpoilageManager.calculateActualFoodLifetime(foodSpoilage, serverLevel) / FoodCategory.of(itemStack).getSpoilageTime();
-
-                totalSpoilagePercent += spoilagePercent;
-                worstPercent = Math.max(worstPercent, spoilagePercent);
-                totalCount++;
-
-                FoodStatus foodStatus = FoodSpoilageManager.getFoodStatus(itemStack, serverLevel);
-
-                if (firstStatus == null) {
-                    firstStatus = foodStatus;
-                } else if (firstStatus != foodStatus) {
-                    hasMixedStatuses = true;
-                }
-            }
-
-            if (totalCount == 0) {
-                return;
-            }
-
-            double finalSpoilagePercent = craftingMode.getCalculationMode(hasMixedStatuses) == FoodCraftingMode.CalculationMode.AVERAGE
-                    ? totalSpoilagePercent / totalCount
-                    : worstPercent;
-
-            craftedFoodSpoilage.setFoodLifetime(finalSpoilagePercent * FoodCategory.of(craftedItem).getSpoilageTime());
-            craftedFoodSpoilage.setEnvironment(FoodEnvironment.STORAGE);
-            craftedFoodSpoilage.setLastUpdateTime(serverLevel.getGameTime());
         }
 
         @SubscribeEvent
