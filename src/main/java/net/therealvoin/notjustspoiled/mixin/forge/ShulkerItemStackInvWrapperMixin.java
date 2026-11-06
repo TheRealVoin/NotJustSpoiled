@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
-@Mixin(ShulkerItemStackInvWrapper.class)
+@Mixin(value = ShulkerItemStackInvWrapper.class, remap = false)
 public abstract class ShulkerItemStackInvWrapperMixin {
     @ModifyArgs(method = "insertItem", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/items/ItemHandlerHelper;canItemStacksStack(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z"))
     private void removeSpoilageTagFromEqualityCheck(Args args) {
