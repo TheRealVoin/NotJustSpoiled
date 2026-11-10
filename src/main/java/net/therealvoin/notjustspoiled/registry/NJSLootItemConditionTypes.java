@@ -5,7 +5,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import net.therealvoin.notjustspoiled.NotJustSpoiled;
-import net.therealvoin.notjustspoiled.data.loot.IsArchaeologyCondition;
+import net.therealvoin.notjustspoiled.data.loot.condition.IsArchaeologyCondition;
 
 public class NJSLootItemConditionTypes {
     public static final DeferredRegister<LootItemConditionType> LOOT_ITEM_CONDITION_TYPES;

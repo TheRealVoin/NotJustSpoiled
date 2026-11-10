@@ -6,10 +6,10 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.therealvoin.notjustspoiled.NotJustSpoiled;
-import net.therealvoin.notjustspoiled.data.loot.SetFreshOrStaleStatus;
-import net.therealvoin.notjustspoiled.data.loot.SetFreshStatus;
-import net.therealvoin.notjustspoiled.data.loot.SetRandomStatus;
-import net.therealvoin.notjustspoiled.data.loot.SetSpoiledStatus;
+import net.therealvoin.notjustspoiled.data.loot.modifier.SetFreshOrStaleStatus;
+import net.therealvoin.notjustspoiled.data.loot.modifier.SetFreshStatus;
+import net.therealvoin.notjustspoiled.data.loot.modifier.SetRandomStatus;
+import net.therealvoin.notjustspoiled.data.loot.modifier.SetSpoiledStatus;
 
 public class NJSGlobalLootModifiers {
     public static final DeferredRegister<Codec<? extends IGlobalLootModifier>> GLOBAL_LOOT_MODIFIERS;
