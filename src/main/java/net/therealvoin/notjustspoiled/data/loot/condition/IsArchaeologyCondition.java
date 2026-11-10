@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.data.loot;
+package net.therealvoin.notjustspoiled.data.loot.condition;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;

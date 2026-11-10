@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.data.loot;
+package net.therealvoin.notjustspoiled.data.loot.modifier;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

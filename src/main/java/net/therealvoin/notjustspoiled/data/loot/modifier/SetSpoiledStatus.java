@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.data.loot;
+package net.therealvoin.notjustspoiled.data.loot.modifier;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
