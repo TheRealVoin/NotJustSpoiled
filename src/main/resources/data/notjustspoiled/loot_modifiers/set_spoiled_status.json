@@ -5,36 +5,7 @@
       "condition": "minecraft:any_of",
       "terms": [
         {
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "minecraft:archaeology/desert_pyramid"
-        },
-        {
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "minecraft:archaeology/desert_well"
-        },
-        {
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "minecraft:archaeology/ocean_ruin_cold"
-        },
-        {
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "minecraft:archaeology/ocean_ruin_warm"
-        },
-        {
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "minecraft:archaeology/trail_ruins_common"
-        },
-        {
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "minecraft:archaeology/trail_ruins_rare"
-        },
-        {
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "minecraft:archaelogy/jungle_ruins"
-        },
-        {
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "minecraft:archaelogy/ruins"
+          "condition": "notjustspoiled:is_archaeology"
         },
         {
           "condition": "forge:loot_table_id",
@@ -450,22 +421,6 @@
         },
         {
           "condition": "forge:loot_table_id",
-          "loot_table_id": "nova_structures:archaelogy/conduit_ruin"
-        },
-        {
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "nova_structures:archaelogy/crypt"
-        },
-        {
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "nova_structures:archaelogy/desert_ruin_inside_temple"
-        },
-        {
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "nova_structures:archaelogy/desert_ruin_ruins"
-        },
-        {
-          "condition": "forge:loot_table_id",
           "loot_table_id": "nova_structures:chests/conduit_ruin/conduit_ruin_big"
         },
         {
@@ -683,14 +638,6 @@
         {
           "condition": "forge:loot_table_id",
           "loot_table_id": "terralith:underground/giant_bee_hive"
-        },
-        {
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "yungscavebiomes:archaeology/sand_snapper_loot"
-        },
-        {
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "yungsextras:desert/extra_archeology"
         },
         {
           "condition": "forge:loot_table_id",
