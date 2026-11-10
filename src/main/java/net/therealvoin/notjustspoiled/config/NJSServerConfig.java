@@ -1,6 +1,11 @@
-package net.therealvoin.notjustspoiled.common.config;
+package net.therealvoin.notjustspoiled.config;
 
+import com.electronwill.nightconfig.core.Config;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class NJSServerConfig {
     public static final ForgeConfigSpec CONFIG;
@@ -18,6 +23,9 @@ public class NJSServerConfig {
     public static final ForgeConfigSpec.DoubleValue RANDOM$CHANCE_TO_APPEAR_SPOILED_FOOD_IN_STORAGE;
 
     public static final ForgeConfigSpec.BooleanValue SEND_COMPATIBILITY_WARNING_MESSAGE;
+
+    private static final ForgeConfigSpec.ConfigValue<Config> RATES;
+    private static final Map<ResourceLocation, Double> SPEEDS = new HashMap<>();
 
     public static final ForgeConfigSpec.EnumValue<FoodCraftingMode> FOOD_CRAFTING_MODE;
 
@@ -121,6 +129,32 @@ public class NJSServerConfig {
                 .worldRestart()
                 .defineEnum("foodCraftingMode", FoodCraftingMode.FRESH_OR_STALE_STATUS);
 
+        Config defaultRates = Config.inMemory();
+        defaultRates.set("minecraft:overworld", 1.0);
+        defaultRates.set("minecraft:the_nether", 2.0);
+
+        RATES = builder
+                .define("rates", defaultRates);
+
         CONFIG = builder.build();
+    }
+
+    public static void bakeConfig() {
+        SPEEDS.clear();
+        Config configObject = RATES.get();
+        configObject.valueMap().forEach((stringKey, value) -> {
+            if (value instanceof Number number) {
+                if (ResourceLocation.isValidResourceLocation(stringKey)) {
+                    ResourceLocation dimensionId = ResourceLocation.tryParse(stringKey);
+                    if (dimensionId != null) {
+                        SPEEDS.put(dimensionId, number.doubleValue());
+                    }
+                }
+            }
+        });
+    }
+
+    public static double getSpoilageRate(ResourceLocation dimensionId) {
+        return SPEEDS.getOrDefault(dimensionId, 1.0);
     }
 }

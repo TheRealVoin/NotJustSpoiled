@@ -1,9 +1,9 @@
-package net.therealvoin.notjustspoiled.common.data.loot;
+package net.therealvoin.notjustspoiled.data.loot;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodStatus;
+import net.therealvoin.notjustspoiled.foodspoilage.FoodStatus;
 
 import java.util.Map;
 

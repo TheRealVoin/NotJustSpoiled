@@ -1,4 +1,4 @@
-package net.therealvoin.notjustspoiled.common.data.loot;
+package net.therealvoin.notjustspoiled.data.loot;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -8,10 +8,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.loot.LootModifier;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodCategory;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodEnvironment;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodSpoilage;
-import net.therealvoin.notjustspoiled.common.foodspoilage.FoodStatus;
+import net.therealvoin.notjustspoiled.foodspoilage.FoodCategory;
+import net.therealvoin.notjustspoiled.foodspoilage.FoodEnvironment;
+import net.therealvoin.notjustspoiled.foodspoilage.FoodSpoilage;
+import net.therealvoin.notjustspoiled.foodspoilage.FoodStatus;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.EnumMap;
