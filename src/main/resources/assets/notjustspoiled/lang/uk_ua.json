@@ -44,9 +44,6 @@
   "config.notjustspoiled.food_crafting_mode": "Режим крафту їжі",
   "config.notjustspoiled.food_crafting_mode.tooltip": "Правильно визначає час псування створеної їжі.\n\nAVERAGE: час псування визначається як середнє арифметичне часу псування всіх інгредієнтів.\nSAME_STATUS: їжу можна створити лише коли всі інгредієнти мають однаковий статус.\nWORST_STATUS: час псування визначається за найгіршим інгредієнтом, ігноруючи інші.\nFRESH_ONLY: їжу можна створити лише коли всі інгредієнти свіжі.\nFRESH_OR_STALE_STATUS: їжу можна створити лише коли всі інгредієнти свіжі або несвіжі. Якщо вся їжа свіжа або несвіжа, буде застосована логіка AVERAGE, а якщо обидва статуси присутні, то буде застосована логіка WORST_STATUS.",
 
-  "message.notjustspoiled.warning_message": "Упс! Здається, що %s потребує додаткової сумісності з одним із ваших модів, який додає нові таблиці луту в скринях (наприклад, мод на нові структури). Будь ласка, повідомте про це на %s",
-  "message.notjustspoiled.warning_message.issues_page": "сторінці проблем модифікації",
-
   "tooltip.notjustspoiled.food_status": "Статус",
   "tooltip.notjustspoiled.food_status.fresh": "свіжий",
   "tooltip.notjustspoiled.food_status.stale": "несвіжий",
